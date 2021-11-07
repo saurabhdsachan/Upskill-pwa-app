@@ -1,10 +1,25 @@
 /** @type {import('next').NextConfig} */
 
-module.exports = {
+const withPWA = require('next-pwa');
+const runtimeCaching = require('next-pwa/cache');
+
+module.exports = withPWA({
   reactStrictMode: true,
   poweredByHeader: false,
   crossOrigin: 'anonymous',
   images: {
     domains: ['res.cloudinary.com', 'images.unsplash.com'],
   },
-};
+  pwa: {
+    runtimeCaching,
+    buildExcludes: [/middleware-manifest.json$/],
+    dest: 'public',
+    fallbacks: {
+      image: '/images/spj-happy-customer_ahkoxm.jpg',
+      // document: '/other-offline',  // if you want to fallback to a custom page other than /_offline
+      // font: '/static/font/fallback.woff2',
+      // audio: ...,
+      // video: ...,
+    },
+  },
+});

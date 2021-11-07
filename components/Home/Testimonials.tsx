@@ -29,12 +29,12 @@ const Slide = ({ testimonial }) => (
         <div className="flex items-center justify-center">
           <div className="flex-shrink-0 inline-flex rounded-full border-2 border-white">
             <Image
-              className="h-50 w-50 rounded-full object-cover filter contrast-125"
+              className="h-50 w-50 rounded-md shadow-md object-cover filter contrast-125"
               src={`https://res.cloudinary.com/spacejoy/${testimonial.dp}`}
               alt={testimonial.name}
               height={'40'}
               width={'40'}
-              layout="responsive"
+              layout="intrinsic"
             />
           </div>
           <div className="ml-4 text-left">

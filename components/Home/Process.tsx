@@ -20,7 +20,7 @@ const Process: React.FC = () => {
                 height="135"
                 width="239"
                 alt="Tell us what you like"
-                layout="responsive"
+                layout="intrinsic"
               />
             </div>
             <h3 className="text-lg my-4 text-gray-900">1. Tell us what you like</h3>
@@ -35,7 +35,7 @@ const Process: React.FC = () => {
                 height="135"
                 width="239"
                 alt="Tell us what you like"
-                layout="responsive"
+                layout="intrinsic"
               />
             </div>
             <h3 className="text-lg my-4 text-gray-900">2. Upload your floor plan</h3>
@@ -50,7 +50,7 @@ const Process: React.FC = () => {
                 height="135"
                 width="239"
                 alt="Tell us what you like"
-                layout="responsive"
+                layout="intrinsic"
               />
             </div>
             <h3 className="text-lg my-4 text-gray-900">3. Interiors as a subscription</h3>

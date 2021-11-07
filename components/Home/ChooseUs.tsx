@@ -20,7 +20,7 @@ const ChooseUs = (): JSX.Element => {
                   alt="No markups"
                   height={'200'}
                   width={'200'}
-                  layout="responsive"
+                  layout="intrinsic"
                 />
               </div>
               <h3 className="text-xl mb-2">No markups</h3>
@@ -37,7 +37,7 @@ const ChooseUs = (): JSX.Element => {
                   alt="Comp Service"
                   height={'200'}
                   width={'200'}
-                  layout="responsive"
+                  layout="intrinsic"
                 />
               </div>
               <h3 className="text-xl mb-2">Comp Service</h3>
@@ -54,7 +54,7 @@ const ChooseUs = (): JSX.Element => {
                   alt="Returns"
                   height={'200'}
                   width={'200'}
-                  layout="responsive"
+                  layout="intrinsic"
                 />
               </div>
               <h3 className="text-xl mb-2">Returns</h3>
@@ -71,7 +71,7 @@ const ChooseUs = (): JSX.Element => {
                   alt="24/7 Support"
                   height={'200'}
                   width={'200'}
-                  layout="responsive"
+                  layout="intrinsic"
                 />
               </div>
               <h3 className="text-xl mb-2">24/7 Support</h3>

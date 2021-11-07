@@ -4,7 +4,7 @@ import SectionTitle from '../Shared/SectionTitle';
 
 const MoveSlideshow = keyframes`
  to {
-      transform: translateX(-100%)
+    transform: translateX(-100%)
   }
 `;
 
