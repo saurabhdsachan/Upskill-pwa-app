@@ -1,0 +1,62 @@
+{
+	"name": "spacejoy",
+	"short_name": "spacejoy",
+	"lang": "en",
+	"start_url": "/",
+	"orientation": "portrait",
+	"background_color": "#ffffff",
+	"display": "standalone",
+	"theme_color": "#ffffff",
+	"icons": [
+		{
+			"src": "https://res.cloudinary.com/spacejoy/image/upload/v1587905889/shared/android-icon-36x36_c9hjzw.png",
+			"sizes": "36x36",
+			"type": "image/png",
+			"density": "0.75"
+		},
+		{
+			"src": "https://res.cloudinary.com/spacejoy/image/upload/v1587905889/shared/android-icon-48x48_ofkafs.png",
+			"sizes": "48x48",
+			"type": "image/png",
+			"density": "1.0"
+		},
+		{
+			"src": "https://res.cloudinary.com/spacejoy/image/upload/v1587905889/shared/android-icon-72x72_t3eqff.png",
+			"sizes": "72x72",
+			"type": "image/png",
+			"density": "1.5"
+		},
+		{
+			"src": "https://res.cloudinary.com/spacejoy/image/upload/v1587905890/shared/android-icon-96x96_fjklmh.png",
+			"sizes": "96x96",
+			"type": "image/png",
+			"density": "2.0"
+		},
+		{
+			"src": "https://res.cloudinary.com/spacejoy/image/upload/v1587905889/shared/android-icon-144x144_wtptbk.png",
+			"sizes": "144x144",
+			"type": "image/png",
+			"density": "3.0"
+		},
+		{
+			"src": "https://res.cloudinary.com/spacejoy/image/upload/v1587905656/shared/logo-192_om81yq.png",
+			"sizes": "192x192",
+			"type": "image/png",
+			"density": "4.0"
+		},
+		{
+			"src": "https://res.cloudinary.com/spacejoy/image/upload/v1587905689/shared/logo-512_o4ukzz.png",
+			"sizes": "512x512",
+			"type": "image/png",
+			"density": "4.0"
+		}
+	],
+	"prefer_related_applications": false,
+	"related_applications": [
+		{
+			"platform": "play",
+			"url": "https://play.google.com/store/apps/details?id=com.spacejoy&referrer=utm_source%3Dmsite-native-download",
+			"id": "com.homefuly"
+		}
+	]
+}

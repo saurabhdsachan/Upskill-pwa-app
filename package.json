@@ -8,15 +8,31 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^1.4.1",
+    "@heroicons/react": "^1.0.5",
+    "gsap": "^3.8.0",
+    "isomorphic-unfetch": "^3.1.0",
+    "lottie-react-web": "^2.2.2",
     "next": "12.0.3",
+    "next-seo": "^4.28.1",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-gsap": "^3.2.1",
+    "react-scrollmagic": "^2.3.0",
+    "react-slick": "^0.28.1",
+    "sharp": "^0.29.2"
   },
   "devDependencies": {
+    "@tailwindcss/forms": "^0.3.4",
     "@types/node": "16.11.6",
     "@types/react": "17.0.34",
+    "@types/styled-components": "^5.1.15",
+    "autoprefixer": "^10.4.0",
     "eslint": "7",
     "eslint-config-next": "12.0.3",
+    "postcss": "^8.3.11",
+    "styled-components": "^5.3.3",
+    "tailwindcss": "^2.2.19",
     "typescript": "4.4.4"
   }
 }

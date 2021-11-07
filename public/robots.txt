@@ -1,0 +1,94 @@
+User-agent: Googlebot
+Sitemap: https://www.spacejoy.com/sitemap.xml
+Disallow: /checkout
+Disallow: /dashboard
+Disallow: /profile
+Disallow: *api.homefuly.com/
+Disallow: *api.spacejoy.com/
+Allow: /
+
+User-agent: Googlebot-Mobile
+Sitemap: https://www.spacejoy.com/sitemap.xml
+Disallow: /checkout
+Disallow: /dashboard
+Disallow: /profile
+Disallow: *api.homefuly.com/
+Disallow: *api.spacejoy.com/
+Allow: /
+
+User-agent: Mediapartners-Google
+Sitemap: https://www.spacejoy.com/sitemap.xml
+Disallow: /checkout
+Disallow: /dashboard
+Disallow: /profile
+Disallow: *api.homefuly.com/
+Disallow: *api.spacejoy.com/
+Allow: /
+
+User-agent: AdsBot-Google
+Sitemap: https://www.spacejoy.com/sitemap.xml
+Disallow: /checkout
+Disallow: /dashboard
+Disallow: /profile
+Disallow: *api.homefuly.com/
+Disallow: *api.spacejoy.com/
+Allow: /
+
+User-agent: bingbot
+Disallow: /checkout
+Disallow: /dashboard
+Disallow: /profile
+Disallow: *api.homefuly.com/
+Disallow: *api.spacejoy.com/
+Allow: /
+
+User-agent: ia_archiver
+Sitemap: https://www.spacejoy.com/sitemap.xml
+Disallow: /checkout
+Disallow: /dashboard
+Disallow: /profile
+Disallow: *api.homefuly.com/
+Disallow: *api.spacejoy.com/
+Allow: /
+
+User-agent: Twitterbot
+Disallow: /checkout
+Disallow: /dashboard
+Disallow: /profile
+Disallow: *api.homefuly.com/
+Disallow: *api.spacejoy.com/
+Allow: /
+
+User-agent: Applebot
+Disallow: /checkout
+Disallow: /dashboard
+Disallow: /profile
+Disallow: *api.homefuly.com/
+Disallow: *api.spacejoy.com/
+Allow: /
+
+User-agent: SearchmetricsBot
+Disallow: /checkout
+Disallow: /dashboard
+Disallow: /profile
+Disallow: *api.homefuly.com/
+Disallow: *api.spacejoy.com/
+Allow: /
+
+User-agent: SEMrushBot
+Disallow: /checkout
+Disallow: /dashboard
+Disallow: /profile
+Disallow: *api.homefuly.com/
+Disallow: *api.spacejoy.com/
+Allow: /
+
+User-agent: *
+Sitemap: https://www.spacejoy.com/sitemap.xml
+Disallow: /checkout
+Disallow: /dashboard
+Disallow: /profile
+Disallow: *api.homefuly.com/
+Disallow: *api.spacejoy.com/
+Allow: /
+

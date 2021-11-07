@@ -1,16 +1,26 @@
-html,
+@import url('https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  min-width: 1024px;
+  font-family: 'Poppins', sans-serif;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+h1,
+h2,
+h3 {
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
 }
 
-* {
-  box-sizing: border-box;
+.next-image-fix > div {
+  display: block !important;
+}
+
+.min-h-free {
+  min-height: calc(100vh - 125px);
 }
