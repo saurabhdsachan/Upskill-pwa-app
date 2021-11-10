@@ -10,6 +10,7 @@ const Banner: React.FC = () => {
       height={'700'}
       width={'1114'}
       layout="responsive"
+      priority
     />
   );
 };

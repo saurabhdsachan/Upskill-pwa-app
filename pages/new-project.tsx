@@ -3,7 +3,7 @@ import Layout from '@components/Shared/Layout';
 import PreFooter from '@components/Shared/PreFooter';
 import React from 'react';
 
-export const Test = (): JSX.Element => (
+export const NextProject = (): JSX.Element => (
   <>
     <Layout>
       <Layout.Banner />
@@ -17,4 +17,4 @@ export const Test = (): JSX.Element => (
   </>
 );
 
-export default React.memo(Test);
+export default React.memo(NextProject);

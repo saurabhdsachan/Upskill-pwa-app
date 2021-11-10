@@ -130,15 +130,17 @@ const Header: React.FC = () => {
                   <SearchIcon className="inline h-4 w-4" />
                 </a>
               </Link>
-              <Link href="/test">
+              <Link href="/shop">
                 <a className="text-gray-700 text-xs py-1 px-2 mx-2 rounded-lg border border-transparent hover:shadow-xl hover:border-gray-200 focus:ring-1 focus:ring-gray-900 focus:outline-none">
                   <span className="sr-only">Shopping</span>
                   <ShoppingBagIcon className="inline h-4 w-4" />
                 </a>
               </Link>
-              <a className="text-white text-xs py-1.5 px-3 mx-2 rounded-lg border border-gray-900 bg-gray-900 hover:bg-gray-700">
-                Start Project
-              </a>
+              <Link href="/new-project">
+                <a className="text-white text-xs py-1.5 px-3 mx-2 rounded-lg border border-gray-900 bg-gray-900 hover:bg-gray-700">
+                  Start Project
+                </a>
+              </Link>
               <a className="text-gray-700 text-xs py-1.5 px-3 ml-2 rounded-lg border border-gray-600 hover:bg-gray-50">
                 LOGIN
               </a>
