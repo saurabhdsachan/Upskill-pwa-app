@@ -15,7 +15,7 @@ export interface DesignCardInterface {
 const DesignCard: React.FC<DesignCardInterface> = ({ cardData }) => {
   return (
     <div className="cursor-pointer group">
-      <div className="next-image-fix rounded overflow-hidden relative border border-gray-200 transition group-hover:shadow-md">
+      <div className=" rounded overflow-hidden relative border border-gray-200 transition group-hover:shadow-md">
         <div className="absolute inset-0 bg-gray-200 animate-pulse" />
         <Image
           className="object-cover transition duration-700 filter transform group-hover:brightness-110"

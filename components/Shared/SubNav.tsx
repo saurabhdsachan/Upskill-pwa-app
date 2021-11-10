@@ -41,7 +41,7 @@ const SubNav = ({ subNavState, closeSubNav }: { subNavState: boolean; closeSubNa
                   <div className="lg:col-start-1 lg:col-end-3 xl:col-start-1 xl:col-end-3">
                     <div className="grid gap-8 grid-cols-3">
                       <div className="col-start-1 col-end-2 relative">
-                        <div className="next-image-fix bg-gray-200 rounded-xl">
+                        <div className=" bg-gray-200 rounded-xl">
                           <Image
                             className="rounded-xl filter contrast-125"
                             src="https://res.cloudinary.com/spacejoy/image/upload/c_fill,g_face,h_300,w_300/v1624244229/web/avatars/Monica-Hall_ld1m5a.jpg"

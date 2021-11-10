@@ -34,7 +34,7 @@ const TeamMember: React.FC<TeamMemberInterface> = ({ designer }) => {
   return (
     <li>
       <Scene classToggle="entry" triggerHook={1} indicators={false} reverse={true}>
-        <AnimateBox className="next-image-fix">
+        <AnimateBox>
           <Image
             className="mx-auto h-20 w-20 rounded-full lg:w-24 lg:h-24 object-cover filter contrast-125"
             src={`https://res.cloudinary.com/spacejoy/${designer.icon}`}

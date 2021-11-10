@@ -42,7 +42,7 @@ const Team: React.FC = () => {
                     duration={2}
                   >
                     {TeamData.map((member) => (
-                      <div className="next-image-fix rounded-xl overflow-hidden" key={member.id}>
+                      <div className=" rounded-xl overflow-hidden" key={member.id}>
                         <Image
                           className="rounded-xl filter contrast-125"
                           src={member.thumbnail}

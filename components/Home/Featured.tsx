@@ -45,7 +45,7 @@ const Featured: React.FC = () => {
           </p>
         </div>
       </div>
-      <div className="relative next-image-fix">
+      <div className="relative ">
         <Image
           className="filter contrast-125 object-cover"
           src="https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,f_auto,q_auto,w_1896,h_759/v1622186205/spj-v2/spj-living-room_gyepig.jpg"

@@ -23,7 +23,7 @@ const ThemeDisplay = () => {
             ]}
             target={
               <>
-                <div className="next-image-fix mx-auto inset-0 bg-indigo-200 rounded-2xl shadow-lg">
+                <div className=" mx-auto inset-0 bg-indigo-200 rounded-2xl shadow-lg">
                   <Image
                     className="object-cover rounded-2xl"
                     src="https://res.cloudinary.com/spacejoy/image/upload/v1624342360/spj-v2/transition/hp-transformation-empty_q8w3ma.jpg"
@@ -33,7 +33,7 @@ const ThemeDisplay = () => {
                     layout="responsive"
                   />
                 </div>
-                <div className="absolute next-image-fix mx-auto inset-0 bg-pink-200 rounded-2xl">
+                <div className="absolute  mx-auto inset-0 bg-pink-200 rounded-2xl">
                   <Image
                     className="object-cover rounded-2xl"
                     src="https://res.cloudinary.com/spacejoy/image/upload/v1624342360/spj-v2/transition/hp-transformation-scandinavian_rilssr.jpg"
@@ -43,7 +43,7 @@ const ThemeDisplay = () => {
                     layout="responsive"
                   />
                 </div>
-                <div className="absolute next-image-fix mx-auto inset-0 bg-yellow-200 rounded-2xl">
+                <div className="absolute  mx-auto inset-0 bg-yellow-200 rounded-2xl">
                   <Image
                     className="object-cover rounded-2xl"
                     src="https://res.cloudinary.com/spacejoy/image/upload/v1624342360/spj-v2/transition/hp-transformation-modern_wqhnru.jpg"
@@ -53,7 +53,7 @@ const ThemeDisplay = () => {
                     layout="responsive"
                   />
                 </div>
-                <div className="absolute next-image-fix mx-auto inset-0 bg-blue-200 rounded-2xl">
+                <div className="absolute  mx-auto inset-0 bg-blue-200 rounded-2xl">
                   <Image
                     className="object-cover rounded-2xl"
                     src="https://res.cloudinary.com/spacejoy/image/upload/v1624342360/spj-v2/transition/hp-transformation-industrial_npa9wm.jpg"

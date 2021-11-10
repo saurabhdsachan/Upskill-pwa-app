@@ -40,7 +40,7 @@ const v1: React.FC = () => {
         </div>
         <div className="w-2/3 lg:w-3/4">
           <div className="relative overflow-hidden rounded-2xl">
-            <div className="next-image-fix filter blur-sm bg-gray-100">
+            <div className=" filter blur-sm bg-gray-100">
               <Image
                 className="object-cover filter contrast-115 brightness-110"
                 src={blurredBg}
@@ -50,7 +50,7 @@ const v1: React.FC = () => {
                 layout="responsive"
               />
             </div>
-            <div className="absolute next-image-fix inset-0">
+            <div className="absolute  inset-0">
               <BannerWithNoSSR />
             </div>
           </div>

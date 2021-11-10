@@ -154,7 +154,7 @@ const SearchBox: React.FC = () => {
                   {TopSearches?.map((searchItem) => {
                     return (
                       <div key={searchItem?.id} onClick={() => setSelectedSearchQuery(searchItem?.meta)}>
-                        <div className="overflow-hidden shadow-md hover:shadow-xl next-image-fix rounded-xl cursor-pointer border border-gray-300 transition hover:-translate-y-1">
+                        <div className="overflow-hidden shadow-md hover:shadow-xl  rounded-xl cursor-pointer border border-gray-300 transition hover:-translate-y-1">
                           <Image
                             src={searchItem?.img}
                             className="object-cover"
