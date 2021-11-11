@@ -68,12 +68,12 @@ const ProductView = (): JSX.Element => {
               </ol>
             </nav>
             <div className="lg:grid lg:grid-cols-2 lg:gap-x-8 lg:items-start">
-              <div className="flex flex-col-reverse">
+              <div>
                 <AnimateBox className="bg-white rounded-lg p-4 lg:p-8 xl:20">
                   <div className="aspect-w-1 aspect-h-1">
                     <div aria-labelledby="tabs-1-tab-1" role="tabpanel" tabIndex={0}>
                       <Image
-                        src="https://res.cloudinary.com/spacejoy/image/upload/v1636599163/spj-v2/shop/asset-3_hgs1zv.png"
+                        src="https://res.cloudinary.com/spacejoy/image/upload/v1636633702/spj-v2/shop/p1_i8qivg.png"
                         alt="Angled front view with bag zipped and handles upright."
                         className="object-center object-contain sm:rounded-lg"
                         layout="fill"
@@ -81,13 +81,54 @@ const ProductView = (): JSX.Element => {
                     </div>
                   </div>
                 </AnimateBox>
+                <div className="grid grid-cols-3 mt-4 gap-4">
+                  <div className="bg-white rounded p-4 col-span-2 row-span-2">
+                    <div className="aspect-w-1 aspect-h-1">
+                      <div aria-labelledby="tabs-1-tab-1" role="tabpanel" tabIndex={0}>
+                        <Image
+                          src="https://res.cloudinary.com/spacejoy/image/upload/v1636633702/spj-v2/shop/p2_c6uoek.png"
+                          alt="Angled front view with bag zipped and handles upright."
+                          className="object-center object-contain sm:rounded-lg"
+                          layout="fill"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-white rounded p-4">
+                    <div className="aspect-w-1 aspect-h-1">
+                      <div aria-labelledby="tabs-1-tab-1" role="tabpanel" tabIndex={0}>
+                        <Image
+                          src="https://res.cloudinary.com/spacejoy/image/upload/v1636633703/spj-v2/shop/p3_bwrk0p.png"
+                          alt="Angled front view with bag zipped and handles upright."
+                          className="object-center object-cover sm:rounded-lg"
+                          layout="fill"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-white rounded p-4">
+                    <div className="aspect-w-1 aspect-h-1">
+                      <div aria-labelledby="tabs-1-tab-1" role="tabpanel" tabIndex={0}>
+                        <Image
+                          src="https://res.cloudinary.com/spacejoy/image/upload/v1636633703/spj-v2/shop/p4_n4sjvk.png"
+                          alt="Angled front view with bag zipped and handles upright."
+                          className="object-center object-cover sm:rounded-lg"
+                          layout="fill"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
+
               <div className="mt-10 px-4 sm:px-0 sm:mt-16 lg:mt-0">
                 <small className="text-sm tracking-tight text-gray-500">Wayfair</small>
                 <h1 className="text-3xl mt-1 font-extrabold tracking-tight text-gray-900">Zip Tote Basket</h1>
                 <div className="mt-3">
                   <h2 className="sr-only">Product information</h2>
-                  <p className="text-3xl text-gray-900">$140.00</p>
+                  <p className="text-3xl text-gray-900">
+                    $140.00 <small className="text-sm text-gray-500 line-through">$150.00</small>
+                  </p>
                   <small className="text-xs text-gray-500">inclusive of all taxes</small>
                 </div>
                 <div className="mt-3">
@@ -120,7 +161,7 @@ const ProductView = (): JSX.Element => {
                 </div>
                 <form className="mt-6">
                   <div>
-                    <h3 className="text-sm text-gray-600">Color</h3>
+                    <h3 className="text-gray-900 text-sm font-medium">Color</h3>
                     <fieldset className="mt-6">
                       <legend className="sr-only">Choose a color</legend>
                       <div className="flex items-center space-x-3">
