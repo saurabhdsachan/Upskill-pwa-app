@@ -4,12 +4,29 @@ import { StarIcon } from '@heroicons/react/solid';
 import Head from 'next/head';
 import Image from 'next/image';
 import React from 'react';
-
+import styled, { keyframes } from 'styled-components';
+const entry = keyframes`
+	from { 
+		opacity: 0;
+	}
+	to {
+    opacity: 1;
+    transform: translateY(0px);
+	}
+`;
+const AnimateBox = styled.div`
+  opacity: 0;
+  animation: ${entry} 0.8s forwards;
+  transform: translateY(20px);
+  &:nth-child(1) {
+    animation-delay: 0ms;
+  }
+`;
 const ProductView = (): JSX.Element => {
   return (
     <Layout>
       <Head>
-        <title>Help | Spacejoy</title>
+        <title>Product Overview | Spacejoy</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout.Banner />
@@ -49,29 +66,28 @@ const ProductView = (): JSX.Element => {
                 </li>
               </ol>
             </nav>
-
             <div className="lg:grid lg:grid-cols-2 lg:gap-x-8 lg:items-start">
               <div className="flex flex-col-reverse">
-                <div className="w-full aspect-w-1 aspect-h-1">
-                  <div id="tabs-1-panel-1" aria-labelledby="tabs-1-tab-1" role="tabpanel" tabIndex={0}>
-                    <Image
-                      src="https://tailwindui.com/img/ecommerce-images/product-page-03-product-01.jpg"
-                      alt="Angled front view with bag zipped and handles upright."
-                      className="w-full h-full object-center object-cover sm:rounded-lg"
-                      layout="fill"
-                    />
+                <AnimateBox className="bg-white rounded p-4 lg:p-8 xl:20">
+                  <div className="aspect-w-1 aspect-h-1">
+                    <div aria-labelledby="tabs-1-tab-1" role="tabpanel" tabIndex={0}>
+                      <Image
+                        src="https://res.cloudinary.com/spacejoy/image/upload/v1636599163/spj-v2/shop/asset-3_hgs1zv.png"
+                        alt="Angled front view with bag zipped and handles upright."
+                        className="object-center object-contain sm:rounded-lg"
+                        layout="fill"
+                      />
+                    </div>
                   </div>
-                </div>
+                </AnimateBox>
               </div>
-
               <div className="mt-10 px-4 sm:px-0 sm:mt-16 lg:mt-0">
                 <h1 className="text-3xl font-extrabold tracking-tight text-gray-900">Zip Tote Basket</h1>
-
                 <div className="mt-3">
                   <h2 className="sr-only">Product information</h2>
-                  <p className="text-3xl text-gray-900">$140</p>
+                  <p className="text-3xl text-gray-900">$140.00</p>
+                  <small className="text-xs text-gray-500">inclusive of all taxes</small>
                 </div>
-
                 <div className="mt-3">
                   <h3 className="sr-only">Reviews</h3>
                   <div className="flex items-center">
@@ -83,12 +99,15 @@ const ProductView = (): JSX.Element => {
                       <StarIcon className="h-5 w-5 flex-shrink-0 text-gray-300" />
                     </div>
                     <p className="sr-only">4 out of 5 stars</p>
+                    <div className="ml-4 flex">
+                      <a href="#" className="text-sm font-medium text-red-600 hover:text-red-500">
+                        See all 512 reviews
+                      </a>
+                    </div>
                   </div>
                 </div>
-
                 <div className="mt-6">
                   <h3 className="sr-only">Description</h3>
-
                   <div className="text-base text-gray-700 space-y-6">
                     <p>
                       The Zip Tote Basket is the perfect midpoint between shopping tote and comfy backpack. With
@@ -97,12 +116,10 @@ const ProductView = (): JSX.Element => {
                     </p>
                   </div>
                 </div>
-
                 <form className="mt-6">
                   <div>
                     <h3 className="text-sm text-gray-600">Color</h3>
-
-                    <fieldset className="mt-2">
+                    <fieldset className="mt-6">
                       <legend className="sr-only">Choose a color</legend>
                       <div className="flex items-center space-x-3">
                         <label className="-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none ring-gray-700">
@@ -121,8 +138,7 @@ const ProductView = (): JSX.Element => {
                             className="h-8 w-8 bg-gray-700 border border-black border-opacity-10 rounded-full"
                           />
                         </label>
-
-                        <label className="-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none ring-gray-400">
+                        <label className="-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none ring-gray-400 ring-1">
                           <input
                             type="radio"
                             name="color-choice"
@@ -138,7 +154,6 @@ const ProductView = (): JSX.Element => {
                             className="h-8 w-8 bg-white border border-black border-opacity-10 rounded-full"
                           />
                         </label>
-
                         <label className="-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none ring-gray-500">
                           <input
                             type="radio"
@@ -158,7 +173,6 @@ const ProductView = (): JSX.Element => {
                       </div>
                     </fieldset>
                   </div>
-
                   <div className="mt-10 flex sm:flex-col1">
                     <button
                       type="button"
@@ -166,7 +180,6 @@ const ProductView = (): JSX.Element => {
                     >
                       Add to bag
                     </button>
-
                     <button
                       type="button"
                       className="ml-4 py-3 px-3 rounded-md flex items-center justify-center text-gray-400 hover:bg-gray-100 hover:text-gray-500"
@@ -176,12 +189,22 @@ const ProductView = (): JSX.Element => {
                     </button>
                   </div>
                 </form>
-
+                <div className="text-sm text-gray-700 mt-6">
+                  <Image
+                    src="https://res.cloudinary.com/spacejoy/image/upload/v1636614144/shared/affirm_ejxoqf.svg"
+                    alt="Angled front view with bag zipped and handles upright."
+                    className="object-center object-contain sm:rounded-lg"
+                    width="100"
+                    height="50"
+                  />
+                  <p>
+                    Starting at $62/mo with Affirm. <span className="text-blue-400">Pre-qualify Now</span>
+                  </p>
+                </div>
                 <section aria-labelledby="details-heading" className="mt-12">
                   <h2 id="details-heading" className="sr-only">
                     Additional details
                   </h2>
-
                   <div className="border-t divide-y divide-gray-200">
                     <div>
                       <h3>
@@ -214,11 +237,191 @@ const ProductView = (): JSX.Element => {
               </div>
             </div>
           </main>
+          <div className="container mx-auto py-16 px-4">
+            <div className="sm:flex sm:items-baseline sm:justify-between">
+              <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">Shop by Category</h2>
+              <a href="#" className="hidden text-sm text-gray-900 sm:block">
+                Browse all categories<span aria-hidden="true"> &rarr;</span>
+              </a>
+            </div>
+            <div className="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:grid-rows-2 sm:gap-x-6 lg:gap-8">
+              <div className="group aspect-w-2 aspect-h-1 rounded-lg overflow-hidden sm:aspect-h-1 sm:aspect-w-1 sm:row-span-2">
+                <Image
+                  src="https://images.unsplash.com/photo-1550581190-9c1c48d21d6c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"
+                  alt="Two models wearing women's black cotton crewneck tee and off-white cotton crewneck tee."
+                  className="object-center object-cover group-hover:opacity-75"
+                  layout="fill"
+                />
+                <div aria-hidden="true" className="bg-gradient-to-b from-transparent to-black opacity-50" />
+                <div className="p-6 flex items-end">
+                  <div>
+                    <h3 className="font-semibold text-white">
+                      <a href="#">
+                        <span className="absolute inset-0" />
+                        New Arrivals
+                      </a>
+                    </h3>
+                    <p aria-hidden="true" className="mt-1 text-sm text-white">
+                      Shop now
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="group aspect-w-2 aspect-h-1 rounded-lg overflow-hidden sm:relative sm:aspect-none sm:h-full">
+                <Image
+                  src="https://images.unsplash.com/photo-1611967164521-abae8fba4668?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"
+                  alt="Wooden shelf with gray and olive drab green baseball caps, next to wooden clothes hanger with sweaters."
+                  className="object-center object-cover group-hover:opacity-75 sm:absolute sm:inset-0 sm:w-full sm:h-full"
+                  layout="fill"
+                />
+                <div
+                  aria-hidden="true"
+                  className="bg-gradient-to-b from-transparent to-black opacity-50 sm:absolute sm:inset-0"
+                />
+                <div className="p-6 flex items-end sm:absolute sm:inset-0">
+                  <div>
+                    <h3 className="font-semibold text-white">
+                      <a href="#">
+                        <span className="absolute inset-0" />
+                        Accessories
+                      </a>
+                    </h3>
+                    <p aria-hidden="true" className="mt-1 text-sm text-white">
+                      Shop now
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="group aspect-w-2 aspect-h-1 rounded-lg overflow-hidden sm:relative sm:aspect-none sm:h-full">
+                <Image
+                  src="https://tailwindui.com/img/ecommerce-images/home-page-03-category-02.jpg"
+                  alt="Walnut desk organizer set with white modular trays, next to porcelain mug on wooden desk."
+                  className="object-center object-cover group-hover:opacity-75 sm:absolute sm:inset-0 sm:w-full sm:h-full"
+                  layout="fill"
+                />
+                <div
+                  aria-hidden="true"
+                  className="bg-gradient-to-b from-transparent to-black opacity-50 sm:absolute sm:inset-0"
+                />
+                <div className="p-6 flex items-end sm:absolute sm:inset-0">
+                  <div>
+                    <h3 className="font-semibold text-white">
+                      <a href="#">
+                        <span className="absolute inset-0" />
+                        Workspace
+                      </a>
+                    </h3>
+                    <p aria-hidden="true" className="mt-1 text-sm text-white">
+                      Shop now
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="mt-6 sm:hidden">
+              <a href="#" className="block text-sm font-semibold text-indigo-600 hover:text-indigo-500">
+                Browse all categories<span aria-hidden="true"> &rarr;</span>
+              </a>
+            </div>
+            <div className="pt-16">
+              <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">Shop by Collection</h2>
+              <p className="mt-4 text-base text-gray-500">
+                Each season, we collaborate with world-class designers to create a collection inspired by the natural
+                world.
+              </p>
+              <div className="mt-10 space-y-12 lg:space-y-0 lg:grid lg:grid-cols-5 lg:gap-x-8">
+                <a href="#" className="group block">
+                  <div
+                    aria-hidden="true"
+                    className="aspect-w-3 aspect-h-2 rounded-lg overflow-hidden group-hover:opacity-75 lg:aspect-w-5 lg:aspect-h-6"
+                  >
+                    <Image
+                      src="https://tailwindui.com/img/ecommerce-images/home-page-01-collection-01.jpg"
+                      alt="Brown leather key ring with brass metal loops and rivets on wood table."
+                      className="w-full h-full object-center object-cover"
+                      layout="fill"
+                    />
+                  </div>
+                  <h3 className="mt-4 text-base font-semibold text-gray-900">Handcrafted Collection</h3>
+                  <p className="mt-2 text-sm text-gray-500">
+                    Keep your phone, keys, and wallet together, so you can lose everything at once.
+                  </p>
+                </a>
+                <a href="#" className="group block">
+                  <div
+                    aria-hidden="true"
+                    className="aspect-w-3 aspect-h-2 rounded-lg overflow-hidden group-hover:opacity-75 lg:aspect-w-5 lg:aspect-h-6"
+                  >
+                    <Image
+                      src="https://tailwindui.com/img/ecommerce-images/home-page-01-collection-02.jpg"
+                      alt="Natural leather mouse pad on white desk next to porcelain mug and keyboard."
+                      className="w-full h-full object-center object-cover"
+                      layout="fill"
+                    />
+                  </div>
+                  <h3 className="mt-4 text-base font-semibold text-gray-900">Organized Desk Collection</h3>
+                  <p className="mt-2 text-sm text-gray-500">
+                    The rest of the house will still be a mess, but your desk will look great.
+                  </p>
+                </a>
+                <a href="#" className="group block">
+                  <div
+                    aria-hidden="true"
+                    className="aspect-w-3 aspect-h-2 rounded-lg overflow-hidden group-hover:opacity-75 lg:aspect-w-5 lg:aspect-h-6"
+                  >
+                    <Image
+                      src="https://tailwindui.com/img/ecommerce-images/home-page-01-collection-03.jpg"
+                      alt="Person placing task list card into walnut card holder next to felt carrying case on leather desk pad."
+                      className="w-full h-full object-center object-cover"
+                      layout="fill"
+                    />
+                  </div>
+                  <h3 className="mt-4 text-base font-semibold text-gray-900">Focus Collection</h3>
+                  <p className="mt-2 text-sm text-gray-500">
+                    Be more productive than enterprise project managers with a single piece of paper.
+                  </p>
+                </a>
+                <a href="#" className="group block">
+                  <div
+                    aria-hidden="true"
+                    className="aspect-w-3 aspect-h-2 rounded-lg overflow-hidden group-hover:opacity-75 lg:aspect-w-5 lg:aspect-h-6"
+                  >
+                    <Image
+                      src="https://tailwindui.com/img/ecommerce-images/home-page-01-collection-03.jpg"
+                      alt="Person placing task list card into walnut card holder next to felt carrying case on leather desk pad."
+                      className="w-full h-full object-center object-cover"
+                      layout="fill"
+                    />
+                  </div>
+                  <h3 className="mt-4 text-base font-semibold text-gray-900">Focus Collection</h3>
+                  <p className="mt-2 text-sm text-gray-500">
+                    Be more productive than enterprise project managers with a single piece of paper.
+                  </p>
+                </a>
+                <a href="#" className="group block">
+                  <div
+                    aria-hidden="true"
+                    className="aspect-w-3 aspect-h-2 rounded-lg overflow-hidden group-hover:opacity-75 lg:aspect-w-5 lg:aspect-h-6"
+                  >
+                    <Image
+                      src="https://tailwindui.com/img/ecommerce-images/home-page-01-collection-03.jpg"
+                      alt="Person placing task list card into walnut card holder next to felt carrying case on leather desk pad."
+                      className="w-full h-full object-center object-cover"
+                      layout="fill"
+                    />
+                  </div>
+                  <h3 className="mt-4 text-base font-semibold text-gray-900">Focus Collection</h3>
+                  <p className="mt-2 text-sm text-gray-500">
+                    Be more productive than enterprise project managers with a single piece of paper.
+                  </p>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </Layout.Body>
       <Layout.Footer />
     </Layout>
   );
 };
-
 export default ProductView;
