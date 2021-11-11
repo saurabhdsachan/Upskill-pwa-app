@@ -48,8 +48,8 @@ export const Shop = (): JSX.Element => (
                     >
                       <span className="font-bold text-gray-700">Color</span>
                       <span className="ml-6 flex items-center">
-                        <PlusIcon className="w-3 h-3 mr-2" />
-                        <MinusIcon className="w-3 h-3" />
+                        <PlusIcon className="text-gray-900 w-3 h-3 mr-2" />
+                        <MinusIcon className="text-gray-900 w-3 h-3" />
                       </span>
                     </button>
                   </h3>
@@ -57,7 +57,7 @@ export const Shop = (): JSX.Element => (
                     <div className="space-y-2">
                       <fieldset>
                         <legend className="sr-only">Choose a color</legend>
-                        <div className="flex items-center space-x-3">
+                        <div className="flex flex-wrap items-center space-x-3">
                           <label className="-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none ring-gray-400">
                             <input
                               type="radio"
@@ -106,32 +106,16 @@ export const Shop = (): JSX.Element => (
                               className="h-8 w-8 bg-gray-900 border border-black border-opacity-10 rounded-full"
                             />
                           </label>
-                          <label className="-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none ring-blue-500">
+                          <label className="-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none ring-red-500 ring-offset-1 ring-1">
                             <input
                               type="radio"
                               name="color-choice"
-                              value="Black"
+                              value="Red"
                               className="sr-only"
                               aria-labelledby="color-choice-2-label"
                             />
                             <p id="color-choice-2-label" className="sr-only">
-                              Black
-                            </p>
-                            <span
-                              aria-hidden="true"
-                              className="h-8 w-8 bg-blue-500 border border-black border-opacity-10 rounded-full"
-                            />
-                          </label>
-                          <label className="-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none ring-red-500">
-                            <input
-                              type="radio"
-                              name="color-choice"
-                              value="Black"
-                              className="sr-only"
-                              aria-labelledby="color-choice-2-label"
-                            />
-                            <p id="color-choice-2-label" className="sr-only">
-                              Black
+                              Red
                             </p>
                             <span
                               aria-hidden="true"
@@ -154,8 +138,8 @@ export const Shop = (): JSX.Element => (
                     >
                       <span className="font-bold text-gray-700">Category</span>
                       <span className="ml-6 flex items-center">
-                        <PlusIcon className="w-3 h-3 mr-2" />
-                        <MinusIcon className="w-3 h-3" />
+                        <PlusIcon className="text-gray-900 w-3 h-3 mr-2" />
+                        <MinusIcon className="text-gray-900 w-3 h-3" />
                       </span>
                     </button>
                   </h3>
@@ -240,8 +224,8 @@ export const Shop = (): JSX.Element => (
                     >
                       <span className="font-bold text-gray-700">Size</span>
                       <span className="ml-6 flex items-center">
-                        <PlusIcon className="w-3 h-3 mr-2" />
-                        <MinusIcon className="w-3 h-3" />
+                        <PlusIcon className="text-gray-900 w-3 h-3 mr-2" />
+                        <MinusIcon className="text-gray-900 w-3 h-3" />
                       </span>
                     </button>
                   </h3>
