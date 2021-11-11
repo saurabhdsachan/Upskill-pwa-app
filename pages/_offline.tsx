@@ -1,4 +1,4 @@
-import ErrorState from '@components/Shared/ErrorState';
+import EmptyState from '@components/Shared/EmptyState';
 import Layout from '@components/Shared/Layout';
 import Head from 'next/head';
 import React from 'react';
@@ -13,7 +13,7 @@ const Offline: React.FC = () => {
       <Layout.Banner />
       <Layout.Header />
       <Layout.Body>
-        <ErrorState status={0} />
+        <EmptyState title="Connection Offline" message="Please check your network settings" />
       </Layout.Body>
       <Layout.Footer />
     </Layout>

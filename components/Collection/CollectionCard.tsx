@@ -15,14 +15,25 @@ const CollectionCard: React.FC<CollectionCardInterface> = ({ cardData, inset }) 
     <li>
       <Link href={`/collection/${cardData?.slug}`}>
         <a className="rounded inline-block focus:ring-1 focus:ring-offset-1 focus:ring-offset-white focus:ring-gray-700 focus:outline-none">
-          <div className="group  rounded relative overflow-hidden bg-gray-200 transition-all transform duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1 border border-gray-300">
-            <Image
-              className="rounded object-cover"
-              alt={cardData?.name}
-              src={`${cloudinary.baseDeliveryURL}/${cardData?.cdnThumbnail}`}
-              height="300"
-              width="225"
-            />
+          <div className="group rounded relative overflow-hidden bg-gray-200 transition-all transform duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1 border border-gray-300">
+            {inset ? (
+              <Image
+                className="rounded object-cover"
+                alt={cardData?.name}
+                src={`${cloudinary.baseDeliveryURL}/${cardData?.cdnThumbnail}`}
+                height="300"
+                width="225"
+              />
+            ) : (
+              <div className="w-full aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-10">
+                <Image
+                  alt={cardData?.name}
+                  src={`${cloudinary.baseDeliveryURL}/${cardData?.cdnThumbnail}`}
+                  className="w-full h-full object-center object-cover"
+                  layout="fill"
+                />
+              </div>
+            )}
             {inset && (
               <div className="absolute bottom-0 right-0 left-0 bg-gradient-to-t from-gray-900 to-transparent pb-4 pt-16 px-4">
                 <p className="text-xl font-bold text-white mb-1">

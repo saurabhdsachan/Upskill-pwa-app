@@ -15,8 +15,8 @@ export const Shop = (): JSX.Element => (
     <Layout.Header />
     <Layout.Body>
       <div className="bg-gray-100 min-h-screen">
-        <main className="container p-4 py-2 mx-auto">
-          <div className="grid grid-cols-5 gap-2">
+        <main className="container p-4 py-8 mx-auto">
+          <div className="grid grid-cols-5 gap-8">
             <div className="col-span-1 bg-white rounded p-4">
               <h3 className="text-gray-700 mb-4">Filters</h3>
               <form className="hidden lg:block">
@@ -42,7 +42,7 @@ export const Shop = (): JSX.Element => (
                   <h3 className="-my-3">
                     <button
                       type="button"
-                      className="py-3 bg-white w-full flex items-center justify-between text-sm text-gray-400 hover:text-gray-500"
+                      className="py-3 w-full flex items-center justify-between text-sm text-gray-400 hover:text-gray-500"
                       aria-controls="filter-section-0"
                       aria-expanded="false"
                     >
@@ -139,7 +139,7 @@ export const Shop = (): JSX.Element => (
                   <h3 className="-my-3">
                     <button
                       type="button"
-                      className="py-3 bg-white w-full flex items-center justify-between text-sm text-gray-400 hover:text-gray-500"
+                      className="py-3 w-full flex items-center justify-between text-sm text-gray-400 hover:text-gray-500"
                       aria-controls="filter-section-1"
                       aria-expanded="false"
                     >
@@ -225,7 +225,7 @@ export const Shop = (): JSX.Element => (
                   <h3 className="-my-3">
                     <button
                       type="button"
-                      className="py-3 bg-white w-full flex items-center justify-between text-sm text-gray-400 hover:text-gray-500"
+                      className="py-3 w-full flex items-center justify-between text-sm text-gray-400 hover:text-gray-500"
                       aria-controls="filter-section-2"
                       aria-expanded="false"
                     >
@@ -322,15 +322,15 @@ export const Shop = (): JSX.Element => (
               </form>
             </div>
             <div className="col-span-4 rounded">
-              <div className="grid grid-cols-4 gap-2">
+              <div className="grid grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-1">
                 <div className="bg-white p-4 rounded">
                   <Link href="/">
                     <a className="group">
                       <div className="w-full aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
                         <Image
-                          src="https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto/w_500/v1636557442/server/production/server/assets/618be1e89adbaf001cd9dfe7/product_0_0olj99ko25g1.jpg"
+                          src="https://res.cloudinary.com/spacejoy/image/upload/v1636599158/spj-v2/shop/asset-13_hm1ijw.png"
                           alt="Olive drab green insulated bottle with flared screw lid and flat top."
-                          className="w-full h-full object-center object-cover group-hover:opacity-75"
+                          className="w-full h-full object-center object-contain group-hover:opacity-75"
                           layout="fill"
                         />
                       </div>
@@ -345,9 +345,9 @@ export const Shop = (): JSX.Element => (
                     <a className="group">
                       <div className="w-full aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
                         <Image
-                          src="https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto/w_500/v1636554369/server/production/server/assets/618bce99482d66001cbaab87/product_0_035k2l7le7i9.jpg"
+                          src="https://res.cloudinary.com/spacejoy/image/upload/v1636599158/spj-v2/shop/asset-5_gpnkkc.png"
                           alt="Olive drab green insulated bottle with flared screw lid and flat top."
-                          className="w-full h-full object-center object-cover group-hover:opacity-75"
+                          className="w-full h-full object-center object-contain group-hover:opacity-75"
                           layout="fill"
                         />
                       </div>
@@ -362,9 +362,9 @@ export const Shop = (): JSX.Element => (
                     <a className="group">
                       <div className="w-full aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
                         <Image
-                          src="https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto/w_500/v1636551584/server/production/server/assets/618bcb53482d66001cba8f19/product_0_f0i9086ekp9.jpg"
+                          src="https://res.cloudinary.com/spacejoy/image/upload/v1636599163/spj-v2/shop/asset-2_r7d5uo.png"
                           alt="Olive drab green insulated bottle with flared screw lid and flat top."
-                          className="w-full h-full object-center object-cover group-hover:opacity-75"
+                          className="w-full h-full object-center object-contain group-hover:opacity-75"
                           layout="fill"
                         />
                       </div>
@@ -379,9 +379,9 @@ export const Shop = (): JSX.Element => (
                     <a className="group">
                       <div className="w-full aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
                         <Image
-                          src="https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto/w_500/v1636550111/server/production/server/assets/618bc58d482d66001cba2ceb/product_0_7deoh5nca519.jpg"
+                          src="https://res.cloudinary.com/spacejoy/image/upload/v1636599159/spj-v2/shop/asset-18_bvv5bh.png"
                           alt="Olive drab green insulated bottle with flared screw lid and flat top."
-                          className="w-full h-full object-center object-cover group-hover:opacity-75"
+                          className="w-full h-full object-center object-contain group-hover:opacity-75"
                           layout="fill"
                         />
                       </div>
@@ -396,9 +396,26 @@ export const Shop = (): JSX.Element => (
                     <a className="group">
                       <div className="w-full aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
                         <Image
-                          src="https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto/w_500/v1636557442/server/production/server/assets/618be1e89adbaf001cd9dfe7/product_0_0olj99ko25g1.jpg"
+                          src="https://res.cloudinary.com/spacejoy/image/upload/v1636599158/spj-v2/shop/asset-4_wnnhea.png"
                           alt="Olive drab green insulated bottle with flared screw lid and flat top."
-                          className="w-full h-full object-center object-cover group-hover:opacity-75"
+                          className="w-full h-full object-center object-contain group-hover:opacity-75"
+                          layout="fill"
+                        />
+                      </div>
+                      <small className="mt-4 text-xs text-gray-500">Wayfair</small>
+                      <h3 className="text-md text-gray-700">Nomad Tumbler</h3>
+                      <p className="text-lg font-medium text-gray-900">$35.00</p>
+                    </a>
+                  </Link>
+                </div>
+                <div className="bg-white p-4 rounded">
+                  <Link href="/">
+                    <a className="group">
+                      <div className="w-full aspect-w-1 aspect-h-1 xl:aspect-w-1 xl:aspect-h-1">
+                        <Image
+                          alt="Olive drab green insulated bottle with flared screw lid and flat top."
+                          src="https://res.cloudinary.com/spacejoy/image/upload/v1636599163/spj-v2/shop/asset-3_hgs1zv.png"
+                          className="w-full h-full object-center object-contain group-hover:opacity-75"
                           layout="fill"
                         />
                       </div>
@@ -413,9 +430,9 @@ export const Shop = (): JSX.Element => (
                     <a className="group">
                       <div className="w-full aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
                         <Image
-                          src="https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto/w_500/v1636557442/server/production/server/assets/618be1e89adbaf001cd9dfe7/product_0_0olj99ko25g1.jpg"
+                          src="https://res.cloudinary.com/spacejoy/image/upload/v1636599161/spj-v2/shop/asset-14_cpuzwl.png"
                           alt="Olive drab green insulated bottle with flared screw lid and flat top."
-                          className="w-full h-full object-center object-cover group-hover:opacity-75"
+                          className="w-full h-full object-center object-contain group-hover:opacity-75"
                           layout="fill"
                         />
                       </div>
@@ -430,9 +447,9 @@ export const Shop = (): JSX.Element => (
                     <a className="group">
                       <div className="w-full aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
                         <Image
-                          src="https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto/w_500/v1636557442/server/production/server/assets/618be1e89adbaf001cd9dfe7/product_0_0olj99ko25g1.jpg"
+                          src="https://res.cloudinary.com/spacejoy/image/upload/v1636599161/spj-v2/shop/asset-15_yedaun.png"
                           alt="Olive drab green insulated bottle with flared screw lid and flat top."
-                          className="w-full h-full object-center object-cover group-hover:opacity-75"
+                          className="w-full h-full object-center object-contain group-hover:opacity-75"
                           layout="fill"
                         />
                       </div>
@@ -447,9 +464,43 @@ export const Shop = (): JSX.Element => (
                     <a className="group">
                       <div className="w-full aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
                         <Image
-                          src="https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto/w_500/v1636557442/server/production/server/assets/618be1e89adbaf001cd9dfe7/product_0_0olj99ko25g1.jpg"
+                          src="https://res.cloudinary.com/spacejoy/image/upload/v1636599161/spj-v2/shop/asset-20_sw7xsb.png"
                           alt="Olive drab green insulated bottle with flared screw lid and flat top."
-                          className="w-full h-full object-center object-cover group-hover:opacity-75"
+                          className="w-full h-full object-center object-contain group-hover:opacity-75"
+                          layout="fill"
+                        />
+                      </div>
+                      <small className="mt-4 text-xs text-gray-500">Wayfair</small>
+                      <h3 className="text-md text-gray-700">Nomad Tumbler</h3>
+                      <p className="text-lg font-medium text-gray-900">$35.00</p>
+                    </a>
+                  </Link>
+                </div>
+                <div className="bg-white p-4 rounded">
+                  <Link href="/">
+                    <a className="group">
+                      <div className="w-full aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
+                        <Image
+                          src="https://res.cloudinary.com/spacejoy/image/upload/v1636599160/spj-v2/shop/asset-16_t7qisa.png"
+                          alt="Olive drab green insulated bottle with flared screw lid and flat top."
+                          className="w-full h-full object-center object-contain group-hover:opacity-75"
+                          layout="fill"
+                        />
+                      </div>
+                      <small className="mt-4 text-xs text-gray-500">Wayfair</small>
+                      <h3 className="text-md text-gray-700">Nomad Tumbler</h3>
+                      <p className="text-lg font-medium text-gray-900">$35.00</p>
+                    </a>
+                  </Link>
+                </div>
+                <div className="bg-white p-4 rounded">
+                  <Link href="/">
+                    <a className="group">
+                      <div className="w-full aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
+                        <Image
+                          src="https://res.cloudinary.com/spacejoy/image/upload/v1636599160/spj-v2/shop/asset-17_txsqyc.png"
+                          alt="Olive drab green insulated bottle with flared screw lid and flat top."
+                          className="w-full h-full object-center object-contain group-hover:opacity-75"
                           layout="fill"
                         />
                       </div>
