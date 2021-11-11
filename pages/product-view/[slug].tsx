@@ -5,6 +5,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
+
 const entry = keyframes`
 	from { 
 		opacity: 0;
@@ -14,14 +15,14 @@ const entry = keyframes`
     transform: translateY(0px);
 	}
 `;
+
 const AnimateBox = styled.div`
   opacity: 0;
   animation: ${entry} 0.8s forwards;
   transform: translateY(20px);
-  &:nth-child(1) {
-    animation-delay: 0ms;
-  }
+  animation-delay: 0ms;
 `;
+
 const ProductView = (): JSX.Element => {
   return (
     <Layout>
@@ -68,7 +69,7 @@ const ProductView = (): JSX.Element => {
             </nav>
             <div className="lg:grid lg:grid-cols-2 lg:gap-x-8 lg:items-start">
               <div className="flex flex-col-reverse">
-                <AnimateBox className="bg-white rounded p-4 lg:p-8 xl:20">
+                <AnimateBox className="bg-white rounded-lg p-4 lg:p-8 xl:20">
                   <div className="aspect-w-1 aspect-h-1">
                     <div aria-labelledby="tabs-1-tab-1" role="tabpanel" tabIndex={0}>
                       <Image
@@ -82,7 +83,8 @@ const ProductView = (): JSX.Element => {
                 </AnimateBox>
               </div>
               <div className="mt-10 px-4 sm:px-0 sm:mt-16 lg:mt-0">
-                <h1 className="text-3xl font-extrabold tracking-tight text-gray-900">Zip Tote Basket</h1>
+                <small className="text-sm tracking-tight text-gray-500">Wayfair</small>
+                <h1 className="text-3xl mt-1 font-extrabold tracking-tight text-gray-900">Zip Tote Basket</h1>
                 <div className="mt-3">
                   <h2 className="sr-only">Product information</h2>
                   <p className="text-3xl text-gray-900">$140.00</p>
@@ -100,7 +102,7 @@ const ProductView = (): JSX.Element => {
                     </div>
                     <p className="sr-only">4 out of 5 stars</p>
                     <div className="ml-4 flex">
-                      <a href="#" className="text-sm font-medium text-red-600 hover:text-red-500">
+                      <a href="#" className="text-sm font-medium text-gray-500 hover:text-red-500">
                         See all 512 reviews
                       </a>
                     </div>
@@ -305,7 +307,7 @@ const ProductView = (): JSX.Element => {
                 />
                 <div className="p-6 flex items-end sm:absolute sm:inset-0">
                   <div>
-                    <h3 className="font-semibold text-white">
+                    <h3 className="text-white">
                       <a href="#">
                         <span className="absolute inset-0" />
                         Workspace
@@ -319,7 +321,7 @@ const ProductView = (): JSX.Element => {
               </div>
             </div>
             <div className="mt-6 sm:hidden">
-              <a href="#" className="block text-sm font-semibold text-indigo-600 hover:text-indigo-500">
+              <a href="#" className="block text-sm text-indigo-600 hover:text-indigo-500">
                 Browse all categories<span aria-hidden="true"> &rarr;</span>
               </a>
             </div>

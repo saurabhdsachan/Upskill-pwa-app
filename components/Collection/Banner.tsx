@@ -30,7 +30,7 @@ const CollectionBanner: React.FC<BannerProps> = ({ data }) => {
   const date = new Date(data?.publishedDate || '');
   const formattedDate = `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
   return (
-    <div className="container mx-auto px-4 py-28">
+    <div className="container mx-auto px-4 py-8">
       <div className="flex items-center xl:space-x-10 2xl:space-x-20">
         <div className="max-w-4xl">
           <Tween from={{ opacity: 0, x: 20 }} to={{ opacity: 1, x: 0 }} duration={1} stagger={0.5}>
