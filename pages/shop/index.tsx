@@ -1,5 +1,5 @@
 import Layout from '@components/Shared/Layout';
-import { ChevronLeftIcon, ChevronRightIcon, MinusIcon, PlusIcon } from '@heroicons/react/outline';
+import { ChevronLeftIcon, ChevronRightIcon, HomeIcon, MinusIcon, PlusIcon } from '@heroicons/react/outline';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -15,7 +15,39 @@ export const Shop = (): JSX.Element => (
     <Layout.Header />
     <Layout.Body>
       <div className="bg-gray-100 min-h-screen">
-        <main className="container p-4 pt-8 mx-auto">
+        <main className="container p-4 pt-4 mx-auto">
+          <nav className="flex mb-4" aria-label="Breadcrumb">
+            <ol role="list" className="flex items-center space-x-4">
+              <li>
+                <div>
+                  <a href="#" className="text-gray-400 hover:text-gray-500">
+                    <HomeIcon className="w-4 h-4" />
+                    <span className="sr-only">Home</span>
+                  </a>
+                </div>
+              </li>
+              <li>
+                <div className="flex items-center">
+                  <ChevronRightIcon className="w-4 h-4 text-gray-500" />
+                  <a href="#" className="ml-4 text-xs font-medium text-gray-500 hover:text-gray-700">
+                    Shop
+                  </a>
+                </div>
+              </li>
+              <li>
+                <div className="flex items-center">
+                  <ChevronRightIcon className="w-4 h-4 text-gray-500" />
+                  <a
+                    href="#"
+                    className="ml-4 text-xs font-medium text-gray-500 hover:text-gray-700"
+                    aria-current="page"
+                  >
+                    Listing
+                  </a>
+                </div>
+              </li>
+            </ol>
+          </nav>
           <div className="grid grid-cols-5 gap-8">
             <div className="col-span-1 bg-white rounded p-4">
               <h3 className="text-gray-700 mb-4">Filters</h3>
@@ -561,7 +593,7 @@ export const Shop = (): JSX.Element => (
                 className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
               >
                 <span className="sr-only">Next</span>
-                <ChevronRightIcon className="w-4 h-4" />
+                <ChevronRightIcon className="w-4 h-4 text-gray-500" />
               </a>
             </nav>
           </div>
