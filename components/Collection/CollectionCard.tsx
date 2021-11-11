@@ -14,7 +14,7 @@ const CollectionCard: React.FC<CollectionCardInterface> = ({ cardData, inset }) 
   return (
     <li>
       <Link href={`/collection/${cardData?.slug}`}>
-        <a className="rounded inline-block focus:ring-1 focus:ring-offset-1 focus:ring-offset-white focus:ring-gray-700 focus:outline-none">
+        <a className="rounded inline-block w-full focus:ring-1 focus:ring-offset-1 focus:ring-offset-white focus:ring-gray-700 focus:outline-none">
           <div className="group rounded relative overflow-hidden bg-gray-200 transition-all transform duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1 border border-gray-300">
             {inset ? (
               <Image
