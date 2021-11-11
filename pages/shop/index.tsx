@@ -1,5 +1,5 @@
 import Layout from '@components/Shared/Layout';
-import { MinusIcon, PlusIcon } from '@heroicons/react/outline';
+import { ChevronLeftIcon, ChevronRightIcon, MinusIcon, PlusIcon } from '@heroicons/react/outline';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -15,7 +15,7 @@ export const Shop = (): JSX.Element => (
     <Layout.Header />
     <Layout.Body>
       <div className="bg-gray-100 min-h-screen">
-        <main className="container p-4 py-8 mx-auto">
+        <main className="container p-4 pt-8 mx-auto">
           <div className="grid grid-cols-5 gap-8">
             <div className="col-span-1 bg-white rounded p-4">
               <h3 className="text-gray-700 mb-4">Filters</h3>
@@ -55,82 +55,91 @@ export const Shop = (): JSX.Element => (
                   </h3>
                   <div className="pt-6" id="filter-section-0">
                     <div className="space-y-2">
-                      <div className="flex items-center">
-                        <input
-                          id="filter-color-0"
-                          name="color[]"
-                          value="white"
-                          type="checkbox"
-                          className="h-4 w-4 border-gray-300 rounded text-gray-900 focus:ring-gray-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-white"
-                        />
-                        <label htmlFor="filter-color-0" className="ml-3 text-sm text-gray-900">
-                          White
-                        </label>
-                      </div>
-
-                      <div className="flex items-center">
-                        <input
-                          id="filter-color-1"
-                          name="color[]"
-                          value="beige"
-                          type="checkbox"
-                          className="h-4 w-4 border-gray-300 rounded text-gray-900 focus:ring-gray-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-white"
-                        />
-                        <label htmlFor="filter-color-1" className="ml-3 text-sm text-gray-900">
-                          Beige
-                        </label>
-                      </div>
-                      <div className="flex items-center">
-                        <input
-                          id="filter-color-2"
-                          name="color[]"
-                          value="blue"
-                          type="checkbox"
-                          className="h-4 w-4 border-gray-300 rounded text-gray-900 focus:ring-gray-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-white"
-                        />
-                        <label htmlFor="filter-color-2" className="ml-3 text-sm text-gray-900">
-                          Blue
-                        </label>
-                      </div>
-
-                      <div className="flex items-center">
-                        <input
-                          id="filter-color-3"
-                          name="color[]"
-                          value="brown"
-                          type="checkbox"
-                          className="h-4 w-4 border-gray-300 rounded text-gray-900 focus:ring-gray-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-white"
-                        />
-                        <label htmlFor="filter-color-3" className="ml-3 text-sm text-gray-900">
-                          Brown
-                        </label>
-                      </div>
-
-                      <div className="flex items-center">
-                        <input
-                          id="filter-color-4"
-                          name="color[]"
-                          value="green"
-                          type="checkbox"
-                          className="h-4 w-4 border-gray-300 rounded text-gray-900 focus:ring-gray-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-white"
-                        />
-                        <label htmlFor="filter-color-4" className="ml-3 text-sm text-gray-900">
-                          Green
-                        </label>
-                      </div>
-
-                      <div className="flex items-center">
-                        <input
-                          id="filter-color-5"
-                          name="color[]"
-                          value="purple"
-                          type="checkbox"
-                          className="h-4 w-4 border-gray-300 rounded text-gray-900 focus:ring-gray-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-white"
-                        />
-                        <label htmlFor="filter-color-5" className="ml-3 text-sm text-gray-900">
-                          Purple
-                        </label>
-                      </div>
+                      <fieldset>
+                        <legend className="sr-only">Choose a color</legend>
+                        <div className="flex items-center space-x-3">
+                          <label className="-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none ring-gray-400">
+                            <input
+                              type="radio"
+                              name="color-choice"
+                              value="White"
+                              className="sr-only"
+                              aria-labelledby="color-choice-0-label"
+                            />
+                            <p id="color-choice-0-label" className="sr-only">
+                              White
+                            </p>
+                            <span
+                              aria-hidden="true"
+                              className="h-8 w-8 bg-white border border-black border-opacity-10 rounded-full"
+                            />
+                          </label>
+                          <label className="-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none ring-gray-400">
+                            <input
+                              type="radio"
+                              name="color-choice"
+                              value="Gray"
+                              className="sr-only"
+                              aria-labelledby="color-choice-1-label"
+                            />
+                            <p id="color-choice-1-label" className="sr-only">
+                              Gray
+                            </p>
+                            <span
+                              aria-hidden="true"
+                              className="h-8 w-8 bg-gray-200 border border-black border-opacity-10 rounded-full"
+                            />
+                          </label>
+                          <label className="-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none ring-gray-900">
+                            <input
+                              type="radio"
+                              name="color-choice"
+                              value="Black"
+                              className="sr-only"
+                              aria-labelledby="color-choice-2-label"
+                            />
+                            <p id="color-choice-2-label" className="sr-only">
+                              Black
+                            </p>
+                            <span
+                              aria-hidden="true"
+                              className="h-8 w-8 bg-gray-900 border border-black border-opacity-10 rounded-full"
+                            />
+                          </label>
+                          <label className="-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none ring-blue-500">
+                            <input
+                              type="radio"
+                              name="color-choice"
+                              value="Black"
+                              className="sr-only"
+                              aria-labelledby="color-choice-2-label"
+                            />
+                            <p id="color-choice-2-label" className="sr-only">
+                              Black
+                            </p>
+                            <span
+                              aria-hidden="true"
+                              className="h-8 w-8 bg-blue-500 border border-black border-opacity-10 rounded-full"
+                            />
+                          </label>
+                          <label className="-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none ring-red-500">
+                            <input
+                              type="radio"
+                              name="color-choice"
+                              value="Black"
+                              className="sr-only"
+                              aria-labelledby="color-choice-2-label"
+                            />
+                            <p id="color-choice-2-label" className="sr-only">
+                              Black
+                            </p>
+                            <span
+                              aria-hidden="true"
+                              className="h-8 w-8 bg-red-500 border border-black border-opacity-10 rounded-full"
+                            />
+                          </label>
+                        </div>
+                      </fieldset>
                     </div>
                   </div>
                 </div>
@@ -512,6 +521,65 @@ export const Shop = (): JSX.Element => (
                 </div>
               </div>
             </div>
+          </div>
+          <div className="text-center my-14">
+            <nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+              <a
+                href="#"
+                className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+              >
+                <span className="sr-only">Previous</span>
+                <ChevronLeftIcon className="w-4 h-4" />
+              </a>
+
+              <a
+                href="#"
+                aria-current="page"
+                className="z-10 bg-gray-50 border-gray-500 text-gray-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+              >
+                1
+              </a>
+              <a
+                href="#"
+                className="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+              >
+                2
+              </a>
+              <a
+                href="#"
+                className="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 hidden md:inline-flex relative items-center px-4 py-2 border text-sm font-medium"
+              >
+                3
+              </a>
+              <span className="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700">
+                ...
+              </span>
+              <a
+                href="#"
+                className="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 hidden md:inline-flex relative items-center px-4 py-2 border text-sm font-medium"
+              >
+                8
+              </a>
+              <a
+                href="#"
+                className="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+              >
+                9
+              </a>
+              <a
+                href="#"
+                className="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+              >
+                10
+              </a>
+              <a
+                href="#"
+                className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+              >
+                <span className="sr-only">Next</span>
+                <ChevronRightIcon className="w-4 h-4" />
+              </a>
+            </nav>
           </div>
         </main>
       </div>
