@@ -39,6 +39,7 @@
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "^0.3.0",
     "@tailwindcss/forms": "^0.3.4",
+    "@tailwindcss/typography": "^0.4.1",
     "@types/node": "16.11.6",
     "@types/react": "17.0.34",
     "@types/styled-components": "^5.1.15",

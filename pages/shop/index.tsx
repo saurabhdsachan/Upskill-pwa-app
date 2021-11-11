@@ -15,7 +15,7 @@ export const Shop = (): JSX.Element => (
     <Layout.Header />
     <Layout.Body>
       <div className="bg-gray-100 min-h-screen">
-        <main className="container p-4 pt-4 mx-auto">
+        <main className="container p-4 mx-auto">
           <nav className="flex mb-4" aria-label="Breadcrumb">
             <ol role="list" className="flex items-center space-x-4">
               <li>
@@ -349,7 +349,7 @@ export const Shop = (): JSX.Element => (
             <div className="col-span-4 rounded">
               <div className="grid grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-1">
                 <div className="bg-white p-4 rounded">
-                  <Link href="/">
+                  <Link href="/product-view/1">
                     <a className="group">
                       <div className="w-full aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
                         <Image
@@ -366,7 +366,7 @@ export const Shop = (): JSX.Element => (
                   </Link>
                 </div>
                 <div className="bg-white p-4 rounded">
-                  <Link href="/">
+                  <Link href="/product-view/1">
                     <a className="group">
                       <div className="w-full aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
                         <Image
@@ -383,7 +383,7 @@ export const Shop = (): JSX.Element => (
                   </Link>
                 </div>
                 <div className="bg-white p-4 rounded">
-                  <Link href="/">
+                  <Link href="/product-view/1">
                     <a className="group">
                       <div className="w-full aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
                         <Image
@@ -400,7 +400,7 @@ export const Shop = (): JSX.Element => (
                   </Link>
                 </div>
                 <div className="bg-white p-4 rounded">
-                  <Link href="/">
+                  <Link href="/product-view/1">
                     <a className="group">
                       <div className="w-full aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
                         <Image
@@ -417,7 +417,7 @@ export const Shop = (): JSX.Element => (
                   </Link>
                 </div>
                 <div className="bg-white p-4 rounded">
-                  <Link href="/">
+                  <Link href="/product-view/1">
                     <a className="group">
                       <div className="w-full aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
                         <Image
@@ -434,7 +434,7 @@ export const Shop = (): JSX.Element => (
                   </Link>
                 </div>
                 <div className="bg-white p-4 rounded">
-                  <Link href="/">
+                  <Link href="/product-view/1">
                     <a className="group">
                       <div className="w-full aspect-w-1 aspect-h-1 xl:aspect-w-1 xl:aspect-h-1">
                         <Image
@@ -451,7 +451,7 @@ export const Shop = (): JSX.Element => (
                   </Link>
                 </div>
                 <div className="bg-white p-4 rounded">
-                  <Link href="/">
+                  <Link href="/product-view/1">
                     <a className="group">
                       <div className="w-full aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
                         <Image
@@ -468,7 +468,7 @@ export const Shop = (): JSX.Element => (
                   </Link>
                 </div>
                 <div className="bg-white p-4 rounded">
-                  <Link href="/">
+                  <Link href="/product-view/1">
                     <a className="group">
                       <div className="w-full aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
                         <Image
@@ -485,7 +485,7 @@ export const Shop = (): JSX.Element => (
                   </Link>
                 </div>
                 <div className="bg-white p-4 rounded">
-                  <Link href="/">
+                  <Link href="/product-view/1">
                     <a className="group">
                       <div className="w-full aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
                         <Image
@@ -502,7 +502,7 @@ export const Shop = (): JSX.Element => (
                   </Link>
                 </div>
                 <div className="bg-white p-4 rounded">
-                  <Link href="/">
+                  <Link href="/product-view/1">
                     <a className="group">
                       <div className="w-full aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
                         <Image
@@ -519,7 +519,7 @@ export const Shop = (): JSX.Element => (
                   </Link>
                 </div>
                 <div className="bg-white p-4 rounded">
-                  <Link href="/">
+                  <Link href="/product-view/1">
                     <a className="group">
                       <div className="w-full aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
                         <Image
