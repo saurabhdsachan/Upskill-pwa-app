@@ -1,11 +1,10 @@
 import Layout from '@components/Shared/Layout';
-import { ChevronRightIcon, HeartIcon, HomeIcon, PlusIcon } from '@heroicons/react/outline';
+import { ChevronRightIcon, HeartIcon, HomeIcon, MinusSmIcon, PlusIcon, PlusSmIcon } from '@heroicons/react/outline';
 import { StarIcon } from '@heroicons/react/solid';
 import Head from 'next/head';
 import Image from 'next/image';
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-
 const entry = keyframes`
 	from { 
 		opacity: 0;
@@ -15,14 +14,12 @@ const entry = keyframes`
     transform: translateY(0px);
 	}
 `;
-
 const AnimateBox = styled.div`
   opacity: 0;
   animation: ${entry} 0.8s forwards;
   transform: translateY(20px);
   animation-delay: 0ms;
 `;
-
 const ProductView = (): JSX.Element => {
   return (
     <Layout>
@@ -120,7 +117,6 @@ const ProductView = (): JSX.Element => {
                   </div>
                 </div>
               </div>
-
               <div className="mt-10 px-4 sm:px-0 sm:mt-16 lg:mt-0">
                 <small className="text-sm tracking-tight text-gray-500">Wayfair</small>
                 <h1 className="text-3xl mt-1 font-extrabold tracking-tight text-gray-900">Zip Tote Basket</h1>
@@ -181,7 +177,7 @@ const ProductView = (): JSX.Element => {
                             className="h-8 w-8 bg-gray-700 border border-black border-opacity-10 rounded-full"
                           />
                         </label>
-                        <label className="-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none ring-gray-400 ring-1">
+                        <label className="-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none ring-gray-400">
                           <input
                             type="radio"
                             name="color-choice"
@@ -197,7 +193,7 @@ const ProductView = (): JSX.Element => {
                             className="h-8 w-8 bg-white border border-black border-opacity-10 rounded-full"
                           />
                         </label>
-                        <label className="-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none ring-gray-500">
+                        <label className="-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none ring-gray-500 ring-1">
                           <input
                             type="radio"
                             name="color-choice"
@@ -216,7 +212,20 @@ const ProductView = (): JSX.Element => {
                       </div>
                     </fieldset>
                   </div>
-                  <div className="mt-10 flex sm:flex-col1">
+                  <div className="mt-10 flex sm:flex-col1 space-x-4">
+                    <button
+                      type="button"
+                      className="group hover:shadow-lg text-base text-gray-900 py-3 px-3 rounded-xl bg-white font-medium focus:ring-1 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-gray-400 focus:outline-none"
+                    >
+                      <MinusSmIcon className="w-6 h-6" />
+                    </button>
+                    <p className="py-3 px-2">1</p>
+                    <button
+                      type="button"
+                      className="group hover:shadow-lg text-base text-gray-900 py-3 px-3 rounded-xl bg-white font-medium focus:ring-1 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-gray-400 focus:outline-none"
+                    >
+                      <PlusSmIcon className="w-6 h-6" />
+                    </button>
                     <button
                       type="button"
                       className="group shadow-xs hover:shadow-md text-base text-white py-3 px-12 rounded-xl bg-gray-900 font-medium focus:ring-1 focus:ring-offset-2 focus:ring-offset-white focus:ring-gray-400 focus:outline-none"
@@ -225,7 +234,7 @@ const ProductView = (): JSX.Element => {
                     </button>
                     <button
                       type="button"
-                      className="ml-4 py-3 px-3 rounded-md flex items-center justify-center text-gray-400 hover:bg-gray-100 hover:text-gray-500"
+                      className="group hover:shadow-lg text-base text-gray-900 py-3 px-3 rounded-xl bg-white font-medium focus:ring-1 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-gray-400 focus:outline-none"
                     >
                       <HeartIcon className="w-6 h-6" />
                       <span className="sr-only">Add to favorites</span>
@@ -244,7 +253,7 @@ const ProductView = (): JSX.Element => {
                     Starting at $62/mo with Affirm. <span className="text-blue-400">Pre-qualify Now</span>
                   </p>
                 </div>
-                <section aria-labelledby="details-heading" className="mt-12">
+                <section aria-labelledby="details-heading" className="mt-6">
                   <h2 id="details-heading" className="sr-only">
                     Additional details
                   </h2>
