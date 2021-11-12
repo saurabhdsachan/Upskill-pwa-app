@@ -1,5 +1,4 @@
-import Design from '@components/Help/Design';
-import Ecommerce from '@components/Help/Ecommerce';
+import Help from '@components/Help';
 import Layout from '@components/Shared/Layout';
 import PreFooter from '@components/Shared/PreFooter';
 import Head from 'next/head';
@@ -14,8 +13,7 @@ export const search = (): JSX.Element => (
     <Layout.Banner />
     <Layout.Header />
     <Layout.Body>
-      <Design />
-      <Ecommerce />
+      <Help />
       <PreFooter />
     </Layout.Body>
     <Layout.Footer />
