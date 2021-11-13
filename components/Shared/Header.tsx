@@ -141,9 +141,11 @@ const Header: React.FC = () => {
                   Start Project
                 </a>
               </Link>
-              <a className="text-gray-700 text-xs py-1.5 px-3 ml-2 rounded-lg border border-gray-600 hover:bg-gray-50">
-                LOGIN
-              </a>
+              <Link href="/auth/login">
+                <a className="text-gray-700 text-xs py-1.5 px-3 ml-2 rounded-lg border border-gray-600 hover:bg-gray-50">
+                  LOGIN
+                </a>
+              </Link>
             </div>
           </div>
         </div>

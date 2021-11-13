@@ -5,6 +5,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
+
 const entry = keyframes`
 	from { 
 		opacity: 0;
@@ -14,12 +15,14 @@ const entry = keyframes`
     transform: translateY(0px);
 	}
 `;
+
 const AnimateBox = styled.div`
   opacity: 0;
   animation: ${entry} 0.8s forwards;
   transform: translateY(20px);
   animation-delay: 0ms;
 `;
+
 const ProductView = (): JSX.Element => {
   return (
     <Layout>

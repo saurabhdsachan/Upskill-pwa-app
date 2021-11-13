@@ -184,7 +184,7 @@ export const Shop = (): JSX.Element => (
                           name="category[]"
                           value="new-arrivals"
                           type="checkbox"
-                          className="h-4 w-4 border-gray-300 rounded-lg text-gray-900 focus:ring-gray-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-white"
+                          className="h-4 w-4 border-gray-300 rounded text-gray-900 focus:ring-gray-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-white"
                         />
                         <label htmlFor="filter-category-0" className="ml-3 text-sm text-gray-900">
                           New Arrivals
@@ -197,7 +197,7 @@ export const Shop = (): JSX.Element => (
                           name="category[]"
                           value="sale"
                           type="checkbox"
-                          className="h-4 w-4 border-gray-300 rounded-lg text-gray-900 focus:ring-gray-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-white"
+                          className="h-4 w-4 border-gray-300 rounded text-gray-900 focus:ring-gray-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-white"
                         />
                         <label htmlFor="filter-category-1" className="ml-3 text-sm text-gray-900">
                           Sale
@@ -210,7 +210,7 @@ export const Shop = (): JSX.Element => (
                           name="category[]"
                           value="travel"
                           type="checkbox"
-                          className="h-4 w-4 border-gray-300 rounded-lg text-gray-900 focus:ring-gray-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-white"
+                          className="h-4 w-4 border-gray-300 rounded text-gray-900 focus:ring-gray-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-white"
                         />
                         <label htmlFor="filter-category-2" className="ml-3 text-sm text-gray-900">
                           Travel
@@ -223,7 +223,7 @@ export const Shop = (): JSX.Element => (
                           name="category[]"
                           value="organization"
                           type="checkbox"
-                          className="h-4 w-4 border-gray-300 rounded-lg text-gray-900 focus:ring-gray-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-white"
+                          className="h-4 w-4 border-gray-300 rounded text-gray-900 focus:ring-gray-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-white"
                         />
                         <label htmlFor="filter-category-3" className="ml-3 text-sm text-gray-900">
                           Organization
@@ -236,7 +236,7 @@ export const Shop = (): JSX.Element => (
                           name="category[]"
                           value="accessories"
                           type="checkbox"
-                          className="h-4 w-4 border-gray-300 rounded-lg text-gray-900 focus:ring-gray-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-white"
+                          className="h-4 w-4 border-gray-300 rounded text-gray-900 focus:ring-gray-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-white"
                         />
                         <label htmlFor="filter-category-4" className="ml-3 text-sm text-gray-900">
                           Accessories
@@ -270,7 +270,7 @@ export const Shop = (): JSX.Element => (
                           name="size[]"
                           value="2l"
                           type="checkbox"
-                          className="h-4 w-4 border-gray-300 rounded-lg text-gray-900 focus:ring-gray-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-white"
+                          className="h-4 w-4 border-gray-300 rounded text-gray-900 focus:ring-gray-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-white"
                         />
                         <label htmlFor="filter-size-0" className="ml-3 text-sm text-gray-900">
                           2L
@@ -283,7 +283,7 @@ export const Shop = (): JSX.Element => (
                           name="size[]"
                           value="6l"
                           type="checkbox"
-                          className="h-4 w-4 border-gray-300 rounded-lg text-gray-900 focus:ring-gray-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-white"
+                          className="h-4 w-4 border-gray-300 rounded text-gray-900 focus:ring-gray-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-white"
                         />
                         <label htmlFor="filter-size-1" className="ml-3 text-sm text-gray-900">
                           6L
@@ -296,7 +296,7 @@ export const Shop = (): JSX.Element => (
                           name="size[]"
                           value="12l"
                           type="checkbox"
-                          className="h-4 w-4 border-gray-300 rounded-lg text-gray-900 focus:ring-gray-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-white"
+                          className="h-4 w-4 border-gray-300 rounded text-gray-900 focus:ring-gray-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-white"
                         />
                         <label htmlFor="filter-size-2" className="ml-3 text-sm text-gray-900">
                           12L
@@ -309,7 +309,7 @@ export const Shop = (): JSX.Element => (
                           name="size[]"
                           value="18l"
                           type="checkbox"
-                          className="h-4 w-4 border-gray-300 rounded-lg text-gray-900 focus:ring-gray-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-white"
+                          className="h-4 w-4 border-gray-300 rounded text-gray-900 focus:ring-gray-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-white"
                         />
                         <label htmlFor="filter-size-3" className="ml-3 text-sm text-gray-900">
                           18L
@@ -322,7 +322,7 @@ export const Shop = (): JSX.Element => (
                           name="size[]"
                           value="20l"
                           type="checkbox"
-                          className="h-4 w-4 border-gray-300 rounded-lg text-gray-900 focus:ring-gray-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-white"
+                          className="h-4 w-4 border-gray-300 rounded text-gray-900 focus:ring-gray-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-white"
                         />
                         <label htmlFor="filter-size-4" className="ml-3 text-sm text-gray-900">
                           20L
@@ -335,7 +335,7 @@ export const Shop = (): JSX.Element => (
                           name="size[]"
                           value="40l"
                           type="checkbox"
-                          className="h-4 w-4 border-gray-300 rounded-lg text-gray-900 focus:ring-gray-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-white"
+                          className="h-4 w-4 border-gray-300 rounded text-gray-900 focus:ring-gray-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-white"
                         />
                         <label htmlFor="filter-size-5" className="ml-3 text-sm text-gray-900">
                           40L
