@@ -3,6 +3,7 @@ import { ChevronRightIcon, HeartIcon, HomeIcon, MinusSmIcon, PlusIcon, PlusSmIco
 import { StarIcon } from '@heroicons/react/solid';
 import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
@@ -39,10 +40,12 @@ const ProductView = (): JSX.Element => {
               <ol role="list" className="flex items-center space-x-4">
                 <li>
                   <div>
-                    <a href="#" className="text-gray-400 hover:text-gray-500">
-                      <HomeIcon className="w-4 h-4" />
-                      <span className="sr-only">Home</span>
-                    </a>
+                    <Link href="/">
+                      <a className="text-gray-400 hover:text-gray-500">
+                        <HomeIcon className="w-4 h-4" />
+                        <span className="sr-only">Home</span>
+                      </a>
+                    </Link>
                   </div>
                 </li>
                 <li>

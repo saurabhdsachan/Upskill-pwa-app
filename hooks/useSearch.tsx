@@ -79,7 +79,7 @@ const useSearch = (): any => {
     if (isSelected) {
       setSelected(false);
     }
-  }, [searchString]);
+  }, [isSelected, searchString]);
 
   useEffect(() => {
     const fetchSearchResults = async (keywords) => {

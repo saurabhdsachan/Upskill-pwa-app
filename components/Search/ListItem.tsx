@@ -37,10 +37,10 @@ const ListItem: React.FC<ListItemInterface> = ({ item, active, setSelected, setH
       <Image
         src="https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto/w_700/v1621942704/server/designs/render/60ace1ad7c68df00239a02e0.png"
         className="rounded-md"
-        alt=""
+        alt="placeholder"
         height="56"
         width="56"
-        layout="responsive"
+        layout="intrinsic"
       />
     ) : (
       <div className="rounded-md h-14 w-14 bg-red-200 flex items-center justify-center">

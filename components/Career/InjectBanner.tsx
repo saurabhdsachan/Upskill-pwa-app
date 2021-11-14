@@ -6,7 +6,7 @@ import React from 'react';
 const career: React.FC = () => {
   return (
     <div className="relative antialiased bg-gray-100 mt-28">
-      <div className="h-56 bg-indigo-600 sm:h-72 md:absolute md:left-0 md:h-full md:w-1/2">
+      <div className="h-56 bg-gray-300 sm:h-72 md:absolute md:left-0 md:h-full md:w-1/2">
         <Image
           className="w-full h-full object-cover"
           src="https://images.unsplash.com/photo-1487611459768-bd414656ea10?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2880&q=80"

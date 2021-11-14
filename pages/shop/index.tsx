@@ -4,6 +4,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import { Tween } from 'react-gsap';
 
 export const Shop = (): JSX.Element => (
   <Layout>
@@ -20,10 +21,12 @@ export const Shop = (): JSX.Element => (
             <ol role="list" className="flex items-center space-x-4">
               <li>
                 <div>
-                  <a href="#" className="text-gray-400 hover:text-gray-500">
-                    <HomeIcon className="w-4 h-4" />
-                    <span className="sr-only">Home</span>
-                  </a>
+                  <Link href="/">
+                    <a className="text-gray-400 hover:text-gray-500">
+                      <HomeIcon className="w-4 h-4" />
+                      <span className="sr-only">Home</span>
+                    </a>
+                  </Link>
                 </div>
               </li>
               <li>
@@ -159,7 +162,6 @@ export const Shop = (): JSX.Element => (
                     </div>
                   </div>
                 </div>
-
                 <div className="border-b border-gray-200 py-6">
                   <h3 className="-my-3">
                     <button
@@ -175,7 +177,6 @@ export const Shop = (): JSX.Element => (
                       </span>
                     </button>
                   </h3>
-
                   <div className="pt-6" id="filter-section-1">
                     <div className="space-y-2">
                       <div className="flex items-center">
@@ -190,7 +191,6 @@ export const Shop = (): JSX.Element => (
                           New Arrivals
                         </label>
                       </div>
-
                       <div className="flex items-center">
                         <input
                           id="filter-category-1"
@@ -203,7 +203,6 @@ export const Shop = (): JSX.Element => (
                           Sale
                         </label>
                       </div>
-
                       <div className="flex items-center">
                         <input
                           id="filter-category-2"
@@ -216,7 +215,6 @@ export const Shop = (): JSX.Element => (
                           Travel
                         </label>
                       </div>
-
                       <div className="flex items-center">
                         <input
                           id="filter-category-3"
@@ -229,7 +227,6 @@ export const Shop = (): JSX.Element => (
                           Organization
                         </label>
                       </div>
-
                       <div className="flex items-center">
                         <input
                           id="filter-category-4"
@@ -245,7 +242,6 @@ export const Shop = (): JSX.Element => (
                     </div>
                   </div>
                 </div>
-
                 <div className="py-6">
                   <h3 className="-my-3">
                     <button
@@ -261,7 +257,6 @@ export const Shop = (): JSX.Element => (
                       </span>
                     </button>
                   </h3>
-
                   <div className="pt-6" id="filter-section-2">
                     <div className="space-y-2">
                       <div className="flex items-center">
@@ -276,7 +271,6 @@ export const Shop = (): JSX.Element => (
                           2L
                         </label>
                       </div>
-
                       <div className="flex items-center">
                         <input
                           id="filter-size-1"
@@ -289,7 +283,6 @@ export const Shop = (): JSX.Element => (
                           6L
                         </label>
                       </div>
-
                       <div className="flex items-center">
                         <input
                           id="filter-size-2"
@@ -302,7 +295,6 @@ export const Shop = (): JSX.Element => (
                           12L
                         </label>
                       </div>
-
                       <div className="flex items-center">
                         <input
                           id="filter-size-3"
@@ -315,7 +307,6 @@ export const Shop = (): JSX.Element => (
                           18L
                         </label>
                       </div>
-
                       <div className="flex items-center">
                         <input
                           id="filter-size-4"
@@ -328,7 +319,6 @@ export const Shop = (): JSX.Element => (
                           20L
                         </label>
                       </div>
-
                       <div className="flex items-center">
                         <input
                           id="filter-size-5"
@@ -346,217 +336,247 @@ export const Shop = (): JSX.Element => (
                 </div>
               </form>
             </div>
+
             <div className="col-span-4 rounded">
               <div className="grid grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-1">
-                <Link href="/product-view/1">
-                  <a className="group">
-                    <div className="bg-white p-8 rounded-lg">
-                      <div className="w-full mb-2 aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
-                        <Image
-                          src="https://res.cloudinary.com/spacejoy/image/upload/h_300/v1636599158/spj-v2/shop/asset-13_hm1ijw.png"
-                          alt="Olive drab green insulated bottle with flared screw lid and flat top."
-                          className="w-full h-full object-center object-contain filter group-hover:contrast-115 group-hover:brightness-110"
-                          layout="fill"
-                        />
-                      </div>
-                      <small className="mt-4 text-xs text-gray-500">Wayfair</small>
-                      <h3 className="text-md text-gray-700">Nomad Tumbler</h3>
-                      <p className="text-lg font-medium text-gray-900">
-                        $35.00 <small className="text-sm text-gray-500 line-through">$40.00</small>
-                      </p>
-                    </div>
-                  </a>
-                </Link>
-                <Link href="/product-view/1">
-                  <a className="group">
-                    <div className="bg-white p-8 rounded-lg">
-                      <div className="w-full mb-2 aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
-                        <Image
-                          src="https://res.cloudinary.com/spacejoy/image/upload/h_300/v1636599158/spj-v2/shop/asset-5_gpnkkc.png"
-                          alt="Olive drab green insulated bottle with flared screw lid and flat top."
-                          className="w-full h-full object-center object-contain filter group-hover:contrast-115 group-hover:brightness-110"
-                          layout="fill"
-                        />
-                      </div>
-                      <small className="mt-4 text-xs text-gray-500">Wayfair</small>
-                      <h3 className="text-md text-gray-700">Nomad Tumbler</h3>
-                      <p className="text-lg font-medium text-gray-900">
-                        $35.00 <small className="text-sm text-gray-500 line-through">$40.00</small>
-                      </p>
-                    </div>
-                  </a>
-                </Link>
-                <Link href="/product-view/1">
-                  <a className="group">
-                    <div className="bg-white p-8 rounded-lg">
-                      <div className="w-full mb-2 aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
-                        <Image
-                          src="https://res.cloudinary.com/spacejoy/image/upload/h_300/v1636599163/spj-v2/shop/asset-2_r7d5uo.png"
-                          alt="Olive drab green insulated bottle with flared screw lid and flat top."
-                          className="w-full h-full object-center object-contain filter group-hover:contrast-115 group-hover:brightness-110"
-                          layout="fill"
-                        />
-                      </div>
-                      <small className="mt-4 text-xs text-gray-500">Wayfair</small>
-                      <h3 className="text-md text-gray-700">Nomad Tumbler</h3>
-                      <p className="text-lg font-medium text-gray-900">
-                        $35.00 <small className="text-sm text-gray-500 line-through">$40.00</small>
-                      </p>
-                    </div>
-                  </a>
-                </Link>
-                <Link href="/product-view/1">
-                  <a className="group">
-                    <div className="bg-white p-8 rounded-lg">
-                      <div className="w-full mb-2 aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
-                        <Image
-                          src="https://res.cloudinary.com/spacejoy/image/upload/h_300/v1636599159/spj-v2/shop/asset-18_bvv5bh.png"
-                          alt="Olive drab green insulated bottle with flared screw lid and flat top."
-                          className="w-full h-full object-center object-contain filter group-hover:contrast-115 group-hover:brightness-110"
-                          layout="fill"
-                        />
-                      </div>
-                      <small className="mt-4 text-xs text-gray-500">Wayfair</small>
-                      <h3 className="text-md text-gray-700">Nomad Tumbler</h3>
-                      <p className="text-lg font-medium text-gray-900">
-                        $35.00 <small className="text-sm text-gray-500 line-through">$40.00</small>
-                      </p>
-                    </div>
-                  </a>
-                </Link>
-                <Link href="/product-view/1">
-                  <a className="group">
-                    <div className="bg-white p-8 rounded-lg">
-                      <div className="w-full mb-2 aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
-                        <Image
-                          src="https://res.cloudinary.com/spacejoy/image/upload/h_300/v1636599158/spj-v2/shop/asset-4_wnnhea.png"
-                          alt="Olive drab green insulated bottle with flared screw lid and flat top."
-                          className="w-full h-full object-center object-contain filter group-hover:contrast-115 group-hover:brightness-110"
-                          layout="fill"
-                        />
-                      </div>
-                      <small className="mt-4 text-xs text-gray-500">Wayfair</small>
-                      <h3 className="text-md text-gray-700">Nomad Tumbler</h3>
-                      <p className="text-lg font-medium text-gray-900">
-                        $35.00 <small className="text-sm text-gray-500 line-through">$40.00</small>
-                      </p>
-                    </div>
-                  </a>
-                </Link>
-                <Link href="/product-view/1">
-                  <a className="group">
-                    <div className="bg-white p-8 rounded-lg">
-                      <div className="w-full mb-2 aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
-                        <Image
-                          alt="Olive drab green insulated bottle with flared screw lid and flat top."
-                          src="https://res.cloudinary.com/spacejoy/image/upload/h_300/v1636599163/spj-v2/shop/asset-3_hgs1zv.png"
-                          className="w-full h-full object-center object-contain filter group-hover:contrast-115 group-hover:brightness-110"
-                          layout="fill"
-                        />
-                      </div>
-                      <small className="mt-4 text-xs text-gray-500">Wayfair</small>
-                      <h3 className="text-md text-gray-700">Nomad Tumbler</h3>
-                      <p className="text-lg font-medium text-gray-900">
-                        $35.00 <small className="text-sm text-gray-500 line-through">$40.00</small>
-                      </p>
-                    </div>
-                  </a>
-                </Link>
-                <Link href="/product-view/1">
-                  <a className="group">
-                    <div className="bg-white p-8 rounded-lg">
-                      <div className="w-full mb-2 aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
-                        <Image
-                          src="https://res.cloudinary.com/spacejoy/image/upload/h_300/v1636599161/spj-v2/shop/asset-14_cpuzwl.png"
-                          alt="Olive drab green insulated bottle with flared screw lid and flat top."
-                          className="w-full h-full object-center object-contain filter group-hover:contrast-115 group-hover:brightness-110"
-                          layout="fill"
-                        />
-                      </div>
-                      <small className="mt-4 text-xs text-gray-500">Wayfair</small>
-                      <h3 className="text-md text-gray-700">Nomad Tumbler</h3>
-                      <p className="text-lg font-medium text-gray-900">
-                        $35.00 <small className="text-sm text-gray-500 line-through">$40.00</small>
-                      </p>
-                    </div>
-                  </a>
-                </Link>
-                <Link href="/product-view/1">
-                  <a className="group">
-                    <div className="bg-white p-8 rounded-lg">
-                      <div className="w-full mb-2 aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
-                        <Image
-                          src="https://res.cloudinary.com/spacejoy/image/upload/h_300/v1636599161/spj-v2/shop/asset-15_yedaun.png"
-                          alt="Olive drab green insulated bottle with flared screw lid and flat top."
-                          className="w-full h-full object-center object-contain filter group-hover:contrast-115 group-hover:brightness-110"
-                          layout="fill"
-                        />
-                      </div>
-                      <small className="mt-4 text-xs text-gray-500">Wayfair</small>
-                      <h3 className="text-md text-gray-700">Nomad Tumbler</h3>
-                      <p className="text-lg font-medium text-gray-900">
-                        $35.00 <small className="text-sm text-gray-500 line-through">$40.00</small>
-                      </p>
-                    </div>
-                  </a>
-                </Link>
-                <Link href="/product-view/1">
-                  <a className="group">
-                    <div className="bg-white p-8 rounded-lg">
-                      <div className="w-full mb-2 aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
-                        <Image
-                          src="https://res.cloudinary.com/spacejoy/image/upload/h_300/v1636599161/spj-v2/shop/asset-20_sw7xsb.png"
-                          alt="Olive drab green insulated bottle with flared screw lid and flat top."
-                          className="w-full h-full object-center object-contain filter group-hover:contrast-115 group-hover:brightness-110"
-                          layout="fill"
-                        />
-                      </div>
-                      <small className="mt-4 text-xs text-gray-500">Wayfair</small>
-                      <h3 className="text-md text-gray-700">Nomad Tumbler</h3>
-                      <p className="text-lg font-medium text-gray-900">
-                        $35.00 <small className="text-sm text-gray-500 line-through">$40.00</small>
-                      </p>
-                    </div>
-                  </a>
-                </Link>
-                <Link href="/product-view/1">
-                  <a className="group">
-                    <div className="bg-white p-8 rounded-lg">
-                      <div className="w-full mb-2 aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
-                        <Image
-                          src="https://res.cloudinary.com/spacejoy/image/upload/h_300/v1636599160/spj-v2/shop/asset-16_t7qisa.png"
-                          alt="Olive drab green insulated bottle with flared screw lid and flat top."
-                          className="w-full h-full object-center object-contain filter group-hover:contrast-115 group-hover:brightness-110"
-                          layout="fill"
-                        />
-                      </div>
-                      <small className="mt-4 text-xs text-gray-500">Wayfair</small>
-                      <h3 className="text-md text-gray-700">Nomad Tumbler</h3>
-                      <p className="text-lg font-medium text-gray-900">
-                        $35.00 <small className="text-sm text-gray-500 line-through">$40.00</small>
-                      </p>
-                    </div>
-                  </a>
-                </Link>
-                <Link href="/product-view/1">
-                  <a className="group">
-                    <div className="bg-white p-8 rounded-lg">
-                      <div className="w-full mb-2 aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
-                        <Image
-                          src="https://res.cloudinary.com/spacejoy/image/upload/h_300/v1636599160/spj-v2/shop/asset-17_txsqyc.png"
-                          alt="Olive drab green insulated bottle with flared screw lid and flat top."
-                          className="w-full h-full object-center object-contain filter group-hover:contrast-115 group-hover:brightness-110"
-                          layout="fill"
-                        />
-                      </div>
-                      <small className="mt-4 text-xs text-gray-500">Wayfair</small>
-                      <h3 className="text-md text-gray-700">Nomad Tumbler</h3>
-                      <p className="text-lg font-medium text-gray-900">
-                        $35.00 <small className="text-sm text-gray-500 line-through">$40.00</small>
-                      </p>
-                    </div>
-                  </a>
-                </Link>
+                <Tween
+                  from={{ scale: 0.5, opacity: 0, y: 50 }}
+                  to={{ scale: 1, opacity: 1, y: 0 }}
+                  stagger={0.5}
+                  duration={1}
+                >
+                  <div>
+                    <Link href="/product-view/1">
+                      <a className="group">
+                        <div className="bg-white p-8 rounded-lg">
+                          <div className="w-full mb-2 aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
+                            <Image
+                              src="https://res.cloudinary.com/spacejoy/image/upload/h_300/v1636599158/spj-v2/shop/asset-13_hm1ijw.png"
+                              alt="Olive drab green insulated bottle with flared screw lid and flat top."
+                              className="w-full h-full object-center object-contain filter group-hover:contrast-115 group-hover:brightness-110"
+                              layout="fill"
+                            />
+                          </div>
+                          <small className="mt-4 text-xs text-gray-500">Wayfair</small>
+                          <h3 className="text-md text-gray-700">Nomad Tumbler</h3>
+                          <p className="text-lg font-medium text-gray-900">
+                            $35.00 <small className="text-sm text-gray-500 line-through">$40.00</small>
+                          </p>
+                        </div>
+                      </a>
+                    </Link>
+                  </div>
+                  <div>
+                    <Link href="/product-view/1">
+                      <a className="group">
+                        <div className="bg-white p-8 rounded-lg">
+                          <div className="w-full mb-2 aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
+                            <Image
+                              src="https://res.cloudinary.com/spacejoy/image/upload/h_300/v1636599158/spj-v2/shop/asset-5_gpnkkc.png"
+                              alt="Olive drab green insulated bottle with flared screw lid and flat top."
+                              className="w-full h-full object-center object-contain filter group-hover:contrast-115 group-hover:brightness-110"
+                              layout="fill"
+                            />
+                          </div>
+                          <small className="mt-4 text-xs text-gray-500">Wayfair</small>
+                          <h3 className="text-md text-gray-700">Nomad Tumbler</h3>
+                          <p className="text-lg font-medium text-gray-900">
+                            $35.00 <small className="text-sm text-gray-500 line-through">$40.00</small>
+                          </p>
+                        </div>
+                      </a>
+                    </Link>
+                  </div>
+                  <div>
+                    <Link href="/product-view/1">
+                      <a className="group">
+                        <div className="bg-white p-8 rounded-lg">
+                          <div className="w-full mb-2 aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
+                            <Image
+                              src="https://res.cloudinary.com/spacejoy/image/upload/h_300/v1636599163/spj-v2/shop/asset-2_r7d5uo.png"
+                              alt="Olive drab green insulated bottle with flared screw lid and flat top."
+                              className="w-full h-full object-center object-contain filter group-hover:contrast-115 group-hover:brightness-110"
+                              layout="fill"
+                            />
+                          </div>
+                          <small className="mt-4 text-xs text-gray-500">Wayfair</small>
+                          <h3 className="text-md text-gray-700">Nomad Tumbler</h3>
+                          <p className="text-lg font-medium text-gray-900">
+                            $35.00 <small className="text-sm text-gray-500 line-through">$40.00</small>
+                          </p>
+                        </div>
+                      </a>
+                    </Link>
+                  </div>
+                  <div>
+                    <Link href="/product-view/1">
+                      <a className="group">
+                        <div className="bg-white p-8 rounded-lg">
+                          <div className="w-full mb-2 aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
+                            <Image
+                              src="https://res.cloudinary.com/spacejoy/image/upload/h_300/v1636599159/spj-v2/shop/asset-18_bvv5bh.png"
+                              alt="Olive drab green insulated bottle with flared screw lid and flat top."
+                              className="w-full h-full object-center object-contain filter group-hover:contrast-115 group-hover:brightness-110"
+                              layout="fill"
+                            />
+                          </div>
+                          <small className="mt-4 text-xs text-gray-500">Wayfair</small>
+                          <h3 className="text-md text-gray-700">Nomad Tumbler</h3>
+                          <p className="text-lg font-medium text-gray-900">
+                            $35.00 <small className="text-sm text-gray-500 line-through">$40.00</small>
+                          </p>
+                        </div>
+                      </a>
+                    </Link>
+                  </div>
+                  <div>
+                    <Link href="/product-view/1">
+                      <a className="group">
+                        <div className="bg-white p-8 rounded-lg">
+                          <div className="w-full mb-2 aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
+                            <Image
+                              src="https://res.cloudinary.com/spacejoy/image/upload/h_300/v1636599158/spj-v2/shop/asset-4_wnnhea.png"
+                              alt="Olive drab green insulated bottle with flared screw lid and flat top."
+                              className="w-full h-full object-center object-contain filter group-hover:contrast-115 group-hover:brightness-110"
+                              layout="fill"
+                            />
+                          </div>
+                          <small className="mt-4 text-xs text-gray-500">Wayfair</small>
+                          <h3 className="text-md text-gray-700">Nomad Tumbler</h3>
+                          <p className="text-lg font-medium text-gray-900">
+                            $35.00 <small className="text-sm text-gray-500 line-through">$40.00</small>
+                          </p>
+                        </div>
+                      </a>
+                    </Link>
+                  </div>
+                  <div>
+                    <Link href="/product-view/1">
+                      <a className="group">
+                        <div className="bg-white p-8 rounded-lg">
+                          <div className="w-full mb-2 aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
+                            <Image
+                              alt="Olive drab green insulated bottle with flared screw lid and flat top."
+                              src="https://res.cloudinary.com/spacejoy/image/upload/h_300/v1636599163/spj-v2/shop/asset-3_hgs1zv.png"
+                              className="w-full h-full object-center object-contain filter group-hover:contrast-115 group-hover:brightness-110"
+                              layout="fill"
+                            />
+                          </div>
+                          <small className="mt-4 text-xs text-gray-500">Wayfair</small>
+                          <h3 className="text-md text-gray-700">Nomad Tumbler</h3>
+                          <p className="text-lg font-medium text-gray-900">
+                            $35.00 <small className="text-sm text-gray-500 line-through">$40.00</small>
+                          </p>
+                        </div>
+                      </a>
+                    </Link>
+                  </div>
+                  <div>
+                    <Link href="/product-view/1">
+                      <a className="group">
+                        <div className="bg-white p-8 rounded-lg">
+                          <div className="w-full mb-2 aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
+                            <Image
+                              src="https://res.cloudinary.com/spacejoy/image/upload/h_300/v1636599161/spj-v2/shop/asset-14_cpuzwl.png"
+                              alt="Olive drab green insulated bottle with flared screw lid and flat top."
+                              className="w-full h-full object-center object-contain filter group-hover:contrast-115 group-hover:brightness-110"
+                              layout="fill"
+                            />
+                          </div>
+                          <small className="mt-4 text-xs text-gray-500">Wayfair</small>
+                          <h3 className="text-md text-gray-700">Nomad Tumbler</h3>
+                          <p className="text-lg font-medium text-gray-900">
+                            $35.00 <small className="text-sm text-gray-500 line-through">$40.00</small>
+                          </p>
+                        </div>
+                      </a>
+                    </Link>
+                  </div>
+                  <div>
+                    <Link href="/product-view/1">
+                      <a className="group">
+                        <div className="bg-white p-8 rounded-lg">
+                          <div className="w-full mb-2 aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
+                            <Image
+                              src="https://res.cloudinary.com/spacejoy/image/upload/h_300/v1636599161/spj-v2/shop/asset-15_yedaun.png"
+                              alt="Olive drab green insulated bottle with flared screw lid and flat top."
+                              className="w-full h-full object-center object-contain filter group-hover:contrast-115 group-hover:brightness-110"
+                              layout="fill"
+                            />
+                          </div>
+                          <small className="mt-4 text-xs text-gray-500">Wayfair</small>
+                          <h3 className="text-md text-gray-700">Nomad Tumbler</h3>
+                          <p className="text-lg font-medium text-gray-900">
+                            $35.00 <small className="text-sm text-gray-500 line-through">$40.00</small>
+                          </p>
+                        </div>
+                      </a>
+                    </Link>
+                  </div>
+                  <div>
+                    <Link href="/product-view/1">
+                      <a className="group">
+                        <div className="bg-white p-8 rounded-lg">
+                          <div className="w-full mb-2 aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
+                            <Image
+                              src="https://res.cloudinary.com/spacejoy/image/upload/h_300/v1636599161/spj-v2/shop/asset-20_sw7xsb.png"
+                              alt="Olive drab green insulated bottle with flared screw lid and flat top."
+                              className="w-full h-full object-center object-contain filter group-hover:contrast-115 group-hover:brightness-110"
+                              layout="fill"
+                            />
+                          </div>
+                          <small className="mt-4 text-xs text-gray-500">Wayfair</small>
+                          <h3 className="text-md text-gray-700">Nomad Tumbler</h3>
+                          <p className="text-lg font-medium text-gray-900">
+                            $35.00 <small className="text-sm text-gray-500 line-through">$40.00</small>
+                          </p>
+                        </div>
+                      </a>
+                    </Link>
+                  </div>
+                  <div>
+                    <Link href="/product-view/1">
+                      <a className="group">
+                        <div className="bg-white p-8 rounded-lg">
+                          <div className="w-full mb-2 aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
+                            <Image
+                              src="https://res.cloudinary.com/spacejoy/image/upload/h_300/v1636599160/spj-v2/shop/asset-16_t7qisa.png"
+                              alt="Olive drab green insulated bottle with flared screw lid and flat top."
+                              className="w-full h-full object-center object-contain filter group-hover:contrast-115 group-hover:brightness-110"
+                              layout="fill"
+                            />
+                          </div>
+                          <small className="mt-4 text-xs text-gray-500">Wayfair</small>
+                          <h3 className="text-md text-gray-700">Nomad Tumbler</h3>
+                          <p className="text-lg font-medium text-gray-900">
+                            $35.00 <small className="text-sm text-gray-500 line-through">$40.00</small>
+                          </p>
+                        </div>
+                      </a>
+                    </Link>
+                  </div>
+                  <div>
+                    <Link href="/product-view/1">
+                      <a className="group">
+                        <div className="bg-white p-8 rounded-lg">
+                          <div className="w-full mb-2 aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
+                            <Image
+                              src="https://res.cloudinary.com/spacejoy/image/upload/h_300/v1636599160/spj-v2/shop/asset-17_txsqyc.png"
+                              alt="Olive drab green insulated bottle with flared screw lid and flat top."
+                              className="w-full h-full object-center object-contain filter group-hover:contrast-115 group-hover:brightness-110"
+                              layout="fill"
+                            />
+                          </div>
+                          <small className="mt-4 text-xs text-gray-500">Wayfair</small>
+                          <h3 className="text-md text-gray-700">Nomad Tumbler</h3>
+                          <p className="text-lg font-medium text-gray-900">
+                            $35.00 <small className="text-sm text-gray-500 line-through">$40.00</small>
+                          </p>
+                        </div>
+                      </a>
+                    </Link>
+                  </div>
+                </Tween>
               </div>
             </div>
           </div>
@@ -569,7 +589,6 @@ export const Shop = (): JSX.Element => (
                 <span className="sr-only">Previous</span>
                 <ChevronLeftIcon className="w-4 h-4" />
               </a>
-
               <a
                 href="#"
                 aria-current="page"
@@ -625,5 +644,4 @@ export const Shop = (): JSX.Element => (
     <Layout.Footer />
   </Layout>
 );
-
 export default React.memo(Shop);
