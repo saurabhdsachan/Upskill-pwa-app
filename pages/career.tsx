@@ -34,8 +34,8 @@ const career: React.FC = () => {
         <div className="container mx-auto px-4">
           <Image
             className="object-cover rounded-lg"
-            src="https://images.unsplash.com/photo-1558403194-611308249627?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=3600&q=80"
-            height="400"
+            src="https://res.cloudinary.com/spacejoy/image/upload/v1637037796/spj-v2/careers_tqwyqx.jpg"
+            height="500"
             width="1500"
             alt="career banner"
             layout="responsive"
