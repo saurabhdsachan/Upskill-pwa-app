@@ -33,7 +33,7 @@ const login = () => {
       <div className="bg-gray-200 flex items-center justify-center min-h-screen p-4">
         <AnimateBox className="container mx-auto bg-white rounded-lg xl:rounded-xl">
           <div className="min-h-full flex">
-            <div className="flex-1 flex lg:flex-none flex-col justify-center p-8 lg:p-14 xl:px-24 2xl:py-24">
+            <div className="flex-1 flex lg:flex-none flex-col justify-center p-8 lg:p-14 2xl:p-24">
               <div className="mx-auto w-full max-w-sm lg:w-96">
                 <div>
                   <div className="flex space-x-4 align-center">
