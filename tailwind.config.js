@@ -14,6 +14,9 @@ module.exports = {
       roman: 'upper-roman',
     },
     extend: {
+      backgroundImage: {
+        'hero-pattern': "url('/images/hero-pattern.png')",
+      },
       borderWidth: ['last', 'first'],
       colors: {
         'spj-red': '#F5296E',
