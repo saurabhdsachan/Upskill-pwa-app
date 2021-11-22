@@ -1,0 +1,13 @@
+version: '3.3'
+services:
+  spacejoy-v:
+    container_name: spacejoy-v
+    image: saurabhdsachan/spacejoy-v
+    restart: always
+    ports:
+      - '3000:3000'
+    environment:
+      - LETSENCRYPT_EMAIL=hello@ndllabs.com
+      - LETSENCRYPT_HOST=spacejoy.com,www.spacejoy.com
+      - VIRTUAL_HOST=spacejoy.com,www.spacejoy.com
+      - NODE_ENV=production

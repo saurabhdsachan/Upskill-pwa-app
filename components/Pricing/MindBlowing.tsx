@@ -56,7 +56,7 @@ const MindBlowing: React.FC = () => {
       />
       <div className="flex">
         <div className="relative">
-          <AnimateBox className="banner overflow-hidden">
+          <AnimateBox className="banner overflow-hidden rounded-r-lg">
             <div className="filter blur-sm bg-gray-100">
               <Image
                 className="object-cover"
@@ -67,13 +67,14 @@ const MindBlowing: React.FC = () => {
                 layout="intrinsic"
               />
             </div>
-            <div className="absolute top-0 left-0 right-0 bottom-0">
+            <div className="absolute inset-0">
               <Image
                 src="https://res.cloudinary.com/spacejoy/image/upload/v1622344281/spj-v2/spj-living-room_x9d25x.jpg"
                 alt="spacejoy awesome look"
                 width={'1000'}
                 height={'666'}
                 layout="responsive"
+                className="rounded-r-lg"
               />
             </div>
           </AnimateBox>
@@ -81,7 +82,7 @@ const MindBlowing: React.FC = () => {
         </div>
         <div className="relative h-full px-12 max-w-lg justify-center self-center">
           <div>
-            <p className="text-sm text-gray-600 leading-6">
+            <p className="text-sm text-gray-700 leading-6">
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum veniam voluptates consequatur ea quae
               vitae impedit sunt labore magnam id cumque, maxime ducimus nobis. Cum quas repellendus animi excepturi
               minima? Lorem ipsum, dolor sit amet consectetur adipisicing elit.
