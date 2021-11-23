@@ -3,21 +3,21 @@ import Layout from '@components/Shared/Layout';
 import Head from 'next/head';
 import React from 'react';
 
-const Offline: React.FC = () => {
+const Dashboard: React.FC = () => {
   return (
     <Layout>
       <Head>
-        <title>Offline | Spacejoy</title>
+        <title>Dashboard | Spacejoy</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout.Banner />
       <Layout.Header />
       <Layout.Body>
-        <EmptyState title="Connection Offline" message="Please check your network settings" />
+        <EmptyState title="Coming Soon" message="Hold On" />
       </Layout.Body>
       <Layout.Footer />
     </Layout>
   );
 };
 
-export default Offline;
+export default Dashboard;

@@ -4,7 +4,7 @@ import ListFilter from '@components/InteriorDesigns/ListFilter';
 import Layout from '@components/Shared/Layout';
 import PreFooter from '@components/Shared/PreFooter';
 import { internalPages } from '@utils/config';
-import { publicRoutes } from '@utils/constants/api';
+import { publicRoutes } from '@utils/constants';
 import fetcher from '@utils/fetcher';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import React from 'react';

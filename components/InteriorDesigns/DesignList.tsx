@@ -3,7 +3,7 @@ import DesignCardDimmer from '@components/InteriorDesigns/DesignCardDimmer';
 import Pagination from '@components/Shared/Pagination/index';
 import usePagination from '@hooks/usePagination';
 import { internalPages } from '@utils/config';
-import { publicRoutes } from '@utils/constants/api';
+import { publicRoutes } from '@utils/constants';
 import React from 'react';
 
 interface DesignListInterface {

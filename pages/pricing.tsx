@@ -4,7 +4,7 @@ import Layout from '@components/Shared/Layout';
 import PreFooter from '@components/Shared/PreFooter';
 import SEOWrapper from '@components/Shared/SEO/SEOWrapper';
 import { company } from '@utils/config';
-import { publicRoutes } from '@utils/constants/api';
+import { publicRoutes } from '@utils/constants';
 import fetcher from '@utils/fetcher';
 import { PricingPageSEO } from '@utils/SEO';
 import { InferGetStaticPropsType } from 'next';

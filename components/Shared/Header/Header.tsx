@@ -2,7 +2,8 @@ import { ChevronDownIcon, SearchIcon, ShoppingBagIcon } from '@heroicons/react/o
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import SubNav from './SubNav';
+import SubNav from '../SubNav';
+import UserNav from './UserNav';
 
 const Header: React.FC = () => {
   const [isOpenSubNav, setIsOpenSubNav] = useState(false);
@@ -141,11 +142,7 @@ const Header: React.FC = () => {
                   Start Project
                 </a>
               </Link>
-              <Link href="/auth/login">
-                <a className="text-gray-700 text-xs py-1.5 px-3 ml-2 rounded-lg border border-gray-600 hover:bg-gray-50">
-                  LOGIN
-                </a>
-              </Link>
+              <UserNav />
             </div>
           </div>
         </div>

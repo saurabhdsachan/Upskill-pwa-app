@@ -1,4 +1,4 @@
-import { publicRoutes } from '@utils/constants/api';
+import { publicRoutes } from '@utils/constants';
 import fetcher from '@utils/fetcher';
 import { debounce } from '@utils/helpers';
 import { useRouter } from 'next/router';

@@ -4,7 +4,7 @@ import EmptyState from '@components/Shared/EmptyState';
 import Pagination from '@components/Shared/Pagination';
 import usePagination from '@hooks/usePagination';
 import { internalPages } from '@utils/config';
-import { publicRoutes } from '@utils/constants/api';
+import { publicRoutes } from '@utils/constants';
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { CollectionListInterface } from './interface';
