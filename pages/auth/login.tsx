@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import toast from 'react-hot-toast';
 import styled, { keyframes } from 'styled-components';
 
 const entry = keyframes`
@@ -22,6 +23,20 @@ const AnimateBox = styled.div`
   animation-delay: 0ms;
 `;
 
+const timerPromise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    Math.ceil(Math.random() * 10) % 2 ? resolve(1) : reject(new Error());
+  }, 5000);
+});
+
+const showToast = () => {
+  return toast.promise(timerPromise, {
+    loading: 'Saving...',
+    success: <b>Settings saved!</b>,
+    error: <b>Could not save.</b>,
+  });
+};
+
 const login = () => {
   return (
     <>
@@ -29,7 +44,6 @@ const login = () => {
         <title>Login | Spacejoy</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <div className="bg-gray-200 bg-hero-pattern flex items-center justify-center min-h-screen p-4">
         <AnimateBox className="container mx-auto bg-white shadow-lg rounded-lg xl:rounded-xl">
           <div className="min-h-full flex">
@@ -199,6 +213,7 @@ const login = () => {
                       </div>
                       <div>
                         <button
+                          onClick={showToast}
                           type="submit"
                           className="w-full text-center flex justify-center shadow-xs hover:shadow-md text-sm text-white py-4 rounded-lg bg-gray-900 tracking-wide focus:ring-1 focus:ring-offset-1 focus:ring-offset-white focus:ring-gray-400 focus:outline-none"
                         >
@@ -210,7 +225,7 @@ const login = () => {
                 </div>
               </div>
             </div>
-            <div className="relative w-0 flex-1">
+            <div className="relative w-0 flex-1 bg-gray-50">
               <Image
                 className="inset-0 h-full w-full object-cover rounded-r-lg xl:rounded-r-xl filter contrast-115 brightness-110"
                 src="https://images.unsplash.com/photo-1606744888344-493238951221?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1200"

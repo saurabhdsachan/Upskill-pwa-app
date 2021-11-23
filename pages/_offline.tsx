@@ -13,7 +13,9 @@ const Offline: React.FC = () => {
       <Layout.Banner />
       <Layout.Header />
       <Layout.Body>
-        <EmptyState title="Connection Offline" message="Please check your network settings" />
+        <div className="p-40">
+          <EmptyState title="Connection Offline" message="Please check your network settings" />
+        </div>
       </Layout.Body>
       <Layout.Footer />
     </Layout>
