@@ -1,5 +1,6 @@
 import SectionTitle from '@components/Shared/SectionTitle';
-import { Tab } from '@headlessui/react';
+import { Disclosure, Tab } from '@headlessui/react';
+import { ChevronDownIcon } from '@heroicons/react/outline';
 import HelpData from '@mocks/HelpData';
 import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
@@ -97,19 +98,27 @@ const Index = () => {
   });
 
   return (
-    <div className="bg-gray-100">
-      <div className="container mx-auto px-4">
+    <div className="bg-white">
+      {/* <Image
+        className="object-cover filter grayscale"
+        src="https://res.cloudinary.com/spacejoy/image/upload/v1637747968/spj-v2/illustration-section-01_wut9pv.svg"
+        alt="bg"
+        width="800"
+        height="400"
+        layout="responsive"
+      /> */}
+      <div className="relative container mx-auto px-4 z-10">
         <SectionTitle feature="help" title="Frequently asked questions" />
         <Tab.Group>
-          <div className="text-center">
-            <Tab.List className="inline-flex p-1 space-x-1 rounded-xl border border-gray-300">
+          <div className="text-center relative z-10 -mb-6">
+            <Tab.List className="inline-flex p-1 space-x-1 rounded-xl border border-gray-400 shadow-2xl bg-white bg-opacity-50 backdrop-filter backdrop-blur firefox:bg-opacity-90">
               {Object.keys(categories).map((category) => (
                 <Tab
                   key={category}
                   className={({ selected }) =>
                     classNames(
                       'w-32 py-2 text-sm leading-5 bg-white rounded-lg',
-                      selected ? 'bg-gray-900 text-white shadow' : 'text-gray-900  hover:bg-gray-200'
+                      selected ? 'bg-gray-900 text-white' : 'text-gray-900 bg-gray-100 hover:bg-gray-300'
                     )
                   }
                 >
@@ -118,18 +127,43 @@ const Index = () => {
               ))}
             </Tab.List>
           </div>
-          <Tab.Panels className="mt-8 pb-8">
+          <Tab.Panels className="pb-8">
             {Object.values(categories).map((posts, idx) => (
               <Tab.Panel key={idx}>
-                <AnimateBox className="divide-y-2 divide-gray-200">
-                  <dl className="grid grid-cols-3 gap-8">
-                    {HelpData?.map((item, index) => (
-                      <div key={item.question} className="bg-white p-4 xl:p-6 rounded">
-                        <dt className="text-lg font-bold text-gray-700">{item.question}</dt>
-                        <dd className="antialiased mt-2 text-gray-500">{item.answer}</dd>
-                      </div>
-                    ))}
-                  </dl>
+                <AnimateBox>
+                  <div className="bg-gray-100 rounded-lg">
+                    <div className="max-w-5xl mx-auto py-12 px-4 sm:py-16 sm:px-6 lg:px-8">
+                      <dl className="mt-6 space-y-6 divide-y divide-gray-200">
+                        {HelpData.map((faq) => (
+                          <Disclosure as="div" key={faq.question} className="pt-6">
+                            {({ open }) => (
+                              <>
+                                <dt className="text-lg">
+                                  <Disclosure.Button className="text-left w-full flex justify-between items-start text-gray-400">
+                                    <span className={`${open ? 'font-bold' : 'font-medium'} text-gray-900`}>
+                                      {faq.question}
+                                    </span>
+                                    <span className="ml-6 h-7 flex items-center">
+                                      <ChevronDownIcon
+                                        className={classNames(
+                                          open ? '-rotate-180' : 'rotate-0',
+                                          'h-4 w-4 transform transition-transform'
+                                        )}
+                                        aria-hidden="true"
+                                      />
+                                    </span>
+                                  </Disclosure.Button>
+                                </dt>
+                                <Disclosure.Panel as="dd" className="mt-2 pr-12">
+                                  <p className="text-base text-gray-700">{faq.answer}</p>
+                                </Disclosure.Panel>
+                              </>
+                            )}
+                          </Disclosure>
+                        ))}
+                      </dl>
+                    </div>
+                  </div>
                 </AnimateBox>
               </Tab.Panel>
             ))}
