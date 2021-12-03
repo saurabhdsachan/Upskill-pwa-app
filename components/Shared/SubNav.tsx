@@ -1,6 +1,7 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { ArrowRightIcon } from '@heroicons/react/outline';
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { Fragment } from 'react';
 
 const SubNav = ({ subNavState, closeSubNav }: { subNavState: boolean; closeSubNav: () => void }): JSX.Element => {
@@ -58,20 +59,16 @@ const SubNav = ({ subNavState, closeSubNav }: { subNavState: boolean; closeSubNa
                           Nam dapibus nisl vitae elit fringilla rutrum. Aenean sollicitudin, erat a elementum rutrum,
                           neque sem pretium metus, quis mollis nisl nunc et massa.
                         </p>
-                        <button
-                          type="button"
-                          className="shadow-xs hover:shadow-md text-xs text-white py-2 px-5 rounded-full bg-gray-900 tracking-wide focus:ring-1 focus:ring-offset-1 focus:ring-offset-white focus:ring-gray-400 focus:outline-none"
-                          onClick={closeSubNav}
-                        >
-                          Read my story
-                        </button>
-                        <button
-                          type="button"
-                          className="text-gray-700 text-xs py-2 px-5 ml-4 rounded-full border border-gray-600 hover:bg-gray-50 tracking-wide focus:ring-1 focus:ring-offset-1 focus:ring-offset-white focus:ring-gray-400 focus:outline-none"
-                          onClick={closeSubNav}
-                        >
-                          Read all stories
-                        </button>
+                        <Link href="/customer-stories/saurabh-living-room-design">
+                          <a className="shadow-xs hover:shadow-md text-xs text-white py-2 px-5 rounded-full bg-gray-900 tracking-wide focus:ring-1 focus:ring-offset-1 focus:ring-offset-white focus:ring-gray-400 focus:outline-none">
+                            Read my story
+                          </a>
+                        </Link>
+                        <Link href="/customer-stories">
+                          <a className="text-gray-700 text-xs py-2 px-5 ml-4 rounded-full border border-gray-600 hover:bg-gray-50 tracking-wide focus:ring-1 focus:ring-offset-1 focus:ring-offset-white focus:ring-gray-400 focus:outline-none">
+                            Read all stories
+                          </a>
+                        </Link>
                       </div>
                     </div>
                   </div>

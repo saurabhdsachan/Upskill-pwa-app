@@ -1,12 +1,5 @@
 import { Menu, Transition } from '@headlessui/react';
-import {
-  ChevronDownIcon,
-  DocumentReportIcon,
-  DocumentSearchIcon,
-  ShareIcon,
-  UserRemoveIcon,
-  UsersIcon,
-} from '@heroicons/react/outline';
+import { ChevronDownIcon, ShareIcon, UserRemoveIcon, UsersIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 import React, { Fragment } from 'react';
 
@@ -61,18 +54,15 @@ const UserNav = () => {
                 </Menu.Item>
                 <Menu.Item>
                   {({ active }) => (
-                    <button
+                    <NextLink
+                      href="/auth/login"
                       className={`${
-                        active ? 'bg-violet-500 text-white' : 'text-gray-900'
+                        active ? 'bg-gray-50 text-gray-500' : 'text-gray-900'
                       } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
+                      active
                     >
-                      {active ? (
-                        <DocumentSearchIcon className="w-5 h-5 mr-2" aria-hidden="true" />
-                      ) : (
-                        <DocumentReportIcon className="w-5 h-5 mr-2" aria-hidden="true" />
-                      )}
-                      Duplicate
-                    </button>
+                      Login
+                    </NextLink>
                   )}
                 </Menu.Item>
               </div>

@@ -239,6 +239,13 @@ const Footer: React.FC = () => {
                   Partner With Us
                 </a>
               </li>
+              <li>
+                <Link href="/career" as="/career">
+                  <a className="px-1 text-sm text-gray-600 leading-7 rounded-md hover:text-red-500 focus:text-red-500 focus:ring-1 focus:ring-gray-500 focus:outline-none">
+                    Careers
+                  </a>
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

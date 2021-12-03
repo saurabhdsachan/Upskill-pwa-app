@@ -16,7 +16,7 @@ export const Shop = (): JSX.Element => (
     <Layout.Header />
     <Layout.Body>
       <div className="bg-gray-100 min-h-screen">
-        <main className="container p-4 mx-auto">
+        <div className="container p-4 mx-auto">
           <nav className="flex mb-4" aria-label="Breadcrumb">
             <ol role="list" className="flex items-center space-x-4">
               <li>
@@ -638,7 +638,7 @@ export const Shop = (): JSX.Element => (
               </a>
             </nav>
           </div>
-        </main>
+        </div>
       </div>
     </Layout.Body>
     <Layout.Footer />
