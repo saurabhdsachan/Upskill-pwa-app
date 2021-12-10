@@ -36,9 +36,10 @@ const fetchAllFilters = async (ctx) => {
 
 const fetchAssetList = async ({ filters = {}, searchText = '', skipVal = 0, wildcard = false }, ctx) => {
   const endPoint = `/v1/assets/search?skip=${skipVal}&limit=${internalPages?.Shop?.DEFAULT_PAGE_SIZE}`;
+
   const {
     categories = [],
-    retailers = [],
+    retailer = [],
     price = [],
     status = 'active',
     depth = [],
@@ -47,6 +48,7 @@ const fetchAssetList = async ({ filters = {}, searchText = '', skipVal = 0, wild
     vertical = [],
     subcategory = [],
   } = filters;
+  console.log(filters);
   const payload = {
     searchText,
     projectId: 'randomText',
@@ -55,7 +57,7 @@ const fetchAssetList = async ({ filters = {}, searchText = '', skipVal = 0, wild
     status: 'active',
     filters: {
       category: [...categories],
-      retailer: [...retailers],
+      retailer: [...retailer],
       price: [...price],
       status,
       depth: [...depth],
@@ -65,6 +67,7 @@ const fetchAssetList = async ({ filters = {}, searchText = '', skipVal = 0, wild
       subcategory: [...subcategory],
     },
   };
+
   try {
     const response = await fetcher({ ctx, endPoint, method: 'POST', body: { ...payload } });
     const { data, statusCode } = response;
