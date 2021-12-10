@@ -51,11 +51,11 @@ const fetchMoreData = async (api, skip, limit) => {
   try {
     const res = await fetcher({ endPoint, method, ...(method === 'POST' && { body: { ...payload } }) });
     const {
-      data: { list = [] },
+      data: { hits = [] }, // TODO: Write processor
       statusCode,
     } = res;
     if (statusCode <= 301) {
-      return list;
+      return hits;
     } else {
       throw new Error();
     }

@@ -1,18 +1,47 @@
 import { Dialog, Transition } from '@headlessui/react';
-import { ArrowRightIcon } from '@heroicons/react/outline';
-import Image from 'next/image';
-import Link from 'next/link';
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 
-const SubNav = ({ subNavState, closeSubNav }: { subNavState: boolean; closeSubNav: () => void }): JSX.Element => {
+interface StaticComponents {
+  Body?: React.FC;
+  Button?: React.FC;
+  Header?: React.FC;
+}
+interface ModalProps {
+  subNavState: boolean;
+  closeSubNav: () => void;
+  onCloseCallback?: () => void;
+  hoverNav?: boolean;
+}
+const SubNav: React.FC<ModalProps> & StaticComponents = ({
+  children,
+  subNavState,
+  closeSubNav,
+  onCloseCallback,
+  hoverNav,
+}) => {
+  const [subNavHoverState, setSubNavState] = useState(false);
+  const handleHover = (value) => {
+    if (hoverNav) {
+      setSubNavState(value);
+    }
+  };
   return (
-    <Transition appear show={subNavState} as={Fragment}>
+    <Transition appear show={subNavHoverState || subNavState} as={Fragment}>
       <Dialog
         as="div"
         className="fixed bg-gray-900 bg-opacity-75 inset-0 z-40 overflow-y-auto backdrop-filter backdrop-blur firefox:bg-opacity-90"
-        onClose={closeSubNav}
+        onClose={() => {
+          closeSubNav();
+          onCloseCallback();
+          setSubNavState(false);
+        }}
       >
-        <div className="min-h-screen text-center" aria-label="secondary">
+        <div
+          className="min-h-screen text-center"
+          aria-label="secondary"
+          onMouseEnter={() => handleHover(true)}
+          onMouseLeave={() => handleHover(false)}
+        >
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -36,83 +65,9 @@ const SubNav = ({ subNavState, closeSubNav }: { subNavState: boolean; closeSubNa
             <div className="container mx-auto overflow-hidden relative pt-36 pb-16 text-left bg-white shadow-xl rounded-b-lg">
               <div className="container mx-auto px-8">
                 <Dialog.Title as="h3" className="text-3xl mb-6">
-                  Spacejoy Stories
+                  {children[0]}
                 </Dialog.Title>
-                <div className="grid lg:gap-4 xl:gap-8 lg:grid-cols-4 xl:grid-cols-5 max-w-800 max-w-screen-xl">
-                  <div className="lg:col-start-1 lg:col-end-3 xl:col-start-1 xl:col-end-3">
-                    <div className="grid gap-8 grid-cols-3">
-                      <div className="col-start-1 col-end-2 relative">
-                        <div className=" bg-gray-200 rounded-xl">
-                          <Image
-                            className="rounded-xl filter contrast-125"
-                            src="https://res.cloudinary.com/spacejoy/image/upload/c_fill,g_face,h_300,w_300/v1624244229/web/avatars/Monica-Hall_ld1m5a.jpg"
-                            alt="spacejoy happy customer"
-                            height={'300'}
-                            width={'300'}
-                            layout="responsive"
-                          />
-                        </div>
-                      </div>
-                      <div className="col-start-2 col-end-4">
-                        <h3 className="text-xl mb-2 font-poppins">How Spacejoy has transform Marisa’s Home</h3>
-                        <p className="text-sm mb-4 text-gray-600">
-                          Nam dapibus nisl vitae elit fringilla rutrum. Aenean sollicitudin, erat a elementum rutrum,
-                          neque sem pretium metus, quis mollis nisl nunc et massa.
-                        </p>
-                        <Link href="/customer-stories/saurabh-living-room-design">
-                          <a className="shadow-xs hover:shadow-md text-xs text-white py-2 px-5 rounded-full bg-gray-900 tracking-wide focus:ring-1 focus:ring-offset-1 focus:ring-offset-white focus:ring-gray-400 focus:outline-none">
-                            Read my story
-                          </a>
-                        </Link>
-                        <Link href="/customer-stories">
-                          <a className="text-gray-700 text-xs py-2 px-5 ml-4 rounded-full border border-gray-600 hover:bg-gray-50 tracking-wide focus:ring-1 focus:ring-offset-1 focus:ring-offset-white focus:ring-gray-400 focus:outline-none">
-                            Read all stories
-                          </a>
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="lg:col-start-3 lg:col-end-4 xl:col-start-4 xl:col-end-5">
-                    <div className="shadow-sm rounded-xl bg-gray-100 h-full">
-                      <div className="flex h-full p-4 flex-col justify-end">
-                        <div>
-                          <Image
-                            src="https://res.cloudinary.com/spacejoy/image/upload/h_300,w_300/v1622188242/spj-v2/3d-icons/spj-25_dhewua.png"
-                            alt="No markups"
-                            height={'55'}
-                            width={'75'}
-                            layout="intrinsic"
-                          />
-                        </div>
-                        <div>
-                          <h3 className="text-lg mt-2 text-red-700 font-poppins">Design Matters</h3>
-                          <p className="text-sm mb-2">Tips & Guides</p>
-                          <ArrowRightIcon className="h-4 w-4" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="lg:col-start-4 lg:col-end-5 xl:col-start-5 xl:col-end-6">
-                    <div className="shadow-sm rounded-xl bg-green-100 h-full">
-                      <div className="flex h-full p-4 flex-col justify-end">
-                        <div className="text-left">
-                          <Image
-                            src="https://res.cloudinary.com/spacejoy/image/upload/h_300,w_300/v1622188232/spj-v2/3d-icons/spj-13_khzmql.png"
-                            alt="No markups"
-                            height={'75'}
-                            width={'75'}
-                            layout="intrinsic"
-                          />
-                        </div>
-                        <div>
-                          <h3 className="text-lg mt-2 text-green-700 font-poppins">Customer Stories</h3>
-                          <p className="text-sm mb-2">100% Happiness Delivered</p>
-                          <ArrowRightIcon className="h-4 w-4" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <div>{children[1]}</div>
               </div>
             </div>
           </Transition.Child>
@@ -121,5 +76,8 @@ const SubNav = ({ subNavState, closeSubNav }: { subNavState: boolean; closeSubNa
     </Transition>
   );
 };
+SubNav.Button = ({ children }) => <>{children}</>;
+SubNav.Header = ({ children }) => <>{children}</>;
+SubNav.Body = ({ children }) => <>{children}</>;
 
 export default SubNav;

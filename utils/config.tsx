@@ -115,6 +115,10 @@ const internalPages = {
     DEFAULT_PAGE_SIZE_BANNER: 6,
     DEFAULT_PAGE_SIZE: 24,
   },
+  Shop: {
+    DEFAULT_PAGE_SIZE: 35,
+    NUM_OF_BUTTONS: 7,
+  },
 };
 
 export { company, page, cloudinary, internalPages };

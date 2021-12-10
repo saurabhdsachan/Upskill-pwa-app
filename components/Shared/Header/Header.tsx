@@ -1,7 +1,9 @@
+import CustomerStoriesNav from '@components/Shared/CustomerStoriesNav';
+import ShopCategories from '@components/Shared/ShopCategories';
 import { ChevronDownIcon, SearchIcon, ShoppingBagIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import SubNav from '../SubNav';
 import UserNav from './UserNav';
 
@@ -13,6 +15,42 @@ const Header: React.FC = () => {
   const openSubNav = () => setIsOpenSubNav(true);
 
   const router = useRouter();
+
+  const [subNavContent, setSubNavContent] = useState('stories');
+
+  const getSubNavContent = useCallback(() => {
+    if (!subNavContent) {
+      return null;
+    } else {
+      switch (subNavContent) {
+        case 'stories':
+          return <CustomerStoriesNav />;
+        case 'shop':
+          return <ShopCategories />;
+        default:
+          return null;
+      }
+    }
+  }, [subNavContent]);
+
+  const getSubNavHeader = useCallback(() => {
+    if (!subNavContent) {
+      return null;
+    } else {
+      switch (subNavContent) {
+        case 'stories':
+          return 'Customer Stories';
+        case 'shop':
+          return 'Shop By Category';
+        default:
+          return null;
+      }
+    }
+  }, [subNavContent]);
+
+  const isSubNavHover = useMemo(() => {
+    return subNavContent === 'shop' ? true : false;
+  }, [subNavContent]);
 
   return (
     <>
@@ -52,9 +90,9 @@ const Header: React.FC = () => {
                 </svg>
               </a>
             </Link>
-            <div className="flex-1">
-              <nav aria-label="Primary">
-                <ul>
+            <div className="flex-1 h-full">
+              <nav aria-label="Primary" className="h-full">
+                <ul className="h-full flex items-center">
                   <li className="inline-block">
                     <Link href="/interior-designs">
                       <a
@@ -77,18 +115,28 @@ const Header: React.FC = () => {
                       </a>
                     </Link>
                   </li>
-                  <li className="inline-block">
+                  <li className="flex">
                     <button
                       type="button"
                       className={`hover:text-red-500 text-sm py-1 px-2.5 flex items-center rounded-md focus:ring-1 focus:ring-gray-900 focus:outline-none ${
-                        isOpenSubNav ? 'text-red-500' : 'text-gray-700'
+                        isOpenSubNav && subNavContent === 'stories' ? 'text-red-500' : 'text-gray-700'
                       }`}
-                      onClick={isOpenSubNav ? closeSubNav : openSubNav}
+                      onClick={
+                        isOpenSubNav
+                          ? () => {
+                              closeSubNav();
+                              setSubNavContent('');
+                            }
+                          : () => {
+                              openSubNav();
+                              setSubNavContent('stories');
+                            }
+                      }
                     >
                       Stories{' '}
                       <ChevronDownIcon
                         className={`ml-1 h-4 w-4 transition-transform delay-75 duration-300 ease-in-out transform ${
-                          isOpenSubNav ? 'rotate-180' : ''
+                          isOpenSubNav && subNavContent === 'stories' ? 'rotate-180' : ''
                         }`}
                       />
                     </button>
@@ -114,6 +162,31 @@ const Header: React.FC = () => {
                         Help
                       </a>
                     </Link>
+                  </li>
+                  <li
+                    className="flex h-full items-center"
+                    onMouseEnter={() => {
+                      openSubNav();
+                      setSubNavContent('shop');
+                    }}
+                    onMouseLeave={() => {
+                      closeSubNav();
+                      // setSubNavContent('');
+                    }}
+                  >
+                    <button
+                      type="button"
+                      className={`hover:text-red-500 text-sm py-1 px-2.5 flex items-center rounded-md focus:ring-1 focus:ring-gray-900 focus:outline-none ${
+                        isOpenSubNav && subNavContent === 'shop' ? 'text-red-500' : 'text-gray-700'
+                      }`}
+                    >
+                      Shop{' '}
+                      <ChevronDownIcon
+                        className={`ml-1 h-4 w-4 transition-transform delay-75 duration-300 ease-in-out transform ${
+                          isOpenSubNav && subNavContent === 'shop' ? 'rotate-180' : ''
+                        }`}
+                      />
+                    </button>
                   </li>
                 </ul>
               </nav>
@@ -145,7 +218,10 @@ const Header: React.FC = () => {
           </div>
         </div>
       </header>
-      <SubNav subNavState={isOpenSubNav} closeSubNav={closeSubNav} />
+      <SubNav subNavState={isOpenSubNav} closeSubNav={closeSubNav} onCloseCallback={() => {}} hoverNav={isSubNavHover}>
+        <SubNav.Header>{getSubNavHeader()}</SubNav.Header>
+        <SubNav.Body>{getSubNavContent()}</SubNav.Body>
+      </SubNav>
     </>
   );
 };

@@ -21,7 +21,8 @@
       "@context/*": ["./context/*"],
       "@utils/*": ["./utils/*"],
       "@mocks/*": ["./mocks/*"],
-      "@public/*": ["./public/*"]
+      "@public/*": ["./public/*"],
+      "@store/*": ["./store/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
