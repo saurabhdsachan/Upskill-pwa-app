@@ -1,6 +1,7 @@
 import fetcher from '@utils/fetcher';
+import { arraysEqual } from '@utils/helpers';
 import { useRouter } from 'next/router';
-import { useEffect, useReducer, useState } from 'react';
+import { useEffect, useReducer, useRef, useState } from 'react';
 
 const initialState = {
   list: {
@@ -36,9 +37,17 @@ const reducer = (state = initialState, action) => {
       };
     }
   }
+
   return {
     ...state,
   };
+};
+const useIsMount = () => {
+  const isMountRef = useRef(true);
+  useEffect(() => {
+    isMountRef.current = false;
+  }, []);
+  return isMountRef.current;
 };
 
 const fetchMoreData = async (api, skip, limit) => {
@@ -64,16 +73,17 @@ const fetchMoreData = async (api, skip, limit) => {
   }
 };
 
-const usePagination = (api, initialData, totalRecords, paginationButtonCount, pageSize) => {
+const usePagination = (api, initialData, totalRecords, paginationButtonCount, pageSize, initialFilters) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [currentBtnWindow, setCurrentBtnWindow] = useState([]);
 
   const router = useRouter();
 
   const { isFetching, currentPage, list } = state;
+  const isMount = useIsMount();
 
   useEffect(() => {
-    if (initialData && initialData?.length) {
+    if (initialData) {
       dispatch({ type: 'ADD_TO_LIST', payload: { data: initialData } });
     }
   }, [initialData]);
@@ -99,6 +109,29 @@ const usePagination = (api, initialData, totalRecords, paginationButtonCount, pa
     const stepNumber = parseInt(page as string, 10) - 1;
     dispatch({ type: 'UPDATE_CURRENT_PAGE', payload: Math.max(stepNumber, 0) });
   }, [router]);
+
+  useEffect(() => {
+    async function fetchData(...args) {
+      const newData = await fetchMoreData.apply(null, [...args]);
+      dispatch({ type: 'ADD_TO_LIST', payload: { data: newData, currentPage } });
+      dispatch({ type: 'SET_LOADING' });
+    }
+
+    if (
+      !arraysEqual(initialFilters?.subcategory || [], api.payload.filters.subcategory || []) ||
+      !arraysEqual(initialFilters?.retailer || [], api.payload.filters.retailer || []) ||
+      !arraysEqual(initialFilters?.vertical || [], api.payload.filters.vertical || [])
+    ) {
+      dispatch({ type: 'SET_LOADING' });
+      fetchData(api, currentPage * pageSize, pageSize);
+    }
+  }, [
+    api?.payload?.filters?.price,
+    api?.payload?.filters?.retailer,
+    api?.payload?.filters?.discount,
+    api?.payload?.filters?.vertical,
+    api?.payload?.filters?.subcategory,
+  ]);
 
   useEffect(() => {
     async function fetchData(...args) {

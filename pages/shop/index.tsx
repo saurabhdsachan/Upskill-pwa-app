@@ -9,15 +9,11 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Tween } from 'react-gsap';
 
-export const Shop = ({ currentlyAppliedFilters, assetsList, searchText }): JSX.Element => {
-  const [currentFilters, setCurrentFilters] = useState({ ...defaultFilters });
-
-  useEffect(() => {
-    setCurrentFilters(currentFilters);
-  }, [currentFilters]);
+export const Shop = ({ initialFilters, assetsList, searchText }): JSX.Element => {
+  const [currentFilters, setCurrentFilters] = useState({ ...defaultFilters, ...initialFilters });
 
   const { currentRenderList, isFetching, buttons } = usePagination(
     {
@@ -34,15 +30,43 @@ export const Shop = ({ currentlyAppliedFilters, assetsList, searchText }): JSX.E
     assetsList?.list,
     assetsList?.count,
     internalPages?.Shop?.NUM_OF_BUTTONS,
-    internalPages?.Shop?.DEFAULT_PAGE_SIZE
+    internalPages?.Shop?.DEFAULT_PAGE_SIZE,
+    { ...initialFilters }
   );
   const {
-    filters: { retailers: retailerList = [] },
+    filters: { retailer: retailerList = [], subCategory },
     updateFilter,
   } = useShopFilterContext();
   const router = useRouter();
 
-  useEffect(() => {}, [router?.query]);
+  const lastQueryItems = React.useRef(Object.keys(router?.query));
+
+  const verticalList = useMemo(() => {
+    const selectedSubCategories = subCategory?.filter((item) => item?.selected);
+    if (selectedSubCategories?.length) {
+      return selectedSubCategories?.reduce((acc, subCategory) => {
+        return [...acc, ...subCategory?.verticals];
+      }, []);
+    } else {
+      return [];
+    }
+  }, [subCategory]);
+
+  useEffect(() => {
+    const queryItems = Object.keys(router?.query);
+    if (queryItems?.length) {
+      lastQueryItems.current = queryItems;
+      const appliedFilters = queryItems?.reduce((acc, currValue) => {
+        acc[currValue] = router?.query[currValue].split('::');
+        return acc;
+      }, {});
+      setCurrentFilters({ ...defaultFilters, ...appliedFilters });
+    } else {
+      if (lastQueryItems?.current?.length) {
+        setCurrentFilters({ ...defaultFilters });
+      }
+    }
+  }, [router?.query]);
 
   return (
     <Layout>
@@ -94,25 +118,32 @@ export const Shop = ({ currentlyAppliedFilters, assetsList, searchText }): JSX.E
                 <h3 className="text-gray-700 mb-4">Filters</h3>
                 <form className="hidden lg:block">
                   <h3 className="sr-only">Categories</h3>
-                  <ul role="list" className="text-sm text-gray-900 space-y-2 pb-6 border-b border-gray-200">
-                    <li>
-                      <a href="#">Totes</a>
-                    </li>
-                    <li>
-                      <a href="#">Backpacks</a>
-                    </li>
-                    <li>
-                      <a href="#">Travel Bags</a>
-                    </li>
-                    <li>
-                      <a href="#">Hip Bags</a>
-                    </li>
-                    <li>
-                      <a href="#">Laptop Sleeves</a>
-                    </li>
-                  </ul>
-                  <div className="border-b border-gray-200 py-6">
-                    <h3 className="-my-3">
+                  <div className="space-y-2">
+                    {verticalList?.map((vertical) => {
+                      return (
+                        <div
+                          className="flex items-center cursor-pointer"
+                          key={vertical?._id}
+                          onClick={() => updateFilter(vertical?._id, 'vertical')}
+                        >
+                          <input
+                            id="filter-category-0"
+                            name="category[]"
+                            value="new-arrivals"
+                            type="checkbox"
+                            className="h-4 w-4 border-gray-300 rounded text-gray-900 focus:ring-gray-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-white cursor-pointer"
+                            checked={vertical?.selected}
+                            readOnly
+                          />
+                          <label htmlFor="filter-category-0" className="ml-3 text-sm text-gray-900 cursor-pointer">
+                            {vertical?.name}
+                          </label>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  {/* <div className="border-b border-gray-200 py-6"> */}
+                  {/* <h3 className="-my-3">
                       <button
                         type="button"
                         className="py-3 w-full flex items-center justify-between text-sm text-gray-400 hover:text-gray-500"
@@ -125,8 +156,8 @@ export const Shop = ({ currentlyAppliedFilters, assetsList, searchText }): JSX.E
                           <MinusIcon className="text-gray-900 w-3 h-3" />
                         </span>
                       </button>
-                    </h3>
-                    <div className="pt-6" id="filter-section-0">
+                    </h3> */}
+                  {/* <div className="pt-6" id="filter-section-0">
                       <div className="space-y-2">
                         <fieldset>
                           <legend className="sr-only">Choose a color</legend>
@@ -198,8 +229,8 @@ export const Shop = ({ currentlyAppliedFilters, assetsList, searchText }): JSX.E
                           </div>
                         </fieldset>
                       </div>
-                    </div>
-                  </div>
+                    </div> */}
+                  {/* </div> */}
                   <div className="border-b border-gray-200 py-6">
                     <h3 className="-my-3">
                       <button
@@ -208,7 +239,7 @@ export const Shop = ({ currentlyAppliedFilters, assetsList, searchText }): JSX.E
                         aria-controls="filter-section-1"
                         aria-expanded="false"
                       >
-                        <span className="font-bold text-gray-700">Category</span>
+                        <span className="font-bold text-gray-700">Brands</span>
                         <span className="ml-6 flex items-center">
                           <PlusIcon className="text-gray-900 w-3 h-3 mr-2" />
                           <MinusIcon className="text-gray-900 w-3 h-3" />
@@ -222,7 +253,7 @@ export const Shop = ({ currentlyAppliedFilters, assetsList, searchText }): JSX.E
                             <div
                               className="flex items-center cursor-pointer"
                               key={retailer?._id}
-                              onClick={() => updateFilter(retailer?._id, 'retailers')}
+                              onClick={() => updateFilter(retailer?._id, 'retailer')}
                             >
                               <input
                                 id="filter-category-0"
@@ -231,6 +262,7 @@ export const Shop = ({ currentlyAppliedFilters, assetsList, searchText }): JSX.E
                                 type="checkbox"
                                 className="h-4 w-4 border-gray-300 rounded text-gray-900 focus:ring-gray-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-white cursor-pointer"
                                 checked={retailer?.selected}
+                                readOnly
                               />
                               <label htmlFor="filter-category-0" className="ml-3 text-sm text-gray-900 cursor-pointer">
                                 {retailer?.name}
@@ -392,8 +424,9 @@ export const Shop = ({ currentlyAppliedFilters, assetsList, searchText }): JSX.E
 };
 
 export async function getServerSideProps(context) {
+  console.log('fired method ---');
   const { query = {} } = context || {};
-
+  //TODO: Add page number support
   const payload = Object.keys(query).reduce((acc, item) => {
     if (item !== 'page') {
       if (item === 'searchText') {
@@ -409,11 +442,12 @@ export async function getServerSideProps(context) {
     delete payload?.searchText;
   }
   const allFilters = { ...defaultFilters, ...payload };
+  console.log(allFilters);
   const assetsList = await fetchAssetList({ filters: { ...allFilters }, searchText }, context);
 
   return {
     props: {
-      currentlyAppliedFilters: payload,
+      initialFilters: payload,
       assetsList,
       searchText,
     },
