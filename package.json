@@ -23,6 +23,7 @@
   "dependencies": {
     "@headlessui/react": "^1.4.1",
     "@heroicons/react": "^1.0.5",
+    "@tailwindcss/line-clamp": "^0.2.2",
     "gsap": "^3.8.0",
     "isomorphic-unfetch": "^3.1.0",
     "lottie-react-web": "^2.2.2",

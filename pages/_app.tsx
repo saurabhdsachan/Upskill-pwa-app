@@ -1,4 +1,5 @@
 import CommonSEO from '@components/Shared/SEO/DefaultSeo';
+import ShopFilterContextProvider from '@store/ShopFilterContext';
 import type { AppProps } from 'next/app';
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
@@ -9,7 +10,9 @@ const MyApp = ({ Component, pageProps }: AppProps): React.ReactElement => {
     <>
       <CommonSEO />
       <ThemeProvider theme={{}}>
-        <Component {...pageProps} />
+        <ShopFilterContextProvider>
+          <Component {...pageProps} />
+        </ShopFilterContextProvider>
       </ThemeProvider>
     </>
   );
