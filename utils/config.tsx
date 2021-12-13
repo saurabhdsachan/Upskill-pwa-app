@@ -121,4 +121,9 @@ const internalPages = {
   },
 };
 
-export { company, page, cloudinary, internalPages };
+const affirm = {
+  key: isProduction ? 'MQX1SBXQPC7ZPJNG' : 'QZMZ8RUP8KPJKAK7',
+  script: isProduction ? 'https://cdn1.affirm.com/js/v2/affirm.js' : 'https://sandbox.affirm.com/js/v2/affirm.js',
+};
+
+export { company, page, cloudinary, internalPages, affirm };

@@ -54,12 +54,14 @@ export const Shop = ({ initialFilters, assetsList, searchText }): JSX.Element =>
 
   useEffect(() => {
     const queryItems = Object.keys(router?.query);
+
     if (queryItems?.length) {
       lastQueryItems.current = queryItems;
       const appliedFilters = queryItems?.reduce((acc, currValue) => {
         acc[currValue] = router?.query[currValue].split('::');
         return acc;
       }, {});
+      console.log('applied ---', { ...defaultFilters, ...appliedFilters });
       setCurrentFilters({ ...defaultFilters, ...appliedFilters });
     } else {
       if (lastQueryItems?.current?.length) {
@@ -424,7 +426,6 @@ export const Shop = ({ initialFilters, assetsList, searchText }): JSX.Element =>
 };
 
 export async function getServerSideProps(context) {
-  console.log('fired method ---');
   const { query = {} } = context || {};
   //TODO: Add page number support
   const payload = Object.keys(query).reduce((acc, item) => {
@@ -442,7 +443,7 @@ export async function getServerSideProps(context) {
     delete payload?.searchText;
   }
   const allFilters = { ...defaultFilters, ...payload };
-  console.log(allFilters);
+
   const assetsList = await fetchAssetList({ filters: { ...allFilters }, searchText }, context);
 
   return {
