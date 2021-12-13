@@ -1,11 +1,14 @@
 import Layout from '@components/Shared/Layout';
 import { ChevronRightIcon, HeartIcon, HomeIcon, MinusSmIcon, PlusIcon, PlusSmIcon } from '@heroicons/react/outline';
 import { StarIcon } from '@heroicons/react/solid';
+import fetcher from '@utils/fetcher';
+import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useMemo } from 'react';
 import styled, { keyframes } from 'styled-components';
+const AffirmPrice = dynamic(() => import('@components/Shared/AffirmPrice'), { ssr: false });
 
 const entry = keyframes`
 	from { 
@@ -24,12 +27,49 @@ const AnimateBox = styled.div`
   animation-delay: 0ms;
 `;
 
-const ProductView = (): JSX.Element => {
+const renderFeatureSection = (description) => {
+  const { type = '' } = description;
+  switch (type) {
+    case 'vizualOverview':
+      return (
+        <ul>
+          {description?.value?.map((item) => {
+            return (
+              <li key={item?.image}>
+                <Image src={item?.image} height="40" width="40" alt={item?.title} />
+                <span>{item?.title}</span>
+              </li>
+            );
+          })}
+        </ul>
+      );
+    case 'string':
+      return <li>{description?.value}</li>;
+    case 'array[string]':
+      return (
+        <ul>
+          {description?.title && description?.value?.length ? <h3>{description?.title}</h3> : null}
+          {description?.value?.map((item) => {
+            return <li key={item}>{item}</li>;
+          })}
+        </ul>
+      );
+    default:
+      return null;
+  }
+};
+
+const ProductView = ({ product }): JSX.Element => {
+  const productImages = useMemo(() => {
+    return [...product?.renderImages, ...product?.productImages];
+  }, [product]);
+  console.log('product ---', product);
   return (
     <Layout>
       <Head>
         <title>Product Overview | Spacejoy</title>
-        <link rel="icon" href="/favicon.ico" />
+        {/* <link rel="icon" href="/favicon.ico" /> */}
+        <base href="http://localhost:3000/" />
       </Head>
       <Layout.Banner />
       <Layout.Header />
@@ -124,12 +164,17 @@ const ProductView = (): JSX.Element => {
                 </div>
               </div>
               <div className="mt-10 px-4 sm:px-0 sm:mt-16 lg:mt-0">
-                <small className="text-sm tracking-tight text-gray-500">Wayfair</small>
-                <h1 className="text-3xl mt-1 font-extrabold tracking-tight text-gray-900">Zip Tote Basket</h1>
+                <small className="text-sm tracking-tight text-gray-500">{product?.retailer?.name}</small>
+                <h1 className="text-3xl mt-1 font-extrabold tracking-tight text-gray-900">{product?.name}</h1>
                 <div className="mt-3">
                   <h2 className="sr-only">Product information</h2>
                   <p className="text-3xl text-gray-900">
-                    $140.00 <small className="text-sm text-gray-500 line-through">$150.00</small>
+                    ${product?.displayPrice}
+                    {/* {product?.msrp && parseFloat(product?.msrp) > 0 && parseFloat(product?.msrp) > product?.price && (
+                      <small className="text-sm text-gray-500 line-through inline-block ml-2">
+                        ${product?.msrp?.toFixed()}
+                      </small>
+                    )} */}
                   </p>
                   <small className="text-xs text-gray-500">inclusive of all taxes</small>
                 </div>
@@ -154,11 +199,7 @@ const ProductView = (): JSX.Element => {
                 <div className="mt-6">
                   <h3 className="sr-only">Description</h3>
                   <div className="text-base text-gray-700 space-y-6">
-                    <p>
-                      The Zip Tote Basket is the perfect midpoint between shopping tote and comfy backpack. With
-                      convertible straps, you can hand carry, should sling, or backpack this convenient and spacious
-                      bag. The zip top and durable canvas construction keeps your goods protected for all-day use.
-                    </p>
+                    <p>{product?.description}</p>
                   </div>
                 </div>
                 <form className="mt-6">
@@ -248,7 +289,7 @@ const ProductView = (): JSX.Element => {
                   </div>
                 </form>
                 <div className="text-sm text-gray-700 mt-6">
-                  <Image
+                  {/* <Image
                     src="https://res.cloudinary.com/spacejoy/image/upload/v1636614144/shared/affirm_ejxoqf.svg"
                     alt="Angled front view with bag zipped and handles upright."
                     className="object-center object-contain sm:rounded-lg"
@@ -257,7 +298,8 @@ const ProductView = (): JSX.Element => {
                   />
                   <p>
                     Starting at $62/mo with Affirm. <span className="text-blue-400">Pre-qualify Now</span>
-                  </p>
+                  </p> */}
+                  <AffirmPrice totalAmount={product?.price} flow="product" affirmType="as-low-as" />
                 </div>
                 <section aria-labelledby="details-heading" className="mt-6">
                   <h2 id="details-heading" className="sr-only">
@@ -279,15 +321,9 @@ const ProductView = (): JSX.Element => {
                         </button>
                       </h3>
                       <div className="pb-6 prose prose-sm" id="disclosure-1">
-                        <ul role="list">
-                          <li>Multiple strap configurations</li>
-                          <li>Spacious interior with top zip</li>
-                          <li>Leather handle and tabs</li>
-                          <li>Interior dividers</li>
-                          <li>Stainless strap loops</li>
-                          <li>Double stitched construction</li>
-                          <li>Water-resistant</li>
-                        </ul>
+                        {product?.meta?.descriptions?.map((item, index) => {
+                          return <ul key={`desc-${index}`}>{renderFeatureSection(item)}</ul>;
+                        })}
                       </div>
                     </div>
                   </div>
@@ -481,5 +517,47 @@ const ProductView = (): JSX.Element => {
       <Layout.Footer />
     </Layout>
   );
+};
+
+const getAllProducts = async () => {
+  return {
+    products: [
+      { slug: '61b4e65ae2f1a100374dcb9e' },
+      { slug: '61b4bc69e2f1a100374c62a9' },
+      { slug: '61b4a65ab9c243001c2eb35f' },
+      { slug: '61b37d7f8aa921001d8c7e3c' },
+    ],
+  };
+};
+
+export async function getStaticPaths() {
+  // get all product paths
+  const { products } = await getAllProducts();
+  const paths = products.map((product) => ({
+    params: { slug: product?.slug },
+  }));
+
+  return {
+    paths,
+    fallback: 'blocking',
+  };
+}
+
+export const getStaticProps = async ({ params }) => {
+  const { slug } = params;
+  const response = await fetcher({ endPoint: `/v2/asset/${slug}`, method: 'GET' });
+  const { data, statusCode } = response;
+
+  if (statusCode < 300) {
+    return {
+      props: {
+        product: data,
+      },
+    };
+  } else {
+    return {
+      notFound: true,
+    };
+  }
 };
 export default ProductView;
