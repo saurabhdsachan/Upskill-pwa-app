@@ -1,4 +1,5 @@
 import { HeartIcon, ShareIcon } from '@heroicons/react/outline';
+import blurredBg from '@public/images/bg-base-64';
 import Image from 'next/image';
 import React from 'react';
 
@@ -24,6 +25,8 @@ const DesignCard: React.FC<DesignCardInterface> = ({ cardData }) => {
           height="300"
           width="500"
           layout="responsive"
+          placeholder="blur"
+          blurDataURL={blurredBg}
         />
       </div>
       <div className="flex items-center my-2">

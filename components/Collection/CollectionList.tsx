@@ -91,19 +91,18 @@ const CollectionList: React.FC<CollectionListInterface> = ({ feedData }) => {
       </div>
       <div className="relative bg-white">
         <AnimateBox className="grid grid-cols-4 xl:grid-cols-6 gap-4 xl:gap-6 2xl:gap-8 gap-y-10">
-          {isFetching && currentRenderList?.length > 0 && (
+          {isFetching && (
             <>
               {[...new Array(internalPages.InteriorDesigns.DEFAULT_PAGE_SIZE)].map((_d, _i) => (
                 <CollectionCardDimmer key={Math.random()} />
               ))}
             </>
           )}
-
           {currentRenderList?.map((collection) => (
             <CollectionCard cardData={collection} key={collection?._id} inset={false} />
           ))}
         </AnimateBox>
-        {currentRenderList?.length === 0 && (
+        {!isFetching && currentRenderList?.length === 0 && (
           <EmptyState title="No collections found" message="Please refresh the page" />
         )}
         <Pagination buttonList={buttons} />

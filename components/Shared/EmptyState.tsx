@@ -1,4 +1,4 @@
-import { PlusIcon } from '@heroicons/react/outline';
+import { RefreshIcon } from '@heroicons/react/outline';
 import React from 'react';
 import LottieAnimation from './LottieAnimation';
 
@@ -9,7 +9,7 @@ interface EmptyStateInterface {
 
 const EmptyState: React.FC<EmptyStateInterface> = ({ title, message, children }) => {
   return (
-    <div className="bg-gray-100">
+    <div className="bg-gray-100 rounded-lg">
       <div className="md:max-w-3xl lg:max-w-lg mx-auto py-32 text-center">
         <div className="text-center">
           <LottieAnimation />
@@ -20,8 +20,8 @@ const EmptyState: React.FC<EmptyStateInterface> = ({ title, message, children })
               type="button"
               className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-900 hover:bg-gray-700 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-gray-900"
             >
-              <PlusIcon className="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
-              New Project
+              <RefreshIcon className="-ml-1 mr-2 h-4 w-4" aria-hidden="true" />
+              Refresh
             </button>
           </div>
         </div>
