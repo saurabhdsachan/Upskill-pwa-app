@@ -381,7 +381,7 @@ export const Shop = ({ initialFilters, assetsList, searchText }): JSX.Element =>
                     {currentRenderList?.map((item) => {
                       return (
                         <div key={item?._id}>
-                          <Link href="/product-view/1">
+                          <Link href={`/product-view/${item?._id}`}>
                             <a className="group">
                               <div className="bg-white p-8 rounded-lg h-full">
                                 <div className="w-full mb-2 aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">

@@ -63,7 +63,7 @@ const ProductView = ({ product }): JSX.Element => {
   const productImages = useMemo(() => {
     return [...product?.renderImages, ...product?.productImages];
   }, [product]);
-  console.log('product ---', product);
+  console.log('product ---', product, productImages);
   return (
     <Layout>
       <Head>
@@ -116,7 +116,7 @@ const ProductView = ({ product }): JSX.Element => {
                   <div className="aspect-w-1 aspect-h-1">
                     <div aria-labelledby="tabs-1-tab-1" role="tabpanel" tabIndex={0}>
                       <Image
-                        src="https://res.cloudinary.com/spacejoy/image/upload/v1636633702/spj-v2/shop/p1_i8qivg.png"
+                        src={productImages[0]?.fileUrl}
                         alt="Angled front view with bag zipped and handles upright."
                         className="object-center object-contain sm:rounded-lg"
                         layout="fill"
@@ -129,7 +129,7 @@ const ProductView = ({ product }): JSX.Element => {
                     <div className="aspect-w-1 aspect-h-1">
                       <div aria-labelledby="tabs-1-tab-1" role="tabpanel" tabIndex={0}>
                         <Image
-                          src="https://res.cloudinary.com/spacejoy/image/upload/v1636633702/spj-v2/shop/p2_c6uoek.png"
+                          src={productImages[1]?.fileUrl}
                           alt="Angled front view with bag zipped and handles upright."
                           className="object-center object-contain sm:rounded-lg"
                           layout="fill"
@@ -141,7 +141,7 @@ const ProductView = ({ product }): JSX.Element => {
                     <div className="aspect-w-1 aspect-h-1">
                       <div aria-labelledby="tabs-1-tab-1" role="tabpanel" tabIndex={0}>
                         <Image
-                          src="https://res.cloudinary.com/spacejoy/image/upload/v1636633703/spj-v2/shop/p3_bwrk0p.png"
+                          src={productImages[2]?.fileUrl}
                           alt="Angled front view with bag zipped and handles upright."
                           className="object-center object-cover sm:rounded-lg"
                           layout="fill"
@@ -153,7 +153,7 @@ const ProductView = ({ product }): JSX.Element => {
                     <div className="aspect-w-1 aspect-h-1">
                       <div aria-labelledby="tabs-1-tab-1" role="tabpanel" tabIndex={0}>
                         <Image
-                          src="https://res.cloudinary.com/spacejoy/image/upload/v1636633703/spj-v2/shop/p4_n4sjvk.png"
+                          src={productImages[3]?.fileUrl}
                           alt="Angled front view with bag zipped and handles upright."
                           className="object-center object-cover sm:rounded-lg"
                           layout="fill"
