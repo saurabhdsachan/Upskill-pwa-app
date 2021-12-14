@@ -1,4 +1,5 @@
 import fetcher from '@utils/fetcher';
+import { arraysEqual } from '@utils/helpers';
 import { useRouter } from 'next/router';
 import { useEffect, useReducer, useRef, useState } from 'react';
 
@@ -116,14 +117,14 @@ const usePagination = (api, initialData, totalRecords, paginationButtonCount, pa
       dispatch({ type: 'SET_LOADING' });
     }
 
-    // if (
-    //   !arraysEqual(initialFilters?.subcategory || [], api.payload.filters.subcategory || []) ||
-    //   !arraysEqual(initialFilters?.retailer || [], api.payload.filters.retailer || []) ||
-    //   !arraysEqual(initialFilters?.vertical || [], api.payload.filters.vertical || [])
-    // ) {
-    dispatch({ type: 'SET_LOADING' });
-    fetchData(api, currentPage * pageSize, pageSize);
-    // }
+    if (
+      !arraysEqual(initialFilters?.subcategory || [], api.payload.filters.subcategory || []) ||
+      !arraysEqual(initialFilters?.retailer || [], api.payload.filters.retailer || []) ||
+      !arraysEqual(initialFilters?.vertical || [], api.payload.filters.vertical || [])
+    ) {
+      dispatch({ type: 'SET_LOADING' });
+      fetchData(api, currentPage * pageSize, pageSize);
+    }
   }, [
     api?.payload?.filters?.price,
     api?.payload?.filters?.retailer,
