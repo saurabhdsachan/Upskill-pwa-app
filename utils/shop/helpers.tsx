@@ -13,6 +13,7 @@ const defaultFilters = {
   subcategory: [],
   // discount: [0, 100],
   shoppable: true,
+  categories: [],
 };
 
 const fetchAllFilters = async (ctx) => {
@@ -34,7 +35,25 @@ const fetchAllFilters = async (ctx) => {
   }
 };
 
-const fetchAssetList = async ({ filters = {}, searchText = '', skipVal = 0, wildcard = false }, ctx) => {
+const fetchAssetList = async (
+  {
+    filters = {
+      categories: [],
+      retailer: [],
+      price: [],
+      status: 'active',
+      depth: [],
+      vertical: [],
+      height: [],
+      width: [],
+      subcategory: [],
+    },
+    searchText = '',
+    skipVal = 0,
+    wildcard = false,
+  },
+  ctx
+) => {
   const endPoint = `/v1/assets/search?skip=${skipVal}&limit=${internalPages?.Shop?.DEFAULT_PAGE_SIZE}`;
 
   const {
@@ -48,7 +67,7 @@ const fetchAssetList = async ({ filters = {}, searchText = '', skipVal = 0, wild
     vertical = [],
     subcategory = [],
   } = filters;
-  console.log(filters);
+
   const payload = {
     searchText,
     projectId: 'randomText',

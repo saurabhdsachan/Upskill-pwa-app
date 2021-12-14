@@ -61,9 +61,9 @@ const renderFeatureSection = (description) => {
 
 const ProductView = ({ product }): JSX.Element => {
   const productImages = useMemo(() => {
-    return [...product?.renderImages, ...product?.productImages];
+    return [...(product?.renderImages || []), ...product?.productImages];
   }, [product]);
-  console.log('product ---', product, productImages);
+
   return (
     <Layout>
       <Head>

@@ -15,7 +15,7 @@ import { Tween } from 'react-gsap';
 export const Shop = ({ initialFilters, assetsList, searchText }): JSX.Element => {
   const [currentFilters, setCurrentFilters] = useState({ ...defaultFilters, ...initialFilters });
 
-  const { currentRenderList, isFetching, buttons } = usePagination(
+  const { currentRenderList, buttons } = usePagination(
     {
       url: '/v1/assets/search',
       method: 'POST',
@@ -58,10 +58,10 @@ export const Shop = ({ initialFilters, assetsList, searchText }): JSX.Element =>
     if (queryItems?.length) {
       lastQueryItems.current = queryItems;
       const appliedFilters = queryItems?.reduce((acc, currValue) => {
-        acc[currValue] = router?.query[currValue].split('::');
+        acc[currValue] = (router?.query[currValue] as string).split('::');
         return acc;
       }, {});
-      console.log('applied ---', { ...defaultFilters, ...appliedFilters });
+
       setCurrentFilters({ ...defaultFilters, ...appliedFilters });
     } else {
       if (lastQueryItems?.current?.length) {
@@ -144,95 +144,7 @@ export const Shop = ({ initialFilters, assetsList, searchText }): JSX.Element =>
                       );
                     })}
                   </div>
-                  {/* <div className="border-b border-gray-200 py-6"> */}
-                  {/* <h3 className="-my-3">
-                      <button
-                        type="button"
-                        className="py-3 w-full flex items-center justify-between text-sm text-gray-400 hover:text-gray-500"
-                        aria-controls="filter-section-0"
-                        aria-expanded="false"
-                      >
-                        <span className="font-bold text-gray-700">Color</span>
-                        <span className="ml-6 flex items-center">
-                          <PlusIcon className="text-gray-900 w-3 h-3 mr-2" />
-                          <MinusIcon className="text-gray-900 w-3 h-3" />
-                        </span>
-                      </button>
-                    </h3> */}
-                  {/* <div className="pt-6" id="filter-section-0">
-                      <div className="space-y-2">
-                        <fieldset>
-                          <legend className="sr-only">Choose a color</legend>
-                          <div className="flex flex-wrap items-center space-x-3">
-                            <label className="-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none ring-gray-400">
-                              <input
-                                type="radio"
-                                name="color-choice"
-                                value="White"
-                                className="sr-only"
-                                aria-labelledby="color-choice-0-label"
-                              />
-                              <p id="color-choice-0-label" className="sr-only">
-                                White
-                              </p>
-                              <span
-                                aria-hidden="true"
-                                className="h-8 w-8 bg-white border border-black border-opacity-10 rounded-full"
-                              />
-                            </label>
-                            <label className="-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none ring-gray-400">
-                              <input
-                                type="radio"
-                                name="color-choice"
-                                value="Gray"
-                                className="sr-only"
-                                aria-labelledby="color-choice-1-label"
-                              />
-                              <p id="color-choice-1-label" className="sr-only">
-                                Gray
-                              </p>
-                              <span
-                                aria-hidden="true"
-                                className="h-8 w-8 bg-gray-200 border border-black border-opacity-10 rounded-full"
-                              />
-                            </label>
-                            <label className="-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none ring-gray-900">
-                              <input
-                                type="radio"
-                                name="color-choice"
-                                value="Black"
-                                className="sr-only"
-                                aria-labelledby="color-choice-2-label"
-                              />
-                              <p id="color-choice-2-label" className="sr-only">
-                                Black
-                              </p>
-                              <span
-                                aria-hidden="true"
-                                className="h-8 w-8 bg-gray-900 border border-black border-opacity-10 rounded-full"
-                              />
-                            </label>
-                            <label className="-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none ring-red-500 ring-offset-1 ring-1">
-                              <input
-                                type="radio"
-                                name="color-choice"
-                                value="Red"
-                                className="sr-only"
-                                aria-labelledby="color-choice-2-label"
-                              />
-                              <p id="color-choice-2-label" className="sr-only">
-                                Red
-                              </p>
-                              <span
-                                aria-hidden="true"
-                                className="h-8 w-8 bg-red-500 border border-black border-opacity-10 rounded-full"
-                              />
-                            </label>
-                          </div>
-                        </fieldset>
-                      </div>
-                    </div> */}
-                  {/* </div> */}
+
                   <div className="border-b border-gray-200 py-6">
                     <h3 className="-my-3">
                       <button
@@ -371,7 +283,7 @@ export const Shop = ({ initialFilters, assetsList, searchText }): JSX.Element =>
               </div>
 
               <div className="col-span-4 rounded">
-                <div className="grid grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-1">
+                <div className="grid grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-1">
                   <Tween
                     from={{ scale: 0.5, opacity: 0, y: 50 }}
                     to={{ scale: 1, opacity: 1, y: 0 }}
@@ -438,19 +350,15 @@ export async function getServerSideProps(context) {
     }
     return acc;
   }, {});
-  const { searchText = '' } = payload;
-  if (searchText) {
-    delete payload?.searchText;
-  }
+
   const allFilters = { ...defaultFilters, ...payload };
 
-  const assetsList = await fetchAssetList({ filters: { ...allFilters }, searchText }, context);
+  const assetsList = await fetchAssetList({ filters: { ...allFilters } }, context);
 
   return {
     props: {
       initialFilters: payload,
       assetsList,
-      searchText,
     },
   };
 }
