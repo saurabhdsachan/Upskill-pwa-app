@@ -33,8 +33,8 @@ const SubNav = ({ subNavState, closeSubNav }: { subNavState: boolean; closeSubNa
             leaveFrom="opacity-100 translate-y-0"
             leaveTo="opacity-0 -translate-y-60"
           >
-            <div className="w-full overflow-hidden relative pt-36 pb-16 text-left bg-white shadow-xl">
-              <div className="container mx-auto px-4">
+            <div className="container mx-auto overflow-hidden relative pt-36 pb-16 text-left bg-white shadow-xl rounded-b-lg">
+              <div className="container mx-auto px-8">
                 <Dialog.Title as="h3" className="text-3xl mb-6">
                   Spacejoy Stories
                 </Dialog.Title>

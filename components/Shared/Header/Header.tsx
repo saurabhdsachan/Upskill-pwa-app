@@ -22,9 +22,7 @@ const Header: React.FC = () => {
       >
         Skip to content
       </a>
-      <header
-        className={`bg-white sticky top-0 z-50 bg-opacity-50 backdrop-filter backdrop-blur firefox:bg-opacity-90`}
-      >
+      <header className={`bg-white sticky top-0 z-50`}>
         <div className="container px-4 mx-auto">
           <div className="h-20 flex items-center">
             <Link href="/">
