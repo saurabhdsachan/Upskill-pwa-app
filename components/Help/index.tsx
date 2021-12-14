@@ -99,14 +99,6 @@ const Index = () => {
 
   return (
     <div className="bg-white">
-      {/* <Image
-        className="object-cover filter grayscale"
-        src="https://res.cloudinary.com/spacejoy/image/upload/v1637747968/spj-v2/illustration-section-01_wut9pv.svg"
-        alt="bg"
-        width="800"
-        height="400"
-        layout="responsive"
-      /> */}
       <div className="relative container mx-auto px-4 z-10">
         <SectionTitle feature="help" title="Frequently asked questions" />
         <Tab.Group>
@@ -131,38 +123,36 @@ const Index = () => {
             {Object.values(categories).map((posts, idx) => (
               <Tab.Panel key={idx}>
                 <AnimateBox>
-                  <div className="bg-gray-100 rounded-lg">
-                    <div className="max-w-5xl mx-auto py-12 px-4 sm:py-16 sm:px-6 lg:px-8">
-                      <dl className="mt-6 space-y-6 divide-y divide-gray-200">
-                        {HelpData.map((faq) => (
-                          <Disclosure as="div" key={faq.question} className="pt-6">
-                            {({ open }) => (
-                              <>
-                                <dt className="text-lg">
-                                  <Disclosure.Button className="text-left w-full flex justify-between items-start text-gray-400">
-                                    <span className={`${open ? 'font-bold' : 'font-medium'} text-gray-900`}>
-                                      {faq.question}
-                                    </span>
-                                    <span className="ml-6 h-7 flex items-center">
-                                      <ChevronDownIcon
-                                        className={classNames(
-                                          open ? '-rotate-180' : 'rotate-0',
-                                          'h-4 w-4 transform transition-transform'
-                                        )}
-                                        aria-hidden="true"
-                                      />
-                                    </span>
-                                  </Disclosure.Button>
-                                </dt>
-                                <Disclosure.Panel as="dd" className="mt-2 pr-12">
-                                  <p className="text-base text-gray-700">{faq.answer}</p>
-                                </Disclosure.Panel>
-                              </>
-                            )}
-                          </Disclosure>
-                        ))}
-                      </dl>
-                    </div>
+                  <div className="max-w-7xl mx-auto py-12 px-4 sm:py-16 sm:px-6 lg:px-8">
+                    <dl className="mt-6 space-y-6 divide-y divide-gray-200">
+                      {HelpData.map((faq) => (
+                        <Disclosure as="div" key={faq.question} className="pt-6">
+                          {({ open }) => (
+                            <>
+                              <dt className="text-lg">
+                                <Disclosure.Button className="text-left w-full flex justify-between items-start text-gray-400">
+                                  <span className={`${open ? 'font-bold' : 'font-medium'} text-gray-900`}>
+                                    {faq.question}
+                                  </span>
+                                  <span className="ml-6 h-7 flex items-center">
+                                    <ChevronDownIcon
+                                      className={classNames(
+                                        open ? '-rotate-180' : 'rotate-0',
+                                        'h-4 w-4 transform transition-transform'
+                                      )}
+                                      aria-hidden="true"
+                                    />
+                                  </span>
+                                </Disclosure.Button>
+                              </dt>
+                              <Disclosure.Panel as="dd" className="mt-2 pr-12">
+                                <p className="text-base text-gray-700">{faq.answer}</p>
+                              </Disclosure.Panel>
+                            </>
+                          )}
+                        </Disclosure>
+                      ))}
+                    </dl>
                   </div>
                 </AnimateBox>
               </Tab.Panel>

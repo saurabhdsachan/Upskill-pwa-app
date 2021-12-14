@@ -1,4 +1,5 @@
 import SectionTitle from '@components/Shared/SectionTitle';
+import blurredBg from '@public/images/bg-base-64';
 import Image from 'next/image';
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
@@ -55,19 +56,9 @@ const MindBlowing: React.FC = () => {
         description="Pick from one of our three online interior design packages, custom-made keeping your budget, style and interior design needs in mind"
       />
       <div className="flex">
-        <div className="relative">
-          <AnimateBox className="banner overflow-hidden rounded-r-lg">
-            <div className="filter blur-sm bg-gray-100">
-              <Image
-                className="object-cover"
-                src="/images/spj-happy-customer_ahkoxm.jpg"
-                alt="spacejoy happy customer"
-                width={'1000'}
-                height={'666'}
-                layout="intrinsic"
-              />
-            </div>
-            <div className="absolute inset-0">
+        <div className="relative flex-1">
+          <AnimateBox className="banner">
+            <div>
               <Image
                 src="https://res.cloudinary.com/spacejoy/image/upload/v1622344281/spj-v2/spj-living-room_x9d25x.jpg"
                 alt="spacejoy awesome look"
@@ -75,20 +66,20 @@ const MindBlowing: React.FC = () => {
                 height={'666'}
                 layout="responsive"
                 className="rounded-r-lg"
+                placeholder="blur"
+                blurDataURL={blurredBg}
               />
             </div>
           </AnimateBox>
           <div className="absolute -top-12 w-16 h-24 bg-yellow-300" />
         </div>
-        <div className="relative h-full px-12 max-w-lg justify-center self-center">
-          <div>
-            <p className="text-sm text-gray-700 leading-6">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum veniam voluptates consequatur ea quae
-              vitae impedit sunt labore magnam id cumque, maxime ducimus nobis. Cum quas repellendus animi excepturi
-              minima? Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            </p>
-            <p className="mt-4 font-semibold">- Team Spacejoy</p>
-          </div>
+        <div className="h-full px-12 max-w-lg justify-center self-center">
+          <p className="text-sm text-gray-700 leading-6">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum veniam voluptates consequatur ea quae
+            vitae impedit sunt labore magnam id cumque, maxime ducimus nobis. Cum quas repellendus animi excepturi
+            minima? Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+          </p>
+          <p className="mt-4 font-semibold">- Team Spacejoy</p>
         </div>
       </div>
     </div>

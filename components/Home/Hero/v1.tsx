@@ -1,7 +1,5 @@
 import { ArrowNarrowRightIcon } from '@heroicons/react/outline';
-import blurredBg from '@public/images/bg-base-64';
 import dynamic from 'next/dynamic';
-import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
@@ -39,21 +37,7 @@ const v1: React.FC = () => {
           </div>
         </div>
         <div className="w-2/3 lg:w-3/4">
-          <div className="relative overflow-hidden rounded-2xl">
-            <div className=" filter blur-sm bg-gray-100">
-              <Image
-                className="object-cover filter contrast-115 brightness-110"
-                src={blurredBg}
-                alt="spacejoy happy customer"
-                height={'700'}
-                width={'1114'}
-                layout="responsive"
-              />
-            </div>
-            <div className="absolute  inset-0">
-              <BannerWithNoSSR />
-            </div>
-          </div>
+          <BannerWithNoSSR />
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@ const data = [
   {
     tag: 'Who are we?',
     question: 'What is Spacejoy?',
-    answer: `<p>${company.product} is an online interior design service that helps with designing your actual space in 3D. You can either design it yourself, ask for an expert to design it for you, or even collaborate with the design team. The final design features products that can be bought right away from furniture and home decor stores across America.</p>`,
+    answer: `${company.product} is an online interior design service that helps with designing your actual space in 3D. You can either design it yourself, ask for an expert to design it for you, or even collaborate with the design team. The final design features products that can be bought right away from furniture and home decor stores across America.`,
   },
   {
     tag: 'Who are we?',
