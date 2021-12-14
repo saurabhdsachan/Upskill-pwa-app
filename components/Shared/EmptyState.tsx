@@ -1,4 +1,5 @@
 import { RefreshIcon } from '@heroicons/react/outline';
+import { useRouter } from 'next/router';
 import React from 'react';
 import LottieAnimation from './LottieAnimation';
 
@@ -8,6 +9,7 @@ interface EmptyStateInterface {
 }
 
 const EmptyState: React.FC<EmptyStateInterface> = ({ title, message, children }) => {
+  const router = useRouter();
   return (
     <div className="bg-gray-100 rounded-lg">
       <div className="md:max-w-3xl lg:max-w-lg mx-auto py-32 text-center">
@@ -17,6 +19,7 @@ const EmptyState: React.FC<EmptyStateInterface> = ({ title, message, children })
           <p className="mt-1 text-sm text-gray-500">{message}</p>
           <div className="mt-6">
             <button
+              onClick={() => router.reload()}
               type="button"
               className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-900 hover:bg-gray-700 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-gray-900"
             >
@@ -30,5 +33,4 @@ const EmptyState: React.FC<EmptyStateInterface> = ({ title, message, children })
     </div>
   );
 };
-
-export default EmptyState;
+export default React.memo(EmptyState);
