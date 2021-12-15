@@ -6,6 +6,7 @@ const ShopFilterContext = createContext({
   filters: {
     retailer: [{ _id: '', name: '', selected: false }],
     subCategory: [{ _id: '', selected: false, verticals: [{ _id: '' }] }],
+    category: [{ _id: '', selected: false, subCategories: [{ _id: '' }] }],
   },
   updateFilter: (id: string, type: string) => {
     return;
@@ -24,7 +25,8 @@ interface SubcategoryType {
 }
 interface CategoryType {
   _id: string;
-  selected?: boolean;
+  selected: boolean;
+  subCategories: Array<SubcategoryType>;
 }
 interface VerticalType {
   _id: string;
@@ -41,8 +43,8 @@ const ShopFilterContextProvider = ({ children }) => {
   const [filters, setFilters] = useState<FilterType>({
     retailer: [{ _id: '', name: '', selected: false }],
     subCategory: [{ _id: '', verticals: [{ _id: '' }], selected: false }],
-    category: [{ _id: '' }],
     vertical: [{ _id: '' }],
+    category: [{ _id: '', selected: false, subCategories: [{ _id: '', selected: false, verticals: [{ _id: '' }] }] }],
   });
 
   const router = useRouter();
