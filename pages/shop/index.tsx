@@ -12,7 +12,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useMemo, useState } from 'react';
 import { Tween } from 'react-gsap';
 
-export const Shop = ({ initialFilters, assetsList, searchText }): JSX.Element => {
+export const Shop = ({ initialFilters, assetsList, searchText = '' }): JSX.Element => {
   const [currentFilters, setCurrentFilters] = useState({ ...defaultFilters, ...initialFilters });
 
   const { currentRenderList, buttons } = usePagination(

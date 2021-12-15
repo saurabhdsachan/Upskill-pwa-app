@@ -13,7 +13,6 @@ const defaultFilters = {
   subcategory: [],
   // discount: [0, 100],
   shoppable: true,
-  categories: [],
 };
 
 const fetchAllFilters = async (ctx) => {
@@ -38,7 +37,7 @@ const fetchAllFilters = async (ctx) => {
 const fetchAssetList = async (
   {
     filters = {
-      categories: [],
+      category: [],
       retailer: [],
       price: [],
       status: 'active',
@@ -57,7 +56,7 @@ const fetchAssetList = async (
   const endPoint = `/v1/assets/search?skip=${skipVal}&limit=${internalPages?.Shop?.DEFAULT_PAGE_SIZE}`;
 
   const {
-    categories = [],
+    category = [],
     retailer = [],
     price = [],
     status = 'active',
@@ -75,7 +74,7 @@ const fetchAssetList = async (
     sort: 'createdAt',
     status: 'active',
     filters: {
-      category: [...categories],
+      category: [...category],
       retailer: [...retailer],
       price: [...price],
       status,
