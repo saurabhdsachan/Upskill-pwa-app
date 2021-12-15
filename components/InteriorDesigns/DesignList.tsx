@@ -22,7 +22,8 @@ const DesignList: React.FC<DesignListInterface> = ({ feedData }) => {
     feedData?.list,
     feedData?.count,
     internalPages.InteriorDesigns.DEFAULT_PAGINATION_BUTTON_COUNT,
-    internalPages.InteriorDesigns.DEFAULT_PAGE_SIZE
+    internalPages.InteriorDesigns.DEFAULT_PAGE_SIZE,
+    {}
   );
   return (
     <div className="bg-white">
