@@ -11,19 +11,15 @@ const MyApp = ({ Component, pageProps }: AppProps): React.ReactElement => {
     <>
       <CommonSEO />
       <ThemeProvider theme={{}}>
-<<<<<<< HEAD
-        <Component {...pageProps} />
-        <Toaster
-          position="bottom-center"
-          toastOptions={{
-            className: 'shadow-lg',
-          }}
-        />
-=======
         <ShopFilterContextProvider>
           <Component {...pageProps} />
+          <Toaster
+            position="bottom-center"
+            toastOptions={{
+              className: 'shadow-lg',
+            }}
+          />
         </ShopFilterContextProvider>
->>>>>>> 0d4f4c2 (WIP: asset store)
       </ThemeProvider>
     </>
   );
