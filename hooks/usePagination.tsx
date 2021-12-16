@@ -1,7 +1,6 @@
 import fetcher from '@utils/fetcher';
-import { arraysEqual } from '@utils/helpers';
 import { useRouter } from 'next/router';
-import { useEffect, useReducer, useRef, useState } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 
 const initialState = {
   list: {
@@ -42,15 +41,8 @@ const reducer = (state = initialState, action) => {
     ...state,
   };
 };
-const useIsMount = () => {
-  const isMountRef = useRef(true);
-  useEffect(() => {
-    isMountRef.current = false;
-  }, []);
-  return isMountRef.current;
-};
 
-const fetchMoreData = async (api, skip, limit) => {
+const fetchMoreData = async (api, skip, limit, field) => {
   // TODO: Change var names
   const { url, method, payload } = api;
 
@@ -59,31 +51,42 @@ const fetchMoreData = async (api, skip, limit) => {
 
   try {
     const res = await fetcher({ endPoint, method, ...(method === 'POST' && { body: { ...payload } }) });
-    const {
-      data: { hits = [] }, // TODO: Write processor
-      statusCode,
-    } = res;
-    if (statusCode <= 301) {
-      return hits;
+    if (field === 'list') {
+      const {
+        data: { list = [] }, // TODO: Write processor
+        statusCode,
+      } = res;
+      if (statusCode <= 301) {
+        return list;
+      } else {
+        throw new Error();
+      }
     } else {
-      throw new Error();
+      const {
+        data: { hits = [] }, // TODO: Write processor
+        statusCode,
+      } = res;
+      if (statusCode <= 301) {
+        return hits;
+      } else {
+        throw new Error();
+      }
     }
   } catch (e) {
     throw new Error();
   }
 };
 
-const usePagination = (api, initialData, totalRecords, paginationButtonCount, pageSize, initialFilters) => {
+const usePagination = (api, initialData, totalRecords, paginationButtonCount, pageSize, flow) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [currentBtnWindow, setCurrentBtnWindow] = useState([]);
 
   const router = useRouter();
 
   const { isFetching, currentPage, list } = state;
-  const isMount = useIsMount();
 
   useEffect(() => {
-    if (initialData) {
+    if (initialData && initialData.length) {
       dispatch({ type: 'ADD_TO_LIST', payload: { data: initialData } });
     }
   }, [initialData]);
@@ -117,14 +120,8 @@ const usePagination = (api, initialData, totalRecords, paginationButtonCount, pa
       dispatch({ type: 'SET_LOADING' });
     }
 
-    if (
-      !arraysEqual(initialFilters?.subcategory || [], api.payload.filters.subcategory || []) ||
-      !arraysEqual(initialFilters?.retailer || [], api.payload.filters.retailer || []) ||
-      !arraysEqual(initialFilters?.vertical || [], api.payload.filters.vertical || [])
-    ) {
-      dispatch({ type: 'SET_LOADING' });
-      fetchData(api, currentPage * pageSize, pageSize);
-    }
+    dispatch({ type: 'SET_LOADING' });
+    fetchData(api, currentPage * pageSize, pageSize, flow);
   }, [
     api?.payload?.filters?.price,
     api?.payload?.filters?.retailer,
@@ -144,7 +141,7 @@ const usePagination = (api, initialData, totalRecords, paginationButtonCount, pa
       const dataAtIndex = list[currentPage];
       if (!dataAtIndex || dataAtIndex?.length !== pageSize) {
         dispatch({ type: 'SET_LOADING' });
-        fetchData(api, currentPage * pageSize, pageSize);
+        fetchData(api, currentPage * pageSize, pageSize, flow);
       }
     }
     //calculate max buttons to show

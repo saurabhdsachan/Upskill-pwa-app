@@ -31,10 +31,10 @@ export const Shop = ({ initialFilters, assetsList, searchText = '' }): JSX.Eleme
     assetsList?.count,
     internalPages?.Shop?.NUM_OF_BUTTONS,
     internalPages?.Shop?.DEFAULT_PAGE_SIZE,
-    { ...initialFilters }
+    'hits'
   );
   const {
-    filters: { retailer: retailerList = [], subCategory },
+    filters: { retailer: retailerList = [], subCategory, vertical },
     updateFilter,
   } = useShopFilterContext();
   const router = useRouter();
@@ -43,14 +43,13 @@ export const Shop = ({ initialFilters, assetsList, searchText = '' }): JSX.Eleme
 
   const verticalList = useMemo(() => {
     const selectedSubCategories = subCategory?.filter((item) => item?.selected);
+
     if (selectedSubCategories?.length) {
-      return selectedSubCategories?.reduce((acc, subCategory) => {
-        return [...acc, ...subCategory?.verticals];
-      }, []);
+      return vertical?.filter((item) => item?.subcategory === selectedSubCategories[0]?._id);
     } else {
       return [];
     }
-  }, [subCategory]);
+  }, [subCategory, vertical]);
 
   useEffect(() => {
     const queryItems = Object.keys(router?.query);

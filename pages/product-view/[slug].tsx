@@ -1,3 +1,5 @@
+import ProductDesignSet from '@components/ProductView/ProductDesignSet';
+import SimilarProducts from '@components/ProductView/SimilarProducts';
 import Layout from '@components/Shared/Layout';
 import { ChevronRightIcon, HeartIcon, HomeIcon, MinusSmIcon, PlusIcon, PlusSmIcon } from '@heroicons/react/outline';
 import { StarIcon } from '@heroicons/react/solid';
@@ -69,7 +71,7 @@ const ProductView = ({ product }): JSX.Element => {
       <Head>
         <title>Product Overview | Spacejoy</title>
         {/* <link rel="icon" href="/favicon.ico" /> */}
-        <base href="http://localhost:3000/" />
+        <base href="/" />
       </Head>
       <Layout.Banner />
       <Layout.Header />
@@ -170,11 +172,11 @@ const ProductView = ({ product }): JSX.Element => {
                   <h2 className="sr-only">Product information</h2>
                   <p className="text-3xl text-gray-900">
                     ${product?.displayPrice}
-                    {/* {product?.msrp && parseFloat(product?.msrp) > 0 && parseFloat(product?.msrp) > product?.price && (
+                    {product?.msrp && parseFloat(product?.msrp) > 0 && parseFloat(product?.msrp) > product?.price && (
                       <small className="text-sm text-gray-500 line-through inline-block ml-2">
                         ${product?.msrp?.toFixed()}
                       </small>
-                    )} */}
+                    )}
                   </p>
                   <small className="text-xs text-gray-500">inclusive of all taxes</small>
                 </div>
@@ -332,7 +334,7 @@ const ProductView = ({ product }): JSX.Element => {
             </div>
           </main>
           <div className="container mx-auto py-16 px-4">
-            <div className="sm:flex sm:items-baseline sm:justify-between">
+            {/* <div className="sm:flex sm:items-baseline sm:justify-between">
               <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">Shop by Category</h2>
               <a href="#" className="hidden text-sm text-gray-900 sm:block">
                 Browse all categories<span aria-hidden="true"> &rarr;</span>
@@ -416,100 +418,13 @@ const ProductView = ({ product }): JSX.Element => {
               <a href="#" className="block text-sm text-indigo-600 hover:text-indigo-500">
                 Browse all categories<span aria-hidden="true"> &rarr;</span>
               </a>
+            </div> */}
+
+            <div className="pt-16">
+              <ProductDesignSet productIds={[product?._id]} />
             </div>
             <div className="pt-16">
-              <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">Shop by Collection</h2>
-              <p className="mt-4 text-base text-gray-500">
-                Each season, we collaborate with world-class designers to create a collection inspired by the natural
-                world.
-              </p>
-              <div className="mt-10 space-y-12 lg:space-y-0 lg:grid lg:grid-cols-5 lg:gap-x-8">
-                <a href="#" className="group block">
-                  <div
-                    aria-hidden="true"
-                    className="aspect-w-3 aspect-h-2 rounded-lg overflow-hidden group-hover:opacity-75 lg:aspect-w-5 lg:aspect-h-6"
-                  >
-                    <Image
-                      src="https://tailwindui.com/img/ecommerce-images/home-page-01-collection-01.jpg"
-                      alt="Brown leather key ring with brass metal loops and rivets on wood table."
-                      className="w-full h-full object-center object-cover"
-                      layout="fill"
-                    />
-                  </div>
-                  <h3 className="mt-4 text-base font-semibold text-gray-900">Handcrafted Collection</h3>
-                  <p className="mt-2 text-sm text-gray-500">
-                    Keep your phone, keys, and wallet together, so you can lose everything at once.
-                  </p>
-                </a>
-                <a href="#" className="group block">
-                  <div
-                    aria-hidden="true"
-                    className="aspect-w-3 aspect-h-2 rounded-lg overflow-hidden group-hover:opacity-75 lg:aspect-w-5 lg:aspect-h-6"
-                  >
-                    <Image
-                      src="https://tailwindui.com/img/ecommerce-images/home-page-01-collection-02.jpg"
-                      alt="Natural leather mouse pad on white desk next to porcelain mug and keyboard."
-                      className="w-full h-full object-center object-cover"
-                      layout="fill"
-                    />
-                  </div>
-                  <h3 className="mt-4 text-base font-semibold text-gray-900">Organized Desk Collection</h3>
-                  <p className="mt-2 text-sm text-gray-500">
-                    The rest of the house will still be a mess, but your desk will look great.
-                  </p>
-                </a>
-                <a href="#" className="group block">
-                  <div
-                    aria-hidden="true"
-                    className="aspect-w-3 aspect-h-2 rounded-lg overflow-hidden group-hover:opacity-75 lg:aspect-w-5 lg:aspect-h-6"
-                  >
-                    <Image
-                      src="https://tailwindui.com/img/ecommerce-images/home-page-01-collection-03.jpg"
-                      alt="Person placing task list card into walnut card holder next to felt carrying case on leather desk pad."
-                      className="w-full h-full object-center object-cover"
-                      layout="fill"
-                    />
-                  </div>
-                  <h3 className="mt-4 text-base font-semibold text-gray-900">Focus Collection</h3>
-                  <p className="mt-2 text-sm text-gray-500">
-                    Be more productive than enterprise project managers with a single piece of paper.
-                  </p>
-                </a>
-                <a href="#" className="group block">
-                  <div
-                    aria-hidden="true"
-                    className="aspect-w-3 aspect-h-2 rounded-lg overflow-hidden group-hover:opacity-75 lg:aspect-w-5 lg:aspect-h-6"
-                  >
-                    <Image
-                      src="https://tailwindui.com/img/ecommerce-images/home-page-01-collection-03.jpg"
-                      alt="Person placing task list card into walnut card holder next to felt carrying case on leather desk pad."
-                      className="w-full h-full object-center object-cover"
-                      layout="fill"
-                    />
-                  </div>
-                  <h3 className="mt-4 text-base font-semibold text-gray-900">Focus Collection</h3>
-                  <p className="mt-2 text-sm text-gray-500">
-                    Be more productive than enterprise project managers with a single piece of paper.
-                  </p>
-                </a>
-                <a href="#" className="group block">
-                  <div
-                    aria-hidden="true"
-                    className="aspect-w-3 aspect-h-2 rounded-lg overflow-hidden group-hover:opacity-75 lg:aspect-w-5 lg:aspect-h-6"
-                  >
-                    <Image
-                      src="https://tailwindui.com/img/ecommerce-images/home-page-01-collection-03.jpg"
-                      alt="Person placing task list card into walnut card holder next to felt carrying case on leather desk pad."
-                      className="w-full h-full object-center object-cover"
-                      layout="fill"
-                    />
-                  </div>
-                  <h3 className="mt-4 text-base font-semibold text-gray-900">Focus Collection</h3>
-                  <p className="mt-2 text-sm text-gray-500">
-                    Be more productive than enterprise project managers with a single piece of paper.
-                  </p>
-                </a>
-              </div>
+              <SimilarProducts productId={product?._id} />
             </div>
           </div>
         </div>

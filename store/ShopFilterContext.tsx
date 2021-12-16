@@ -7,6 +7,7 @@ const ShopFilterContext = createContext({
     retailer: [{ _id: '', name: '', selected: false }],
     subCategory: [{ _id: '', selected: false, verticals: [{ _id: '' }] }],
     category: [{ _id: '', selected: false, subCategories: [{ _id: '' }] }],
+    vertical: [{ _id: '', name: '', selected: false, subcategory: 'string' }],
   },
   updateFilter: (id: string, type: string) => {
     return;
@@ -30,7 +31,9 @@ interface CategoryType {
 }
 interface VerticalType {
   _id: string;
-  selected?: boolean;
+  selected: boolean;
+  subcategory: string;
+  name: string;
 }
 interface FilterType {
   retailer: Array<RetailerType>;
@@ -42,9 +45,17 @@ interface FilterType {
 const ShopFilterContextProvider = ({ children }) => {
   const [filters, setFilters] = useState<FilterType>({
     retailer: [{ _id: '', name: '', selected: false }],
-    subCategory: [{ _id: '', verticals: [{ _id: '' }], selected: false }],
-    vertical: [{ _id: '' }],
-    category: [{ _id: '', selected: false, subCategories: [{ _id: '', selected: false, verticals: [{ _id: '' }] }] }],
+    subCategory: [{ _id: '', verticals: [{ _id: '', name: '', selected: false, subcategory: '' }], selected: false }],
+    vertical: [{ _id: '', name: '', selected: false, subcategory: '' }],
+    category: [
+      {
+        _id: '',
+        selected: false,
+        subCategories: [
+          { _id: '', selected: false, verticals: [{ _id: '', name: '', selected: false, subcategory: '' }] },
+        ],
+      },
+    ],
   });
 
   const router = useRouter();
@@ -73,6 +84,7 @@ const ShopFilterContextProvider = ({ children }) => {
         }, [])
         .map((item) => {
           const currentVerticalQuery = ((router?.query?.vertical || '') as string).split('::');
+
           if (currentVerticalQuery?.indexOf(item?.name) > -1) {
             return { ...item, type: 'vertical', selected: true };
           }
