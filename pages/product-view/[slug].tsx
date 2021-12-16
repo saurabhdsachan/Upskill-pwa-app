@@ -173,9 +173,7 @@ const ProductView = ({ product }): JSX.Element => {
                   <p className="text-3xl text-gray-900">
                     ${product?.displayPrice}
                     {product?.msrp && parseFloat(product?.msrp) > 0 && parseFloat(product?.msrp) > product?.price && (
-                      <small className="text-sm text-gray-500 line-through inline-block ml-2">
-                        ${product?.msrp?.toFixed()}
-                      </small>
+                      <small className="text-sm text-gray-500 line-through inline-block ml-2">${product?.msrp}</small>
                     )}
                   </p>
                   <small className="text-xs text-gray-500">inclusive of all taxes</small>

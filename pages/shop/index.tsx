@@ -309,7 +309,7 @@ export const Shop = ({ initialFilters, assetsList, searchText = '' }): JSX.Eleme
                                   ${item?.displayPrice}
                                   {item?.msrp && item?.msrp > 0 && item?.msrp > item?.price && (
                                     <small className="text-sm text-gray-500 line-through inline-block ml-2">
-                                      ${item?.msrp.toFixed()}
+                                      ${item?.msrp}
                                     </small>
                                   )}
                                 </p>
