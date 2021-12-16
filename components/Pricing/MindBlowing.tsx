@@ -1,5 +1,5 @@
 import SectionTitle from '@components/Shared/SectionTitle';
-import blurredBg from '@public/images/bg-base-64';
+import { blurredBgImage } from '@public/images/bg-base-64';
 import Image from 'next/image';
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
@@ -67,7 +67,7 @@ const MindBlowing: React.FC = () => {
                 layout="responsive"
                 className="rounded-r-lg"
                 placeholder="blur"
-                blurDataURL={blurredBg}
+                blurDataURL={blurredBgImage}
               />
             </div>
           </AnimateBox>

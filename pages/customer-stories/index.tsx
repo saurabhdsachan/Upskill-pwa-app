@@ -1,6 +1,6 @@
 import Layout from '@components/Shared/Layout';
 import SectionTitle from '@components/Shared/SectionTitle';
-import blurredBg from '@public/images/bg-base-64';
+import { blurredBgImage } from '@public/images/bg-base-64';
 import Head from 'next/head';
 import Image from 'next/image';
 import React from 'react';
@@ -33,7 +33,7 @@ const CustomerStories: React.FC = () => {
                   alt="career banner"
                   layout="responsive"
                   placeholder="blur"
-                  blurDataURL={blurredBg}
+                  blurDataURL={blurredBgImage}
                 />
               </div>
               <div className="max-w-2xl mx-auto">

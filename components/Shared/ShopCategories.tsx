@@ -21,16 +21,16 @@ const ShopCategories = () => {
   }, [category]);
 
   return (
-    <div className="grid grid-cols-7 gap-8">
+    <div className="grid grid-cols-7 gap-4">
       {splitCategories?.map((categorySet, index) => {
         return (
           <div key={index}>
-            {categorySet.map((category) => {
+            {categorySet.map((item) => {
               return (
-                <div key={category?._id} className="pt-8">
-                  <h3>{category?.name}</h3>
-                  <ul key={category?._id}>
-                    {category?.subCategories?.map((subCategory) => {
+                <div key={item?._id} className="bg-gray-50 p-4 mt-4">
+                  <h3 className="font-semibold text-sm">{item?.name}</h3>
+                  <ul key={item?._id}>
+                    {item?.subCategories?.map((subCategory) => {
                       return (
                         <Link
                           href={{
@@ -41,14 +41,15 @@ const ShopCategories = () => {
                             },
                           }}
                           key={subCategory?._id}
-                          passHref
                         >
-                          <li
-                            className="text-sm pt-1 cursor-pointer hover:underline capitalize"
-                            onClick={() => updateFilter(subCategory?._id, 'subCategory')}
-                          >
-                            {subCategory?.name}
-                          </li>
+                          <a>
+                            <li
+                              className="text-sm pt-1 text-gray-700 cursor-pointer hover:underline capitalize"
+                              onClick={() => updateFilter(subCategory?._id, 'subCategory')}
+                            >
+                              {subCategory?.name}
+                            </li>
+                          </a>
                         </Link>
                       );
                     })}

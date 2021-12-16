@@ -2,6 +2,7 @@ import Layout from '@components/Shared/Layout';
 import Pagination from '@components/Shared/Pagination';
 import { ChevronRightIcon, HomeIcon, MinusIcon, PlusIcon } from '@heroicons/react/outline';
 import usePagination from '@hooks/usePagination';
+import { blurredBgProduct } from '@public/images/bg-base-64';
 import { useShopFilterContext } from '@store/ShopFilterContext';
 import { internalPages } from '@utils/config';
 import { defaultFilters, fetchAssetList } from '@utils/shop/helpers';
@@ -95,9 +96,9 @@ export const Shop = ({ initialFilters, assetsList, searchText = '' }): JSX.Eleme
                 <li>
                   <div className="flex items-center">
                     <ChevronRightIcon className="w-4 h-4 text-gray-500" />
-                    <a href="#" className="ml-4 text-xs font-medium text-gray-500 hover:text-gray-700">
-                      Shop
-                    </a>
+                    <Link href="/shop">
+                      <a className="ml-4 text-xs font-medium text-gray-500 hover:text-gray-700">Shop</a>
+                    </Link>
                   </div>
                 </li>
                 <li>
@@ -286,27 +287,29 @@ export const Shop = ({ initialFilters, assetsList, searchText = '' }): JSX.Eleme
                   <Tween
                     from={{ scale: 0.5, opacity: 0, y: 50 }}
                     to={{ scale: 1, opacity: 1, y: 0 }}
-                    stagger={0.5}
-                    duration={1}
+                    stagger={0.1}
+                    duration={0.5}
                   >
                     {currentRenderList?.map((item) => {
                       return (
                         <div key={item?._id}>
                           <Link href={`/product-view/${item?._id}`}>
                             <a className="group">
-                              <div className="bg-white p-8 rounded-lg h-full">
+                              <div className="bg-white p-4 xl:p-8 rounded-lg h-full">
                                 <div className="w-full mb-2 aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
                                   <Image
                                     src={item?.imageUrl}
-                                    alt="Olive drab green insulated bottle with flared screw lid and flat top."
+                                    alt={item?.name}
                                     className="w-full h-full object-center object-contain filter group-hover:contrast-115 group-hover:brightness-110"
                                     layout="fill"
+                                    placeholder="blur"
+                                    blurDataURL={blurredBgProduct}
                                   />
                                 </div>
                                 <small className="mt-4 text-xs text-gray-500">{item?.retailer}</small>
                                 <h3 className="text-md text-gray-700 overflow-ellipsis line-clamp-2">{item?.name}</h3>
                                 <p className="text-lg font-medium text-gray-900">
-                                  ${item?.displayPrice}
+                                  <span>${item?.displayPrice}</span>
                                   {item?.msrp && item?.msrp > 0 && item?.msrp > item?.price && (
                                     <small className="text-sm text-gray-500 line-through inline-block ml-2">
                                       ${item?.msrp}

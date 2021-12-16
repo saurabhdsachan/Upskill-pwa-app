@@ -1,4 +1,4 @@
-import blurredBg from '@public/images/bg-base-64';
+import { blurredBgImage } from '@public/images/bg-base-64';
 import Image from 'next/image';
 import React from 'react';
 
@@ -12,7 +12,7 @@ const Banner: React.FC = () => {
       width={'1114'}
       layout="responsive"
       placeholder="blur"
-      blurDataURL={blurredBg}
+      blurDataURL={blurredBgImage}
       priority
     />
   );
