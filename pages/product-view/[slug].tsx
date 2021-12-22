@@ -222,58 +222,28 @@ const ProductView = ({ product }): JSX.Element => {
                 </div>
                 <form className="mt-6">
                   <div>
-                    <h3 className="text-gray-900 text-sm font-medium">Color</h3>
+                    <h3 className="text-gray-900 text-sm font-medium">Color:</h3>
                     <fieldset className="mt-6">
                       <legend className="sr-only">Choose a color</legend>
+
                       <div className="flex items-center space-x-3">
-                        <label className="-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none ring-gray-700">
-                          <input
-                            type="radio"
-                            name="color-choice"
-                            value="Washed Black"
-                            className="sr-only"
-                            aria-labelledby="color-choice-0-label"
-                          />
-                          <p id="color-choice-0-label" className="sr-only">
-                            Washed Black
-                          </p>
-                          <span
-                            aria-hidden="true"
-                            className="h-8 w-8 bg-gray-700 border border-black border-opacity-10 rounded-full"
-                          />
-                        </label>
-                        <label className="-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none ring-gray-400">
-                          <input
-                            type="radio"
-                            name="color-choice"
-                            value="White"
-                            className="sr-only"
-                            aria-labelledby="color-choice-1-label"
-                          />
-                          <p id="color-choice-1-label" className="sr-only">
-                            White
-                          </p>
-                          <span
-                            aria-hidden="true"
-                            className="h-8 w-8 bg-white border border-black border-opacity-10 rounded-full"
-                          />
-                        </label>
-                        <label className="-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none ring-gray-500 ring-1">
-                          <input
-                            type="radio"
-                            name="color-choice"
-                            value="Washed Gray"
-                            className="sr-only"
-                            aria-labelledby="color-choice-2-label"
-                          />
-                          <p id="color-choice-2-label" className="sr-only">
-                            Washed Gray
-                          </p>
-                          <span
-                            aria-hidden="true"
-                            className="h-8 w-8 bg-gray-500 border border-black border-opacity-10 rounded-full"
-                          />
-                        </label>
+                        {product?.colors &&
+                          product?.colors?.map((color, index) => {
+                            return (
+                              <label
+                                className="-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none ring-gray-700"
+                                key={color}
+                              >
+                                <span className="capitalize text-sm">
+                                  {color}
+                                  {index === product?.colors?.length - 1 ? '' : ','}
+                                </span>
+                                <p id="color-choice-0-label" className="sr-only">
+                                  {color}
+                                </p>
+                              </label>
+                            );
+                          })}
                       </div>
                     </fieldset>
                   </div>
@@ -335,7 +305,15 @@ const ProductView = ({ product }): JSX.Element => {
                           </span>
                         </button>
                       </h3>
+
                       <div className="pb-6 prose prose-sm" id="disclosure-1">
+                        {product?.material && product?.material?.toLowerCase() !== 'n/a' ? (
+                          <div className="py-2">
+                            <span className="font-bold">Material:</span>
+                            {'    '}
+                            {product?.material}
+                          </div>
+                        ) : null}
                         {product?.meta?.descriptions?.map((item, index) => {
                           return (
                             <ul key={`desc-${index}`} className="p-0">
@@ -351,92 +329,6 @@ const ProductView = ({ product }): JSX.Element => {
             </div>
           </main>
           <div className="container mx-auto py-16 px-4">
-            {/* <div className="sm:flex sm:items-baseline sm:justify-between">
-              <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">Shop by Category</h2>
-              <a href="#" className="hidden text-sm text-gray-900 sm:block">
-                Browse all categories<span aria-hidden="true"> &rarr;</span>
-              </a>
-            </div>
-            <div className="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:grid-rows-2 sm:gap-x-6 lg:gap-8">
-              <div className="group aspect-w-2 aspect-h-1 rounded-lg overflow-hidden sm:aspect-h-1 sm:aspect-w-1 sm:row-span-2">
-                <Image
-                  src="https://images.unsplash.com/photo-1550581190-9c1c48d21d6c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"
-                  alt="Two models wearing women's black cotton crewneck tee and off-white cotton crewneck tee."
-                  className="object-center object-cover group-hover:opacity-75"
-                  layout="fill"
-                />
-                <div aria-hidden="true" className="bg-gradient-to-b from-transparent to-black opacity-50" />
-                <div className="p-6 flex items-end">
-                  <div>
-                    <h3 className="font-semibold text-white">
-                      <a href="#">
-                        <span className="absolute inset-0" />
-                        New Arrivals
-                      </a>
-                    </h3>
-                    <p aria-hidden="true" className="mt-1 text-sm text-white">
-                      Shop now
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="group aspect-w-2 aspect-h-1 rounded-lg overflow-hidden sm:relative sm:aspect-none sm:h-full">
-                <Image
-                  src="https://images.unsplash.com/photo-1611967164521-abae8fba4668?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"
-                  alt="Wooden shelf with gray and olive drab green baseball caps, next to wooden clothes hanger with sweaters."
-                  className="object-center object-cover group-hover:opacity-75 sm:absolute sm:inset-0 sm:w-full sm:h-full"
-                  layout="fill"
-                />
-                <div
-                  aria-hidden="true"
-                  className="bg-gradient-to-b from-transparent to-black opacity-50 sm:absolute sm:inset-0"
-                />
-                <div className="p-6 flex items-end sm:absolute sm:inset-0">
-                  <div>
-                    <h3 className="font-semibold text-white">
-                      <a href="#">
-                        <span className="absolute inset-0" />
-                        Accessories
-                      </a>
-                    </h3>
-                    <p aria-hidden="true" className="mt-1 text-sm text-white">
-                      Shop now
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="group aspect-w-2 aspect-h-1 rounded-lg overflow-hidden sm:relative sm:aspect-none sm:h-full">
-                <Image
-                  src="https://tailwindui.com/img/ecommerce-images/home-page-03-category-02.jpg"
-                  alt="Walnut desk organizer set with white modular trays, next to porcelain mug on wooden desk."
-                  className="object-center object-cover group-hover:opacity-75 sm:absolute sm:inset-0 sm:w-full sm:h-full"
-                  layout="fill"
-                />
-                <div
-                  aria-hidden="true"
-                  className="bg-gradient-to-b from-transparent to-black opacity-50 sm:absolute sm:inset-0"
-                />
-                <div className="p-6 flex items-end sm:absolute sm:inset-0">
-                  <div>
-                    <h3 className="text-white">
-                      <a href="#">
-                        <span className="absolute inset-0" />
-                        Workspace
-                      </a>
-                    </h3>
-                    <p aria-hidden="true" className="mt-1 text-sm text-white">
-                      Shop now
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="mt-6 sm:hidden">
-              <a href="#" className="block text-sm text-indigo-600 hover:text-indigo-500">
-                Browse all categories<span aria-hidden="true"> &rarr;</span>
-              </a>
-            </div> */}
-
             <div className="pt-16">
               <SimilarProducts productId={product?._id} />
             </div>
