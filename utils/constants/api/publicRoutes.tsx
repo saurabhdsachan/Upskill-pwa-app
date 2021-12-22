@@ -4,7 +4,7 @@ const collectionFeed = '/web/design-collections';
 const collectionData = '/web/design-collection';
 const searchAutoCompleteRoute = '/v1/seoKeywordDesignMappings/autoComplete';
 const searchResultsRoute = '/v1/seoKeywordDesignMappings/search';
-const collageBase = '/v1/collages/search';
+const collageBase = '/v1/collages';
 
 const publicRoutes = {
   pricingRoute,

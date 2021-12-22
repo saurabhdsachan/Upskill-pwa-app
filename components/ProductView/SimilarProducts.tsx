@@ -25,13 +25,14 @@ const SimilarProducts = ({ productId }) => {
                 >
                   <div
                     aria-hidden="true"
-                    className="aspect-w-3 aspect-h-2 rounded-lg overflow-hidden group-hover:opacity-75 lg:aspect-w-5 lg:aspect-h-6"
+                    className="relative aspect-w-3 aspect-h-2 rounded-lg overflow-hidden group-hover:opacity-75 lg:aspect-w-5 lg:aspect-h-6 "
                   >
                     <Image
                       src={product?.imageUrl}
                       alt="Brown leather key ring with brass metal loops and rivets on wood table."
                       className="w-full h-full object-center object-cover"
                       layout="fill"
+                      objectFit="contain"
                     />
                   </div>
                   <p className="mt-4 text-xs text-gray-500 font-bold mb-2">{product?.retailer}</p>

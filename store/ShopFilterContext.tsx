@@ -132,7 +132,7 @@ const ShopFilterContextProvider = ({ children }) => {
     router.push(
       {
         query: { ...newQueryParams },
-        pathname: router?.pathname,
+        pathname: '/shop',
       },
       undefined,
       { shallow: true }

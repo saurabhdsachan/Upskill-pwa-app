@@ -36,19 +36,20 @@ const ShopCategories = () => {
                           href={{
                             pathname: '/shop',
                             query: {
-                              ...router?.query,
                               subcategory: subCategory?.name,
                             },
                           }}
                           key={subCategory?._id}
                           passHref
                         >
-                          <li
-                            className="text-sm pt-1 cursor-pointer hover:underline capitalize"
-                            onClick={() => updateFilter(subCategory?._id, 'subCategory')}
-                          >
-                            {subCategory?.name}
-                          </li>
+                          <a>
+                            <li
+                              className="text-sm pt-1 cursor-pointer hover:underline capitalize"
+                              onClick={() => updateFilter(subCategory?._id, 'subCategory')}
+                            >
+                              {subCategory?.name}
+                            </li>
+                          </a>
                         </Link>
                       );
                     })}

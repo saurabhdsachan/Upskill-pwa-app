@@ -34,19 +34,23 @@ const renderFeatureSection = (description) => {
   switch (type) {
     case 'vizualOverview':
       return (
-        <ul>
+        <ul className="p-2 bg-gray-200 rounded-lg">
           {description?.value?.map((item) => {
             return (
-              <li key={item?.image}>
+              <li key={item?.image} className="flex items-center">
                 <Image src={item?.image} height="40" width="40" alt={item?.title} />
-                <span>{item?.title}</span>
+                <span className="font-bold">{item?.title}</span>
               </li>
             );
           })}
         </ul>
       );
     case 'string':
-      return <li>{description?.value}</li>;
+      return (
+        <ul className="p-0">
+          <li>{description?.value}</li>
+        </ul>
+      );
     case 'array[string]':
       return (
         <ul>
@@ -126,43 +130,50 @@ const ProductView = ({ product }): JSX.Element => {
                     </div>
                   </div>
                 </AnimateBox>
+
                 <div className="grid grid-cols-3 mt-4 gap-4">
-                  <div className="bg-white rounded p-4 col-span-2 row-span-2">
-                    <div className="aspect-w-1 aspect-h-1">
-                      <div aria-labelledby="tabs-1-tab-1" role="tabpanel" tabIndex={0}>
-                        <Image
-                          src={productImages[1]?.fileUrl}
-                          alt="Angled front view with bag zipped and handles upright."
-                          className="object-center object-contain sm:rounded-lg"
-                          layout="fill"
-                        />
+                  {productImages[1] ? (
+                    <div className="bg-white rounded p-4 col-span-2 row-span-2">
+                      <div className="aspect-w-1 aspect-h-1">
+                        <div aria-labelledby="tabs-1-tab-1" role="tabpanel" tabIndex={0}>
+                          <Image
+                            src={productImages[1]?.fileUrl}
+                            alt="Angled front view with bag zipped and handles upright."
+                            className="object-center object-contain sm:rounded-lg"
+                            layout="fill"
+                          />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="bg-white rounded p-4">
-                    <div className="aspect-w-1 aspect-h-1">
-                      <div aria-labelledby="tabs-1-tab-1" role="tabpanel" tabIndex={0}>
-                        <Image
-                          src={productImages[2]?.fileUrl}
-                          alt="Angled front view with bag zipped and handles upright."
-                          className="object-center object-cover sm:rounded-lg"
-                          layout="fill"
-                        />
+                  ) : null}
+                  {productImages[2] ? (
+                    <div className="bg-white rounded p-4">
+                      <div className="aspect-w-1 aspect-h-1">
+                        <div aria-labelledby="tabs-1-tab-1" role="tabpanel" tabIndex={0}>
+                          <Image
+                            src={productImages[2]?.fileUrl}
+                            alt="Angled front view with bag zipped and handles upright."
+                            className="object-center object-cover sm:rounded-lg"
+                            layout="fill"
+                          />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="bg-white rounded p-4">
-                    <div className="aspect-w-1 aspect-h-1">
-                      <div aria-labelledby="tabs-1-tab-1" role="tabpanel" tabIndex={0}>
-                        <Image
-                          src={productImages[3]?.fileUrl}
-                          alt="Angled front view with bag zipped and handles upright."
-                          className="object-center object-cover sm:rounded-lg"
-                          layout="fill"
-                        />
+                  ) : null}
+                  {productImages[3] ? (
+                    <div className="bg-white rounded p-4">
+                      <div className="aspect-w-1 aspect-h-1">
+                        <div aria-labelledby="tabs-1-tab-1" role="tabpanel" tabIndex={0}>
+                          <Image
+                            src={productImages[3]?.fileUrl}
+                            alt="Angled front view with bag zipped and handles upright."
+                            className="object-center object-cover sm:rounded-lg"
+                            layout="fill"
+                          />
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  ) : null}
                 </div>
               </div>
               <div className="mt-10 px-4 sm:px-0 sm:mt-16 lg:mt-0">
@@ -322,7 +333,11 @@ const ProductView = ({ product }): JSX.Element => {
                       </h3>
                       <div className="pb-6 prose prose-sm" id="disclosure-1">
                         {product?.meta?.descriptions?.map((item, index) => {
-                          return <ul key={`desc-${index}`}>{renderFeatureSection(item)}</ul>;
+                          return (
+                            <ul key={`desc-${index}`} className="p-0">
+                              {renderFeatureSection(item)}
+                            </ul>
+                          );
                         })}
                       </div>
                     </div>
@@ -419,10 +434,10 @@ const ProductView = ({ product }): JSX.Element => {
             </div> */}
 
             <div className="pt-16">
-              <ProductDesignSet productIds={[product?._id]} />
+              <SimilarProducts productId={product?._id} />
             </div>
             <div className="pt-16">
-              <SimilarProducts productId={product?._id} />
+              <ProductDesignSet productIds={[product?._id]} />
             </div>
           </div>
         </div>

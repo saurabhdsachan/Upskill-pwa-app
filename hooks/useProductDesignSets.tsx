@@ -1,9 +1,9 @@
 import { publicRoutes } from '@utils/constants';
 import fetcher from '@utils/fetcher';
-import { useEffect, useReducer } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 
 const fetchDesignSets = async (productIds) => {
-  const endPoint = publicRoutes?.collageBase;
+  const endPoint = `${publicRoutes?.collageBase}/search`;
   const payload = {
     filters: {
       isActive: true,
@@ -15,7 +15,9 @@ const fetchDesignSets = async (productIds) => {
   };
   try {
     const designSetRes = await fetcher({ endPoint, method: 'POST', body: payload });
+
     const { data, statusCode } = designSetRes;
+
     if (statusCode <= 301) {
       return data;
     }
@@ -27,7 +29,7 @@ const fetchDesignSets = async (productIds) => {
 
 const initialState = {
   loading: false,
-  recommendationsData: {},
+  designSetData: {},
   error: false,
 };
 const reducer = (state, action) => {
@@ -38,42 +40,58 @@ const reducer = (state, action) => {
     case 'SET_LOADING_INACTIVE': {
       return { ...state, loading: false };
     }
+    case 'SAVE_DESIGN_SET': {
+      const { payload: { designSets = [], products = [] } = {} } = action;
+
+      const designSetsMapping = products?.reduce((acc, curr) => {
+        const sets = designSets?.filter((designSet) => designSet?.products.indexOf(curr) > -1);
+
+        acc[curr] = sets;
+        return acc;
+      }, {});
+
+      return {
+        ...state,
+        designSetData: {
+          ...state.designSetData,
+          ...designSetsMapping,
+        },
+      };
+    }
     default: {
       return { ...state };
     }
   }
 };
 
-const useRecommendations = (productIds = []) => {
+const useProductDesignSets = (productIds = []) => {
+  const [products] = useState(productIds);
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { recommendationsData, loading, error } = state;
+  const { designSetData, loading, error } = state;
 
   useEffect(() => {
-    // if (productId && (!state?.recommendationsData[productId] || state?.recommendationsData[productId]?.length === 0)) {
-    //   dispatch({ type: 'SET_LOADING_ACTIVE' });
-    //   fetchProductRecommendations(productId)
-    //     .then((data) => {
-    //       dispatch({ type: 'ADD_RECOMMENDATION_DATA', payload: { productId, data } });
-    //     })
-    //     .catch(() => {
-    //       dispatch({ type: 'SET_ERROR' });
-    //     })
-    //     .finally(() => {
-    //       dispatch({ type: 'SET_LOADING_INACTIVE' });
-    //     });
-    // }
-    (async () => {
-      if (productIds?.length) {
-        const designSetRes = await fetchDesignSets(productIds);
-      }
-    })();
-  }, [productIds]);
+    if (products?.length) {
+      dispatch({ type: 'SET_LOADING_ACTIVE' });
+      fetchDesignSets(products)
+        .then((data) => {
+          const { data: designData } = data;
+          dispatch({ type: 'SAVE_DESIGN_SET', payload: { designSets: [...designData], products: [...products] } });
+        })
+        .catch(() => {
+          dispatch({ type: 'SET_ERROR' });
+        })
+        .finally(() => {
+          dispatch({ type: 'SET_LOADING_INACTIVE' });
+        });
+    }
+  }, [products]);
 
   return {
     // recommendations: recommendationsData[productId] || [],
+    designSetData,
     loading,
     error,
   };
 };
 
-export default useRecommendations;
+export default useProductDesignSets;

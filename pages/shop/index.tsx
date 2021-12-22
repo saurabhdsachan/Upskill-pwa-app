@@ -1,5 +1,6 @@
 import Layout from '@components/Shared/Layout';
 import Pagination from '@components/Shared/Pagination';
+import { Disclosure } from '@headlessui/react';
 import { ChevronRightIcon, HomeIcon, MinusIcon, PlusIcon } from '@heroicons/react/outline';
 import usePagination from '@hooks/usePagination';
 import { useShopFilterContext } from '@store/ShopFilterContext';
@@ -116,167 +117,97 @@ export const Shop = ({ initialFilters, assetsList, searchText = '' }): JSX.Eleme
             </nav>
             <div className="grid grid-cols-5 gap-8">
               <div className="col-span-1 bg-white rounded-lg p-4">
-                <h3 className="text-gray-700 mb-4">Filters</h3>
                 <form className="hidden lg:block">
-                  <h3 className="sr-only">Categories</h3>
-                  <div className="space-y-2">
-                    {verticalList?.map((vertical) => {
-                      return (
-                        <div
-                          className="flex items-center cursor-pointer"
-                          key={vertical?._id}
-                          onClick={() => updateFilter(vertical?._id, 'vertical')}
-                        >
-                          <input
-                            id="filter-category-0"
-                            name="category[]"
-                            value="new-arrivals"
-                            type="checkbox"
-                            className="h-4 w-4 border-gray-300 rounded text-gray-900 focus:ring-gray-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-white cursor-pointer"
-                            checked={vertical?.selected}
-                            readOnly
-                          />
-                          <label htmlFor="filter-category-0" className="ml-3 text-sm text-gray-900 cursor-pointer">
-                            {vertical?.name}
-                          </label>
-                        </div>
-                      );
-                    })}
-                  </div>
+                  <Disclosure>
+                    {({ open }) => (
+                      <>
+                        <Disclosure.Button className="w-full text-left  bg-gray-100 flex justify-between items-center p-2 rounded-sm mb-2">
+                          {verticalList?.length ? (
+                            <>
+                              <h3 className="text-gray-700 ">
+                                <span>Filters</span>
+                              </h3>
+                              {open ? <MinusIcon className="h-4 w-4" /> : <PlusIcon className="h-4 w-4" />}
+                            </>
+                          ) : null}
+                        </Disclosure.Button>
+                        <Disclosure.Panel>
+                          <div className="space-y-2">
+                            {verticalList?.map((vertical) => {
+                              return (
+                                <div
+                                  className="flex items-center cursor-pointer"
+                                  key={vertical?._id}
+                                  onClick={() => updateFilter(vertical?._id, 'vertical')}
+                                >
+                                  <input
+                                    id="filter-category-0"
+                                    name="category[]"
+                                    value="new-arrivals"
+                                    type="checkbox"
+                                    className="h-4 w-4 border-gray-300 rounded text-gray-900 focus:ring-gray-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-white cursor-pointer"
+                                    checked={vertical?.selected}
+                                    readOnly
+                                  />
+                                  <label
+                                    htmlFor="filter-category-0"
+                                    className="ml-3 text-sm text-gray-900 cursor-pointer"
+                                  >
+                                    {vertical?.name}
+                                  </label>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </Disclosure.Panel>
+                      </>
+                    )}
+                  </Disclosure>
 
                   <div className="border-b border-gray-200 py-6">
-                    <h3 className="-my-3">
-                      <button
-                        type="button"
-                        className="py-3 w-full flex items-center justify-between text-sm text-gray-400 hover:text-gray-500"
-                        aria-controls="filter-section-1"
-                        aria-expanded="false"
-                      >
-                        <span className="font-bold text-gray-700">Brands</span>
-                        <span className="ml-6 flex items-center">
-                          <PlusIcon className="text-gray-900 w-3 h-3 mr-2" />
-                          <MinusIcon className="text-gray-900 w-3 h-3" />
-                        </span>
-                      </button>
-                    </h3>
-                    <div className="pt-6" id="filter-section-1">
-                      <div className="space-y-2">
-                        {retailerList?.map((retailer) => {
-                          return (
-                            <div
-                              className="flex items-center cursor-pointer"
-                              key={retailer?._id}
-                              onClick={() => updateFilter(retailer?._id, 'retailer')}
-                            >
-                              <input
-                                id="filter-category-0"
-                                name="category[]"
-                                value="new-arrivals"
-                                type="checkbox"
-                                className="h-4 w-4 border-gray-300 rounded text-gray-900 focus:ring-gray-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-white cursor-pointer"
-                                checked={retailer?.selected}
-                                readOnly
-                              />
-                              <label htmlFor="filter-category-0" className="ml-3 text-sm text-gray-900 cursor-pointer">
-                                {retailer?.name}
-                              </label>
+                    <Disclosure>
+                      {({ open }) => (
+                        <>
+                          <Disclosure.Button className="w-full text-left bg-gray-100 flex justify-between items-center p-2 rounded-sm mb-2">
+                            <h3 className="-my-3">
+                              <span className="font-bold text-gray-700">Brands</span>
+                            </h3>
+                            <span className="ml-6 flex items-center">
+                              {open ? <MinusIcon className="h-4 w-4" /> : <PlusIcon className="h-4 w-4" />}
+                            </span>
+                          </Disclosure.Button>
+                          <Disclosure.Panel>
+                            <div className="space-y-2">
+                              {retailerList?.map((retailer) => {
+                                return (
+                                  <div
+                                    className="flex items-center cursor-pointer"
+                                    key={retailer?._id}
+                                    onClick={() => updateFilter(retailer?._id, 'retailer')}
+                                  >
+                                    <input
+                                      id="filter-category-0"
+                                      name="category[]"
+                                      value="new-arrivals"
+                                      type="checkbox"
+                                      className="h-4 w-4 border-gray-300 rounded text-gray-900 focus:ring-gray-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-white cursor-pointer"
+                                      checked={retailer?.selected}
+                                      readOnly
+                                    />
+                                    <label
+                                      htmlFor="filter-category-0"
+                                      className="ml-3 text-sm text-gray-900 cursor-pointer"
+                                    >
+                                      {retailer?.name}
+                                    </label>
+                                  </div>
+                                );
+                              })}
                             </div>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="py-6">
-                    <h3 className="-my-3">
-                      <button
-                        type="button"
-                        className="py-3 w-full flex items-center justify-between text-sm text-gray-400 hover:text-gray-500"
-                        aria-controls="filter-section-2"
-                        aria-expanded="false"
-                      >
-                        <span className="font-bold text-gray-700">Size</span>
-                        <span className="ml-6 flex items-center">
-                          <PlusIcon className="text-gray-900 w-3 h-3 mr-2" />
-                          <MinusIcon className="text-gray-900 w-3 h-3" />
-                        </span>
-                      </button>
-                    </h3>
-                    <div className="pt-6" id="filter-section-2">
-                      <div className="space-y-2">
-                        <div className="flex items-center">
-                          <input
-                            id="filter-size-0"
-                            name="size[]"
-                            value="2l"
-                            type="checkbox"
-                            className="h-4 w-4 border-gray-300 rounded text-gray-900 focus:ring-gray-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-white"
-                          />
-                          <label htmlFor="filter-size-0" className="ml-3 text-sm text-gray-900">
-                            2L
-                          </label>
-                        </div>
-                        <div className="flex items-center">
-                          <input
-                            id="filter-size-1"
-                            name="size[]"
-                            value="6l"
-                            type="checkbox"
-                            className="h-4 w-4 border-gray-300 rounded text-gray-900 focus:ring-gray-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-white"
-                          />
-                          <label htmlFor="filter-size-1" className="ml-3 text-sm text-gray-900">
-                            6L
-                          </label>
-                        </div>
-                        <div className="flex items-center">
-                          <input
-                            id="filter-size-2"
-                            name="size[]"
-                            value="12l"
-                            type="checkbox"
-                            className="h-4 w-4 border-gray-300 rounded text-gray-900 focus:ring-gray-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-white"
-                          />
-                          <label htmlFor="filter-size-2" className="ml-3 text-sm text-gray-900">
-                            12L
-                          </label>
-                        </div>
-                        <div className="flex items-center">
-                          <input
-                            id="filter-size-3"
-                            name="size[]"
-                            value="18l"
-                            type="checkbox"
-                            className="h-4 w-4 border-gray-300 rounded text-gray-900 focus:ring-gray-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-white"
-                          />
-                          <label htmlFor="filter-size-3" className="ml-3 text-sm text-gray-900">
-                            18L
-                          </label>
-                        </div>
-                        <div className="flex items-center">
-                          <input
-                            id="filter-size-4"
-                            name="size[]"
-                            value="20l"
-                            type="checkbox"
-                            className="h-4 w-4 border-gray-300 rounded text-gray-900 focus:ring-gray-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-white"
-                          />
-                          <label htmlFor="filter-size-4" className="ml-3 text-sm text-gray-900">
-                            20L
-                          </label>
-                        </div>
-                        <div className="flex items-center">
-                          <input
-                            id="filter-size-5"
-                            name="size[]"
-                            value="40l"
-                            type="checkbox"
-                            className="h-4 w-4 border-gray-300 rounded text-gray-900 focus:ring-gray-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-white"
-                          />
-                          <label htmlFor="filter-size-5" className="ml-3 text-sm text-gray-900">
-                            40L
-                          </label>
-                        </div>
-                      </div>
-                    </div>
+                          </Disclosure.Panel>
+                        </>
+                      )}
+                    </Disclosure>
                   </div>
                 </form>
               </div>
