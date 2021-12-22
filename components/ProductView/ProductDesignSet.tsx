@@ -1,5 +1,5 @@
 import useProductDesignSets from '@hooks/useProductDesignSets';
-import blurredBg from '@public/images/bg-base-64';
+import { blurredBgImage } from '@public/images/bg-base-64';
 import { cloudinary } from '@utils/config';
 import Image from 'next/image';
 import React from 'react';
@@ -38,7 +38,7 @@ const ProductDesignSet = ({ productIds }) => {
                       alt="Brown leather key ring with brass metal loops and rivets on wood table."
                       layout="fill"
                       placeholder="blur"
-                      blurDataURL={blurredBg}
+                      blurDataURL={blurredBgImage}
                       objectFit={'contain'}
                     />
                   </div>
