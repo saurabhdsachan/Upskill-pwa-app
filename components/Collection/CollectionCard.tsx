@@ -1,5 +1,5 @@
 import { ArrowRightIcon } from '@heroicons/react/outline';
-import blurredBg from '@public/images/bg-base-64';
+import { blurredBgImage } from '@public/images/bg-base-64';
 import { cloudinary } from '@utils/config';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -25,7 +25,7 @@ const CollectionCard: React.FC<CollectionCardInterface> = ({ cardData, inset }) 
                 height="300"
                 width="225"
                 placeholder="blur"
-                blurDataURL={blurredBg}
+                blurDataURL={blurredBgImage}
               />
             ) : (
               <div className="w-full aspect-w-7 aspect-h-10">
@@ -35,7 +35,7 @@ const CollectionCard: React.FC<CollectionCardInterface> = ({ cardData, inset }) 
                   className="w-full h-full object-center object-cover"
                   layout="fill"
                   placeholder="blur"
-                  blurDataURL={blurredBg}
+                  blurDataURL={blurredBgImage}
                 />
               </div>
             )}

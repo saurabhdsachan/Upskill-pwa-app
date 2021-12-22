@@ -3,6 +3,7 @@ import SimilarProducts from '@components/ProductView/SimilarProducts';
 import Layout from '@components/Shared/Layout';
 import { ChevronRightIcon, HeartIcon, HomeIcon, MinusSmIcon, PlusIcon, PlusSmIcon } from '@heroicons/react/outline';
 import { StarIcon } from '@heroicons/react/solid';
+import { blurredBgProduct } from '@public/images/bg-base-64';
 import fetcher from '@utils/fetcher';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
@@ -74,7 +75,6 @@ const ProductView = ({ product }): JSX.Element => {
     <Layout>
       <Head>
         <title>Product Overview | Spacejoy</title>
-        {/* <link rel="icon" href="/favicon.ico" /> */}
         <base href="/" />
       </Head>
       <Layout.Banner />
@@ -97,9 +97,9 @@ const ProductView = ({ product }): JSX.Element => {
                 <li>
                   <div className="flex items-center">
                     <ChevronRightIcon className="w-4 h-4 text-gray-500" />
-                    <a href="#" className="ml-4 text-xs font-medium text-gray-500 hover:text-gray-700">
-                      Shop
-                    </a>
+                    <Link href="/shop">
+                      <a className="ml-4 text-xs font-medium text-gray-500 hover:text-gray-700">Shop</a>
+                    </Link>
                   </div>
                 </li>
                 <li>
@@ -126,6 +126,8 @@ const ProductView = ({ product }): JSX.Element => {
                         alt="Angled front view with bag zipped and handles upright."
                         className="object-center object-contain sm:rounded-lg"
                         layout="fill"
+                        placeholder="blur"
+                        blurDataURL={blurredBgProduct}
                       />
                     </div>
                   </div>
@@ -141,6 +143,8 @@ const ProductView = ({ product }): JSX.Element => {
                             alt="Angled front view with bag zipped and handles upright."
                             className="object-center object-contain sm:rounded-lg"
                             layout="fill"
+                            placeholder="blur"
+                            blurDataURL={blurredBgProduct}
                           />
                         </div>
                       </div>
@@ -155,6 +159,8 @@ const ProductView = ({ product }): JSX.Element => {
                             alt="Angled front view with bag zipped and handles upright."
                             className="object-center object-cover sm:rounded-lg"
                             layout="fill"
+                            placeholder="blur"
+                            blurDataURL={blurredBgProduct}
                           />
                         </div>
                       </div>
@@ -169,6 +175,8 @@ const ProductView = ({ product }): JSX.Element => {
                             alt="Angled front view with bag zipped and handles upright."
                             className="object-center object-cover sm:rounded-lg"
                             layout="fill"
+                            placeholder="blur"
+                            blurDataURL={blurredBgProduct}
                           />
                         </div>
                       </div>
@@ -187,7 +195,6 @@ const ProductView = ({ product }): JSX.Element => {
                       <small className="text-sm text-gray-500 line-through inline-block ml-2">${product?.msrp}</small>
                     )}
                   </p>
-                  <small className="text-xs text-gray-500">inclusive of all taxes</small>
                 </div>
                 <div className="mt-3">
                   <h3 className="sr-only">Reviews</h3>
@@ -210,7 +217,7 @@ const ProductView = ({ product }): JSX.Element => {
                 <div className="mt-6">
                   <h3 className="sr-only">Description</h3>
                   <div className="text-base text-gray-700 space-y-6">
-                    <p>{product?.description}</p>
+                    <p className="text-sm line-clamp-3">{product?.description}</p>
                   </div>
                 </div>
                 <form className="mt-6">
@@ -300,16 +307,13 @@ const ProductView = ({ product }): JSX.Element => {
                   </div>
                 </form>
                 <div className="text-sm text-gray-700 mt-6">
-                  {/* <Image
+                  <Image
                     src="https://res.cloudinary.com/spacejoy/image/upload/v1636614144/shared/affirm_ejxoqf.svg"
-                    alt="Angled front view with bag zipped and handles upright."
+                    alt="affirm logo"
                     className="object-center object-contain sm:rounded-lg"
                     width="100"
                     height="50"
                   />
-                  <p>
-                    Starting at $62/mo with Affirm. <span className="text-blue-400">Pre-qualify Now</span>
-                  </p> */}
                   <AffirmPrice totalAmount={product?.price} flow="product" affirmType="as-low-as" />
                 </div>
                 <section aria-labelledby="details-heading" className="mt-6">
