@@ -80,8 +80,6 @@ const ProductView = ({ product }): JSX.Element => {
     return [...(product?.renderImages || []), ...product?.productImages];
   }, [product]);
 
-  console.log('product is ----', product);
-
   return (
     <Layout>
       <Head>
