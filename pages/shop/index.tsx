@@ -1,3 +1,4 @@
+import CollectionCardDimmer from '@components/Collection/CollectionCardDimmer';
 import Layout from '@components/Shared/Layout';
 import Pagination from '@components/Shared/Pagination';
 import { Disclosure } from '@headlessui/react';
@@ -17,7 +18,7 @@ import { Tween } from 'react-gsap';
 export const Shop = ({ initialFilters, assetsList, searchText = '' }): JSX.Element => {
   const [currentFilters, setCurrentFilters] = useState({ ...defaultFilters, ...initialFilters });
 
-  const { currentRenderList, buttons } = usePagination(
+  const { currentRenderList, buttons, isFetching } = usePagination(
     {
       url: '/v1/assets/search',
       method: 'POST',
@@ -45,9 +46,10 @@ export const Shop = ({ initialFilters, assetsList, searchText = '' }): JSX.Eleme
 
   const verticalList = useMemo(() => {
     const selectedSubCategories = subCategory?.filter((item) => item?.selected);
-
     if (selectedSubCategories?.length) {
-      return vertical?.filter((item) => item?.subcategory === selectedSubCategories[0]?._id);
+      return vertical?.filter(
+        (item) => item?.subcategory === selectedSubCategories[selectedSubCategories?.length - 1]?._id
+      );
     } else {
       return [];
     }
@@ -119,15 +121,13 @@ export const Shop = ({ initialFilters, assetsList, searchText = '' }): JSX.Eleme
             <div className="grid grid-cols-5 gap-8">
               <div className="col-span-1 bg-white rounded-lg p-4">
                 <form className="hidden lg:block">
-                  <Disclosure>
+                  <Disclosure defaultOpen>
                     {({ open }) => (
                       <>
-                        <Disclosure.Button className="w-full text-left  bg-gray-100 flex justify-between items-center p-2 rounded-sm mb-2">
+                        <Disclosure.Button className="w-full text-left  flex justify-between items-center p-2 rounded-sm mb-2">
                           {verticalList?.length ? (
                             <>
-                              <h3 className="text-gray-700 ">
-                                <span>Filters</span>
-                              </h3>
+                              <h3 className="text-gray-700 ">Filters</h3>
                               {open ? <MinusIcon className="h-4 w-4" /> : <PlusIcon className="h-4 w-4" />}
                             </>
                           ) : null}
@@ -169,10 +169,9 @@ export const Shop = ({ initialFilters, assetsList, searchText = '' }): JSX.Eleme
                     <Disclosure>
                       {({ open }) => (
                         <>
-                          <Disclosure.Button className="w-full text-left bg-gray-100 flex justify-between items-center p-2 rounded-sm mb-2">
-                            <h3 className="-my-3">
-                              <span className="font-bold text-gray-700">Brands</span>
-                            </h3>
+                          <Disclosure.Button className="w-full text-left flex justify-between items-center p-2 rounded-sm mb-2">
+                            <h3 className="text-gray-700 ">Brands</h3>
+
                             <span className="ml-6 flex items-center">
                               {open ? <MinusIcon className="h-4 w-4" /> : <PlusIcon className="h-4 w-4" />}
                             </span>
@@ -215,45 +214,53 @@ export const Shop = ({ initialFilters, assetsList, searchText = '' }): JSX.Eleme
 
               <div className="col-span-4 rounded">
                 <div className="grid grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-1">
-                  <Tween
-                    from={{ scale: 0.5, opacity: 0, y: 50 }}
-                    to={{ scale: 1, opacity: 1, y: 0 }}
-                    stagger={0.1}
-                    duration={0.5}
-                  >
-                    {currentRenderList?.map((item) => {
-                      return (
-                        <div key={item?._id}>
-                          <Link href={`/product-view/${item?._id}`}>
-                            <a className="group">
-                              <div className="bg-white p-4 xl:p-8 rounded-lg h-full">
-                                <div className="w-full mb-2 aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
-                                  <Image
-                                    src={item?.imageUrl}
-                                    alt={item?.name}
-                                    className="w-full h-full object-center object-contain filter group-hover:contrast-115 group-hover:brightness-110"
-                                    layout="fill"
-                                    placeholder="blur"
-                                    blurDataURL={blurredBgProduct}
-                                  />
+                  {isFetching ? (
+                    <>
+                      {[...Array(internalPages?.Shop?.DEFAULT_PAGE_SIZE)].map((_d, _i) => {
+                        return <CollectionCardDimmer key={_i} />;
+                      })}
+                    </>
+                  ) : (
+                    <Tween
+                      from={{ scale: 0.5, opacity: 0, y: 50 }}
+                      to={{ scale: 1, opacity: 1, y: 0 }}
+                      stagger={0.1}
+                      duration={0.5}
+                    >
+                      {currentRenderList?.map((item) => {
+                        return (
+                          <div key={item?._id}>
+                            <Link href={`/product-view/${item?._id}`}>
+                              <a className="group">
+                                <div className="bg-white p-4 xl:p-8 rounded-lg h-full">
+                                  <div className="w-full mb-2 aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
+                                    <Image
+                                      src={item?.imageUrl}
+                                      alt={item?.name}
+                                      className="w-full h-full object-center object-contain filter group-hover:contrast-115 group-hover:brightness-110"
+                                      layout="fill"
+                                      placeholder="blur"
+                                      blurDataURL={blurredBgProduct}
+                                    />
+                                  </div>
+                                  <small className="mt-4 text-xs text-gray-500">{item?.retailer}</small>
+                                  <h3 className="text-md text-gray-700 overflow-ellipsis line-clamp-2">{item?.name}</h3>
+                                  <p className="text-lg font-medium text-gray-900">
+                                    <span>${item?.displayPrice}</span>
+                                    {item?.msrp && item?.msrp > 0 && item?.msrp > item?.price && (
+                                      <small className="text-sm text-gray-500 line-through inline-block ml-2">
+                                        ${item?.msrp}
+                                      </small>
+                                    )}
+                                  </p>
                                 </div>
-                                <small className="mt-4 text-xs text-gray-500">{item?.retailer}</small>
-                                <h3 className="text-md text-gray-700 overflow-ellipsis line-clamp-2">{item?.name}</h3>
-                                <p className="text-lg font-medium text-gray-900">
-                                  <span>${item?.displayPrice}</span>
-                                  {item?.msrp && item?.msrp > 0 && item?.msrp > item?.price && (
-                                    <small className="text-sm text-gray-500 line-through inline-block ml-2">
-                                      ${item?.msrp}
-                                    </small>
-                                  )}
-                                </p>
-                              </div>
-                            </a>
-                          </Link>
-                        </div>
-                      );
-                    })}
-                  </Tween>
+                              </a>
+                            </Link>
+                          </div>
+                        );
+                      })}
+                    </Tween>
+                  )}
                 </div>
               </div>
             </div>

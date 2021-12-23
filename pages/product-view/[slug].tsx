@@ -1,7 +1,16 @@
 import ProductDesignSet from '@components/ProductView/ProductDesignSet';
 import SimilarProducts from '@components/ProductView/SimilarProducts';
 import Layout from '@components/Shared/Layout';
-import { ChevronRightIcon, HeartIcon, HomeIcon, MinusSmIcon, PlusIcon, PlusSmIcon } from '@heroicons/react/outline';
+import { Disclosure } from '@headlessui/react';
+import {
+  ChevronRightIcon,
+  HeartIcon,
+  HomeIcon,
+  MinusIcon,
+  MinusSmIcon,
+  PlusIcon,
+  PlusSmIcon,
+} from '@heroicons/react/outline';
 import { StarIcon } from '@heroicons/react/solid';
 import { blurredBgProduct } from '@public/images/bg-base-64';
 import fetcher from '@utils/fetcher';
@@ -71,6 +80,8 @@ const ProductView = ({ product }): JSX.Element => {
     return [...(product?.renderImages || []), ...product?.productImages];
   }, [product]);
 
+  console.log('product is ----', product);
+
   return (
     <Layout>
       <Head>
@@ -117,7 +128,7 @@ const ProductView = ({ product }): JSX.Element => {
               </ol>
             </nav>
             <div className="lg:grid lg:grid-cols-2 lg:gap-x-8 lg:items-start">
-              <div>
+              <div className="sticky top-0">
                 <AnimateBox className="bg-white rounded-lg p-4 lg:p-8 xl:20">
                   <div className="aspect-w-1 aspect-h-1">
                     <div aria-labelledby="tabs-1-tab-1" role="tabpanel" tabIndex={0}>
@@ -220,32 +231,27 @@ const ProductView = ({ product }): JSX.Element => {
                     <p className="text-sm line-clamp-3">{product?.description}</p>
                   </div>
                 </div>
-                <form className="mt-6">
+                <div className="mt-2">
+                  <span className="font-bold text-sm">Dimensions:</span>
+                  <span className="inline-block ml-2 text-sm">{`${(product?.dimension?.width * 12).toFixed(2)}"W X ${(
+                    product?.dimension?.depth * 12
+                  ).toFixed(2)}"D X ${(product?.dimension?.height * 12).toFixed(2)} H`}</span>
+                </div>
+                <form className="mt-2">
                   <div>
-                    <h3 className="text-gray-900 text-sm font-medium">Color:</h3>
-                    <fieldset className="mt-6">
-                      <legend className="sr-only">Choose a color</legend>
+                    <span className="text-gray-900 text-sm font-bold">Color:</span>
 
-                      <div className="flex items-center space-x-3">
-                        {product?.colors &&
-                          product?.colors?.map((color, index) => {
-                            return (
-                              <label
-                                className="-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none ring-gray-700"
-                                key={color}
-                              >
-                                <span className="capitalize text-sm">
-                                  {color}
-                                  {index === product?.colors?.length - 1 ? '' : ','}
-                                </span>
-                                <p id="color-choice-0-label" className="sr-only">
-                                  {color}
-                                </p>
-                              </label>
-                            );
-                          })}
-                      </div>
-                    </fieldset>
+                    <span className="inline-block ml-2">
+                      {product?.colors &&
+                        product?.colors?.map((color, index) => {
+                          return (
+                            <span className="capitalize text-sm" key={color}>
+                              {color}
+                              {index === product?.colors?.length - 1 ? '' : ','}
+                            </span>
+                          );
+                        })}
+                    </span>
                   </div>
                   <div className="mt-10 flex sm:flex-col1 space-x-4">
                     <button
@@ -314,13 +320,60 @@ const ProductView = ({ product }): JSX.Element => {
                             {product?.material}
                           </div>
                         ) : null}
-                        {product?.meta?.descriptions?.map((item, index) => {
-                          return (
-                            <ul key={`desc-${index}`} className="p-0">
-                              {renderFeatureSection(item)}
-                            </ul>
-                          );
-                        })}
+                        {product?.meta && product?.meta?.descriptions?.length ? (
+                          <>
+                            <Disclosure defaultOpen>
+                              {({ open }) => (
+                                <>
+                                  <Disclosure.Button className="w-full text-left  flex justify-between py-2 items-center rounded-sm mb-2 border-b border-gray-300">
+                                    <h3>Product Description</h3>
+                                    {open ? <MinusIcon className="h-4 w-4" /> : <PlusIcon className="h-4 w-4" />}
+                                  </Disclosure.Button>
+                                  <Disclosure.Panel>
+                                    {product?.meta?.descriptions?.map((item, index) => {
+                                      return (
+                                        <ul key={`desc-${index}`} className="p-0">
+                                          {renderFeatureSection(item)}
+                                        </ul>
+                                      );
+                                    })}
+                                  </Disclosure.Panel>
+                                </>
+                              )}
+                            </Disclosure>
+                          </>
+                        ) : null}
+                        {product?.retailer?.shippingPolicy ? (
+                          <>
+                            <Disclosure>
+                              {({ open }) => (
+                                <>
+                                  <Disclosure.Button className="w-full text-left  flex justify-between py-2 items-center rounded-sm mb-2 border-b border-gray-300">
+                                    <h3>Shipping Policy</h3>
+                                    {open ? <MinusIcon className="h-4 w-4" /> : <PlusIcon className="h-4 w-4" />}
+                                  </Disclosure.Button>
+                                  <Disclosure.Panel>{product?.retailer?.shippingPolicy}</Disclosure.Panel>
+                                </>
+                              )}
+                            </Disclosure>
+                          </>
+                        ) : null}
+
+                        {product?.retailer?.returnPolicy ? (
+                          <>
+                            <Disclosure>
+                              {({ open }) => (
+                                <>
+                                  <Disclosure.Button className="w-full text-left  flex justify-between py-2 items-center rounded-sm mb-2 border-b border-gray-300">
+                                    <h3>Return Policy</h3>
+                                    {open ? <MinusIcon className="h-4 w-4" /> : <PlusIcon className="h-4 w-4" />}
+                                  </Disclosure.Button>
+                                  <Disclosure.Panel>{product?.retailer?.returnPolicy}</Disclosure.Panel>
+                                </>
+                              )}
+                            </Disclosure>
+                          </>
+                        ) : null}
                       </div>
                     </div>
                   </div>

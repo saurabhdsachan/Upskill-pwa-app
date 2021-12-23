@@ -116,7 +116,7 @@ const internalPages = {
     DEFAULT_PAGE_SIZE: 24,
   },
   Shop: {
-    DEFAULT_PAGE_SIZE: 35,
+    DEFAULT_PAGE_SIZE: 36,
     NUM_OF_BUTTONS: 7,
   },
 };

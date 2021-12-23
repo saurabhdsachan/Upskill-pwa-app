@@ -107,11 +107,18 @@ const ShopFilterContextProvider = ({ children }) => {
 
   const updateFilter = (itemId, type) => {
     // update filters for UI changes and update query params
+
     const updatedFilters = {
       ...filters,
       [type]: filters[type]?.map((item) => {
-        if (item?._id === itemId) return { ...item, selected: !item?.selected };
-        return { ...item };
+        if (item?._id === itemId) {
+          return { ...item, selected: !item?.selected };
+        } else {
+          if (type === 'vertical') {
+            return { ...item };
+          }
+          return { ...item, selected: false };
+        }
       }),
     };
 
