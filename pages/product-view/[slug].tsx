@@ -21,28 +21,25 @@ import Link from 'next/link';
 import React, { useMemo } from 'react';
 import styled, { keyframes } from 'styled-components';
 const AffirmPrice = dynamic(() => import('@components/Shared/AffirmPrice'), { ssr: false });
-
 const entry = keyframes`
 	from { 
 		opacity: 0;
 	}
 	to {
-    opacity: 1;
-    transform: translateY(0px);
+opacity: 1;
+transform: translateY(0px);
 	}
 `;
-
 const AnimateBox = styled.div`
   opacity: 0;
   animation: ${entry} 0.8s forwards;
   transform: translateY(20px);
   animation-delay: 0ms;
 `;
-
 const renderFeatureSection = (description) => {
   const { type = '' } = description;
   switch (type) {
-    case 'vizualOverview':
+    case 'visualOverview':
       return (
         <ul className="p-2 bg-gray-200 rounded-lg">
           {description?.value?.map((item) => {
@@ -74,12 +71,10 @@ const renderFeatureSection = (description) => {
       return null;
   }
 };
-
 const ProductView = ({ product }): JSX.Element => {
   const productImages = useMemo(() => {
     return [...(product?.renderImages || []), ...product?.productImages];
   }, [product]);
-
   return (
     <Layout>
       <Head>
@@ -141,9 +136,8 @@ const ProductView = ({ product }): JSX.Element => {
                     </div>
                   </div>
                 </AnimateBox>
-
                 <div className="grid grid-cols-3 mt-4 gap-4">
-                  {productImages[1] ? (
+                  {productImages[1] && (
                     <div className="bg-white rounded p-4 col-span-2 row-span-2">
                       <div className="aspect-w-1 aspect-h-1">
                         <div aria-labelledby="tabs-1-tab-1" role="tabpanel" tabIndex={0}>
@@ -158,8 +152,8 @@ const ProductView = ({ product }): JSX.Element => {
                         </div>
                       </div>
                     </div>
-                  ) : null}
-                  {productImages[2] ? (
+                  )}
+                  {productImages[2] && (
                     <div className="bg-white rounded p-4">
                       <div className="aspect-w-1 aspect-h-1">
                         <div aria-labelledby="tabs-1-tab-1" role="tabpanel" tabIndex={0}>
@@ -174,8 +168,8 @@ const ProductView = ({ product }): JSX.Element => {
                         </div>
                       </div>
                     </div>
-                  ) : null}
-                  {productImages[3] ? (
+                  )}
+                  {productImages[3] && (
                     <div className="bg-white rounded p-4">
                       <div className="aspect-w-1 aspect-h-1">
                         <div aria-labelledby="tabs-1-tab-1" role="tabpanel" tabIndex={0}>
@@ -190,7 +184,7 @@ const ProductView = ({ product }): JSX.Element => {
                         </div>
                       </div>
                     </div>
-                  ) : null}
+                  )}
                 </div>
               </div>
               <div className="mt-10 px-4 sm:px-0 sm:mt-16 lg:mt-0">
@@ -223,34 +217,38 @@ const ProductView = ({ product }): JSX.Element => {
                     </div>
                   </div>
                 </div>
-                <div className="mt-6">
+                <div className="mt-3">
                   <h3 className="sr-only">Description</h3>
                   <div className="text-base text-gray-700 space-y-6">
                     <p className="text-sm line-clamp-3">{product?.description}</p>
                   </div>
                 </div>
-                <div className="mt-2">
-                  <span className="font-bold text-sm">Dimensions:</span>
-                  <span className="inline-block ml-2 text-sm">{`${(product?.dimension?.width * 12).toFixed(2)}"W X ${(
-                    product?.dimension?.depth * 12
-                  ).toFixed(2)}"D X ${(product?.dimension?.height * 12).toFixed(2)} H`}</span>
+                <div className="mt-3">
+                  <span className="font-bold text-sm">Dimensions: </span>
+                  <span className="inline-block ml-2 text-sm text-gray-700">{`${(
+                    product?.dimension?.width * 12
+                  ).toFixed(2)}"W X ${(product?.dimension?.depth * 12).toFixed(2)}"D X ${(
+                    product?.dimension?.height * 12
+                  ).toFixed(2)} H`}</span>
                 </div>
-                <form className="mt-2">
-                  <div>
-                    <span className="text-gray-900 text-sm font-bold">Color:</span>
-
-                    <span className="inline-block ml-2">
-                      {product?.colors &&
-                        product?.colors?.map((color, index) => {
-                          return (
-                            <span className="capitalize text-sm" key={color}>
-                              {color}
-                              {index === product?.colors?.length - 1 ? '' : ','}
-                            </span>
-                          );
-                        })}
-                    </span>
-                  </div>
+                <div className="mt-3">
+                  <span className="font-bold text-sm">Material: </span>
+                  <span className="inline-block ml-2 text-sm text-gray-700">{product?.material}</span>
+                </div>
+                <div className="mt-3">
+                  <span className="text-gray-900 text-sm font-bold">Color:</span>
+                  <span className="inline-block ml-2 text-sm text-gray-700">
+                    {product?.colors?.map((color, index) => {
+                      return (
+                        <span className="capitalize text-sm" key={color}>
+                          {color}
+                          {index === product?.colors?.length - 1 ? '' : ', '}
+                        </span>
+                      );
+                    })}
+                  </span>
+                </div>
+                <form className="mt-3">
                   <div className="mt-10 flex sm:flex-col1 space-x-4">
                     <button
                       type="button"
@@ -280,102 +278,84 @@ const ProductView = ({ product }): JSX.Element => {
                     </button>
                   </div>
                 </form>
-                <div className="text-sm text-gray-700 mt-6">
-                  <Image
-                    src="https://res.cloudinary.com/spacejoy/image/upload/v1636614144/shared/affirm_ejxoqf.svg"
-                    alt="affirm logo"
-                    className="object-center object-contain sm:rounded-lg"
-                    width="100"
-                    height="50"
-                  />
-                  <AffirmPrice totalAmount={product?.price} flow="product" affirmType="as-low-as" />
-                </div>
-                <section aria-labelledby="details-heading" className="mt-6">
-                  <h2 id="details-heading" className="sr-only">
-                    Additional details
-                  </h2>
-                  <div className="border-t divide-y divide-gray-200">
-                    <div>
-                      <h3>
-                        <button
-                          type="button"
-                          className="group relative w-full py-6 flex justify-between items-center text-left"
-                          aria-controls="disclosure-1"
-                          aria-expanded="false"
-                        >
-                          <span className="text-gray-900 text-sm font-medium">Features</span>
-                          <span className="ml-6 flex items-center">
-                            <PlusIcon className="text-gray-900 w-3 h-3 " />
-                          </span>
-                        </button>
-                      </h3>
-
-                      <div className="pb-6 prose prose-sm" id="disclosure-1">
-                        {product?.material && product?.material?.toLowerCase() !== 'n/a' ? (
-                          <div className="py-2">
-                            <span className="font-bold">Material:</span>
-                            {'    '}
-                            {product?.material}
-                          </div>
-                        ) : null}
-                        {product?.meta && product?.meta?.descriptions?.length ? (
-                          <>
-                            <Disclosure defaultOpen>
-                              {({ open }) => (
-                                <>
-                                  <Disclosure.Button className="w-full text-left  flex justify-between py-2 items-center rounded-sm mb-2 border-b border-gray-300">
-                                    <h3>Product Description</h3>
-                                    {open ? <MinusIcon className="h-4 w-4" /> : <PlusIcon className="h-4 w-4" />}
-                                  </Disclosure.Button>
-                                  <Disclosure.Panel>
-                                    {product?.meta?.descriptions?.map((item, index) => {
-                                      return (
-                                        <ul key={`desc-${index}`} className="p-0">
-                                          {renderFeatureSection(item)}
-                                        </ul>
-                                      );
-                                    })}
-                                  </Disclosure.Panel>
-                                </>
-                              )}
-                            </Disclosure>
-                          </>
-                        ) : null}
-                        {product?.retailer?.shippingPolicy ? (
-                          <>
-                            <Disclosure>
-                              {({ open }) => (
-                                <>
-                                  <Disclosure.Button className="w-full text-left  flex justify-between py-2 items-center rounded-sm mb-2 border-b border-gray-300">
-                                    <h3>Shipping Policy</h3>
-                                    {open ? <MinusIcon className="h-4 w-4" /> : <PlusIcon className="h-4 w-4" />}
-                                  </Disclosure.Button>
-                                  <Disclosure.Panel>{product?.retailer?.shippingPolicy}</Disclosure.Panel>
-                                </>
-                              )}
-                            </Disclosure>
-                          </>
-                        ) : null}
-
-                        {product?.retailer?.returnPolicy ? (
-                          <>
-                            <Disclosure>
-                              {({ open }) => (
-                                <>
-                                  <Disclosure.Button className="w-full text-left  flex justify-between py-2 items-center rounded-sm mb-2 border-b border-gray-300">
-                                    <h3>Return Policy</h3>
-                                    {open ? <MinusIcon className="h-4 w-4" /> : <PlusIcon className="h-4 w-4" />}
-                                  </Disclosure.Button>
-                                  <Disclosure.Panel>{product?.retailer?.returnPolicy}</Disclosure.Panel>
-                                </>
-                              )}
-                            </Disclosure>
-                          </>
-                        ) : null}
-                      </div>
-                    </div>
+                {product?.price && (
+                  <div className="text-sm text-gray-700 my-6">
+                    <AffirmPrice totalAmount={product?.price} flow="product" affirmType="as-low-as" />
                   </div>
-                </section>
+                )}
+                <Disclosure defaultOpen>
+                  {({ open }) => (
+                    <>
+                      <Disclosure.Button className="w-full text-left flex justify-between py-4 items-center rounded-sm border-b border-gray-300">
+                        <span className="text-gray-900 text-sm">Available Offers</span>
+                        {open ? <MinusIcon className="h-4 w-4" /> : <PlusIcon className="h-4 w-4" />}
+                      </Disclosure.Button>
+                      <Disclosure.Panel>
+                        <div className="mt-4 text-sm prose text-gray-700">
+                          <ul role="list">
+                            <li>
+                              Use coupon code DEC15 at checkout to get an additional 15% off (up to $50) when you buy
+                              new furniture from CasaOne.
+                            </li>
+                            <li>Use coupon code HOLIDAY75 to get flat $75 off on orders above $999.</li>
+                            <li>Get $25 when you refer a friend.</li>
+                          </ul>
+                        </div>
+                      </Disclosure.Panel>
+                    </>
+                  )}
+                </Disclosure>
+                {product?.meta && product?.meta?.descriptions?.length && (
+                  <Disclosure defaultOpen>
+                    {({ open }) => (
+                      <>
+                        <Disclosure.Button className="w-full text-left flex justify-between py-2 items-center rounded-sm border-b border-gray-300">
+                          <span className="text-gray-900 text-sm">Product Description</span>
+                          {open ? <MinusIcon className="h-4 w-4" /> : <PlusIcon className="h-4 w-4" />}
+                        </Disclosure.Button>
+                        <Disclosure.Panel>
+                          {product?.meta?.descriptions?.map((item, index) => {
+                            return (
+                              <ul key={`desc-${index}`} className="p-0">
+                                {renderFeatureSection(item)}
+                              </ul>
+                            );
+                          })}
+                        </Disclosure.Panel>
+                      </>
+                    )}
+                  </Disclosure>
+                )}
+                {product?.retailer?.shippingPolicy && (
+                  <Disclosure>
+                    {({ open }) => (
+                      <>
+                        <Disclosure.Button className="w-full text-left flex justify-between py-4 items-center rounded-sm border-b border-gray-300">
+                          <span className="text-gray-900 text-sm">Shipping Policy</span>
+                          {open ? <MinusIcon className="h-4 w-4" /> : <PlusIcon className="h-4 w-4" />}
+                        </Disclosure.Button>
+                        <Disclosure.Panel>
+                          <div className="mt-4 text-sm text-gray-700">{product?.retailer?.shippingPolicy}</div>
+                        </Disclosure.Panel>
+                      </>
+                    )}
+                  </Disclosure>
+                )}
+                {product?.retailer?.returnPolicy && (
+                  <Disclosure>
+                    {({ open }) => (
+                      <>
+                        <Disclosure.Button className="w-full text-left flex justify-between py-4 items-center rounded-sm border-b border-gray-300">
+                          <span className="text-gray-900 text-sm">Return Policy</span>
+                          {open ? <MinusIcon className="h-4 w-4" /> : <PlusIcon className="h-4 w-4" />}
+                        </Disclosure.Button>
+                        <Disclosure.Panel>
+                          <div className="mt-4 text-sm text-gray-700">{product?.retailer?.returnPolicy}</div>
+                        </Disclosure.Panel>
+                      </>
+                    )}
+                  </Disclosure>
+                )}
               </div>
             </div>
           </main>
@@ -393,7 +373,6 @@ const ProductView = ({ product }): JSX.Element => {
     </Layout>
   );
 };
-
 const getAllProducts = async () => {
   return {
     products: [
@@ -404,25 +383,21 @@ const getAllProducts = async () => {
     ],
   };
 };
-
 export async function getStaticPaths() {
   // get all product paths
   const { products } = await getAllProducts();
   const paths = products.map((product) => ({
     params: { slug: product?.slug },
   }));
-
   return {
     paths,
     fallback: 'blocking',
   };
 }
-
 export const getStaticProps = async ({ params }) => {
   const { slug } = params;
   const response = await fetcher({ endPoint: `/v2/asset/${slug}`, method: 'GET' });
   const { data, statusCode } = response;
-
   if (statusCode < 300) {
     return {
       props: {

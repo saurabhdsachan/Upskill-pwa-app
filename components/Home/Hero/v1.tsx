@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import React from 'react';
 
-const BannerWithNoSSR = dynamic(() => import('./Banner'), { ssr: false });
+const BannerWithNoSSR = dynamic(() => import('./Banner'), { ssr: true });
 
 const v1: React.FC = () => {
   return (

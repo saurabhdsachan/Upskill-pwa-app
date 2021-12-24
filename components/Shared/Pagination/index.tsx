@@ -15,7 +15,7 @@ interface ButtonListProps {
 
 const index: React.FC<ButtonListProps> = ({ buttonList }) => {
   return (
-    <div className="mt-20 text-center">
+    <div className="text-center">
       <nav className="relative z-0 inline-flex shadow-md rounded-lg -space-x-px" aria-label="Pagination">
         {buttonList?.map((button) => {
           return (
