@@ -41,7 +41,7 @@ const renderFeatureSection = (description) => {
   switch (type) {
     case 'visualOverview':
       return (
-        <ul className="p-2 bg-gray-200 rounded-lg">
+        <ul role="list">
           {description?.value?.map((item) => {
             return (
               <li key={item?.image} className="flex items-center">
@@ -54,13 +54,13 @@ const renderFeatureSection = (description) => {
       );
     case 'string':
       return (
-        <ul className="p-0">
+        <ul role="list">
           <li>{description?.value}</li>
         </ul>
       );
     case 'array[string]':
       return (
-        <ul>
+        <ul role="list">
           {description?.title && description?.value?.length ? <h3>{description?.title}</h3> : null}
           {description?.value?.map((item) => {
             return <li key={item}>{item}</li>;
@@ -316,9 +316,9 @@ const ProductView = ({ product }): JSX.Element => {
                         <Disclosure.Panel>
                           {product?.meta?.descriptions?.map((item, index) => {
                             return (
-                              <ul key={`desc-${index}`} className="p-0">
+                              <div key={`desc-${index}`} className="mt-4 text-sm text-gray-700 prose">
                                 {renderFeatureSection(item)}
-                              </ul>
+                              </div>
                             );
                           })}
                         </Disclosure.Panel>
@@ -359,13 +359,9 @@ const ProductView = ({ product }): JSX.Element => {
               </div>
             </div>
           </main>
-          <div className="container mx-auto py-16 px-4">
-            <div className="pt-16">
-              <SimilarProducts productId={product?._id} />
-            </div>
-            <div className="pt-16">
-              <ProductDesignSet productIds={[product?._id]} />
-            </div>
+          <div className="container mx-auto px-4">
+            <SimilarProducts productId={product?._id} />
+            <ProductDesignSet productIds={[product?._id]} />
           </div>
         </div>
       </Layout.Body>

@@ -1,19 +1,17 @@
 import Layout from '@components/Shared/Layout';
 import Pagination from '@components/Shared/Pagination';
+import ProductCard from '@components/Shop/ProductCard';
 import ProductCardDimmer from '@components/Shop/ProductCardDimmer';
 import { Disclosure } from '@headlessui/react';
 import { ChevronRightIcon, HomeIcon, MinusIcon, PlusIcon } from '@heroicons/react/outline';
 import usePagination from '@hooks/usePagination';
-import { blurredBgProduct } from '@public/images/bg-base-64';
 import { useShopFilterContext } from '@store/ShopFilterContext';
 import { internalPages } from '@utils/config';
 import { defaultFilters, fetchAssetList } from '@utils/shop/helpers';
 import Head from 'next/head';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useEffect, useMemo, useState } from 'react';
-import { Tween } from 'react-gsap';
 export const Shop = ({ initialFilters, assetsList, searchText = '' }): JSX.Element => {
   const [currentFilters, setCurrentFilters] = useState({ ...defaultFilters, ...initialFilters });
   const { currentRenderList, buttons, isFetching } = usePagination(
@@ -199,6 +197,7 @@ export const Shop = ({ initialFilters, assetsList, searchText = '' }): JSX.Eleme
                   )}
                 </form>
               </div>
+
               <div className="col-span-4 rounded">
                 <div className="grid grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-1">
                   {isFetching ? (
@@ -208,43 +207,11 @@ export const Shop = ({ initialFilters, assetsList, searchText = '' }): JSX.Eleme
                       })}
                     </>
                   ) : (
-                    <Tween
-                      from={{ scale: 0.5, opacity: 0, y: 50 }}
-                      to={{ scale: 1, opacity: 1, y: 0 }}
-                      stagger={0.1}
-                      duration={0.5}
-                    >
+                    <>
                       {currentRenderList?.map((item) => (
-                        <div key={item?._id}>
-                          <Link href={`/product-view/${item?._id}`}>
-                            <a className="group">
-                              <div className="bg-white p-4 xl:p-8 rounded-lg h-full">
-                                <div className="w-full mb-2 aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
-                                  <Image
-                                    src={item?.imageUrl}
-                                    alt={item?.name}
-                                    className="w-full h-full object-center object-contain filter group-hover:contrast-115 group-hover:brightness-110"
-                                    layout="fill"
-                                    placeholder="blur"
-                                    blurDataURL={blurredBgProduct}
-                                  />
-                                </div>
-                                <small className="mt-4 text-xs text-gray-500">{item?.retailer}</small>
-                                <h3 className="text-md text-gray-700 overflow-ellipsis line-clamp-2">{item?.name}</h3>
-                                <p className="text-lg font-medium text-gray-900">
-                                  <span>${item?.displayPrice}</span>
-                                  {item?.msrp && item?.msrp > 0 && item?.msrp > item?.price && (
-                                    <small className="text-sm text-gray-500 line-through inline-block ml-2">
-                                      ${item?.msrp}
-                                    </small>
-                                  )}
-                                </p>
-                              </div>
-                            </a>
-                          </Link>
-                        </div>
+                        <ProductCard product={item} key={item._id} />
                       ))}
-                    </Tween>
+                    </>
                   )}
                 </div>
               </div>

@@ -18,7 +18,6 @@ const ProductDesignSet = ({ productIds }) => {
       {designs?.length ? (
         <>
           <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">Explore Design Sets</h2>
-
           <div className="mt-10 space-y-12 lg:space-y-0 lg:grid lg:grid-cols-5 lg:gap-x-8">
             {designs?.slice(0, 5)?.map((product) => {
               return (
