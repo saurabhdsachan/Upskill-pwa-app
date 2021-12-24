@@ -309,7 +309,7 @@ const ProductView = ({ product }): JSX.Element => {
                   <Disclosure defaultOpen>
                     {({ open }) => (
                       <>
-                        <Disclosure.Button className="w-full text-left flex justify-between py-2 items-center rounded-sm border-b border-gray-300">
+                        <Disclosure.Button className="w-full text-left flex justify-between py-4 items-center rounded-sm border-b border-gray-300">
                           <span className="text-gray-900 text-sm">Product Description</span>
                           {open ? <MinusIcon className="h-4 w-4" /> : <PlusIcon className="h-4 w-4" />}
                         </Disclosure.Button>

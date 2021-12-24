@@ -6,7 +6,7 @@ import Link from 'next/link';
 import React from 'react';
 
 const ProductDesignSet = ({ productIds }) => {
-  const { loading, error, designSetData } = useProductDesignSets([...productIds]);
+  const { designSetData } = useProductDesignSets([...productIds]);
 
   const designs = React.useMemo(() => {
     return Object.keys(designSetData).reduce((acc, curr) => {
