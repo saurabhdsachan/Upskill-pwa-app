@@ -113,8 +113,12 @@ const ShopFilterContextProvider = ({ children }) => {
       [type]: filters[type]?.map((item) => {
         if (item?._id === itemId) {
           return { ...item, selected: !item?.selected };
+        } else {
+          if (type === 'retailer' || type === 'vertical') {
+            return { ...item };
+          }
+          return { ...item, selected: false };
         }
-        return { ...item };
       }),
     };
     if (type === 'subCategory') {
