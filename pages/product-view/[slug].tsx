@@ -1,6 +1,7 @@
 import ProductDesignSet from '@components/ProductView/ProductDesignSet';
 import SimilarProducts from '@components/ProductView/SimilarProducts';
 import Layout from '@components/Shared/Layout';
+import LottieAnimation from '@components/Shared/LottieAnimation';
 import { Disclosure } from '@headlessui/react';
 import {
   ChevronRightIcon,
@@ -12,7 +13,9 @@ import {
   PlusSmIcon,
 } from '@heroicons/react/outline';
 import { StarIcon } from '@heroicons/react/solid';
+import useBoolean from '@hooks/useBoolean';
 import { blurredBgProduct } from '@public/images/bg-base-64';
+import offerLottie from '@public/lotties/offer.json';
 import fetcher from '@utils/fetcher';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
@@ -20,6 +23,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useMemo } from 'react';
 import styled, { keyframes } from 'styled-components';
+
 const AffirmPrice = dynamic(() => import('@components/Shared/AffirmPrice'), { ssr: false });
 const entry = keyframes`
 	from { 
@@ -36,6 +40,7 @@ const AnimateBox = styled.div`
   transform: translateY(20px);
   animation-delay: 0ms;
 `;
+
 const renderFeatureSection = (description) => {
   const { type = '' } = description;
   switch (type) {
@@ -71,7 +76,9 @@ const renderFeatureSection = (description) => {
       return null;
   }
 };
+
 const ProductView = ({ product }): JSX.Element => {
+  const { value, setValue, setTrue, setFalse, toggle } = useBoolean(false);
   const productImages = useMemo(() => {
     return [...(product?.renderImages || []), ...product?.productImages];
   }, [product]);
@@ -219,8 +226,11 @@ const ProductView = ({ product }): JSX.Element => {
                 </div>
                 <div className="mt-3">
                   <h3 className="sr-only">Description</h3>
-                  <div className="text-base text-gray-700 space-y-6">
-                    <p className="text-sm line-clamp-3">{product?.description}</p>
+                  <div className="text-sm">
+                    <p className={`${!value && 'line-clamp-3'} text-gray-700`}>{product?.description}</p>
+                    <button className="my-0.5 text-gray-500" onClick={toggle}>
+                      {!value ? '... read more' : 'hide'}
+                    </button>
                   </div>
                 </div>
                 <div className="mt-3">
@@ -287,15 +297,17 @@ const ProductView = ({ product }): JSX.Element => {
                   {({ open }) => (
                     <>
                       <Disclosure.Button className="w-full text-left flex justify-between py-4 items-center rounded-sm border-b border-gray-300">
-                        <span className="text-gray-900 text-sm">Available Offers</span>
+                        <div className="flex">
+                          <span className="text-gray-900 text-sm mr-2">Available Offers</span>
+                          <LottieAnimation animationData={offerLottie} height={20} width={20} />
+                        </div>
                         {open ? <MinusIcon className="h-4 w-4" /> : <PlusIcon className="h-4 w-4" />}
                       </Disclosure.Button>
                       <Disclosure.Panel>
-                        <div className="mt-4 text-sm prose text-gray-700">
+                        <div className="mt-4 text-base prose text-gray-700">
                           <ul role="list">
                             <li>
-                              Use coupon code DEC15 at checkout to get an additional 15% off (up to $50) when you buy
-                              new furniture from CasaOne.
+                              Get exclusive discount of <strong>extra 15%</strong> when you purchase on Spacejoy.
                             </li>
                             <li>Use coupon code HOLIDAY75 to get flat $75 off on orders above $999.</li>
                             <li>Get $25 when you refer a friend.</li>
