@@ -149,19 +149,22 @@ export const Shop = ({ initialFilters, assetsList, searchText = '' }): JSX.Eleme
                                   <div
                                     className="flex items-center cursor-pointer"
                                     key={vertical?._id}
-                                    onClick={() => updateFilter(vertical?._id, 'vertical')}
+                                    onClick={(e) => {
+                                      e.preventDefault();
+                                      updateFilter(vertical?._id, 'vertical');
+                                    }}
                                   >
                                     <input
-                                      id="filter-category-0"
-                                      name="category[]"
-                                      value="new-arrivals"
+                                      id={`filter-category-${vertical?._id}`}
+                                      name={`filter-category-${vertical?.name}`}
+                                      value={vertical?.name}
                                       type="checkbox"
                                       className="h-4 w-4 border-gray-300 rounded text-gray-900 focus:ring-gray-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-white cursor-pointer"
                                       checked={vertical?.selected}
                                       readOnly
                                     />
                                     <label
-                                      htmlFor="filter-category-0"
+                                      htmlFor={`filter-category-${vertical?._id}`}
                                       className="ml-3 text-sm text-gray-900 cursor-pointer"
                                     >
                                       {vertical?.name}
@@ -192,19 +195,22 @@ export const Shop = ({ initialFilters, assetsList, searchText = '' }): JSX.Eleme
                                   <div
                                     className="flex items-center cursor-pointer"
                                     key={retailer?._id}
-                                    onClick={() => updateFilter(retailer?._id, 'retailer')}
+                                    onClick={(e) => {
+                                      e.preventDefault();
+                                      updateFilter(retailer?._id, 'retailer');
+                                    }}
                                   >
                                     <input
-                                      id="filter-category-0"
-                                      name="category[]"
-                                      value="new-arrivals"
+                                      id={`filter-category-${retailer?._id}`}
+                                      name={`filter-category-${retailer?.name}`}
+                                      value={retailer?._id}
                                       type="checkbox"
                                       className="h-4 w-4 border-gray-300 rounded text-gray-900 focus:ring-gray-500 focus:ring-1 focus:ring-offset-1 focus:ring-offset-white cursor-pointer"
                                       checked={retailer?.selected}
                                       readOnly
                                     />
                                     <label
-                                      htmlFor="filter-category-0"
+                                      htmlFor={`filter-category-${retailer?._id}`}
                                       className="ml-3 text-sm text-gray-900 cursor-pointer"
                                     >
                                       {retailer?.name}
