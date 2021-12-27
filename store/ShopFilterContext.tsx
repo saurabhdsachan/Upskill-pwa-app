@@ -108,7 +108,7 @@ const ShopFilterContextProvider = ({ children }) => {
   const updateFilter = (itemId, type) => {
     // update filters for UI changes and update query params
 
-    const updatedFilters = {
+    let updatedFilters = {
       ...filters,
       [type]: filters[type]?.map((item) => {
         if (item?._id === itemId) {
@@ -121,6 +121,14 @@ const ShopFilterContextProvider = ({ children }) => {
         }
       }),
     };
+    if (type === 'subCategory') {
+      updatedFilters = {
+        ...updatedFilters,
+        vertical: [...updatedFilters?.vertical]?.map((item) => {
+          return { ...item, selected: false };
+        }),
+      };
+    }
 
     setFilters(updatedFilters);
 

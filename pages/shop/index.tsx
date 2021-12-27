@@ -1,3 +1,4 @@
+import EmptyState from '@components/Shared/EmptyState';
 import Layout from '@components/Shared/Layout';
 import Pagination from '@components/Shared/Pagination';
 import ProductCard from '@components/Shop/ProductCard';
@@ -12,6 +13,25 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useEffect, useMemo, useState } from 'react';
+
+const ProductList = ({ list }) => {
+  return (
+    <>
+      {list?.length ? (
+        <>
+          {list?.map((item) => (
+            <ProductCard product={item} key={item._id} />
+          ))}
+        </>
+      ) : (
+        <div className="col-span-5">
+          <EmptyState title="No matching products found" message="Try changing the filters" />
+        </div>
+      )}
+    </>
+  );
+};
+
 export const Shop = ({ initialFilters, assetsList, searchText = '' }): JSX.Element => {
   const [currentFilters, setCurrentFilters] = useState({ ...defaultFilters, ...initialFilters });
   const { currentRenderList, buttons, isFetching } = usePagination(
@@ -30,12 +50,14 @@ export const Shop = ({ initialFilters, assetsList, searchText = '' }): JSX.Eleme
     assetsList?.count,
     internalPages?.Shop?.NUM_OF_BUTTONS,
     internalPages?.Shop?.DEFAULT_PAGE_SIZE,
-    'hits'
+    'hits',
+    initialFilters
   );
   const {
     filters: { retailer: retailerList = [], subCategory, vertical },
     updateFilter,
   } = useShopFilterContext();
+
   const router = useRouter();
   const lastQueryItems = React.useRef(Object.keys(router?.query));
   const verticalList = useMemo(() => {
@@ -63,6 +85,7 @@ export const Shop = ({ initialFilters, assetsList, searchText = '' }): JSX.Eleme
       }
     }
   }, [router?.query]);
+
   return (
     <Layout>
       <Head>
@@ -208,9 +231,7 @@ export const Shop = ({ initialFilters, assetsList, searchText = '' }): JSX.Eleme
                     </>
                   ) : (
                     <>
-                      {currentRenderList?.map((item) => (
-                        <ProductCard product={item} key={item._id} />
-                      ))}
+                      <ProductList list={currentRenderList} />
                     </>
                   )}
                 </div>
@@ -243,6 +264,7 @@ export async function getServerSideProps(context) {
   }, {});
   const allFilters = { ...defaultFilters, ...payload };
   const assetsList = await fetchAssetList({ filters: { ...allFilters } }, context);
+
   return {
     props: {
       initialFilters: payload,

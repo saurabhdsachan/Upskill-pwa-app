@@ -72,7 +72,8 @@ const CollectionList: React.FC<CollectionListInterface> = ({ feedData }) => {
     totalRecords,
     internalPages.InteriorDesigns.DEFAULT_PAGINATION_BUTTON_COUNT,
     internalPages.Collection.DEFAULT_PAGE_SIZE,
-    'list'
+    'list',
+    {}
   );
 
   return (

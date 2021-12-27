@@ -1,6 +1,7 @@
 import fetcher from '@utils/fetcher';
+import { arraysEqual } from '@utils/helpers';
 import { useRouter } from 'next/router';
-import { useEffect, useReducer, useState } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 
 const initialState = {
   list: {
@@ -77,7 +78,7 @@ const fetchMoreData = async (api, skip, limit, field) => {
   }
 };
 
-const usePagination = (api, initialData, totalRecords, paginationButtonCount, pageSize, flow) => {
+const usePagination = (api, initialData, totalRecords, paginationButtonCount, pageSize, flow, initialFilters) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [currentBtnWindow, setCurrentBtnWindow] = useState([]);
 
@@ -113,15 +114,23 @@ const usePagination = (api, initialData, totalRecords, paginationButtonCount, pa
     dispatch({ type: 'UPDATE_CURRENT_PAGE', payload: Math.max(stepNumber, 0) });
   }, [router]);
 
+  const lastNewFilter = React.useRef(initialFilters);
+
   useEffect(() => {
     async function fetchData(...args) {
       const newData = await fetchMoreData.apply(null, [...args]);
       dispatch({ type: 'ADD_TO_LIST', payload: { data: newData, currentPage } });
       dispatch({ type: 'SET_LOADING' });
     }
-
-    dispatch({ type: 'SET_LOADING' });
-    fetchData(api, currentPage * pageSize, pageSize, flow);
+    if (
+      !arraysEqual(api?.payload?.filters?.retailer || [], lastNewFilter?.current?.retailer || []) ||
+      !arraysEqual(api?.payload?.filters?.subcategory || [], lastNewFilter?.current?.subcategory || []) ||
+      !arraysEqual(api?.payload?.filters?.vertical || [], lastNewFilter?.current?.vertical || [])
+    ) {
+      dispatch({ type: 'SET_LOADING' });
+      fetchData(api, currentPage * pageSize, pageSize, flow);
+      lastNewFilter.current = api?.payload?.filters;
+    }
   }, [
     api?.payload?.filters?.price,
     api?.payload?.filters?.retailer,
