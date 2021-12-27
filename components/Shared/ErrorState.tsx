@@ -1,3 +1,4 @@
+import errorLottie from '@public/lotties/error.json';
 import React from 'react';
 import LottieAnimation from './LottieAnimation';
 import SectionTitle from './SectionTitle';
@@ -5,8 +6,8 @@ import SectionTitle from './SectionTitle';
 const ErrorState = ({ status }: { status: number }): JSX.Element => {
   return (
     <div className="container mx-auto px-4">
-      <div className="h-1/3 w-1/3 mx-auto mt-28">
-        <LottieAnimation />
+      <div className="w-1/3 mx-auto mt-28">
+        <LottieAnimation animationData={errorLottie} />
       </div>
       <SectionTitle
         title="There is an error"
