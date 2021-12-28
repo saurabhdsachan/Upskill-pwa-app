@@ -7,9 +7,10 @@ import { internalPages } from '@utils/config';
 import { publicRoutes } from '@utils/constants';
 import fetcher from '@utils/fetcher';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import Head from 'next/head';
 import React from 'react';
 
-interface CollectionPage {
+type CollectionPage = {
   designFeedData: {
     list: [];
     count: number;
@@ -25,11 +26,15 @@ interface CollectionPage {
     metaTitle?: string;
     metaDescription?: string;
   };
-}
+};
 
 const collectionView: React.FC<CollectionPage> = ({ designFeedData, collectionData }) => {
   return (
     <Layout>
+      <Head>
+        <title>{collectionData?.name} | Spacejoy</title>
+        <base href="/" />
+      </Head>
       <Layout.Banner />
       <Layout.Header />
       <Layout.Body>

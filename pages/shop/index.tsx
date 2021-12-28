@@ -96,7 +96,7 @@ export const Shop = ({ initialFilters, assetsList, searchText = '' }): JSX.Eleme
       <Layout.Header />
       <Layout.Body>
         <div className="bg-gray-100 min-h-screen">
-          <main className="container p-4 mx-auto">
+          <div className="container p-4 mx-auto">
             <nav className="flex mb-4" aria-label="Breadcrumb">
               <ol role="list" className="flex items-center space-x-4">
                 <li>
@@ -113,7 +113,7 @@ export const Shop = ({ initialFilters, assetsList, searchText = '' }): JSX.Eleme
                   <div className="flex items-center">
                     <ChevronRightIcon className="w-4 h-4 text-gray-500" />
                     <Link href="/shop">
-                      <a className="ml-4 text-xs font-medium text-gray-500 hover:text-gray-700">Shop</a>
+                      <a className="ml-2 text-xs font-medium text-gray-500 hover:text-gray-700">Shop</a>
                     </Link>
                   </div>
                 </li>
@@ -122,7 +122,7 @@ export const Shop = ({ initialFilters, assetsList, searchText = '' }): JSX.Eleme
                     <ChevronRightIcon className="w-4 h-4 text-gray-500" />
                     <a
                       href="#"
-                      className="ml-4 text-xs font-medium text-gray-500 hover:text-gray-700"
+                      className="ml-2 text-xs font-medium text-gray-500 hover:text-gray-700"
                       aria-current="page"
                     >
                       Listing
@@ -248,7 +248,7 @@ export const Shop = ({ initialFilters, assetsList, searchText = '' }): JSX.Eleme
                 <Pagination buttonList={buttons} />
               </nav>
             </div>
-          </main>
+          </div>
         </div>
       </Layout.Body>
       <Layout.Footer />

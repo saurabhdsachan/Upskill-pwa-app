@@ -85,14 +85,14 @@ const ProductView = ({ product }): JSX.Element => {
   return (
     <Layout>
       <Head>
-        <title>Product Overview | Spacejoy</title>
+        <title>{product?.name} | Spacejoy</title>
         <base href="/" />
       </Head>
       <Layout.Banner />
       <Layout.Header />
       <Layout.Body>
         <div className="bg-gray-100">
-          <main className="container p-4 mx-auto">
+          <div className="container p-4 mx-auto">
             <nav className="flex mb-4" aria-label="Breadcrumb">
               <ol role="list" className="flex items-center space-x-4">
                 <li>
@@ -109,7 +109,7 @@ const ProductView = ({ product }): JSX.Element => {
                   <div className="flex items-center">
                     <ChevronRightIcon className="w-4 h-4 text-gray-500" />
                     <Link href="/shop">
-                      <a className="ml-4 text-xs font-medium text-gray-500 hover:text-gray-700">Shop</a>
+                      <a className="ml-2 text-xs font-medium text-gray-500 hover:text-gray-700">Shop</a>
                     </Link>
                   </div>
                 </li>
@@ -118,7 +118,7 @@ const ProductView = ({ product }): JSX.Element => {
                     <ChevronRightIcon className="w-4 h-4 text-gray-500" />
                     <a
                       href="#"
-                      className="ml-4 text-xs font-medium text-gray-500 hover:text-gray-700"
+                      className="ml-2 text-xs font-medium text-gray-500 hover:text-gray-700"
                       aria-current="page"
                     >
                       Listing
@@ -370,7 +370,7 @@ const ProductView = ({ product }): JSX.Element => {
                 )}
               </div>
             </div>
-          </main>
+          </div>
           <div className="container mx-auto px-4">
             <SimilarProducts productId={product?._id} />
             <ProductDesignSet productIds={[product?._id]} />
@@ -381,6 +381,7 @@ const ProductView = ({ product }): JSX.Element => {
     </Layout>
   );
 };
+
 const getAllProducts = async () => {
   return {
     products: [
@@ -391,6 +392,7 @@ const getAllProducts = async () => {
     ],
   };
 };
+
 export async function getStaticPaths() {
   // get all product paths
   const { products } = await getAllProducts();
@@ -402,6 +404,7 @@ export async function getStaticPaths() {
     fallback: 'blocking',
   };
 }
+
 export const getStaticProps = async ({ params }) => {
   const { slug } = params;
   const response = await fetcher({ endPoint: `/v2/asset/${slug}`, method: 'GET' });
@@ -418,4 +421,5 @@ export const getStaticProps = async ({ params }) => {
     };
   }
 };
+
 export default ProductView;
