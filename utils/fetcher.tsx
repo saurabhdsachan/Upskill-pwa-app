@@ -26,6 +26,7 @@ const fetcher = async ({
     const formData = new FormData();
     body.map((file) => formData.append('files', file, file.name));
     delete headers['Content-Type'];
+
     return formData;
   };
   const options =
@@ -54,6 +55,7 @@ const fetcher = async ({
         if (resData.statusCode) {
           return resData;
         }
+
         return { data: resData, statusCode: response.status };
       }
     } catch (error) {
@@ -61,8 +63,10 @@ const fetcher = async ({
       return { statusCode: response.status };
     }
   }
+
   return {
     statusCode: response.status,
+
     status: response.statusText,
   };
 };

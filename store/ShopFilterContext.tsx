@@ -76,6 +76,7 @@ const ShopFilterContextProvider = ({ children }) => {
           if (currentSubCatQuery?.indexOf(item?.name) > -1) {
             return { ...item, type: 'subCategory', selected: true };
           }
+
           return { ...item, type: 'subCategory', selected: false };
         });
       const verticals = [...subCategories]
@@ -88,6 +89,7 @@ const ShopFilterContextProvider = ({ children }) => {
           if (currentVerticalQuery?.indexOf(item?.name) > -1) {
             return { ...item, type: 'vertical', selected: true };
           }
+
           return { ...item, type: 'vertical', selected: false };
         });
 
@@ -98,12 +100,13 @@ const ShopFilterContextProvider = ({ children }) => {
           if (currentRetailerQuery?.indexOf(item?.name) > -1) {
             return { ...item, type: 'retailer', selected: true };
           }
+
           return { ...item, type: 'retailer', selected: false };
         });
 
       setFilters({ category: categories, subCategory: subCategories, vertical: verticals, retailer: retailers });
     })();
-  }, []);
+  }, [router?.query?.subcategory, router?.query?.vertical, router?.query?.retailer]);
 
   const updateFilter = (itemId, type) => {
     // update filters for UI changes and update query params
@@ -117,6 +120,7 @@ const ShopFilterContextProvider = ({ children }) => {
           if (type === 'retailer' || type === 'vertical') {
             return { ...item };
           }
+
           return { ...item, selected: false };
         }
       }),
@@ -141,6 +145,7 @@ const ShopFilterContextProvider = ({ children }) => {
           })
           .join('::');
       }
+
       return acc;
     }, {});
 
@@ -153,6 +158,7 @@ const ShopFilterContextProvider = ({ children }) => {
       { shallow: true }
     );
   };
+
   return (
     <ShopFilterContext.Provider
       value={{
