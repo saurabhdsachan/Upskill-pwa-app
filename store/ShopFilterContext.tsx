@@ -18,6 +18,7 @@ interface RetailerType {
   _id: string;
   selected: boolean;
   name: string;
+  preferred?: boolean;
 }
 interface SubcategoryType {
   _id: string;
@@ -41,8 +42,16 @@ interface FilterType {
   category: Array<CategoryType>;
   vertical: Array<VerticalType>;
 }
+interface AssetFilterType {
+  retailers: {
+    list: Array<RetailerType>;
+    count?: number;
+  };
+  categoryTree: Array<CategoryType>;
+}
 
 const ShopFilterContextProvider = ({ children }) => {
+  const [shopFilters, setShopFilters] = useState<AssetFilterType>();
   const [filters, setFilters] = useState<FilterType>({
     retailer: [{ _id: '', name: '', selected: false }],
     subCategory: [{ _id: '', verticals: [{ _id: '', name: '', selected: false, subcategory: '' }], selected: false }],
@@ -62,88 +71,77 @@ const ShopFilterContextProvider = ({ children }) => {
 
   useEffect(() => {
     (async () => {
-      const shopFilters = await fetchAllFilters(false);
-      const categories = [...shopFilters?.categoryTree].map((item) => {
-        return { ...item, type: 'category' };
+      const allFilters = await fetchAllFilters(false);
+      setShopFilters(allFilters);
+    })();
+  }, []);
+
+  useEffect(() => {
+    const categories = [...(shopFilters?.categoryTree || [])].map((item) => {
+      return { ...item, type: 'category' };
+    });
+
+    const subCategories = [...(shopFilters?.categoryTree || [])]
+      ?.reduce((acc, category) => {
+        return [...acc, ...category?.subCategories];
+      }, [])
+      .map((item) => {
+        const currentSubCatQuery = ((router?.query?.subcategory || '') as string).split('::');
+        if (currentSubCatQuery?.indexOf(item?.name) > -1) {
+          return { ...item, type: 'subCategory', selected: true };
+        }
+
+        return { ...item, type: 'subCategory', selected: false };
+      });
+    const verticals = [...subCategories]
+      ?.reduce((acc, subCategory) => {
+        return [...acc, ...subCategory?.verticals];
+      }, [])
+      .map((item) => {
+        const currentVerticalQuery = ((router?.query?.vertical || '') as string).split('::');
+
+        if (currentVerticalQuery?.indexOf(item?.name) > -1) {
+          return { ...item, type: 'vertical', selected: true };
+        }
+
+        return { ...item, type: 'vertical', selected: false };
       });
 
-      const subCategories = [...shopFilters?.categoryTree]
-        ?.reduce((acc, category) => {
-          return [...acc, ...category?.subCategories];
-        }, [])
-        .map((item) => {
-          const currentSubCatQuery = ((router?.query?.subcategory || '') as string).split('::');
-          if (currentSubCatQuery?.indexOf(item?.name) > -1) {
-            return { ...item, type: 'subCategory', selected: true };
-          }
+    const retailers = shopFilters?.retailers?.list
+      ?.filter((item) => item.preferred)
+      .map((item) => {
+        const currentRetailerQuery = ((router?.query?.retailer || '') as string).split('::');
+        if (currentRetailerQuery?.indexOf(item?.name) > -1) {
+          return { ...item, type: 'retailer', selected: true };
+        }
 
-          return { ...item, type: 'subCategory', selected: false };
-        });
-      const verticals = [...subCategories]
-        ?.reduce((acc, subCategory) => {
-          return [...acc, ...subCategory?.verticals];
-        }, [])
-        .map((item) => {
-          const currentVerticalQuery = ((router?.query?.vertical || '') as string).split('::');
+        return { ...item, type: 'retailer', selected: false };
+      });
 
-          if (currentVerticalQuery?.indexOf(item?.name) > -1) {
-            return { ...item, type: 'vertical', selected: true };
-          }
-
-          return { ...item, type: 'vertical', selected: false };
-        });
-
-      const retailers = shopFilters?.retailers?.list
-        ?.filter((item) => item.preferred)
-        .map((item) => {
-          const currentRetailerQuery = ((router?.query?.retailer || '') as string).split('::');
-          if (currentRetailerQuery?.indexOf(item?.name) > -1) {
-            return { ...item, type: 'retailer', selected: true };
-          }
-
-          return { ...item, type: 'retailer', selected: false };
-        });
-
-      setFilters({ category: categories, subCategory: subCategories, vertical: verticals, retailer: retailers });
-    })();
-  }, [router?.query?.subcategory, router?.query?.vertical, router?.query?.retailer]);
+    setFilters({ category: categories, subCategory: subCategories, vertical: verticals, retailer: retailers });
+  }, [router?.query?.subcategory, router?.query?.vertical, router?.query?.retailer, shopFilters]);
 
   const updateFilter = (itemId, type) => {
-    // update filters for UI changes and update query params
+    const chosenFilterObject = filters[type]?.filter((item) => item?._id === itemId);
+    const filtersOfType = ((router?.query[type] || '') as string).split('::');
 
-    let updatedFilters = {
-      ...filters,
-      [type]: filters[type]?.map((item) => {
-        if (item?._id === itemId) {
-          return { ...item, selected: !item?.selected };
-        } else {
-          if (type === 'retailer' || type === 'vertical') {
-            return { ...item };
-          }
-
-          return { ...item, selected: false };
-        }
-      }),
-    };
-    if (type === 'subCategory') {
-      updatedFilters = {
-        ...updatedFilters,
-        vertical: [...updatedFilters?.vertical]?.map((item) => {
-          return { ...item, selected: false };
-        }),
-      };
+    const currentFiltersOfSameType = filtersOfType?.length === 1 && !filtersOfType[0]?.length ? [] : filtersOfType;
+    const index = currentFiltersOfSameType.indexOf(chosenFilterObject[0]?.name);
+    if (index > -1) {
+      currentFiltersOfSameType.splice(index, 1);
+    } else {
+      currentFiltersOfSameType.push(chosenFilterObject[0]?.name);
     }
 
-    setFilters(updatedFilters);
+    const queryType = type === 'subCategory' ? 'subcategory' : type;
 
-    const newQueryParams = Object.keys(updatedFilters)?.reduce((acc, currValue) => {
-      const selectedFilters = updatedFilters[currValue]?.filter((item) => item?.selected);
-      if (selectedFilters?.length > 0) {
-        acc[currValue.toLowerCase()] = selectedFilters
-          ?.map((current) => {
-            return current?.name;
-          })
-          .join('::');
+    const updatedQueryParam = {
+      [queryType]: currentFiltersOfSameType.join('::'),
+    };
+    const finalQuery = { ...router?.query, ...updatedQueryParam };
+    const updated = Object.keys(finalQuery)?.reduce((acc, curr) => {
+      if (finalQuery[curr]?.length) {
+        acc[curr] = finalQuery[curr];
       }
 
       return acc;
@@ -151,7 +149,7 @@ const ShopFilterContextProvider = ({ children }) => {
 
     router.push(
       {
-        query: { ...newQueryParams },
+        query: { ...updated },
         pathname: '/shop',
       },
       undefined,
