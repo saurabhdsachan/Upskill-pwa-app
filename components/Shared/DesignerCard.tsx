@@ -25,7 +25,7 @@ const DesignerCard = () => {
         </div>
       </div>
       <p className="text-sm text-gray-500 mb-6">
-        Based in Pittsburgh, Chloe's experience in interior design, merchandising and product development helps her
+        Based in Pittsburgh, Chloe&apos;s experience in interior design, merchandising and product development helps her
         bring a keen eye to her designs. Chloe enjoys designing spaces that are warm, inviting and functional and loves
         adding rustic touches into her designs.
       </p>
