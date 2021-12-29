@@ -24,6 +24,7 @@ const Error = ({ statusCode }: { statusCode: number }): JSX.Element => {
 
 Error.getInitialProps = ({ res, err }) => {
   const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
+
   return { statusCode };
 };
 

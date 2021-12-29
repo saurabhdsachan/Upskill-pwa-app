@@ -14,6 +14,7 @@ const ShopCategories = () => {
     while (arr.length) {
       res.push(arr.splice(0, 2));
     }
+
     return res;
   }, [category]);
 

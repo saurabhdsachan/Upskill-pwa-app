@@ -76,6 +76,7 @@ export const Shop = ({ initialFilters, assetsList, searchText = '' }): JSX.Eleme
       lastQueryItems.current = queryItems;
       const appliedFilters = queryItems?.reduce((acc, currValue) => {
         acc[currValue] = (router?.query[currValue] as string).split('::');
+
         return acc;
       }, {});
       setCurrentFilters({ ...defaultFilters, ...appliedFilters });
@@ -266,6 +267,7 @@ export async function getServerSideProps(context) {
         acc[item] = query[item].split('::');
       }
     }
+
     return acc;
   }, {});
   const allFilters = { ...defaultFilters, ...payload };

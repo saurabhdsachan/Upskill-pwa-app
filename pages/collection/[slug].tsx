@@ -60,6 +60,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = slugs.map((slug) => ({
     params: { slug },
   }));
+
   return { paths, fallback: true };
 };
 
@@ -77,6 +78,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     const { data: designData = {}, statusCode: designResStatus } = designRes;
     if (designResStatus < 301) {
       const { list: designList = [] } = designData;
+
       return {
         props: {
           designFeedData: { list: designList, count: 500, filters: data?.searchKey },
@@ -99,6 +101,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       };
     }
   }
+
   return {
     notFound: true,
   };

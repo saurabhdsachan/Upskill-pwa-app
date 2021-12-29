@@ -141,6 +141,7 @@ export async function getStaticPaths() {
   const paths = products.map((product) => ({
     params: { slug: product?.slug },
   }));
+
   return {
     paths,
     fallback: 'blocking',

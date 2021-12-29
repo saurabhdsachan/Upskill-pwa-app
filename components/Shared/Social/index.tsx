@@ -58,6 +58,7 @@ const title = 'GitHub';
 
 const SocialShare = () => {
   const router = useRouter();
+
   return (
     <div className="flex">
       <div className="text-center">

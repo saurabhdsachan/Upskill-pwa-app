@@ -5,6 +5,7 @@ import React, { Fragment } from 'react';
 
 function NextLink(props) {
   let { href, active, children, ...rest } = props;
+
   return (
     <Link href={href}>
       <a className={`${active && 'bg-blue-500'}`} {...rest}>

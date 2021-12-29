@@ -76,6 +76,7 @@ interface DesignListInterface {
 
 const CollectionList: React.FC<DesignListInterface> = ({ feedData }) => {
   const { list } = feedData;
+
   return (
     <section className="interior-design-section">
       <div className="py-4 bg-gray-100">

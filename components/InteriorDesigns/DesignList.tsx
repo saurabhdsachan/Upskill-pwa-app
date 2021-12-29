@@ -26,6 +26,7 @@ const DesignList: React.FC<DesignListInterface> = ({ feedData }) => {
     'list',
     {}
   );
+
   return (
     <div className="bg-white">
       <div className="container mx-auto px-4">

@@ -4,6 +4,7 @@ import { CommonSEO } from '@utils/SEO';
 
 const DefaultSEO: React.FC = () => {
   const { organizationSchema, defaultSEO } = CommonSEO;
+
   return (
     <>
       <DefaultSeo {...defaultSEO} />

@@ -24,6 +24,7 @@ const AffirmCartPrice = ({ totalAmount, flow, affirmType }) => {
       affirm.ui.refresh();
     }
   }, [totalAmount]);
+
   return (
     <AffirmWrapper>
       <small>

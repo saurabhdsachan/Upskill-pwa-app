@@ -25,6 +25,7 @@ const SubNav: React.FC<ModalProps> & StaticComponents = ({
       setSubNavState(value);
     }
   };
+
   return (
     <Transition appear show={subNavHoverState || subNavState} as={Fragment}>
       <Dialog

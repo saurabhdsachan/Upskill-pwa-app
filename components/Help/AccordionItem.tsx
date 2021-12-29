@@ -12,6 +12,7 @@ interface AccordionItemInterface {
 
 const AccordionItem: React.FC<AccordionItemInterface> = ({ data, index }) => {
   const [isOpen, setIsOpen] = useState(false);
+
   return (
     <div className={`${index !== 0 ? 'pt-6' : 'pt-0'}`}>
       <dt className="text-lg">

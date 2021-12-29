@@ -33,6 +33,7 @@ const SEOWrapper = (props: IAppProps): JSX.Element => {
         break;
       }
     }
+
     return jsonLD;
   };
 

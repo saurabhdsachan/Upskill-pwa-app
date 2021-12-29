@@ -56,6 +56,7 @@ export const getStaticProps = async () => {
       description: item?.description,
     };
   });
+
   return {
     props: {
       pricingData,

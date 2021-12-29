@@ -29,6 +29,7 @@ export const getStaticProps: GetStaticProps<CollectionListInterface> = async () 
     method: 'GET',
   });
   const { data: mainList } = res;
+
   return {
     props: {
       feedData: { list: mainList, count: 500 },

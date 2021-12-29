@@ -82,6 +82,7 @@ const ProductView = ({ product }): JSX.Element => {
   const productImages = useMemo(() => {
     return [...(product?.renderImages || []), ...product?.productImages];
   }, [product]);
+
   return (
     <Layout>
       <Head>
@@ -399,6 +400,7 @@ export async function getStaticPaths() {
   const paths = products.map((product) => ({
     params: { slug: product?.slug },
   }));
+
   return {
     paths,
     fallback: 'blocking',
@@ -409,17 +411,8 @@ export const getStaticProps = async ({ params }) => {
   const { slug } = params;
   const response = await fetcher({ endPoint: `/v2/asset/${slug}`, method: 'GET' });
   const { data, statusCode } = response;
-  if (statusCode < 300) {
-    return {
-      props: {
-        product: data,
-      },
-    };
-  } else {
-    return {
-      notFound: true,
-    };
-  }
+
+  return statusCode < 300 ? { props: { product: data } } : { notFound: true };
 };
 
 export default ProductView;
