@@ -24,8 +24,10 @@ const ProductList = ({ list }) => {
           ))}
         </>
       ) : (
-        <div className="col-span-5">
-          <EmptyState title="No matching products found" message="Try changing the filters" />
+        <div className="col-span-5 bg-white rounded h-full relative">
+          <div className=" sticky top-0">
+            <EmptyState title="No matching products found" message="Try changing the filters" />
+          </div>
         </div>
       )}
     </>
@@ -59,7 +61,9 @@ export const Shop = ({ initialFilters, assetsList, searchText = '' }): JSX.Eleme
   } = useShopFilterContext();
 
   const router = useRouter();
+
   const lastQueryItems = React.useRef(Object.keys(router?.query));
+
   const verticalList = useMemo(() => {
     const selectedSubCategories = subCategory?.filter((item) => item?.selected);
     if (selectedSubCategories?.length) {
@@ -70,6 +74,7 @@ export const Shop = ({ initialFilters, assetsList, searchText = '' }): JSX.Eleme
       return [];
     }
   }, [subCategory, vertical]);
+
   useEffect(() => {
     const queryItems = Object.keys(router?.query);
     if (queryItems?.length) {
@@ -143,7 +148,7 @@ export const Shop = ({ initialFilters, assetsList, searchText = '' }): JSX.Eleme
                             <h3 className="text-gray-700">Filters</h3>
                             {open ? <MinusIcon className="h-3 w-3" /> : <PlusIcon className="h-3 w-3" />}
                           </Disclosure.Button>
-                          <Disclosure.Panel>
+                          <Disclosure.Panel className="mb-8">
                             <div className="space-y-2">
                               {verticalList?.map((vertical) => {
                                 return (
@@ -227,9 +232,8 @@ export const Shop = ({ initialFilters, assetsList, searchText = '' }): JSX.Eleme
                   )}
                 </form>
               </div>
-
               <div className="col-span-4 rounded">
-                <div className="grid grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-1">
+                <div className="grid grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-1 h-full">
                   {isFetching ? (
                     <>
                       {[...Array(internalPages?.Shop?.DEFAULT_PAGE_SIZE)].map((_d, _i) => {
@@ -237,9 +241,7 @@ export const Shop = ({ initialFilters, assetsList, searchText = '' }): JSX.Eleme
                       })}
                     </>
                   ) : (
-                    <>
-                      <ProductList list={currentRenderList} />
-                    </>
+                    <ProductList list={currentRenderList} />
                   )}
                 </div>
               </div>

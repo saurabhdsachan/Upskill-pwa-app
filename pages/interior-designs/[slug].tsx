@@ -1,48 +1,16 @@
+import Breadcrumb from '@components/InteriorDesigns/Breadcrumb';
 import ImageGrid from '@components/InteriorDesigns/ImageGrid';
+import { DesignViewInterface } from '@components/InteriorDesigns/types';
+import DesignerCard from '@components/Shared/DesignerCard';
 import Layout from '@components/Shared/Layout';
 import PreFooter from '@components/Shared/PreFooter';
-import SocialShare from '@components/Shared/Social';
-import { ChevronRightIcon, HomeIcon } from '@heroicons/react/outline';
+import ProductCard from '@components/Shop/ProductCard';
+import ProductCardDimmer from '@components/Shop/ProductCardDimmer';
 import fetcher from '@utils/fetcher';
 import Head from 'next/head';
-import Link from 'next/link';
 import React from 'react';
 
-type Asset = {
-  price: number;
-  currency: string;
-  retailer: string;
-  _id: string;
-  name: string;
-  retailLink: string;
-  cdn: string;
-  id: string;
-};
-
-type DesignView = {
-  design: {
-    _id: string;
-    name: string;
-    longDescription: string;
-    metaDescription: string;
-    description: string;
-    metaTitle: string;
-    altTag: string;
-    slug: string;
-    designCostEstimate: number;
-    cdnRender: Array<string>;
-    assets: Array<Asset>;
-    tags: Array<string>;
-    room: {
-      roomType: string;
-      slug: string;
-      _id: string;
-    };
-    publishedDate: string;
-  };
-};
-
-const DesignView: React.FC<DesignView> = ({ design }) => {
+const DesignView: React.FC<DesignViewInterface> = ({ design }) => {
   return (
     <Layout>
       <Head>
@@ -52,56 +20,48 @@ const DesignView: React.FC<DesignView> = ({ design }) => {
       <Layout.Header />
       <Layout.Body>
         <div className="bg-gray-100">
-          <div className="container mx-auto p-4">
-            <nav className="flex mb-4" aria-label="Breadcrumb">
-              <ol role="list" className="flex items-center space-x-4">
-                <li>
-                  <div>
-                    <Link href="/">
-                      <a className="text-gray-400 hover:text-gray-500">
-                        <HomeIcon className="w-4 h-4" />
-                        <span className="sr-only">Home</span>
-                      </a>
-                    </Link>
-                  </div>
-                </li>
-                <li>
-                  <div className="flex items-center">
-                    <ChevronRightIcon className="w-4 h-4 text-gray-500" />
-                    <Link href="/interior-designs">
-                      <a className="ml-2 text-xs font-medium text-gray-500 hover:text-gray-700 capitalize">Ideas</a>
-                    </Link>
-                  </div>
-                </li>
-                <li>
-                  <div className="flex items-center">
-                    <ChevronRightIcon className="w-4 h-4 text-gray-500" />
-                    <Link href={`/collection/${design?.room?.slug}`}>
-                      <a className="ml-2 text-xs font-medium text-gray-500 hover:text-gray-700 capitalize">
-                        {design?.room?.roomType}
-                      </a>
-                    </Link>
-                  </div>
-                </li>
-                <li>
-                  <div className="flex items-center">
-                    <ChevronRightIcon className="w-4 h-4 text-gray-500" />
-                    <a
-                      className="ml-2 text-xs font-medium text-gray-500 hover:text-gray-700 capitalize"
-                      aria-current="page"
-                    >
-                      {design?.name}
-                    </a>
-                  </div>
-                </li>
-              </ol>
-            </nav>
+          <div className="container mx-auto px-4">
+            <Breadcrumb design={design} />
+            <h2 className="my-8 text-3xl tracking-wide">{design?.name}</h2>
             <ImageGrid images={design?.cdnRender} />
-            <div className="my-8">
-              <h2 className="mt-2 text-3xl font-bold tracking-tight text-gray-900">{design?.name}</h2>
-              <p className="text-gray-700 mt-2">{design?.description}</p>
+            <h3 className="text-2xl tracking-wide text-gray-700 mt-20 mb-8">Shop the products featured in this room</h3>
+            <div className="my-8 flex space-x-8">
+              <div className="w-3/4">
+                <div className="grid grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-1 h-full">
+                  {design?.assets?.length === 0 ? (
+                    <>
+                      {[...Array(28)].map((_d, _i) => {
+                        return <ProductCardDimmer key={_i} />;
+                      })}
+                    </>
+                  ) : (
+                    <>
+                      {design?.assets?.map((asset, index) => {
+                        return (
+                          <ProductCard
+                            key={`${asset.asset._id}-${index}`}
+                            product={{
+                              ...asset?.asset,
+                              msrp: asset?.asset?.price,
+                              imageUrl: `https://res.cloudinary.com/spacejoy/image/upload/${asset?.asset?.cdn}`,
+                            }}
+                          />
+                        );
+                      })}
+                    </>
+                  )}
+                </div>
+              </div>
+              <div className="w-1/4">
+                <div className="sticky top-28">
+                  <DesignerCard />
+                  <div className="bg-white rounded-lg p-4 lg:p-8 mt-8">
+                    <h3 className="text-lg mb-4">About the Design</h3>
+                    <p className="text-sm text-gray-500 mb-6">{design?.description}</p>
+                  </div>
+                </div>
+              </div>
             </div>
-            <SocialShare />
             <PreFooter />
           </div>
         </div>

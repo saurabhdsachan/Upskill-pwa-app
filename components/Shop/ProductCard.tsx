@@ -9,7 +9,7 @@ type ProductCardType = {
     imageUrl: string;
     retailer: string;
     name: string;
-    displayPrice: string;
+    displayPrice?: string;
     price: number;
     msrp: number;
   };
@@ -20,7 +20,7 @@ const ProductCard = ({ product }: ProductCardType) => (
     <Link href={`/product-view/${product?._id}`}>
       <a>
         <div className="bg-white p-4 xl:p-8 rounded-lg h-full">
-          <div className="w-full mb-2 aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
+          <div className="w-full mb-2 aspect-w-7 aspect-h-8">
             <Image
               src={product?.imageUrl}
               alt={product?.name}
