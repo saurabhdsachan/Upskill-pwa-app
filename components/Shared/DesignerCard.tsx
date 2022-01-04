@@ -4,7 +4,7 @@ import React from 'react';
 
 const DesignerCard = () => {
   return (
-    <div className="bg-white rounded-lg p-4 lg:p-8">
+    <div className="bg-white rounded-lg p-4 2xl:p-8">
       <h3 className="text-lg mb-4">About the Designer</h3>
       <div className="flex space-x-4 mb-4 items-center">
         <div>

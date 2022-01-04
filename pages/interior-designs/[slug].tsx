@@ -25,9 +25,9 @@ const DesignView: React.FC<DesignViewInterface> = ({ design }) => {
             <h2 className="my-8 text-3xl tracking-wide">{design?.name}</h2>
             <ImageGrid images={design?.cdnRender} />
             <h3 className="text-2xl tracking-wide text-gray-700 mt-20 mb-8">Shop the products featured in this room</h3>
-            <div className="my-8 flex space-x-8">
-              <div className="w-3/4">
-                <div className="grid grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-1 h-full">
+            <div className="my-8 flex space-x-4 2xl:space-x-8">
+              <div className="w-3/5 xl:w-3/4">
+                <div className="grid grid-cols-2 xl:grid-cols-4 2xl:grid-cols-4 gap-1 h-full">
                   {design?.assets?.length === 0 ? (
                     <>
                       {[...Array(28)].map((_d, _i) => {
@@ -52,10 +52,10 @@ const DesignView: React.FC<DesignViewInterface> = ({ design }) => {
                   )}
                 </div>
               </div>
-              <div className="w-1/4">
-                <div className="sticky top-28">
+              <div className="w-2/5 xl:w-1/4">
+                <div className="sticky top-24 2xl:top-28">
                   <DesignerCard />
-                  <div className="bg-white rounded-lg p-4 lg:p-8 mt-8">
+                  <div className="bg-white rounded-lg p-4 2xl:p-8 mt-4 2xl:mt-8">
                     <h3 className="text-lg mb-4">About the Design</h3>
                     <p className="text-sm text-gray-500 mb-6">{design?.description}</p>
                   </div>

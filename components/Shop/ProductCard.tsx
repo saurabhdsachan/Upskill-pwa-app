@@ -19,8 +19,8 @@ const ProductCard = ({ product }: ProductCardType) => (
   <div>
     <Link href={`/product-view/${product?._id}`}>
       <a>
-        <div className="bg-white p-4 xl:p-8 rounded-lg h-full">
-          <div className="w-full mb-2 aspect-w-7 aspect-h-8">
+        <div className="bg-white p-4 2xl:p-8 rounded-lg h-full">
+          <div className="w-full mb-2 aspect-w-1 aspect-h-1">
             <Image
               src={product?.imageUrl}
               alt={product?.name}
@@ -32,7 +32,7 @@ const ProductCard = ({ product }: ProductCardType) => (
           </div>
           <small className="mt-4 text-xs text-gray-500">{product?.retailer}</small>
           <h3 className="text-md text-gray-700 overflow-ellipsis line-clamp-2">{product?.name}</h3>
-          <p className="text-lg font-medium text-gray-900">
+          <p className="text-lg font-medium text-gray-900 mt-1">
             <span>${product?.displayPrice || product?.price}</span>
             {product?.msrp && product?.msrp > 0 && product?.msrp > product?.price && (
               <small className="text-sm text-gray-500 line-through inline-block ml-2">${product?.msrp}</small>
