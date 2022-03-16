@@ -228,7 +228,7 @@ const login = () => {
             <div className="relative w-0 flex-1 bg-gray-50">
               <Image
                 className="inset-0 h-full w-full object-cover rounded-r-lg xl:rounded-r-xl filter contrast-115 brightness-110"
-                src="https://images.unsplash.com/photo-1606744888344-493238951221?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1200"
+                src="https://images.unsplash.com/photo-1606744888344-493238951221?auto=format&fit=crop&w=1200"
                 alt="banner"
                 layout="fill"
               />

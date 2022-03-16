@@ -43,7 +43,7 @@ const DesignView: React.FC<DesignViewInterface> = ({ design }) => {
                             product={{
                               ...asset?.asset,
                               msrp: asset?.asset?.price,
-                              imageUrl: `https://res.cloudinary.com/spacejoy/image/upload/${asset?.asset?.cdn}`,
+                              imageUrl: `https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto/fl_lossy,q_auto/${asset?.asset?.cdn}`,
                             }}
                           />
                         );

@@ -15,8 +15,7 @@ const people = [
     department: 'Optimization',
     role: 'Admin',
     email: 'jane.cooper@example.com',
-    image:
-      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
+    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?&auto=format&fit=facearea&facepad=4&w=600',
   },
   // More people...
 ];
@@ -34,7 +33,7 @@ const career: React.FC = () => {
         <div className="container mx-auto px-4">
           <Image
             className="object-cover rounded-lg"
-            src="https://res.cloudinary.com/spacejoy/image/upload/v1637037796/spj-v2/careers_tqwyqx.jpg"
+            src="https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto,f_auto,w_2000/v1637037796/spj-v2/careers_tqwyqx.webp"
             height="500"
             width="1500"
             alt="career banner"

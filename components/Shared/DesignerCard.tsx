@@ -10,7 +10,7 @@ const DesignerCard = () => {
         <div>
           <Image
             className="object-cover rounded-xl"
-            src="https://res.cloudinary.com/spacejoy/image/upload/v1617712167/web/avatars/Chloe_Lehman_Portrait_-_Chloe_Lehman_ooxhxu.jpg"
+            src="https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto,w_200/v1617712167/web/avatars/Chloe_Lehman_Portrait_-_Chloe_Lehman_ooxhxu.webp"
             alt="Chloe Lehman"
             height="80"
             width="80"

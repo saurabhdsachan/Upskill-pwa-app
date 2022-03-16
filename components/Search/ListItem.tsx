@@ -35,7 +35,7 @@ const ListItem: React.FC<ListItemInterface> = ({ item, active, setSelected, setH
   >
     {item?.type === 'keyword' ? (
       <Image
-        src="https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto/w_700/v1621942704/server/designs/render/60ace1ad7c68df00239a02e0.png"
+        src="https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto/w_700/v1621942704/server/designs/render/60ace1ad7c68df00239a02e0.webp"
         className="rounded-md"
         alt="placeholder"
         height="56"

@@ -6,7 +6,7 @@ const VisualAnimation: React.FC = () => {
     <div className="relative ">
       <Image
         className="filter contrast-125 object-cover"
-        src="https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,f_auto,q_auto,w_1896,h_759/v1622186205/spj-v2/spj-living-room_gyepig.jpg"
+        src="https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto,w_1896,h_759/v1622186205/spj-v2/spj-living-room_gyepig.webp"
         alt="spacejoy happy customer"
         height={'450'}
         width={'1896'}

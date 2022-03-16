@@ -33,7 +33,7 @@ const Parallax = () => (
           >
             <img
               className="w-full h-full object-cover"
-              src="https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,f_auto,q_auto,w_1600/v1622190830/spj-v2/spj-entry-way_h8ep62.jpg"
+              src="https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,f_auto,q_auto,w_1600/v1622190830/spj-v2/spj-entry-way_h8ep62.webp"
               alt="spacejoy Output"
             />
           </Tween>

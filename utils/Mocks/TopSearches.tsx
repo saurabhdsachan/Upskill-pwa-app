@@ -1,7 +1,7 @@
 const TopSearches = [
   {
     id: 1,
-    img: 'https://images.unsplash.com/photo-1523544463628-d873327f5217?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80',
+    img: 'https://images.unsplash.com/photo-1523544463628-d873327f5217?&auto=format&fit=crop&w=150&q=80',
     title: 'eclectic',
     meta: {
       keywords: ['eclectic'],
@@ -12,7 +12,7 @@ const TopSearches = [
   },
   {
     id: 2,
-    img: 'https://images.unsplash.com/photo-1607322851003-f5a88dc5b960?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80',
+    img: 'https://images.unsplash.com/photo-1607322851003-f5a88dc5b960?&auto=format&fit=crop&w=150&q=80',
     title: 'glam',
     meta: {
       keywords: ['glam'],
@@ -23,7 +23,7 @@ const TopSearches = [
   },
   {
     id: 3,
-    img: 'https://images.unsplash.com/photo-1602872029708-84d970d3382b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80',
+    img: 'https://images.unsplash.com/photo-1602872029708-84d970d3382b?&auto=format&fit=crop&w=150&q=80',
     title: 'modern',
     meta: {
       keywords: ['modern'],
@@ -34,7 +34,7 @@ const TopSearches = [
   },
   {
     id: 4,
-    img: 'https://images.unsplash.com/photo-1614518921956-0d7c71b7999d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80',
+    img: 'https://images.unsplash.com/photo-1614518921956-0d7c71b7999d?&auto=format&fit=crop&w=150&q=80',
     title: 'home office',
     meta: {
       keywords: ['home office'],

@@ -11,7 +11,7 @@ const CustomerStoriesNav = () => {
             <div className=" bg-gray-200 rounded-xl">
               <Image
                 className="rounded-xl filter contrast-125"
-                src="https://res.cloudinary.com/spacejoy/image/upload/c_fill,g_face,h_300,w_300/v1624244229/web/avatars/Monica-Hall_ld1m5a.jpg"
+                src="https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto,c_fill,g_face,h_300,w_300/v1624244229/web/avatars/Monica-Hall_ld1m5a.webp"
                 alt="spacejoy happy customer"
                 height={'300'}
                 width={'300'}
@@ -45,7 +45,7 @@ const CustomerStoriesNav = () => {
           <div className="flex h-full p-4 flex-col justify-end">
             <div>
               <Image
-                src="https://res.cloudinary.com/spacejoy/image/upload/h_300,w_300/v1622188242/spj-v2/3d-icons/spj-25_dhewua.png"
+                src="https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto,h_300,w_300/v1622188242/spj-v2/3d-icons/spj-25_dhewua.webp"
                 alt="No markups"
                 height={'55'}
                 width={'75'}
@@ -65,7 +65,7 @@ const CustomerStoriesNav = () => {
           <div className="flex h-full p-4 flex-col justify-end">
             <div className="text-left">
               <Image
-                src="https://res.cloudinary.com/spacejoy/image/upload/h_300,w_300/v1622188232/spj-v2/3d-icons/spj-13_khzmql.png"
+                src="https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto,h_300,w_300/v1622188232/spj-v2/3d-icons/spj-13_khzmql.webp"
                 alt="No markups"
                 height={'75'}
                 width={'75'}

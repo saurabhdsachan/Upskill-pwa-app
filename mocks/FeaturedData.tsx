@@ -1,7 +1,7 @@
 const data = [
   {
     id: 'feature-1',
-    logo: 'https://res.cloudinary.com/spacejoy/image/upload/v1610014244/shared/Brand%20logos%2007-2021/publication_LOGO-01_fohpe0.svg',
+    logo: 'https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto/v1610014244/shared/Brand%20logos%2007-2021/publication_LOGO-01_fohpe0.svg',
   },
   {
     id: 'feature-2',

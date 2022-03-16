@@ -27,7 +27,7 @@ const CustomerStories: React.FC = () => {
               <div className="rounded-xl shadow-xl">
                 <Image
                   className="object-cover rounded-xl"
-                  src="https://res.cloudinary.com/spacejoy/image/upload/v1637037796/spj-v2/careers_tqwyqx.jpg"
+                  src="https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto/v1637037796/spj-v2/careers_tqwyqx.webp"
                   height="700"
                   width="1500"
                   alt="career banner"

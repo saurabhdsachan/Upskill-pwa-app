@@ -1,4 +1,4 @@
-import { company, cloudinary } from '@utils/config';
+import { cloudinary, company } from '@utils/config';
 
 const PricingPageSEO = {
   description: `${company.product}'s online interior design packages are suited to fit every need and budget. Pick a package and work with one of expert designers to design your room online`,
@@ -11,7 +11,7 @@ const openGraph = {
     {
       height: 400,
       width: 600,
-      url: `${cloudinary.baseDeliveryURL}/image/upload/c_scale,q_auto,w_600/v1593540199/web/seo/pricing_page_x3ni4v.jpg`,
+      url: `${cloudinary.baseDeliveryURL}/image/upload/c_scale,q_auto,w_600/v1593540199/web/seo/pricing_page_x3ni4v.webp`,
       alt: 'Spacejoy pricing',
     },
   ],

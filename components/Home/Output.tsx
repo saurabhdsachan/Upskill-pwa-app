@@ -35,33 +35,33 @@ const Output: React.FC = () => {
       <OutputGallery>
         <picture className="inline-block">
           <source
-            srcSet="https://res.cloudinary.com/spacejoy/image/upload/v1626229337/spj-v2/home-gallery/Gallery-mobile_qdp793.jpg 1x, https://res.cloudinary.com/spacejoy/image/upload/v1626229337/spj-v2/home-gallery/Gallery-mobile_2x_edyzqk.jpg 2x"
+            srcSet="https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto/v1626229337/spj-v2/home-gallery/Gallery-mobile_qdp793.jpg 1x, https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto/v1626229337/spj-v2/home-gallery/Gallery-mobile_2x_edyzqk.jpg 2x"
             media="(max-width: 768px)"
           />
           <source
-            srcSet="https://res.cloudinary.com/spacejoy/image/upload/v1626229337/spj-v2/home-gallery/Gallery-medium_qaynoo.jpg 1x, https://res.cloudinary.com/spacejoy/image/upload/v1626229337/spj-v2/home-gallery/Gallery-medium_2x_depdeo.jpg 2x"
+            srcSet="https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto/v1626229337/spj-v2/home-gallery/Gallery-medium_qaynoo.jpg 1x, https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto/v1626229337/spj-v2/home-gallery/Gallery-medium_2x_depdeo.jpg 2x"
             media="(max-width: 1440px)"
           />
-          <source srcSet="https://res.cloudinary.com/spacejoy/image/upload/v1626229337/spj-v2/home-gallery/Gallery_nskrrd.jpg 1x, https://res.cloudinary.com/spacejoy/image/upload/v1626229338/spj-v2/home-gallery/Gallery_2x_gl3hjj.jpg 2x" />
+          <source srcSet="https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto/v1626229337/spj-v2/home-gallery/Gallery_nskrrd.jpg 1x, https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto/v1626229338/spj-v2/home-gallery/Gallery_2x_gl3hjj.jpg 2x" />
           <img
-            src="https://res.cloudinary.com/spacejoy/image/upload/v1626229337/spj-v2/home-gallery/Gallery_nskrrd.jpg"
-            srcSet="https://res.cloudinary.com/spacejoy/image/upload/v1626229338/spj-v2/home-gallery/Gallery_2x_gl3hjj.jpg 2x"
+            src="https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto/v1626229337/spj-v2/home-gallery/Gallery_nskrrd.jpg"
+            srcSet="https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto/v1626229338/spj-v2/home-gallery/Gallery_2x_gl3hjj.jpg 2x"
             alt="Home Gallery"
           />
         </picture>
         <picture className="inline-block ml-4 lg:ml-6 2xl:ml-8">
           <source
-            srcSet="https://res.cloudinary.com/spacejoy/image/upload/v1626229337/spj-v2/home-gallery/Gallery-mobile_qdp793.jpg 1x, https://res.cloudinary.com/spacejoy/image/upload/v1626229337/spj-v2/home-gallery/Gallery-mobile_2x_edyzqk.jpg 2x"
+            srcSet="https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto/v1626229337/spj-v2/home-gallery/Gallery-mobile_qdp793.jpg 1x, https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto/v1626229337/spj-v2/home-gallery/Gallery-mobile_2x_edyzqk.jpg 2x"
             media="(max-width: 768px)"
           />
           <source
-            srcSet="https://res.cloudinary.com/spacejoy/image/upload/v1626229337/spj-v2/home-gallery/Gallery-medium_qaynoo.jpg 1x, https://res.cloudinary.com/spacejoy/image/upload/v1626229337/spj-v2/home-gallery/Gallery-medium_2x_depdeo.jpg 2x"
+            srcSet="https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto/v1626229337/spj-v2/home-gallery/Gallery-medium_qaynoo.jpg 1x, https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto/v1626229337/spj-v2/home-gallery/Gallery-medium_2x_depdeo.jpg 2x"
             media="(max-width: 1440px)"
           />
-          <source srcSet="https://res.cloudinary.com/spacejoy/image/upload/v1626229337/spj-v2/home-gallery/Gallery_nskrrd.jpg 1x, https://res.cloudinary.com/spacejoy/image/upload/v1626229338/spj-v2/home-gallery/Gallery_2x_gl3hjj.jpg 2x" />
+          <source srcSet="https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto/v1626229337/spj-v2/home-gallery/Gallery_nskrrd.jpg 1x, https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto/v1626229338/spj-v2/home-gallery/Gallery_2x_gl3hjj.jpg 2x" />
           <img
-            src="https://res.cloudinary.com/spacejoy/image/upload/v1626229337/spj-v2/home-gallery/Gallery_nskrrd.jpg"
-            srcSet="https://res.cloudinary.com/spacejoy/image/upload/v1626229338/spj-v2/home-gallery/Gallery_2x_gl3hjj.jpg 2x"
+            src="https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto/v1626229337/spj-v2/home-gallery/Gallery_nskrrd.jpg"
+            srcSet="https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto/v1626229338/spj-v2/home-gallery/Gallery_2x_gl3hjj.jpg 2x"
             alt="Home Gallery"
           />
         </picture>

@@ -16,7 +16,7 @@ const ChooseUs = (): JSX.Element => {
             <div className="text-center">
               <div className="rounded-full h-28 w-28 mb-5 mx-auto bg-red-100 flex justify-center items-center">
                 <Image
-                  src="https://res.cloudinary.com/spacejoy/image/upload/c_scale,w_300/v1622188237/spj-v2/3d-icons/spj-22_ypkbw5.png"
+                  src="https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto,c_scale,w_300/v1622188237/spj-v2/3d-icons/spj-22_ypkbw5.webp"
                   alt="No markups"
                   height={'200'}
                   width={'200'}
@@ -33,7 +33,7 @@ const ChooseUs = (): JSX.Element => {
             <div className="text-center">
               <div className="rounded-full h-28 w-28 mb-5 mx-auto bg-yellow-100 flex justify-center items-center">
                 <Image
-                  src="https://res.cloudinary.com/spacejoy/image/upload/c_scale,w_300/v1622188240/spj-v2/3d-icons/spj-23_lgp9bw.png"
+                  src="https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto,c_scale,w_300/v1622188240/spj-v2/3d-icons/spj-23_lgp9bw.webp"
                   alt="Comp Service"
                   height={'200'}
                   width={'200'}
@@ -50,7 +50,7 @@ const ChooseUs = (): JSX.Element => {
             <div className="text-center">
               <div className="rounded-full h-28 w-28 mb-5 mx-auto bg-green-100 flex justify-center items-center">
                 <Image
-                  src="https://res.cloudinary.com/spacejoy/image/upload/c_scale,w_300/v1622188220/spj-v2/3d-icons/spj-1_jas7do.png"
+                  src="https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto,c_scale,w_300/v1622188220/spj-v2/3d-icons/spj-1_jas7do.webp"
                   alt="Returns"
                   height={'200'}
                   width={'200'}
@@ -67,7 +67,7 @@ const ChooseUs = (): JSX.Element => {
             <div className="text-center">
               <div className="rounded-full h-28 w-28 mb-5 mx-auto bg-indigo-100 flex justify-center items-center">
                 <Image
-                  src="https://res.cloudinary.com/spacejoy/image/upload/c_scale,w_300/v1622188230/spj-v2/3d-icons/spj-11_ievy9p.png"
+                  src="https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto,c_scale,w_300/v1622188230/spj-v2/3d-icons/spj-11_ievy9p.webp"
                   alt="24/7 Support"
                   height={'200'}
                   width={'200'}

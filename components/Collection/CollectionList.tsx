@@ -107,6 +107,9 @@ const CollectionList: React.FC<CollectionListInterface> = ({ feedData }) => {
         {!isFetching && currentRenderList?.length === 0 && (
           <EmptyState title="No collections found" message="Please refresh the page" />
         )}
+        <br />
+        <br />
+        <br />
         <Pagination buttonList={buttons} />
       </div>
     </div>

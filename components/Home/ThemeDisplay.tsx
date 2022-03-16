@@ -26,7 +26,7 @@ const ThemeDisplay = () => {
                 <div className=" mx-auto inset-0 bg-indigo-200 rounded-2xl shadow-lg">
                   <Image
                     className="object-cover rounded-2xl"
-                    src="https://res.cloudinary.com/spacejoy/image/upload/v1624342360/spj-v2/transition/hp-transformation-empty_q8w3ma.jpg"
+                    src="https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto/v1624342360/spj-v2/transition/hp-transformation-empty_q8w3ma.webp"
                     height="850"
                     width="1700"
                     alt="theme type 1"
@@ -36,7 +36,7 @@ const ThemeDisplay = () => {
                 <div className="absolute  mx-auto inset-0 bg-pink-200 rounded-2xl">
                   <Image
                     className="object-cover rounded-2xl"
-                    src="https://res.cloudinary.com/spacejoy/image/upload/v1624342360/spj-v2/transition/hp-transformation-scandinavian_rilssr.jpg"
+                    src="https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto/v1624342360/spj-v2/transition/hp-transformation-scandinavian_rilssr.webp"
                     height="850"
                     width="1700"
                     alt="theme type 2"
@@ -46,7 +46,7 @@ const ThemeDisplay = () => {
                 <div className="absolute  mx-auto inset-0 bg-yellow-200 rounded-2xl">
                   <Image
                     className="object-cover rounded-2xl"
-                    src="https://res.cloudinary.com/spacejoy/image/upload/v1624342360/spj-v2/transition/hp-transformation-modern_wqhnru.jpg"
+                    src="https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto/v1624342360/spj-v2/transition/hp-transformation-modern_wqhnru.webp"
                     height="850"
                     width="1700"
                     alt="theme type 3"
@@ -56,7 +56,7 @@ const ThemeDisplay = () => {
                 <div className="absolute  mx-auto inset-0 bg-blue-200 rounded-2xl">
                   <Image
                     className="object-cover rounded-2xl"
-                    src="https://res.cloudinary.com/spacejoy/image/upload/v1624342360/spj-v2/transition/hp-transformation-industrial_npa9wm.jpg"
+                    src="https://res.cloudinary.com/spacejoy/image/upload/fl_lossy,q_auto/v1624342360/spj-v2/transition/hp-transformation-industrial_npa9wm.webp"
                     height="850"
                     width="1700"
                     alt="theme type 4"
