@@ -17,6 +17,7 @@ import useBoolean from '@hooks/useBoolean';
 import { blurredBgProduct } from '@public/images/bg-base-64';
 import offerLottie from '@public/lotties/offer.json';
 import fetcher from '@utils/fetcher';
+import { currencyFormat } from '@utils/helpers';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import Image from 'next/image';
@@ -201,9 +202,11 @@ const ProductView = ({ product }): JSX.Element => {
                 <div className="mt-3">
                   <h2 className="sr-only">Product information</h2>
                   <p className="text-3xl text-gray-900">
-                    ${product?.displayPrice}
+                    {currencyFormat(product?.displayPrice)}
                     {product?.msrp && parseFloat(product?.msrp) > 0 && parseFloat(product?.msrp) > product?.price && (
-                      <small className="text-sm text-gray-500 line-through inline-block ml-2">${product?.msrp}</small>
+                      <small className="text-sm text-gray-500 line-through inline-block ml-2">
+                        {currencyFormat(product?.msrp)}
+                      </small>
                     )}
                   </p>
                 </div>

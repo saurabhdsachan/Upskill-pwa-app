@@ -23,7 +23,9 @@ const DesignView: React.FC<DesignViewInterface> = ({ design }) => {
           <div className="container mx-auto px-4">
             <Breadcrumb design={design} />
             <h2 className="my-8 text-3xl tracking-wide">{design?.name}</h2>
-            <ImageGrid images={design?.cdnRender} />
+          </div>
+          <ImageGrid images={design?.cdnRender} />
+          <div className="container mx-auto px-4">
             <h3 className="text-2xl tracking-wide text-gray-700 mt-20 mb-8">Shop the products featured in this room</h3>
             <div className="my-8 flex space-x-4 2xl:space-x-8">
               <div className="w-3/5 xl:w-3/4">

@@ -1,5 +1,6 @@
 function debounce(func, wait) {
   let timeout;
+
   return function x(...args) {
     if (timeout) clearTimeout(timeout);
     timeout = setTimeout(() => {
@@ -19,4 +20,11 @@ function arraysEqual(a, b) {
 
   return true;
 }
-export { debounce, arraysEqual };
+
+function currencyFormat(price) {
+  return Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  }).format(price);
+}
+export { debounce, arraysEqual, currencyFormat };

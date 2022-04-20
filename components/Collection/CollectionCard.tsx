@@ -19,9 +19,10 @@ const CollectionCard: React.FC<CollectionCardInterface> = ({ cardData, inset }) 
           <div className="group rounded relative overflow-hidden bg-gray-200 transition-all transform duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1 border border-gray-300">
             {inset ? (
               <Image
-                className="rounded object-cover"
+                className="rounded object-fill"
                 alt={cardData?.name}
                 src={`${cloudinary.baseDeliveryURL}/${cardData?.cdnThumbnail}`}
+                layout="responsive"
                 height="300"
                 width="225"
                 placeholder="blur"
