@@ -92,7 +92,7 @@ const CollectionList: React.FC<CollectionListInterface> = ({ feedData }) => {
         </div>
       </div>
       <div className="relative bg-white">
-        <AnimateBox className="grid grid-cols-4 xl:grid-cols-6 gap-4 xl:gap-6 2xl:gap-8 gap-y-10">
+        <AnimateBox className="grid grid-cols-2 xl:grid-cols-3 gap-x-4 gap-y-10 xl:gap-x-6 xl:gap-y-12 2xl:gap-x-8 2xl:gap-y-16">
           {isFetching && (
             <>
               {[...new Array(internalPages.InteriorDesigns.DEFAULT_PAGE_SIZE)].map((_d, _i) => (

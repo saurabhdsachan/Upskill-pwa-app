@@ -29,7 +29,7 @@ const CollectionCard: React.FC<CollectionCardInterface> = ({ cardData, inset }) 
                 blurDataURL={blurredBgImage}
               />
             ) : (
-              <div className="w-full aspect-w-7 aspect-h-10">
+              <div className="w-full aspect-w-2 aspect-h-1">
                 <Image
                   alt={cardData?.name}
                   src={`${cloudinary.baseDeliveryURL}/${cardData?.cdnThumbnail}`}
