@@ -11,8 +11,8 @@ const fetchProductRecommendations = async (assetId) => {
     inStock: true,
   };
   try {
-    const reecommedationsResponse = await fetcher({ endPoint, method: 'POST', body: payload });
-    const { data, statusCode } = reecommedationsResponse;
+    const recommendationsResponse = await fetcher({ endPoint, method: 'POST', body: payload });
+    const { data, statusCode } = recommendationsResponse;
     if (statusCode <= 301) {
       return data?.topSimilarAssets;
     }
@@ -46,6 +46,7 @@ const reducer = (state, action) => {
           },
         };
       }
+
       return { ...state };
     }
     default: {

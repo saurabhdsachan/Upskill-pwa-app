@@ -8,8 +8,8 @@ export interface AssetInterface {
     name: string;
     retailLink: string;
     cdn: string;
-  }
-};
+  };
+}
 
 export interface DesignViewInterface {
   design: {
@@ -32,4 +32,4 @@ export interface DesignViewInterface {
     };
     publishedDate: string;
   };
-};
+}

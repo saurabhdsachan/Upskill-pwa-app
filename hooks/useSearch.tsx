@@ -11,6 +11,7 @@ const getSearchRecommendations = async (searchQuery, cb) => {
     const { data, statusCode } = autCompleteResponse;
     if (statusCode <= 301) {
       cb(data);
+
       return data;
     } else {
       throw new Error();

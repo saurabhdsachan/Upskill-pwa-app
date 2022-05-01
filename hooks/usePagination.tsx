@@ -15,6 +15,7 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_TO_LIST': {
       const { payload: { data, currentPage = 0 } = [] } = action;
+
       return {
         ...state,
         list: {
@@ -31,6 +32,7 @@ const reducer = (state = initialState, action) => {
     }
     case 'UPDATE_CURRENT_PAGE': {
       const { payload } = action;
+
       return {
         ...state,
         currentPage: payload,
