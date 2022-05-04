@@ -6,7 +6,6 @@
 @import 'tailwindcss/utilities';
 
 body {
-  min-width: 1024px;
   font-family: 'Poppins', sans-serif;
 }
 

@@ -9,7 +9,7 @@ const CookiesContent: React.FC = () => {
     <div className="container mx-auto px-4 antialiased">
       <SectionTitle
         title="Cookie Statement"
-        description="Spacejoy uses cookies to enhance performance and improve your user experience, to provide certain user
+        description="Pep uses cookies to enhance performance and improve your user experience, to provide certain user
               functionality, as well as to distinguish you from other users when you use our website and other products
               and services."
         feature={`Last Updated: Jan 02nd, ${currentYear}`}

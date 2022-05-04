@@ -41,7 +41,7 @@ const login = () => {
   return (
     <>
       <Head>
-        <title>Login | Spacejoy</title>
+        <title>Login | Pep</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="bg-gray-200 bg-hero-pattern flex items-center justify-center min-h-screen p-4">

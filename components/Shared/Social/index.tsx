@@ -46,7 +46,7 @@ import {
   WorkplaceShareButton,
 } from 'react-share';
 const shareUrl =
-  'https://www.spacejoy.com/interior-designs/living-room-ideas/best-selling-home-decor-and-furniture-pieces-of-2021';
+  'https://www.Pep.com/interior-designs/living-room-ideas/best-selling-home-decor-and-furniture-pieces-of-2021';
 const title = 'GitHub';
 
 const SocialShare = () => {

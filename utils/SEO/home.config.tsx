@@ -1,5 +1,5 @@
 const HomePageBaseSEO = {
-  title: '#1 Automated Interior Design Solution by Spacejoy',
+  title: '#1 Automated Interior Design Solution by Pep',
   description: 'The best place to design and shop for your home',
   additionalMetaTags: '',
   canonical: '',
@@ -13,13 +13,13 @@ const HomePageBaseSEO = {
 const openGraph = {
   type: 'website',
   locale: 'en_IE',
-  url: 'https://www.spacejoy.com/',
+  url: 'https://www.Pep.com/',
 };
 const additionalLinkTags = [
   {
     key: 'canonical',
     rel: 'canonical',
-    href: 'https://www.spacejoy.com',
+    href: 'https://www.Pep.com',
   },
 ];
 const robotsProps = {

@@ -29,7 +29,7 @@ const data = [
     icon: 'v1611748548/web/designTime/4-Nathan_Scheuer_mnxhiw.webp',
     isReversed: true,
     bg: 'v1611749735/web/designTime/4_juzcwk.webp',
-    desc: 'Nathan comes to Spacejoy from a theatrical lighting & scenic design background. Having worked on over 150 live productions, his background in storytelling, allows him to weave form and function into a narrative perfect for any client. Nathan loves mid-century modern, minimalist and boho designs',
+    desc: 'Nathan comes to Pep from a theatrical lighting & scenic design background. Having worked on over 150 live productions, his background in storytelling, allows him to weave form and function into a narrative perfect for any client. Nathan loves mid-century modern, minimalist and boho designs',
   },
   {
     firstName: 'Chelsie',

@@ -60,12 +60,12 @@ const Modal: React.FC = () => {
                 </Dialog.Title>
                 <div className="mt-2">
                   <p className="text-sm text-gray-500">
-                    Thanks for visiting the early version of Spacejoy. We are still working on the development.
+                    Thanks for visiting the early version of Pep. We are still working on the development.
                     <br />
                     At the same time we are happy to hear any feedback and suggestion.
                     <br />
                     Plz write to{' '}
-                    <a href="mailto:saurabh.sachan@spacejoy.com" className="inline-block text-red-500 mt-4">
+                    <a href="mailto:saurabh.sachan@Pep.com" className="inline-block text-red-500 mt-4">
                       Saurabh
                     </a>
                   </p>

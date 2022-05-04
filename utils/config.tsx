@@ -1,9 +1,9 @@
 const isProduction = process.env.NEXT_PUBLIC_ENV_HOST === 'production';
 
 const page = {
-  appName: 'SpaceJoyWeb',
+  appName: 'PepWeb',
   apiBaseUrl: process.env.NEXT_PUBLIC_API_GATEWAY,
-  apiSocketUrl: isProduction ? 'https://ws-api.spacejoy.com/api' : 'https://api-staging.spacejoy.com/api',
+  apiSocketUrl: isProduction ? 'https://ws-api.Pep.com/api' : 'https://api-staging.Pep.com/api',
   placeKey: 'AIzaSyDsLNNs6HOOBILlbiMfr9hn9w3_CTxPlRA',
   googleSiteVerification: 'AvMwlYBDLdgqosxOUuNf114TxPVJtkY3lm3jxDpqLMY',
   googleAPIKey: 'AIzaSyDsLNNs6HOOBILlbiMfr9hn9w3_CTxPlRA',
@@ -26,23 +26,23 @@ const page = {
   whatsAppShareBaseUrl: 'https://api.whatsapp.com/send',
 };
 const cloudinary = {
-  cloudName: 'spacejoy',
+  cloudName: 'Pep',
   apiKey: '432541925957862',
   apiSecret: 'dhn4tENhmmFqoefnjWXtcjlkfUw',
-  environmentVariable: 'CLOUDINARY_URL=cloudinary://432541925957862:dhn4tENhmmFqoefnjWXtcjlkfUw@spacejoy',
-  baseDeliveryURL: 'https://res.cloudinary.com/spacejoy',
-  apiBaseURL: '//api.cloudinary.com/v1_1/spacejoy',
+  environmentVariable: 'CLOUDINARY_URL=cloudinary://432541925957862:dhn4tENhmmFqoefnjWXtcjlkfUw@Pep',
+  baseDeliveryURL: 'https://res.cloudinary.com/Pep',
+  apiBaseURL: '//api.cloudinary.com/v1_1/Pep',
 };
 
 const company = {
-  logo: 'w_200/v1578101355/shared/spacejoy-logo_ase39m.svg',
+  logo: 'w_200/v1578101355/shared/Pep-logo_ase39m.svg',
   name: 'Neo Design Labs Inc',
-  product: 'Spacejoy',
-  productWithTM: 'Spacejoy™',
+  product: 'Pep',
+  productWithTM: 'Pep™',
   tagLine: 'Designing your imagination',
-  url: '//spacejoy.com',
+  url: '//Pep.com',
   country: 'us',
-  subject: 'Design your room online. Spacejoy, online home interior design software ',
+  subject: 'Design your room online. Pep, online home interior design software ',
   description:
     'Get online home interior designs in 3D of your living room, bedroom, home office room, dining room, nursery & kids room',
   Keywords: [
@@ -65,7 +65,7 @@ const company = {
     'Small Apartment Design Ideas',
   ],
   email: {
-    support: 'hello@spacejoy.com',
+    support: 'hello@Pep.com',
     connect: '',
   },
   phone: {
@@ -87,22 +87,22 @@ const company = {
   ],
   social: {
     sites: {
-      facebook: 'https://www.facebook.com/spacejoyapp/',
-      linkedin: 'https://www.linkedin.com/company/spacejoy/',
-      twitter: 'https://twitter.com/spacejoyapp/',
-      instagram: 'https://www.instagram.com/spacejoyapp/',
-      pinterest: 'https://in.pinterest.com/spacejoyapp/',
+      facebook: 'https://www.facebook.com/Pepapp/',
+      linkedin: 'https://www.linkedin.com/company/Pep/',
+      twitter: 'https://twitter.com/Pepapp/',
+      instagram: 'https://www.instagram.com/Pepapp/',
+      pinterest: 'https://in.pinterest.com/Pepapp/',
     },
     handles: {
-      twitter: '@Spacejoyapp',
+      twitter: '@Pepapp',
     },
   },
   app: {
     android: 'https://play.google.com/store/apps/details?id=com.homefuly.idsuite.retail',
-    ios: 'https://apps.apple.com/us/app/spacejoy-home-design-makeover/id1484078338',
-    mac: 'https://apps.apple.com/us/app/spacejoy/id1489951014',
-    windows: 'https://www.microsoft.com/en-us/p/spacejoy/9n954dnxj4zx',
-    appStore: 'https://apps.apple.com/in/app/home-design-makeover-spacejoy/id1562072588',
+    ios: 'https://apps.apple.com/us/app/Pep-home-design-makeover/id1484078338',
+    mac: 'https://apps.apple.com/us/app/Pep/id1489951014',
+    windows: 'https://www.microsoft.com/en-us/p/Pep/9n954dnxj4zx',
+    appStore: 'https://apps.apple.com/in/app/home-design-makeover-Pep/id1562072588',
   },
 };
 

@@ -7,7 +7,7 @@ const PageNotFound: React.FC = () => {
   return (
     <Layout>
       <Head>
-        <title>Page Not Found | Spacejoy</title>
+        <title>Page Not Found | Pep</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout.Banner />

@@ -37,7 +37,7 @@ const TeamMember: React.FC<TeamMemberInterface> = ({ designer }) => {
         <AnimateBox>
           <Image
             className="mx-auto h-20 w-20 rounded-full lg:w-24 lg:h-24 object-cover filter contrast-125"
-            src={`https://res.cloudinary.com/spacejoy/${designer.icon}`}
+            src={`https://res.cloudinary.com/Pep/${designer.icon}`}
             alt={designer.firstName}
             height={'180'}
             width={'180'}

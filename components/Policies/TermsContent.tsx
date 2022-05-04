@@ -9,8 +9,8 @@ const TermsContent: React.FC = () => {
   return (
     <div className="container mx-auto px-4 antialiased">
       <SectionTitle
-        title="Spacejoy EULA and Terms of Service"
-        description="Spacejoy uses cookies to enhance performance and improve your user experience, to provide certain user
+        title="Pep EULA and Terms of Service"
+        description="Pep uses cookies to enhance performance and improve your user experience, to provide certain user
               functionality, as well as to distinguish you from other users when you use our website and other products
               and services."
         feature={`Last Updated: Jan 02nd, ${currentYear}`}
@@ -36,14 +36,13 @@ const TermsContent: React.FC = () => {
         <div>
           <div className="my-4">
             <p className="text-base text-gray-500">
-              This End User License Agreement and Terms of Service (the “EULA”) apply to the beta version of the
-              Spacejoy software and services provided by Spacejoy Design Solutions Pvt Ltd (“us” or “we”). This is a
-              binding contract between you, an individual user (“you”) and us governing your use of Spacejoy services
-              (the “Service”) using the Spacejoy website (the “Website”) and the Spacejoy desktop/mobile application
-              (the “App”). By registering to use the Spacejoy and/or installing/accessing any portions of the Spacejoy,
-              you agree that you have read, understood, and agree to be bound by the EULA. If you do not agree, then you
-              may not use the service. To have a copy of the EULA and the Spacejoy Privacy Policy (the “Privacy Policy”)
-              sent to you, contact Spacejoy at{' '}
+              This End User License Agreement and Terms of Service (the “EULA”) apply to the beta version of the Pep
+              software and services provided by Pep Design Solutions Pvt Ltd (“us” or “we”). This is a binding contract
+              between you, an individual user (“you”) and us governing your use of Pep services (the “Service”) using
+              the Pep website (the “Website”) and the Pep desktop/mobile application (the “App”). By registering to use
+              the Pep and/or installing/accessing any portions of the Pep, you agree that you have read, understood, and
+              agree to be bound by the EULA. If you do not agree, then you may not use the service. To have a copy of
+              the EULA and the Pep Privacy Policy (the “Privacy Policy”) sent to you, contact Pep at{' '}
               <a className="text-red-500 hover:underline" href={`mailto:${company.email.support}`}>
                 {company.email.support}
               </a>
@@ -744,51 +743,51 @@ const TermsContent: React.FC = () => {
           <div className="mt-6">
             <h2 className="text-lg mb-2">Gift Card Terms</h2>
             <p className="text-base text-gray-500">
-              This card is issued by Neo Design Labs Inc (“Spacejoy”) and and is redeemable only for online purchases at
-              www.spacejoy.com The card may not be used to purchase another gift card or toward previously purchased
+              This card is issued by Neo Design Labs Inc (“Pep”) and and is redeemable only for online purchases at
+              www.Pep.com The card may not be used to purchase another gift card or toward previously purchased
               merchandise. Funds on these cards do not expire and can not be refunded or exchanged, redeemed for cash or
               applied as payment to any account, unless required by law. Returned merchandise purchased with a Gift Card
-              will be refunded to a Gift Card. Spacejoy does not accept responsibility for cards lost, damaged or
-              stolen, or any unauthorized use of cards and unauthorized resale is prohibited. Acceptance of this card
-              constitutes acceptance of these terms and conditions. Spacejoy reserves the right to change these terms
-              and conditions at any time. To check your balance, visit this{' '}
+              will be refunded to a Gift Card. Pep does not accept responsibility for cards lost, damaged or stolen, or
+              any unauthorized use of cards and unauthorized resale is prohibited. Acceptance of this card constitutes
+              acceptance of these terms and conditions. Pep reserves the right to change these terms and conditions at
+              any time. To check your balance, visit this{' '}
               <a className="text-red-500 hover:underline" href="/purchase-gift-card">
                 link
               </a>{' '}
               or call <a href="tel:+13104837722">+1.310.483.7722</a> If redeemed, refer to refund and return policies at
-              www.spacejoy.com
+              www.Pep.com
             </p>
           </div>
           <div className="mt-6">
-            <h2 className="text-lg mb-2">Termination of your Spacejoy account </h2>
+            <h2 className="text-lg mb-2">Termination of your Pep account </h2>
             <p className="text-base text-gray-500">
-              You have the right to terminate your Spacejoy account at any time by contacting us at hello@spacejoy.com.
-              Upon termination of your account, your user profile will be removed from Spacejoy and your user content
-              may be removed from the site, and your user content will not be available to you. However, you understand
-              that NDL Labs is not required to remove your user content, and removed content may persist in backup
-              copies for a reasonable period of time. NDL Labs has no obligation to maintain or provide user content of
-              a Spacejoy registrant after account termination and may delete all content provided unless legally
-              prohibited from doing so. NDL Labs may terminate your Spacejoy account with immediate effect for any
-              violation whatsoever of these Terms.
+              You have the right to terminate your Pep account at any time by contacting us at hello@Pep.com. Upon
+              termination of your account, your user profile will be removed from Pep and your user content may be
+              removed from the site, and your user content will not be available to you. However, you understand that
+              NDL Labs is not required to remove your user content, and removed content may persist in backup copies for
+              a reasonable period of time. NDL Labs has no obligation to maintain or provide user content of a Pep
+              registrant after account termination and may delete all content provided unless legally prohibited from
+              doing so. NDL Labs may terminate your Pep account with immediate effect for any violation whatsoever of
+              these Terms.
             </p>
           </div>
           <div className="mt-6">
             <h2 className="text-lg mb-2">Mobile Application Terms</h2>
             <p className="text-base text-gray-500">
-              Neo Design Labs (Spacejoy) may make certain mobile applications available to you. The use of these mobile
+              Neo Design Labs (Pep) may make certain mobile applications available to you. The use of these mobile
               applications either alone or in connection with the Services is governed by these Terms. In addition, you
               must comply with all applicable third party terms of agreement when using the mobile applications (for
               example, any agreement with a wireless service or wireless data provider or the app store or other portal
               from where you downloaded the mobile application). You agree that these Terms and the Privacy Policy are
-              between you and Neo Design Labs, and that even if you receive access to Spacejoy through Apple, Inc.’s App
+              between you and Neo Design Labs, and that even if you receive access to Pep through Apple, Inc.’s App
               Store or any other source (collectively, the “Distributor”) for use on a mobile device, the Distributor
-              has no liability or responsibility whatsoever to you, related to Spacejoy, whether by contract, warranty
-              or otherwise, and although you will continue to be bound by the terms you agreed with such Distributor,
-              you will look only to NDL Labs for any support relating to the services. You may use the Spacejoy mobile
+              has no liability or responsibility whatsoever to you, related to Pep, whether by contract, warranty or
+              otherwise, and although you will continue to be bound by the terms you agreed with such Distributor, you
+              will look only to NDL Labs for any support relating to the services. You may use the Pep mobile
               application on a product that you own or control and as permitted by the usage rules set forth by the
-              Distributor. The Distributor is not responsible for addressing any claims of any sort related to Spacejoy,
-              and you must address any claims directly with NDL Labs. The Distributor and its subsidiaries have the
-              right (and will be deemed to have accepted the right) to enforce these Terms against you as a third party
+              Distributor. The Distributor is not responsible for addressing any claims of any sort related to Pep, and
+              you must address any claims directly with NDL Labs. The Distributor and its subsidiaries have the right
+              (and will be deemed to have accepted the right) to enforce these Terms against you as a third party
               beneficiary hereof.
             </p>
           </div>

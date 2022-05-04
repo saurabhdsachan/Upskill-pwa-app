@@ -7,7 +7,7 @@ const Offline: React.FC = () => {
   return (
     <Layout>
       <Head>
-        <title>Offline | Spacejoy</title>
+        <title>Offline | Pep</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout.Banner />

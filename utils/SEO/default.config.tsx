@@ -1,15 +1,15 @@
-import { company, page, cloudinary } from '@utils/config';
+import { cloudinary, company, page } from '@utils/config';
 
 const prod = process.env.NEXT_PUBLIC_ENV_HOST === 'production';
 
 const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'Spacejoy',
-  brand: 'Spacejoy',
+  name: 'Pep',
+  brand: 'Pep',
   legalName: 'Neo Design Labs Inc',
-  url: 'https://www.spacejoy.com/',
-  logo: '//res.cloudinary.com/spacejoy/image/upload/w_200/v1578101355/shared/spacejoy-logo_ase39m.svg',
+  url: 'https://www.Pep.com/',
+  logo: '//res.cloudinary.com/Pep/image/upload/w_200/v1578101355/shared/Pep-logo_ase39m.svg',
   foundingDate: '22/04/2019',
   founders: [
     {
@@ -34,30 +34,30 @@ const organizationSchema = {
       '@type': 'ContactPoint',
       contactType: 'customer support',
       telephone: '+1 (310) 483-7722',
-      email: 'hello@spacejoy.com',
+      email: 'hello@Pep.com',
     },
   ],
   sameAs: [
-    'https://www.facebook.com/spacejoyapp/',
-    'https://twitter.com/spacejoyapp/',
-    'https://www.linkedin.com/company/spacejoy/',
-    'https://www.instagram.com/spacejoyapp/',
-    'https://www.pinterest.com/spacejoyapp/',
+    'https://www.facebook.com/Pepapp/',
+    'https://twitter.com/Pepapp/',
+    'https://www.linkedin.com/company/Pep/',
+    'https://www.instagram.com/Pepapp/',
+    'https://www.pinterest.com/Pepapp/',
   ],
 };
 
 const openGraph = {
   type: 'website',
   locale: 'en_US',
-  url: 'https://www.spacejoy.com/',
+  url: 'https://www.Pep.com/',
   title: `${company.product} - ${company.tagLine}`,
   description: company.description,
   images: [
     {
-      url: `${cloudinary.baseDeliveryURL}/image/upload/w_200/v1578101355/shared/spacejoy-logo_ase39m.svg`,
+      url: `${cloudinary.baseDeliveryURL}/image/upload/w_200/v1578101355/shared/Pep-logo_ase39m.svg`,
       width: 118,
       height: 25,
-      alt: 'Spacejoy',
+      alt: 'Pep',
     },
   ],
   site_name: company?.url,
@@ -66,7 +66,7 @@ const twitter = {
   handle: company?.social?.handles?.twitter,
   site: company?.social?.handles?.twitter,
   cardType: 'summary_large_image',
-  content: 'Spacejoy - the best place to shop and design for your home',
+  content: 'Pep - the best place to shop and design for your home',
 };
 
 const facebook = {
@@ -160,7 +160,7 @@ const additionRobotsProps = {};
 const defaultSEO = {
   openGraph,
   twitter,
-  title: 'Spacejoy',
+  title: 'Pep',
   additionalMetaTags,
   additionalLinkTags,
   facebook,
