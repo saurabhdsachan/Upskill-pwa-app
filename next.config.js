@@ -9,7 +9,7 @@ module.exports = withPWA({
   crossOrigin: 'anonymous',
   images: {
     domains: [
-      'res.cloudinary.com',
+      'images.pep.live',
       'images.unsplash.com',
       'tailwindui.com',
       'storage.googleapis.com',
