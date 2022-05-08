@@ -16,7 +16,7 @@ export const Home = (): JSX.Element => {
             <div className="mx-auto h-28 w-28 rounded-full shadow-xl">
               <Image
                 className="rounded-full object-cover filter contrast-125"
-                src="https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?auto=format&fit=crop&w=300"
+                src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=300"
                 alt="Saurabh Sachan"
                 height={'120'}
                 width={'120'}
