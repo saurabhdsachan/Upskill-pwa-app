@@ -8,8 +8,11 @@ const Footer: React.FC = () => {
     <footer className="antialiased">
       <div className="container mx-auto px-6">
         <div className="py-12">
-          <p className="text-5xl font-extrabold text-slate-300">Made With Love in </p>
-          <p className="text-6xl font-extrabold text-yellow-400">India</p>
+          <p className="text-6xl font-extrabold text-slate-200">
+            Made <br />
+            With Love
+            <br /> in <span className="text-yellow-400">India</span>
+          </p>
         </div>
       </div>
     </footer>

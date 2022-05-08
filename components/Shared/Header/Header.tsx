@@ -12,7 +12,7 @@ const Header: React.FC = (): JSX.Element => {
           <MenuAlt1Icon className="h-5 w-5" />
         </button>
       </div>
-      <div className="flex-1 flex justify-center items-center p-4">Saurabh Sachan</div>
+      <div className="flex-1 flex justify-center items-center p-4">Chef Jordan</div>
       <div className="flex justify-center items-center w-16 p-4">
         <ShareIcon className="h-5 w-5" />
       </div>

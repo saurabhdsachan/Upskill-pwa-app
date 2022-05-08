@@ -42,6 +42,7 @@ export enum position {
 }
 
 interface CarouselInterface {
+  children: React.ReactNode;
   centerPadding: string;
   centerMode: boolean;
   position: position;

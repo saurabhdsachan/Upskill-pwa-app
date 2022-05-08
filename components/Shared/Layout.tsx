@@ -6,17 +6,17 @@ import Header from './Header/Header';
 interface LayoutSubComponents {
   Banner: React.FC;
   Header: React.FC;
-  Body: React.FC;
+  Body: any;
   Footer: React.FC;
 }
 
-const Layout: React.FC & LayoutSubComponents = ({ children }) => <>{children}</>;
+const Layout: any & LayoutSubComponents = ({ children }: { children: React.ReactNode }) => <>{children}</>;
 
 Layout.Banner = () => <Banner />;
 
 Layout.Header = () => <Header />;
 
-Layout.Body = ({ children }) => <main id="main">{children}</main>;
+Layout.Body = ({ children }: { children: React.ReactNode }) => <main id="main">{children}</main>;
 
 Layout.Footer = () => <Footer />;
 

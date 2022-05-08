@@ -13,7 +13,7 @@ const ButtonWrapper = styled.button`
   outline: none;
 `;
 
-const Button: React.FC = ({ children }) => {
+const Button: React.FC = ({ children }: { children: React.ReactNode }) => {
   return <ButtonWrapper>{children}</ButtonWrapper>;
 };
 

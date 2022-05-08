@@ -4,6 +4,7 @@ import React from 'react';
 import LottieAnimation from './LottieAnimation';
 
 interface EmptyStateInterface {
+  children?: React.ReactNode;
   title: string;
   message: string;
 }

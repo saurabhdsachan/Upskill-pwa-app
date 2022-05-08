@@ -1,6 +1,13 @@
 import Layout from '@components/Shared/Layout';
 import SEOWrapper from '@components/Shared/SEO/SEOWrapper';
-import { ChatAltIcon, ChevronDoubleRightIcon, TicketIcon, UserGroupIcon } from '@heroicons/react/outline';
+import {
+  ChatAltIcon,
+  ChevronDoubleRightIcon,
+  StarIcon,
+  TicketIcon,
+  TranslateIcon,
+  UserGroupIcon,
+} from '@heroicons/react/outline';
 import { HomePageSEO } from '@utils/SEO'; // can also have jsonLD config
 import Image from 'next/image';
 import React from 'react';
@@ -13,19 +20,27 @@ export const Home = (): JSX.Element => {
         <Layout.Header />
         <Layout.Body>
           <div className="px-6 pb-6 text-center bg-white">
-            <div className="mx-auto h-28 w-28 rounded-full shadow-xl">
+            <div>
               <Image
-                className="rounded-full object-cover filter contrast-125"
-                src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=300"
-                alt="Saurabh Sachan"
-                height={'120'}
-                width={'120'}
-                layout="intrinsic"
+                className="object-cover rounded-xl shadow-xl"
+                src="https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?auto=format&fit=crop&w=600"
+                alt="Chef Jordan"
+                width={500}
+                height={250}
               />
+              <div className="relative mx-auto -mt-12">
+                <Image
+                  className="object-cover rounded-full"
+                  src="https://images.unsplash.com/photo-1552058544-f2b08422138a?auto=format&fit=crop&w=240"
+                  alt="Chef Jordan"
+                  width={80}
+                  height={80}
+                />
+              </div>
             </div>
             <div className="my-4">
-              <p className="">Saurabh Sachan</p>
-              <small className="text-slate-400 text-sm">Career Coach, Advisor, Engineering</small>
+              <p className="">Chef Jordan</p>
+              <small className="text-slate-400 text-sm">Career Coach, Advisor, Chef</small>
             </div>
             <div className="flex my-6">
               <div className="flex-1 text-center border-r border-slate-300">
@@ -90,9 +105,29 @@ export const Home = (): JSX.Element => {
                 Hey there 👋🏻 I am from Pep team and you can book a 1:1 session with me to know more about Pep 🤓
               </p>
             </div>
+            <div className="flex mt-6 space-x-6 justify-center">
+              <div className="flex items-center justify-start space-x-4">
+                <div className="w-8 h-8 bg-blue-100 flex justify-center items-center rounded-full">
+                  <StarIcon className="h-4 w-4 text-blue-500" />
+                </div>
+                <div className="text-left">
+                  <small className="text-xs  text-blue-500 block">Rating</small>
+                  <span className="text-xs">5.0 (1)</span>
+                </div>
+              </div>
+              <div className="flex items-center justify-start space-x-4">
+                <div className="w-8 h-8 bg-blue-100 flex justify-center items-center rounded-full">
+                  <TranslateIcon className="h-4 w-4 text-blue-500" />
+                </div>
+                <div className="text-left">
+                  <small className="text-xs text-blue-500 block">Language</small>
+                  <span className="text-xs">Hindi, English</span>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div className="border-t border-b px-6 py-4 border-slate-200">
+          <div className="border-t border-b px-6 py-4 border-slate-200 sticky bottom-0 bg-white">
             <button className="uppercase inline-flex items-center justify-center w-full py-3 border border-transparent rounded-xl text-sm font-medium text-white bg-gradient-to-r from-orange-600 to-orange-500 hover:bg-white-700 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-orange-400">
               <TicketIcon className="h-4 w-4 mr-2" /> Book 1:1 Demo Session
             </button>
@@ -119,7 +154,7 @@ export const Home = (): JSX.Element => {
                       <Image
                         className="rounded-xl object-cover"
                         src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&w=320"
-                        alt="Saurabh Sachan"
+                        alt="Chef Jordan"
                         height={'80'}
                         width={'80'}
                         layout="responsive"
@@ -138,7 +173,7 @@ export const Home = (): JSX.Element => {
                       <Image
                         className="rounded-xl object-cover"
                         src="https://images.unsplash.com/photo-1609951651556-5334e2706168?auto=format&w=320"
-                        alt="Saurabh Sachan"
+                        alt="Chef Jordan"
                         height={'80'}
                         width={'80'}
                         layout="responsive"
@@ -157,7 +192,7 @@ export const Home = (): JSX.Element => {
                       <Image
                         className="rounded-xl object-cover"
                         src="https://images.unsplash.com/photo-1432139509613-5c4255815697?auto=format&w=320"
-                        alt="Saurabh Sachan"
+                        alt="Chef Jordan"
                         height={'80'}
                         width={'80'}
                         layout="responsive"
@@ -176,7 +211,7 @@ export const Home = (): JSX.Element => {
                       <Image
                         className="rounded-xl object-cover"
                         src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&w=320"
-                        alt="Saurabh Sachan"
+                        alt="Chef Jordan"
                         height={'80'}
                         width={'80'}
                         layout="responsive"
@@ -195,7 +230,7 @@ export const Home = (): JSX.Element => {
                       <Image
                         className="rounded-xl object-cover"
                         src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&w=320"
-                        alt="Saurabh Sachan"
+                        alt="Chef Jordan"
                         height={'80'}
                         width={'80'}
                         layout="responsive"
@@ -214,7 +249,7 @@ export const Home = (): JSX.Element => {
                       <Image
                         className="rounded-xl object-cover"
                         src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&w=320"
-                        alt="Saurabh Sachan"
+                        alt="Chef Jordan"
                         height={'80'}
                         width={'80'}
                         layout="responsive"
@@ -252,7 +287,7 @@ export const Home = (): JSX.Element => {
                       <Image
                         className="rounded-xl object-cover"
                         src="https://images.unsplash.com/photo-1549877452-9c387954fbc2?auto=format&w=320"
-                        alt="Saurabh Sachan"
+                        alt="Chef Jordan"
                         height={'80'}
                         width={'80'}
                         layout="responsive"
@@ -271,7 +306,7 @@ export const Home = (): JSX.Element => {
                       <Image
                         className="rounded-xl object-cover"
                         src="https://images.unsplash.com/photo-1598714673521-98d539a175f4?auto=format&w=320"
-                        alt="Saurabh Sachan"
+                        alt="Chef Jordan"
                         height={'80'}
                         width={'80'}
                         layout="responsive"
@@ -290,7 +325,7 @@ export const Home = (): JSX.Element => {
                       <Image
                         className="rounded-xl object-cover"
                         src="https://images.unsplash.com/photo-1629743699116-5eb5258c76cb?auto=format&w=320"
-                        alt="Saurabh Sachan"
+                        alt="Chef Jordan"
                         height={'80'}
                         width={'80'}
                         layout="responsive"
@@ -309,7 +344,7 @@ export const Home = (): JSX.Element => {
                       <Image
                         className="rounded-xl object-cover"
                         src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&w=320"
-                        alt="Saurabh Sachan"
+                        alt="Chef Jordan"
                         height={'80'}
                         width={'80'}
                         layout="responsive"
@@ -328,7 +363,7 @@ export const Home = (): JSX.Element => {
                       <Image
                         className="rounded-xl object-cover"
                         src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&w=320"
-                        alt="Saurabh Sachan"
+                        alt="Chef Jordan"
                         height={'80'}
                         width={'80'}
                         layout="responsive"
@@ -347,7 +382,7 @@ export const Home = (): JSX.Element => {
                       <Image
                         className="rounded-xl object-cover"
                         src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&w=320"
-                        alt="Saurabh Sachan"
+                        alt="Chef Jordan"
                         height={'80'}
                         width={'80'}
                         layout="responsive"
@@ -385,7 +420,7 @@ export const Home = (): JSX.Element => {
                       <Image
                         className="rounded-xl object-cover"
                         src="https://images.unsplash.com/photo-1622319977720-9949ac28adc4?auto=format&w=320"
-                        alt="Saurabh Sachan"
+                        alt="Chef Jordan"
                         height={'80'}
                         width={'80'}
                         layout="responsive"
@@ -404,7 +439,7 @@ export const Home = (): JSX.Element => {
                       <Image
                         className="rounded-xl object-cover"
                         src="https://images.unsplash.com/photo-1614108830714-74f0e4c8cd7e?auto=format&w=320"
-                        alt="Saurabh Sachan"
+                        alt="Chef Jordan"
                         height={'80'}
                         width={'80'}
                         layout="responsive"
@@ -423,7 +458,7 @@ export const Home = (): JSX.Element => {
                       <Image
                         className="rounded-xl object-cover"
                         src="https://images.unsplash.com/photo-1624976978579-f2653f7b4fe0?auto=format&w=320"
-                        alt="Saurabh Sachan"
+                        alt="Chef Jordan"
                         height={'80'}
                         width={'80'}
                         layout="responsive"
@@ -442,7 +477,7 @@ export const Home = (): JSX.Element => {
                       <Image
                         className="rounded-xl object-cover"
                         src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&w=320"
-                        alt="Saurabh Sachan"
+                        alt="Chef Jordan"
                         height={'80'}
                         width={'80'}
                         layout="responsive"
@@ -461,7 +496,7 @@ export const Home = (): JSX.Element => {
                       <Image
                         className="rounded-xl object-cover"
                         src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&w=320"
-                        alt="Saurabh Sachan"
+                        alt="Chef Jordan"
                         height={'80'}
                         width={'80'}
                         layout="responsive"
@@ -480,7 +515,7 @@ export const Home = (): JSX.Element => {
                       <Image
                         className="rounded-xl object-cover"
                         src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&w=320"
-                        alt="Saurabh Sachan"
+                        alt="Chef Jordan"
                         height={'80'}
                         width={'80'}
                         layout="responsive"
