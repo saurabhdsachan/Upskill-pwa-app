@@ -8,6 +8,7 @@ import {
   TranslateIcon,
   UserGroupIcon,
 } from '@heroicons/react/outline';
+import { blurredBgImage } from '@public/images/bg-base-64';
 import { HomePageSEO } from '@utils/SEO'; // can also have jsonLD config
 import Image from 'next/image';
 import React from 'react';
@@ -21,28 +22,36 @@ export const Home = (): JSX.Element => {
         <Layout.Body>
           <div className="px-6 pb-6 text-center bg-white">
             <div>
-              <Image
-                className="object-cover rounded-xl shadow-xl"
-                src="https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?auto=format&fit=crop&w=600"
-                alt="Chef Jordan"
-                width={500}
-                height={250}
-              />
-              <div className="relative mx-auto -mt-12">
+              <div className="shadow-xl rounded-xl">
+                <Image
+                  className="object-cover rounded-xl shadow-xl"
+                  src="https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?auto=format&fit=crop&w=600"
+                  alt="Chef Jordan"
+                  width={500}
+                  height={250}
+                  placeholder="blur"
+                  layout="responsive"
+                  blurDataURL={blurredBgImage}
+                />
+              </div>
+              <div className="relative mx-auto w-28 h-28 -mt-16 border-4 rounded-full border-white">
                 <Image
                   className="object-cover rounded-full"
                   src="https://images.unsplash.com/photo-1552058544-f2b08422138a?auto=format&fit=crop&w=240"
                   alt="Chef Jordan"
-                  width={80}
-                  height={80}
+                  width={180}
+                  height={180}
+                  placeholder="blur"
+                  layout="intrinsic"
+                  blurDataURL={blurredBgImage}
                 />
               </div>
             </div>
-            <div className="my-4">
+            <div className="my-2">
               <p className="">Chef Jordan</p>
               <small className="text-slate-400 text-sm">Career Coach, Advisor, Chef</small>
             </div>
-            <div className="flex my-6">
+            <div className="flex my-4">
               <div className="flex-1 text-center border-r border-slate-300">
                 <p className="text-lg font-bold text-slate-900">46</p>
                 <p className="text-xs text-slate-400">Followers</p>
@@ -68,7 +77,7 @@ export const Home = (): JSX.Element => {
                 </button>
               </div>
             </div>
-            <div className="my-6 justify-center flex space-x-3">
+            <div className="my-6 justify-center flex space-x-2">
               <a
                 href="https://www.facebook.com/spacejoyapp/"
                 className="text-slate-800 bg-slate-100 p-2 hover:text-blue-800 focus:ring-1 focus:ring-slate-500 focus:outline-none rounded-xl"

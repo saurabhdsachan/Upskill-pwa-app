@@ -1,5 +1,4 @@
 import CommonSEO from '@components/Shared/SEO/DefaultSeo';
-import ShopFilterContextProvider from '@store/ShopFilterContext';
 import type { AppProps } from 'next/app';
 import React from 'react';
 import { Toaster } from 'react-hot-toast';
@@ -11,15 +10,13 @@ const MyApp = ({ Component, pageProps }: AppProps): React.ReactElement => {
     <>
       <CommonSEO />
       <ThemeProvider theme={{}}>
-        <ShopFilterContextProvider>
-          <Component {...pageProps} />
-          <Toaster
-            position="bottom-center"
-            toastOptions={{
-              className: 'shadow-lg',
-            }}
-          />
-        </ShopFilterContextProvider>
+        <Component {...pageProps} />
+        <Toaster
+          position="bottom-center"
+          toastOptions={{
+            className: 'shadow-lg',
+          }}
+        />
       </ThemeProvider>
     </>
   );
