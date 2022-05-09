@@ -22,22 +22,28 @@ export const Home = (): JSX.Element => {
         <Layout.Body>
           <div className="px-6 pb-6 text-center bg-white">
             <div>
-              <div className="shadow-xl rounded-xl">
-                <Image
-                  className="object-cover rounded-xl shadow-xl"
-                  src="https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?auto=format&fit=crop&w=600"
-                  alt="Chef Jordan"
+              <div className="">
+                <video
+                  className="rounded-xl"
+                  muted
+                  loop
+                  preload="metadata"
+                  playsInline
+                  autoPlay
                   width={500}
                   height={250}
-                  placeholder="blur"
-                  layout="responsive"
-                  blurDataURL={blurredBgImage}
-                />
+                  poster="https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?auto=format&fit=crop&h=250"
+                >
+                  <source
+                    src="https://res.cloudinary.com/dui8mpatf/video/upload/v1652108269/pep/chef-fire_k3sr5u.mp4"
+                    type="video/mp4"
+                  />
+                </video>
               </div>
-              <div className="relative mx-auto w-28 h-28 -mt-16 border-4 rounded-full border-white">
+              <div className="relative bg-white mx-auto w-28 h-28 -mt-16 border-4 rounded-full border-white shadow-xl">
                 <Image
                   className="object-cover rounded-full"
-                  src="https://images.unsplash.com/photo-1552058544-f2b08422138a?auto=format&fit=crop&w=240"
+                  src="https://images.unsplash.com/photo-1583394293214-28ded15ee548?auto=format&fit=crop&w=240"
                   alt="Chef Jordan"
                   width={180}
                   height={180}
@@ -47,11 +53,11 @@ export const Home = (): JSX.Element => {
                 />
               </div>
             </div>
-            <div className="my-2">
-              <p className="">Chef Jordan</p>
+            <div className="my-4">
+              <p className="text-state-900 text-lg font-bold">Chef Jordan</p>
               <small className="text-slate-400 text-sm">Career Coach, Advisor, Chef</small>
             </div>
-            <div className="flex my-4">
+            <div className="flex my-6">
               <div className="flex-1 text-center border-r border-slate-300">
                 <p className="text-lg font-bold text-slate-900">46</p>
                 <p className="text-xs text-slate-400">Followers</p>
