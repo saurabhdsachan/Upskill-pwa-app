@@ -22,7 +22,7 @@ export const Home = (): JSX.Element => {
         <Layout.Body>
           <div className="px-6 pb-6 text-center bg-white">
             <div>
-              <div className="">
+              <div className="aspect-h-9 aspect-w-16 rounded-xl shadow-xs overflow-hidden">
                 <video
                   className="rounded-xl"
                   muted
@@ -32,7 +32,7 @@ export const Home = (): JSX.Element => {
                   autoPlay
                   width={500}
                   height={250}
-                  poster="https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?auto=format&fit=crop&h=250"
+                  poster="https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?auto=format&fit=crop&w=600&h=340"
                 >
                   <source
                     src="https://res.cloudinary.com/dui8mpatf/video/upload/v1652108269/pep/chef-fire_k3sr5u.mp4"
@@ -40,7 +40,7 @@ export const Home = (): JSX.Element => {
                   />
                 </video>
               </div>
-              <div className="relative bg-white mx-auto w-28 h-28 -mt-16 border-4 rounded-full border-white shadow-xl">
+              <div className="relative bg-white mx-auto w-28 h-28 -mt-16 border-4 rounded-full border-white shadow-lg">
                 <Image
                   className="object-cover rounded-full"
                   src="https://images.unsplash.com/photo-1583394293214-28ded15ee548?auto=format&fit=crop&w=240"
