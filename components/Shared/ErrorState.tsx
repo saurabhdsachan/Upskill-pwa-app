@@ -6,7 +6,7 @@ import SectionTitle from './SectionTitle';
 const ErrorState = ({ status }: { status: number }): JSX.Element => {
   return (
     <div className="container mx-auto px-4">
-      <div className="w-1/3 mx-auto">
+      <div className="mx-auto">
         <LottieAnimation animationData={errorLottie} />
       </div>
       <SectionTitle
