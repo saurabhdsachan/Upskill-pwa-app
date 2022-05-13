@@ -2,9 +2,9 @@ import React from 'react';
 
 const v1: React.FC = () => {
   return (
-    <div className="aspect-h-9 aspect-w-16 rounded-xl shadow-xs overflow-hidden">
+    <div className="aspect-h-9 aspect-w-16 rounded-2xl shadow-xs overflow-hidden">
       <video
-        className="rounded-xl"
+        className="rounded-2xl"
         muted
         loop
         preload="metadata"
