@@ -14,7 +14,8 @@ interface LayoutSubComponents {
 const Layout: any & LayoutSubComponents = ({ children }: { children: React.ReactNode }) => <>{children}</>;
 
 Layout.Header = ({ backflow, title }: { backflow?: boolean; title?: string }) => (
-  <Header backflow={backflow} title={title} />
+  //@ts-ignore
+  <Header backflow={backflow ? true : false} title={title} />
 );
 
 Layout.Body = ({ children }: { children: React.ReactNode }) => <main id="main">{children}</main>;

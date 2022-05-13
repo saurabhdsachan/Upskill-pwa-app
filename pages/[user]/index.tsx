@@ -1,3 +1,5 @@
+import ExpertiseCard from '@components/Cards/ExpertiseCard';
+import WorkshopCard from '@components/Cards/WorkshopCard';
 import { Hero1 } from '@components/Hero';
 import HeroGem from '@components/HeroGem';
 import Avatar from '@components/Shared/Avatar';
@@ -13,10 +15,11 @@ import {
   TranslateIcon,
   UserGroupIcon,
 } from '@heroicons/react/outline';
+import { UnsplashData } from '@mocks/Unsplash';
 import { HomePageSEO } from '@utils/SEO'; // can also have jsonLD config
-import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import CourseCard from '../../components/Cards/CourseCard';
 
 export const User = (): JSX.Element => {
   return (
@@ -78,404 +81,71 @@ export const User = (): JSX.Element => {
             </Link>
           </div>
 
-          <div className="px-6 py-4">
-            <div className="flex">
-              <div className="flex-grow">
-                <h3>1:1 Consultation</h3>
-              </div>
-              <div>
-                <small className="text-xs text-slate-600">
-                  See all <ChevronDoubleRightIcon className="w-2 h-2 inline" />{' '}
-                </small>
+          <section>
+            <div className="px-6 py-4">
+              <div className="flex">
+                <div className="flex-1">
+                  <h3>1:1 Consultation</h3>
+                </div>
+                <div>
+                  <small className="text-xs text-slate-600">
+                    See all <ChevronDoubleRightIcon className="w-2 h-2 inline" />{' '}
+                  </small>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="relative overflow-auto">
-            <div className="mx-auto">
+            <div className="relative overflow-auto">
               <div className="overflow-x-auto flex no-scrollbar">
-                <div className="flex-none px-3 first:pl-6 last:pr-6">
-                  <div className="flex flex-col items-center justify-center gap-3">
-                    <div className="w-full rounded-xl shadow-lg">
-                      <Image
-                        className="rounded-xl object-cover"
-                        src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&w=320"
-                        alt="Chef Jordan"
-                        height={'80'}
-                        width={'80'}
-                        layout="responsive"
-                      />
-                    </div>
-                    <div>
-                      <h4 className="text-sm mt-2 mb-1">Cooking with Saurabh</h4>
-                      <p className="text-slate-600 text-xs">May 15, 2020</p>
-                      <p className="text-slate-600 text-xs">5:00 PM</p>
-                    </div>
-                  </div>
+                {UnsplashData.slice(0, 8).map((item) => (
+                  <ExpertiseCard key={item.imageThumbnail} src={item.imageThumbnail} />
+                ))}
+              </div>
+            </div>
+          </section>
+          <hr className="mt-10 mb-4 mx-6" />
+          <section>
+            <div className="px-6 py-4">
+              <div className="flex">
+                <div className="flex-1">
+                  <h3>Workshops</h3>
                 </div>
-                <div className="flex-none px-3 first:pl-6 last:pr-6">
-                  <div className="flex flex-col items-center justify-center gap-3">
-                    <div className="w-full rounded-xl shadow-lg">
-                      <Image
-                        className="rounded-xl object-cover"
-                        src="https://images.unsplash.com/photo-1609951651556-5334e2706168?auto=format&w=320"
-                        alt="Chef Jordan"
-                        height={'80'}
-                        width={'80'}
-                        layout="responsive"
-                      />
-                    </div>
-                    <div>
-                      <h4 className="text-sm mt-2 mb-1">Cooking with Saurabh</h4>
-                      <p className="text-slate-600 text-xs">May 15, 2020</p>
-                      <p className="text-slate-600 text-xs">5:00 PM</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex-none px-3 first:pl-6 last:pr-6">
-                  <div className="flex flex-col items-center justify-center gap-3">
-                    <div className="w-full rounded-xl shadow-lg">
-                      <Image
-                        className="rounded-xl object-cover"
-                        src="https://images.unsplash.com/photo-1432139509613-5c4255815697?auto=format&w=320"
-                        alt="Chef Jordan"
-                        height={'80'}
-                        width={'80'}
-                        layout="responsive"
-                      />
-                    </div>
-                    <div>
-                      <h4 className="text-sm mt-2 mb-1">Cooking with Saurabh</h4>
-                      <p className="text-slate-600 text-xs">May 15, 2020</p>
-                      <p className="text-slate-600 text-xs">5:00 PM</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex-none px-3 first:pl-6 last:pr-6">
-                  <div className="flex flex-col items-center justify-center gap-3">
-                    <div className="w-full rounded-xl shadow-lg">
-                      <Image
-                        className="rounded-xl object-cover"
-                        src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&w=320"
-                        alt="Chef Jordan"
-                        height={'80'}
-                        width={'80'}
-                        layout="responsive"
-                      />
-                    </div>
-                    <div>
-                      <h4 className="text-sm mt-2 mb-1">Cooking with Saurabh</h4>
-                      <p className="text-slate-600 text-xs">May 15, 2020</p>
-                      <p className="text-slate-600 text-xs">5:00 PM</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex-none px-3 first:pl-6 last:pr-6">
-                  <div className="flex flex-col items-center justify-center gap-3">
-                    <div className="w-full rounded-xl shadow-lg">
-                      <Image
-                        className="rounded-xl object-cover"
-                        src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&w=320"
-                        alt="Chef Jordan"
-                        height={'80'}
-                        width={'80'}
-                        layout="responsive"
-                      />
-                    </div>
-                    <div>
-                      <h4 className="text-sm mt-2 mb-1">Cooking with Saurabh</h4>
-                      <p className="text-slate-600 text-xs">May 15, 2020</p>
-                      <p className="text-slate-600 text-xs">5:00 PM</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex-none px-3 first:pl-6 last:pr-6">
-                  <div className="flex flex-col items-center justify-center gap-3">
-                    <div className="w-full rounded-xl shadow-lg">
-                      <Image
-                        className="rounded-xl object-cover"
-                        src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&w=320"
-                        alt="Chef Jordan"
-                        height={'80'}
-                        width={'80'}
-                        layout="responsive"
-                      />
-                    </div>
-                    <div>
-                      <h4 className="text-sm mt-2 mb-1">Cooking with Saurabh</h4>
-                      <p className="text-slate-600 text-xs">May 15, 2020</p>
-                      <p className="text-slate-600 text-xs">5:00 PM</p>
-                    </div>
-                  </div>
+                <div>
+                  <small className="text-xs text-slate-600">
+                    See all <ChevronDoubleRightIcon className="w-2 h-2 inline" />{' '}
+                  </small>
                 </div>
               </div>
             </div>
-          </div>
-          <hr className="mt-6 mx-6" />
-          <div className="px-6 py-4">
-            <div className="flex">
-              <div className="flex-grow">
-                <h3>Courses</h3>
-              </div>
-              <div>
-                <small className="text-xs text-slate-600">
-                  See all <ChevronDoubleRightIcon className="w-2 h-2 inline" />{' '}
-                </small>
-              </div>
-            </div>
-          </div>
-          <div className="relative overflow-auto">
-            <div className="mx-auto">
+            <div className="relative overflow-auto">
               <div className="overflow-x-auto flex no-scrollbar">
-                <div className="flex-none px-3 first:pl-6 last:pr-6">
-                  <div className="flex flex-col items-center justify-center gap-3">
-                    <div className="w-full rounded-xl shadow-lg">
-                      <Image
-                        className="rounded-xl object-cover"
-                        src="https://images.unsplash.com/photo-1549877452-9c387954fbc2?auto=format&w=320"
-                        alt="Chef Jordan"
-                        height={'80'}
-                        width={'80'}
-                        layout="responsive"
-                      />
-                    </div>
-                    <div>
-                      <h4 className="text-sm mt-2 mb-1">Cooking with Saurabh</h4>
-                      <p className="text-slate-600 text-xs">May 15, 2020</p>
-                      <p className="text-slate-600 text-xs">5:00 PM</p>
-                    </div>
-                  </div>
+                {UnsplashData.slice(8, 14).map((item) => (
+                  <WorkshopCard key={item.imageThumbnail} src={item.imageThumbnail} />
+                ))}
+              </div>
+            </div>
+          </section>
+          <hr className="mt-10 mb-4 mx-6" />
+          <section>
+            <div className="px-6 py-4">
+              <div className="flex">
+                <div className="flex-1">
+                  <h3>Courses</h3>
                 </div>
-                <div className="flex-none px-3 first:pl-6 last:pr-6">
-                  <div className="flex flex-col items-center justify-center gap-3">
-                    <div className="w-full rounded-xl shadow-lg">
-                      <Image
-                        className="rounded-xl object-cover"
-                        src="https://images.unsplash.com/photo-1598714673521-98d539a175f4?auto=format&w=320"
-                        alt="Chef Jordan"
-                        height={'80'}
-                        width={'80'}
-                        layout="responsive"
-                      />
-                    </div>
-                    <div>
-                      <h4 className="text-sm mt-2 mb-1">Cooking with Saurabh</h4>
-                      <p className="text-slate-600 text-xs">May 15, 2020</p>
-                      <p className="text-slate-600 text-xs">5:00 PM</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex-none px-3 first:pl-6 last:pr-6">
-                  <div className="flex flex-col items-center justify-center gap-3">
-                    <div className="w-full rounded-xl shadow-lg">
-                      <Image
-                        className="rounded-xl object-cover"
-                        src="https://images.unsplash.com/photo-1629743699116-5eb5258c76cb?auto=format&w=320"
-                        alt="Chef Jordan"
-                        height={'80'}
-                        width={'80'}
-                        layout="responsive"
-                      />
-                    </div>
-                    <div>
-                      <h4 className="text-sm mt-2 mb-1">Cooking with Saurabh</h4>
-                      <p className="text-slate-600 text-xs">May 15, 2020</p>
-                      <p className="text-slate-600 text-xs">5:00 PM</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex-none px-3 first:pl-6 last:pr-6">
-                  <div className="flex flex-col items-center justify-center gap-3">
-                    <div className="w-full rounded-xl shadow-lg">
-                      <Image
-                        className="rounded-xl object-cover"
-                        src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&w=320"
-                        alt="Chef Jordan"
-                        height={'80'}
-                        width={'80'}
-                        layout="responsive"
-                      />
-                    </div>
-                    <div>
-                      <h4 className="text-sm mt-2 mb-1">Cooking with Saurabh</h4>
-                      <p className="text-slate-600 text-xs">May 15, 2020</p>
-                      <p className="text-slate-600 text-xs">5:00 PM</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex-none px-3 first:pl-6 last:pr-6">
-                  <div className="flex flex-col items-center justify-center gap-3">
-                    <div className="w-full rounded-xl shadow-lg">
-                      <Image
-                        className="rounded-xl object-cover"
-                        src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&w=320"
-                        alt="Chef Jordan"
-                        height={'80'}
-                        width={'80'}
-                        layout="responsive"
-                      />
-                    </div>
-                    <div>
-                      <h4 className="text-sm mt-2 mb-1">Cooking with Saurabh</h4>
-                      <p className="text-slate-600 text-xs">May 15, 2020</p>
-                      <p className="text-slate-600 text-xs">5:00 PM</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex-none px-3 first:pl-6 last:pr-6">
-                  <div className="flex flex-col items-center justify-center gap-3">
-                    <div className="w-full rounded-xl shadow-lg">
-                      <Image
-                        className="rounded-xl object-cover"
-                        src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&w=320"
-                        alt="Chef Jordan"
-                        height={'80'}
-                        width={'80'}
-                        layout="responsive"
-                      />
-                    </div>
-                    <div>
-                      <h4 className="text-sm mt-2 mb-1">Cooking with Saurabh</h4>
-                      <p className="text-slate-600 text-xs">May 15, 2020</p>
-                      <p className="text-slate-600 text-xs">5:00 PM</p>
-                    </div>
-                  </div>
+                <div>
+                  <small className="text-xs text-slate-600">
+                    See all <ChevronDoubleRightIcon className="w-2 h-2 inline" />{' '}
+                  </small>
                 </div>
               </div>
             </div>
-          </div>
-          <hr className="mt-6 mx-6" />
-          <div className="px-6 py-4">
-            <div className="flex">
-              <div className="flex-grow">
-                <h3>Workshops</h3>
-              </div>
-              <div>
-                <small className="text-xs text-slate-600">
-                  See all <ChevronDoubleRightIcon className="w-2 h-2 inline" />{' '}
-                </small>
-              </div>
-            </div>
-          </div>
-          <div className="relative overflow-auto">
-            <div className="mx-auto">
+            <div className="relative overflow-auto">
               <div className="overflow-x-auto flex no-scrollbar">
-                <div className="flex-none px-3 first:pl-6 last:pr-6">
-                  <div className="flex flex-col items-center justify-center gap-3">
-                    <div className="w-full rounded-xl shadow-lg">
-                      <Image
-                        className="rounded-xl object-cover"
-                        src="https://images.unsplash.com/photo-1622319977720-9949ac28adc4?auto=format&w=320"
-                        alt="Chef Jordan"
-                        height={'80'}
-                        width={'80'}
-                        layout="responsive"
-                      />
-                    </div>
-                    <div>
-                      <h4 className="text-sm mt-2 mb-1">Cooking with Saurabh</h4>
-                      <p className="text-slate-600 text-xs">May 15, 2020</p>
-                      <p className="text-slate-600 text-xs">5:00 PM</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex-none px-3 first:pl-6 last:pr-6">
-                  <div className="flex flex-col items-center justify-center gap-3">
-                    <div className="w-full rounded-xl shadow-lg">
-                      <Image
-                        className="rounded-xl object-cover"
-                        src="https://images.unsplash.com/photo-1614108830714-74f0e4c8cd7e?auto=format&w=320"
-                        alt="Chef Jordan"
-                        height={'80'}
-                        width={'80'}
-                        layout="responsive"
-                      />
-                    </div>
-                    <div>
-                      <h4 className="text-sm mt-2 mb-1">Cooking with Saurabh</h4>
-                      <p className="text-slate-600 text-xs">May 15, 2020</p>
-                      <p className="text-slate-600 text-xs">5:00 PM</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex-none px-3 first:pl-6 last:pr-6">
-                  <div className="flex flex-col items-center justify-center gap-3">
-                    <div className="w-full rounded-xl shadow-lg">
-                      <Image
-                        className="rounded-xl object-cover"
-                        src="https://images.unsplash.com/photo-1624976978579-f2653f7b4fe0?auto=format&w=320"
-                        alt="Chef Jordan"
-                        height={'80'}
-                        width={'80'}
-                        layout="responsive"
-                      />
-                    </div>
-                    <div>
-                      <h4 className="text-sm mt-2 mb-1">Cooking with Saurabh</h4>
-                      <p className="text-slate-600 text-xs">May 15, 2020</p>
-                      <p className="text-slate-600 text-xs">5:00 PM</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex-none px-3 first:pl-6 last:pr-6">
-                  <div className="flex flex-col items-center justify-center gap-3">
-                    <div className="w-full rounded-xl shadow-lg">
-                      <Image
-                        className="rounded-xl object-cover"
-                        src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&w=320"
-                        alt="Chef Jordan"
-                        height={'80'}
-                        width={'80'}
-                        layout="responsive"
-                      />
-                    </div>
-                    <div>
-                      <h4 className="text-sm mt-2 mb-1">Cooking with Saurabh</h4>
-                      <p className="text-slate-600 text-xs">May 15, 2020</p>
-                      <p className="text-slate-600 text-xs">5:00 PM</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex-none px-3 first:pl-6 last:pr-6">
-                  <div className="flex flex-col items-center justify-center gap-3">
-                    <div className="w-full rounded-xl shadow-lg">
-                      <Image
-                        className="rounded-xl object-cover"
-                        src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&w=320"
-                        alt="Chef Jordan"
-                        height={'80'}
-                        width={'80'}
-                        layout="responsive"
-                      />
-                    </div>
-                    <div>
-                      <h4 className="text-sm mt-2 mb-1">Cooking with Saurabh</h4>
-                      <p className="text-slate-600 text-xs">May 15, 2020</p>
-                      <p className="text-slate-600 text-xs">5:00 PM</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex-none px-3 first:pl-6 last:pr-6">
-                  <div className="flex flex-col items-center justify-center gap-3">
-                    <div className="w-full rounded-xl shadow-lg">
-                      <Image
-                        className="rounded-xl object-cover"
-                        src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&w=320"
-                        alt="Chef Jordan"
-                        height={'80'}
-                        width={'80'}
-                        layout="responsive"
-                      />
-                    </div>
-                    <div>
-                      <h4 className="text-sm mt-2 mb-1">Cooking with Saurabh</h4>
-                      <p className="text-slate-600 text-xs">May 15, 2020</p>
-                      <p className="text-slate-600 text-xs">5:00 PM</p>
-                    </div>
-                  </div>
-                </div>
+                {UnsplashData.slice(14, 20).map((item) => (
+                  <CourseCard key={item.imageThumbnail} src={item.imageThumbnail} />
+                ))}
               </div>
             </div>
-          </div>
+          </section>
         </Layout.Body>
         <Layout.PreFooter />
         <Layout.Footer />

@@ -13,7 +13,7 @@ const Header: React.FC = ({ backflow, title }: { backflow: boolean; title?: stri
   };
 
   return (
-    <header className="flex h-16 sticky top-0 z-10 bg-white">
+    <header className="flex h-16 sticky top-0 z-20 bg-white">
       {backflow ? (
         <div className="flex flex-1">
           <div className="flex justify-center items-center w-16 px-6">
