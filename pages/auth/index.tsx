@@ -1,21 +1,20 @@
-import ErrorState from '@components/Shared/ErrorState';
 import Layout from '@components/Shared/Layout';
 import Head from 'next/head';
 import React from 'react';
 
-const PageNotFound: React.FC = () => {
+const index: React.FC = () => {
   return (
     <Layout>
       <Head>
-        <title>Page Not Found | Pep</title>
+        <title>Auth | Pep</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Layout.Header backflow={false} />
+      <Layout.Header backflow={true} title="Login" />
       <Layout.Body>
-        <ErrorState status={404} />
+        <div className="px-6">hi</div>
       </Layout.Body>
     </Layout>
   );
 };
 
-export default PageNotFound;
+export default index;

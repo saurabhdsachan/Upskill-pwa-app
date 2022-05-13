@@ -1,6 +1,5 @@
 import ErrorState from '@components/Shared/ErrorState';
 import Layout from '@components/Shared/Layout';
-import PreFooter from '@components/Shared/PreFooter';
 import Head from 'next/head';
 import React from 'react';
 
@@ -14,9 +13,8 @@ const Error = ({ statusCode }: { statusCode: number }): JSX.Element => {
       <Layout.Header />
       <Layout.Body>
         <ErrorState status={statusCode} />
-        <PreFooter />
       </Layout.Body>
-      <Layout.Footer />
+      <Layout.PreFooter />
     </Layout>
   );
 };
