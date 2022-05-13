@@ -15,7 +15,7 @@ const index: React.FC = () => {
       <Layout.Header backflow={true} />
       <Layout.Body>
         <div className="p-8">
-          <div className="fixed top-10 right-0 z-10">
+          <div className="fixed top-10 right-0 z-20">
             <Image
               className="object-cover rounded-full"
               src="https://res.cloudinary.com/dui8mpatf/image/upload/v1652427250/pep/Saly-38_y1ovez.png"
