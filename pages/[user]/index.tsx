@@ -74,7 +74,7 @@ export const User = (): JSX.Element => {
           </div>
 
           <div className="border-t border-b px-6 py-4 border-slate-200 sticky bottom-0 bg-white">
-            <Link href="/chef-jordan/workshops">
+            <Link href="/chef-jordan/workshops/book/learn-cooking-in-5-days/slots">
               <a className="uppercase inline-flex items-center justify-center w-full py-3 border border-transparent rounded-xl text-sm font-medium text-white bg-gradient-to-r from-orange-600 to-orange-500 hover:bg-white-700 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-orange-400">
                 <TicketIcon className="h-4 w-4 mr-2" /> Book 1:1 Demo Session
               </a>
@@ -88,16 +88,20 @@ export const User = (): JSX.Element => {
                   <h3>1:1 Consultation</h3>
                 </div>
                 <div>
-                  <small className="text-xs text-slate-600">
-                    See all <ChevronDoubleRightIcon className="w-2 h-2 inline" />{' '}
-                  </small>
+                  <Link href="/chef-jordan/workshops">
+                    <a>
+                      <small className="text-xs text-slate-600">
+                        See all <ChevronDoubleRightIcon className="w-2 h-2 inline" />{' '}
+                      </small>
+                    </a>
+                  </Link>
                 </div>
               </div>
             </div>
             <div className="relative overflow-auto">
               <div className="overflow-x-auto flex no-scrollbar">
                 {UnsplashData.slice(0, 8).map((item) => (
-                  <ExpertiseCard key={item.imageThumbnail} src={item.imageThumbnail} />
+                  <ExpertiseCard key={item.imageThumbnail} src={item.imageThumbnail} type="h-card" />
                 ))}
               </div>
             </div>
@@ -110,16 +114,20 @@ export const User = (): JSX.Element => {
                   <h3>Workshops</h3>
                 </div>
                 <div>
-                  <small className="text-xs text-slate-600">
-                    See all <ChevronDoubleRightIcon className="w-2 h-2 inline" />{' '}
-                  </small>
+                  <Link href="/chef-jordan/workshops">
+                    <a>
+                      <small className="text-xs text-slate-600">
+                        See all <ChevronDoubleRightIcon className="w-2 h-2 inline" />{' '}
+                      </small>
+                    </a>
+                  </Link>
                 </div>
               </div>
             </div>
             <div className="relative overflow-auto">
               <div className="overflow-x-auto flex no-scrollbar">
                 {UnsplashData.slice(8, 14).map((item) => (
-                  <WorkshopCard key={item.imageThumbnail} src={item.imageThumbnail} />
+                  <WorkshopCard key={item.imageThumbnail} src={item.imageThumbnail} type="h-card" />
                 ))}
               </div>
             </div>
@@ -132,16 +140,20 @@ export const User = (): JSX.Element => {
                   <h3>Courses</h3>
                 </div>
                 <div>
-                  <small className="text-xs text-slate-600">
-                    See all <ChevronDoubleRightIcon className="w-2 h-2 inline" />{' '}
-                  </small>
+                  <Link href="/chef-jordan/workshops">
+                    <a>
+                      <small className="text-xs text-slate-600">
+                        See all <ChevronDoubleRightIcon className="w-2 h-2 inline" />{' '}
+                      </small>
+                    </a>
+                  </Link>
                 </div>
               </div>
             </div>
             <div className="relative overflow-auto">
               <div className="overflow-x-auto flex no-scrollbar">
                 {UnsplashData.slice(14, 20).map((item) => (
-                  <CourseCard key={item.imageThumbnail} src={item.imageThumbnail} />
+                  <CourseCard key={item.imageThumbnail} src={item.imageThumbnail} type="h-card" />
                 ))}
               </div>
             </div>

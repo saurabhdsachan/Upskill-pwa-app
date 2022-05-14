@@ -1,7 +1,7 @@
+import CourseCard from '@components/Cards/CourseCard';
 import Layout from '@components/Shared/Layout';
-import { TicketIcon } from '@heroicons/react/outline';
+import { UnsplashData } from '@mocks/Unsplash';
 import Head from 'next/head';
-import Link from 'next/link';
 import React from 'react';
 
 function classNames(...classes) {
@@ -63,16 +63,10 @@ const Listing: React.FC = () => {
       <Layout.Header backflow={true} title="Workshops" />
       <Layout.Body>
         <div className="bg-white min-h-free">
-          <div className="px-6">
-            <h1>Workshops Listing</h1>
-          </div>
-          <div className="p-6 absolute w-full bottom-0 bg-white">
-            <Link href="/chef-jordan/workshops/book/learn-cooking-in-5-days">
-              <a className="uppercase inline-flex items-center justify-center w-full py-4 border border-transparent rounded-xl text-sm font-medium text-white bg-gradient-to-r from-orange-600 to-orange-500 hover:bg-white-700 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-orange-400">
-                <TicketIcon className="h-4 w-4 mr-2" />
-                Choose Slot
-              </a>
-            </Link>
+          <div className="px-6 grid gap-6 grid-cols-2 mb-10">
+            {UnsplashData.slice(14, 20).map((item) => (
+              <CourseCard key={item.imageThumbnail} src={item.imageThumbnail} type="v-card" />
+            ))}
           </div>
         </div>
       </Layout.Body>

@@ -8,12 +8,17 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-const ExpertiseCard = ({ src }: { src: string }) => {
+const ExpertiseCard = ({ src, type }: { src: string; type: 'v-card' | 'h-card' }) => {
   return (
-    <div className="flex-none px-3 first:pl-6 last:pr-6">
-      <Link href="/chef-jordan/workshops">
+    <div className={classNames(type === 'v-card' ? 'flex-none' : 'flex-none px-3 first:pl-6 last:pr-6')}>
+      <Link href="/chef-jordan/workshops/book/learn-cooking-in-5-days">
         <a>
-          <div className="flex flex-col items-center justify-center gap-3 w-screen/3 min-w-[130px] max-w-[156px]">
+          <div
+            className={classNames(
+              type === 'v-card' ? 'w-screen/2' : 'w-screen/3',
+              'flex flex-col items-center justify-center gap-3  min-w-[130px] max-w-[156px]'
+            )}
+          >
             <div className="w-full rounded-xl shadow-lg relative">
               <Image
                 className="rounded-xl object-cover"
