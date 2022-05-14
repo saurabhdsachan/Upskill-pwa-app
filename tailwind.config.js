@@ -20,13 +20,6 @@ module.exports = {
         'screen/3': '38vw',
       },
       borderWidth: ['last', 'first'],
-      colors: {
-        'spj-red': '#F5296E',
-        'spj-yellow': '#F39C12',
-      },
-      shadows: {
-        'spj-red': '0 2px 4px 0 #FFC6C6',
-      },
     },
   },
   variants: {
