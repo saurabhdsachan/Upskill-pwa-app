@@ -1,4 +1,5 @@
 import { StarIcon } from '@heroicons/react/solid';
+import { blurredBgImage } from '@public/images/bg-base-64';
 import Image from 'next/image';
 import React from 'react';
 
@@ -9,17 +10,21 @@ function classNames(...classes) {
 const CourseCard = ({ src }: { src: string }) => {
   return (
     <div className="flex-none px-3 first:pl-6 last:pr-6">
-      <div className="flex flex-col items-center justify-center gap-3 w-screen/3">
-        <div className="w-full rounded-xl shadow-lg relative">
+      <div className="flex flex-col items-center justify-center gap-3 w-screen/3 min-w-[130px] max-w-[156px]">
+        <div className="w-full rounded-xl shadow-lg relative overflow-hidden">
           <Image
             className="rounded-xl object-cover"
             src={src}
             alt="Chef Jordan"
-            height={'80'}
-            width={'80'}
+            height={80}
+            width={80}
+            placeholder="blur"
             layout="responsive"
+            blurDataURL={blurredBgImage}
           />
-          <span className="absolute top-1 left-1 rounded-lg bg-white py-1 px-2 text-xs">Career Counseling</span>
+          <span className="absolute top-1 left-1 rounded-lg bg-white py-1 px-2 text-xs max-w-9/12 text-ellipsis overflow-hidden">
+            Career Counseling
+          </span>
         </div>
         <div>
           <h4 className="mb-1">Cooking with Saurabh</h4>

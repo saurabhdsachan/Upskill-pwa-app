@@ -17,7 +17,7 @@ module.exports = {
         'hero-pattern': "url('/images/hero-pattern.png')",
       },
       spacing: {
-        'screen/3': '33vw',
+        'screen/3': '38vw',
       },
       borderWidth: ['last', 'first'],
       colors: {
