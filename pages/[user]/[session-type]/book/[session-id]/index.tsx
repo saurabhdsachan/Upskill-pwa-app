@@ -104,16 +104,24 @@ const SessionDetail: React.FC = () => {
           </div>
           <hr />
           <div className="px-6 py-4">
-            <h1 className="text-2xl">Mindful Biryani</h1>
-            <div className="flex items-center my-1">
-              {[0, 1, 2, 3, 4].map((rating) => (
-                <StarIcon
-                  key={rating}
-                  className={classNames(5 > rating ? 'text-yellow-500' : 'text-gray-200', 'h-4 w-4 flex-shrink-0')}
-                  aria-hidden="true"
-                />
-              ))}{' '}
-              <small className="text-xs text-slate-600 ml-1">5 (25)</small>
+            <div className="flex">
+              <div className="flex-1">
+                <h1 className="text-2xl">Mindful Biryani</h1>
+                <div className="flex items-center my-1">
+                  {[0, 1, 2, 3, 4].map((rating) => (
+                    <StarIcon
+                      key={rating}
+                      className={classNames(5 > rating ? 'text-yellow-500' : 'text-gray-200', 'h-4 w-4 flex-shrink-0')}
+                      aria-hidden="true"
+                    />
+                  ))}{' '}
+                  <small className="text-xs text-slate-600 ml-1">5 (25)</small>
+                </div>
+              </div>
+              <div>
+                <small className="text-slate-600 text-xs">INR</small>
+                <h4 className="font-semibold text-lg leading-6">1,243.00</h4>
+              </div>
             </div>
             <ul role="list" className="mt-2 leading-8">
               <li className="inline">
@@ -159,7 +167,7 @@ const SessionDetail: React.FC = () => {
             <hr className="my-10" />
             <div className="mt-4">
               <LightBulbIcon className="w-10 h-10 text-slate-400" />
-              <h2 className="text-xl font-bold mb-2 text-slate-400">How to join</h2>
+              <h2 className="text-xl font-bold mb-10 text-slate-400">How to join</h2>
               <h4 className="font-semibold mb-2">Option 1 - Through Expert&apos;s Pep Website:</h4>
               <p className="prose prose-sm">
                 Click on the expert&apos;s Pep website link → Login/Signup → click on ‘Bookings‘ → You will see booking

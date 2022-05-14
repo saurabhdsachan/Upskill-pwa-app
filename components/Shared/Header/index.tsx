@@ -16,8 +16,8 @@ const Header: React.FC = ({ backflow, title }: { backflow: boolean; title?: stri
     <header className="flex h-16 sticky top-0 z-20 bg-white">
       {backflow ? (
         <div className="flex flex-1">
-          <div className="flex justify-center items-center w-16 px-6">
-            <button className="btn btn-primary" onClick={handleGoBack}>
+          <div className="flex justify-center items-center">
+            <button className="btn btn-primary w-16 p-6" onClick={handleGoBack}>
               <ArrowLeftIcon className="h-5 w-5" />
             </button>
           </div>
@@ -26,8 +26,8 @@ const Header: React.FC = ({ backflow, title }: { backflow: boolean; title?: stri
       ) : (
         <>
           <div className="flex flex-1">
-            <div className="flex justify-center items-center w-16 px-6">
-              <button className="btn btn-primary" onClick={() => setIsOpen(true)}>
+            <div className="flex justify-center items-center">
+              <button className="btn btn-primary w-16 p-6" onClick={() => setIsOpen(true)}>
                 <MenuAlt1Icon className="h-5 w-5" />
               </button>
             </div>
