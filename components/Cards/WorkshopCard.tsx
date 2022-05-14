@@ -9,7 +9,7 @@ function classNames(...classes) {
 const WorkshopCard = ({ src }: { src: string }) => {
   return (
     <div className="flex-none px-3 first:pl-6 last:pr-6">
-      <div className="flex flex-col items-center justify-center gap-3 w-[156px]">
+      <div className="flex flex-col items-center justify-center gap-3 w-screen/3">
         <div className="w-full rounded-xl shadow-lg relative">
           <Image
             className="rounded-xl object-cover"

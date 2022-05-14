@@ -36,7 +36,7 @@ export default class MyDocument extends Document {
           <link rel="icon" href="favicon.ico" />
           <link rel="manifest" href="/manifest.json" />
         </Head>
-        <body className="container max-w-md mx-auto">
+        <body className="container max-w-md mx-auto antialiased">
           <Main />
           <NextScript />
         </body>

@@ -27,11 +27,10 @@ const index: React.FC = () => {
               blurDataURL={blurredBgImage}
             />
           </div>
-          <h1 className="text-4xl mt-16 mb-2 text-slate-900 leading-10">
+          <h1 className="text-4xl my-16 text-slate-900 leading-10">
             Hey, <br />
             Login Now
           </h1>
-          <p className="text-slate-600">If you are new / create one</p>
           <div className="mt-10">
             <div className="col-span-2">
               <label htmlFor="phone-number" className="block text-sm font-medium text-gray-700">
@@ -58,7 +57,7 @@ const index: React.FC = () => {
                   id="phone-number"
                   autoComplete="tel"
                   className="py-3 px-4 block w-full pl-28 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-300 focus:border-slate-300 border-gray-300 rounded-xl"
-                  placeholder="903608762"
+                  placeholder="9036087621"
                 />
               </div>
             </div>

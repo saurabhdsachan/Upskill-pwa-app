@@ -16,6 +16,9 @@ module.exports = {
       backgroundImage: {
         'hero-pattern': "url('/images/hero-pattern.png')",
       },
+      spacing: {
+        'screen/3': '33vw',
+      },
       borderWidth: ['last', 'first'],
       colors: {
         'spj-red': '#F5296E',
