@@ -6,9 +6,10 @@ type LottieAnimationType = {
   height?: number;
   width?: number;
   animationData?: {};
+  loop?: boolean;
 };
 
-const LottieAnimation: React.FC<LottieAnimationType> = ({ height, width, animationData }) => (
+const LottieAnimation: React.FC<LottieAnimationType> = ({ height, width, animationData, loop = true }) => (
   <Lottie
     height={height}
     width={width}
@@ -16,6 +17,7 @@ const LottieAnimation: React.FC<LottieAnimationType> = ({ height, width, animati
     ariaRole="present"
     options={{
       animationData: animationData || animation,
+      loop,
     }}
   />
 );
