@@ -15,7 +15,7 @@ const Slots: React.FC = () => {
       </Head>
       <Layout.Header backflow={true} title="Select a slot" />
       <Layout.Body>
-        <div className="relative min-h-free">
+        <div className="min-h-free">
           <div className="date-select">
             <div className="px-6">
               <h2 className="text-xl">Select a date</h2>
@@ -60,7 +60,7 @@ const Slots: React.FC = () => {
               <div className="overflow-x-auto flex no-scrollbar">
                 {UnsplashData.map((item) => (
                   <div className="flex-none p-1 first:pl-6 last:pr-6" key={item.imageThumbnail}>
-                    <button className="rounded-xl border border-slate-200 bg-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-400">
+                    <button className="rounded-xl border border-slate-200 bg-white px-4 py-1.5 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-400">
                       <p className="text-sm text-slate-600">12:15 PM</p>
                     </button>
                   </div>
@@ -74,7 +74,7 @@ const Slots: React.FC = () => {
               <div className="overflow-x-auto flex no-scrollbar">
                 {UnsplashData.map((item) => (
                   <div className="flex-none p-1 first:pl-6 last:pr-6" key={item.imageThumbnail}>
-                    <button className="rounded-xl border border-slate-200 bg-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-400">
+                    <button className="rounded-xl border border-slate-200 bg-white px-4 py-1.5 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-400">
                       <p className="text-sm text-slate-600">12:15 PM</p>
                     </button>
                   </div>
@@ -88,7 +88,7 @@ const Slots: React.FC = () => {
               <div className="overflow-x-auto flex no-scrollbar">
                 {UnsplashData.map((item) => (
                   <div className="flex-none p-1 first:pl-6 last:pr-6" key={item.imageThumbnail}>
-                    <button className="rounded-xl border border-slate-200 bg-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-400">
+                    <button className="rounded-xl border border-slate-200 bg-white px-4 py-1.5 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-400">
                       <p className="text-sm text-slate-600">12:15 PM</p>
                     </button>
                   </div>
@@ -102,7 +102,7 @@ const Slots: React.FC = () => {
               <div className="overflow-x-auto flex no-scrollbar">
                 {UnsplashData.map((item) => (
                   <div className="flex-none p-1 first:pl-6 last:pr-6" key={item.imageThumbnail}>
-                    <button className="rounded-xl border border-slate-200 bg-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-400">
+                    <button className="rounded-xl border border-slate-200 bg-white px-4 py-1.5 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-400">
                       <p className="text-sm text-slate-600">12:15 PM</p>
                     </button>
                   </div>
@@ -110,14 +110,14 @@ const Slots: React.FC = () => {
               </div>
             </div>
           </div>
-          <div className="p-6 absolute w-full bottom-0 bg-white">
-            <Link href="/success">
-              <a className="uppercase inline-flex items-center justify-center w-full py-4 border border-transparent rounded-xl text-sm font-medium text-white bg-gradient-to-r from-orange-600 to-orange-500 hover:bg-white-700 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-orange-400">
-                <TicketIcon className="h-4 w-4 mr-2" />
-                Book Now
-              </a>
-            </Link>
-          </div>
+        </div>
+        <div className="p-6 sticky bottom-0 bg-white">
+          <Link href="/success">
+            <a className="uppercase inline-flex items-center justify-center w-full py-4 border border-transparent rounded-xl text-sm font-medium text-white bg-gradient-to-r from-orange-600 to-orange-500 hover:bg-white-700 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-orange-400">
+              <TicketIcon className="h-4 w-4 mr-2" />
+              Book Now
+            </a>
+          </Link>
         </div>
       </Layout.Body>
     </Layout>
