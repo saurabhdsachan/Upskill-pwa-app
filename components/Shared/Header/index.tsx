@@ -1,10 +1,12 @@
 import { ArrowLeftIcon, CalendarIcon, DownloadIcon, HomeIcon, MenuAlt1Icon, ShareIcon } from '@heroicons/react/outline';
+import useAuth from '@hooks/useAuth';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 import Drawer from '../Drawer';
 
 const Header: React.FC = ({ backflow, title }: { backflow: boolean; title?: string }) => {
+  const { loading, loggedOut, user, mutate } = useAuth();
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const router = useRouter();
 
@@ -45,6 +47,7 @@ const Header: React.FC = ({ backflow, title }: { backflow: boolean; title?: stri
       )}
       <Drawer setIsOpen={setIsOpen} isOpen={isOpen}>
         <div className="p-6 flex-1">
+          <div className="text-xs break-all">{JSON.stringify(user)}</div>
           <div className="flex flex-col h-full">
             <div className="flex-1">
               <ul>
