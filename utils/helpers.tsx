@@ -27,4 +27,9 @@ function currencyFormat(price) {
     currency: 'USD',
   }).format(price);
 }
-export { debounce, arraysEqual, currencyFormat };
+
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ');
+}
+
+export { debounce, arraysEqual, currencyFormat, classNames };

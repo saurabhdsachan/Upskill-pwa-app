@@ -35,11 +35,9 @@ export const User = (): JSX.Element => {
             <HeroGem />
             <div className="flex space-x-4">
               <div className="flex-1">
-                <Link href="/chef-jordan/reviews">
-                  <a className="inline-flex items-center justify-center w-full py-3 border border-transparent rounded-xl text-sm font-medium text-white bg-gradient-to-r from-blue-500 to-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-blue-400 shadow-sm shadow-blue-500/50">
-                    <UserGroupIcon className="h-4 w-4 mr-2" /> Follow
-                  </a>
-                </Link>
+                <button className="inline-flex items-center justify-center w-full py-3 border border-transparent rounded-xl text-sm font-medium text-white bg-gradient-to-r from-blue-500 to-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-blue-400 shadow-sm shadow-blue-500/50">
+                  <UserGroupIcon className="h-4 w-4 mr-2" /> Follow
+                </button>
               </div>
               <div className="flex-1">
                 <button className="inline-flex items-center justify-center w-full py-3 border border-slate-400 rounded-xl text-sm font-medium text-slate-900 bg-white-600 hover:bg-white-700 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-400 shadow-sm shadow-white-500/50">
@@ -54,16 +52,20 @@ export const User = (): JSX.Element => {
               </p>
             </div>
             <div className="flex mt-6 space-x-6 justify-center">
-              <div className="flex items-center justify-start space-x-4">
-                <div className="w-8 h-8 bg-blue-100 flex justify-center items-center rounded-full">
-                  <StarIcon className="h-4 w-4 text-blue-500" />
-                </div>
-                <div className="text-left">
-                  <small className="text-xs  text-blue-500 block">Rating</small>
-                  <span className="text-xs">5.0 (1)</span>
-                </div>
-              </div>
-              <div className="flex items-center justify-start space-x-4">
+              <Link href="/chef-jordan/reviews">
+                <a>
+                  <div className="flex items-center justify-start space-x-2">
+                    <div className="w-8 h-8 bg-blue-100 flex justify-center items-center rounded-full">
+                      <StarIcon className="h-4 w-4 text-blue-500" />
+                    </div>
+                    <div className="text-left">
+                      <small className="text-xs  text-blue-500 block">Rating</small>
+                      <span className="text-xs">5.0 (1)</span>
+                    </div>
+                  </div>
+                </a>
+              </Link>
+              <div className="flex items-center justify-start space-x-2">
                 <div className="w-8 h-8 bg-blue-100 flex justify-center items-center rounded-full">
                   <TranslateIcon className="h-4 w-4 text-blue-500" />
                 </div>
