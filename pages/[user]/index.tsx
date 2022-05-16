@@ -15,7 +15,7 @@ import Link from 'next/link';
 import React from 'react';
 import CourseCard from '../../components/Cards/CourseCard';
 
-export const User = (): JSX.Element => {
+const User: React.FC = (props) => {
   return (
     <>
       <SEOWrapper seoProps={HomePageSEO.HomeSEO} />
@@ -31,7 +31,8 @@ export const User = (): JSX.Element => {
             <SocialLinks />
             <div>
               <p className="text-sm text-slate-700">
-                Hey there 👋🏻 I am from Pep team and you can book a 1:1 session with me to know more about Pep 🤓
+                Hey there {JSON.stringify(props)} 👋🏻 I am from Pep team and you can book a 1:1 session with me to know
+                more about Pep 🤓
               </p>
             </div>
             <div className="flex mt-6 space-x-6 justify-center">
@@ -152,5 +153,17 @@ export const User = (): JSX.Element => {
     </>
   );
 };
+
+export async function getStaticPaths() {
+  return { paths: [{ params: { user: 'saurabh' } }, { params: { user: 'chef-jordan' } }], fallback: false };
+}
+
+export async function getStaticProps({ params: { user } }) {
+  console.log('user', user);
+
+  return {
+    props: { user },
+  };
+}
 
 export default React.memo(User);
