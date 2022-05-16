@@ -1,20 +1,14 @@
 import ExpertiseCard from '@components/Cards/ExpertiseCard';
 import WorkshopCard from '@components/Cards/WorkshopCard';
 import { Hero1 } from '@components/Hero';
+import HeroAction from '@components/HeroAction';
 import HeroGem from '@components/HeroGem';
 import Avatar from '@components/Shared/Avatar';
 import HeroIntro from '@components/Shared/HeroIntro';
 import Layout from '@components/Shared/Layout';
 import SEOWrapper from '@components/Shared/SEO/SEOWrapper';
 import SocialLinks from '@components/Shared/SocialLinks';
-import {
-  ChatAltIcon,
-  ChevronDoubleRightIcon,
-  StarIcon,
-  TicketIcon,
-  TranslateIcon,
-  UserGroupIcon,
-} from '@heroicons/react/outline';
+import { ChevronDoubleRightIcon, StarIcon, TicketIcon, TranslateIcon } from '@heroicons/react/outline';
 import { UnsplashData } from '@mocks/Unsplash';
 import { HomePageSEO } from '@utils/SEO'; // can also have jsonLD config
 import Link from 'next/link';
@@ -33,18 +27,7 @@ export const User = (): JSX.Element => {
             <Avatar />
             <HeroIntro />
             <HeroGem />
-            <div className="flex space-x-4">
-              <div className="flex-1">
-                <button className="inline-flex items-center justify-center w-full py-3 border border-transparent rounded-xl text-sm font-medium text-white bg-gradient-to-r from-blue-500 to-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-blue-400 shadow-sm shadow-blue-500/50">
-                  <UserGroupIcon className="h-4 w-4 mr-2" /> Follow
-                </button>
-              </div>
-              <div className="flex-1">
-                <button className="inline-flex items-center justify-center w-full py-3 border border-slate-400 rounded-xl text-sm font-medium text-slate-900 bg-white-600 hover:bg-white-700 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-400 shadow-sm shadow-white-500/50">
-                  <ChatAltIcon className="h-4 w-4 mr-2" /> Chat
-                </button>
-              </div>
-            </div>
+            <HeroAction />
             <SocialLinks />
             <div>
               <p className="text-sm text-slate-700">
@@ -77,7 +60,7 @@ export const User = (): JSX.Element => {
             </div>
           </div>
 
-          <div className="border-t border-b px-6 py-4 border-slate-200 sticky bottom-0 bg-white">
+          <div className="border-t border-b px-6 py-4 border-slate-200 bg-white">
             <Link href="/chef-jordan/workshops/book/learn-cooking-in-5-days/slots">
               <a className="uppercase inline-flex items-center justify-center w-full py-3 border border-transparent rounded-xl text-sm font-medium text-white bg-gradient-to-r from-orange-600 to-orange-500 hover:bg-white-700 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-orange-400">
                 <TicketIcon className="h-4 w-4 mr-2" /> Book 1:1 Demo Session
