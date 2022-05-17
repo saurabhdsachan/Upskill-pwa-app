@@ -1,9 +1,10 @@
 import fetch from 'isomorphic-unfetch';
+import toast from 'react-hot-toast';
 
 const APIBaseUrl = process.env.NEXT_PUBLIC_BACKEND_HOST;
 
 const fetcher = async (url, options) => {
-  const resp = await fetch(`${APIBaseUrl}${url}`, {
+  const resp = fetch(`${APIBaseUrl}${url}`, {
     method: options.method || 'GET',
     mode: 'cors', // cors, no-cors, *cors, same-origin
     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -20,18 +21,28 @@ const fetcher = async (url, options) => {
       //   'eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI5ODJhODhlMS02NjAyLTRmOGYtOTgyYS03ZjFmNDJkMjBjYmYiLCJpYXQiOjE2NTI2ODM5MTUsIlVTRVJfQ0xBSU0iOnsidXNlcklkIjoiOTgyYTg4ZTEtNjYwMi00ZjhmLTk4MmEtN2YxZjQyZDIwY2JmIn0sImV4cCI6MTY1Mjk0MzExNX0.x75Swleb0MJV8hIOQ6a2ZLTdjoUsWbhzDJ8LtoFPwus',
       // 'app-user-id': '982a88e1-6602-4f8f-982a-7f1f42d20cbf',
     },
+    ...(options.method === 'POST' && { body: JSON.stringify(options.body) }),
+  });
+  console.log('resp', resp);
+
+  toast.promise(resp, {
+    loading: 'requesting',
+    success: 'successfully',
+    error: 'Please try again',
   });
 
-  if (resp.status <= 300) {
+  const respData = await resp;
+
+  if (respData.status <= 300) {
     return {
-      status: resp.status,
-      statusText: resp.statusText,
-      data: await resp.json(),
+      status: respData.status,
+      statusText: respData.statusText,
+      data: await respData.json(),
     };
   } else {
     return {
-      status: resp.status,
-      statusText: resp.statusText,
+      status: respData.status,
+      statusText: respData.statusText,
     };
   }
 };

@@ -21,7 +21,7 @@ const Auth: React.FC = () => {
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     setMobile(data?.mobile);
-    const endpoint = `/users/${data.mobile}`;
+    const endpoint = `/user/v1/otp?number=${data.mobile}&countryCode=91`;
     const resp = await fetcher(endpoint, { data: 'sss' });
 
     const progress = new Promise((resolve, reject) => {
@@ -42,7 +42,18 @@ const Auth: React.FC = () => {
 
   const onOTPSubmit: SubmitHandler<Inputs> = async (data) => {
     const endpoint = `/user/v1/login/otp`;
-    const resp = await fetcher(endpoint, { method: 'POST' });
+    const resp = await fetcher(endpoint, {
+      method: 'POST',
+      body: {
+        countryCode: '91',
+        number: mobile,
+        otp: data.otp,
+      },
+    });
+    if (resp.status === 200) {
+      setShowOTPField(false);
+    } else if (resp.status === 404) {
+    }
   };
 
   return (
