@@ -47,7 +47,6 @@ const Header: React.FC = ({ backflow, title }: { backflow: boolean; title?: stri
       )}
       <Drawer setIsOpen={setIsOpen} isOpen={isOpen}>
         <div className="p-6 flex-1">
-          <div className="text-xs break-all">{JSON.stringify(user)}</div>
           <div className="flex flex-col h-full">
             <div className="flex-1">
               <ul>
