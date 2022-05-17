@@ -159,8 +159,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params: { user } }) => {
-  console.log('user', user);
-
   return {
     props: { user },
   };
