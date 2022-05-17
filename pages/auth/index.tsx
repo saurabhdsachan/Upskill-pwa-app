@@ -4,20 +4,45 @@ import { blurredBgImage } from '@public/images/bg-base-64';
 import fetcher from '@utils/fetcher';
 import Head from 'next/head';
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import { Else, If, Then } from 'react-if';
 
 type Inputs = {
   mobile: number;
   otp: string;
 };
 
-const index: React.FC = () => {
+const Auth: React.FC = () => {
   const { register, handleSubmit } = useForm<Inputs>();
+  const [showOTPField, setShowOTPField] = useState<boolean>(false);
+  const [mobile, setMobile] = useState<number>(0);
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    setMobile(data?.mobile);
     const endpoint = `/users/${data.mobile}`;
     const resp = await fetcher(endpoint, { data: 'sss' });
+
+    const progress = new Promise((resolve, reject) => {
+      if (resp.status === 200) {
+        resolve('foo');
+        setShowOTPField(true);
+      } else if (resp.status === 404) {
+        reject('');
+      }
+    });
+
+    toast.promise(progress, {
+      loading: 'sending',
+      success: 'OTP sent successfully',
+      error: 'Please try again',
+    });
+  };
+
+  const onOTPSubmit: SubmitHandler<Inputs> = async (data) => {
+    const endpoint = `/user/v1/login/otp`;
+    const resp = await fetcher(endpoint, { method: 'POST' });
     console.log('resp', resp);
   };
 
@@ -46,42 +71,58 @@ const index: React.FC = () => {
             Hey, <br />
             Login Now
           </h1>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(showOTPField ? onOTPSubmit : onSubmit)}>
             <div className="mt-4">
-              <div className="col-span-2">
-                <label htmlFor="otp" className="block text-sm font-medium text-gray-700">
-                  Mobile
-                </label>
-                <div className="mt-1">
-                  <input
-                    {...register('mobile', { required: true })}
-                    type="tel"
-                    placeholder="Mobile Number"
-                    className="p-4 block w-full rounded-xl bg-slate-200 border-b border-transparent focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-300 focus:border-slate-300"
-                  />
-                </div>
-              </div>
+              <If condition={showOTPField}>
+                <Then>
+                  <div className="mt-4">
+                    <div className="col-span-2">
+                      <label htmlFor="otp" className="block text-sm font-medium text-gray-700">
+                        OTP
+                      </label>
+                      <div className="mt-1">
+                        <input
+                          {...register('otp', { required: showOTPField })}
+                          type="number"
+                          className="text-center p-4 block w-full rounded-xl bg-slate-200 border-b border-transparent focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-100 focus:border-slate-100"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </Then>
+                <Else>
+                  <div className="col-span-2">
+                    <label htmlFor="otp" className="block text-sm font-medium text-gray-700">
+                      Mobile
+                    </label>
+                    <div className="mt-1">
+                      <input
+                        {...register('mobile', { required: showOTPField })}
+                        type="tel"
+                        placeholder="Mobile Number"
+                        className="p-4 block w-full rounded-xl bg-slate-200 border-b border-transparent focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-100 focus:border-slate-100"
+                      />
+                    </div>
+                  </div>
+                </Else>
+              </If>
             </div>
-            {/* <div className="mt-4">
-              <div className="col-span-2">
-                <label htmlFor="otp" className="block text-sm font-medium text-gray-700">
-                  OTP
-                </label>
-                <div className="mt-1">
-                  <input
-                    {...register('otp', { required: true })}
-                    type="number"
-                    className="p-4 block w-full rounded-xl bg-slate-200 border-b border-transparent focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-300 focus:border-slate-300"
-                  />
-                </div>
-              </div>
-            </div> */}
             <button
               type="submit"
               className="mt-8 uppercase inline-flex items-center justify-center w-full p-5 border-b border-transparent text-sm font-medium text-white bg-slate-900 hover:bg-white-700 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-400 rounded-xl"
             >
-              Send OTP <ArrowRightIcon className="h-4 w-4 ml-2" />
+              {showOTPField ? 'Login / Signup' : 'Send OTP'} <ArrowRightIcon className="h-4 w-4 ml-2" />
             </button>
+            <If condition={showOTPField}>
+              <Then>
+                <div className="mt-6">
+                  <div className="flex justify-between">
+                    <button className="text-xs px-2 py-1 rounded-full border border-slate-300">Change Number</button>
+                    <button className="text-xs px-2 py-1 rounded-full border border-slate-300">Resend OTP</button>
+                  </div>
+                </div>
+              </Then>
+            </If>
           </form>
         </div>
       </Layout.Body>
@@ -89,4 +130,4 @@ const index: React.FC = () => {
   );
 };
 
-export default index;
+export default Auth;
