@@ -1,42 +1,42 @@
 const isProduction = process.env.NEXT_PUBLIC_ENV_HOST === 'production';
 
 const page = {
-  appName: 'PepWeb',
+  appName: 'pep-pwa',
   apiBaseUrl: process.env.NEXT_PUBLIC_API_GATEWAY,
-  apiSocketUrl: isProduction ? 'https://ws-api.Pep.com/api' : 'https://api-staging.Pep.com/api',
-  placeKey: 'AIzaSyDsLNNs6HOOBILlbiMfr9hn9w3_CTxPlRA',
-  googleSiteVerification: 'AvMwlYBDLdgqosxOUuNf114TxPVJtkY3lm3jxDpqLMY',
-  googleAPIKey: 'AIzaSyDsLNNs6HOOBILlbiMfr9hn9w3_CTxPlRA',
-  googleClientId: '628064588100-islor8kv96kol2rjrocarhqs4d604vec.apps.googleusercontent.com',
-  appleClientId: 'com.ndllabs.portal.webauth',
-  googleClientSecret: 'dfnLUcrX1chFQ-qwTgOXkIfp',
-  ga: 'UA-145327802-1',
-  gtm: 'GTM-WC4HSB6',
-  optimize: 'GTM-NDHKHGC',
-  stripe: isProduction ? 'pk_live_74NmugK4189bLTq0H74tvVz300grMkWE5n' : 'pk_test_YSErkwOc5SzDJ2TrWBuR4VWV00au48Fd7x',
-  freshchatToken: '3c8c605c-62da-4127-868d-39387867f6ec',
-  CLEVERTAP_ACCOUNT_ID: '69R-KW5-465Z',
-  playStoreUrl: 'https://play.google.com/store/apps/details?id=com.homefuly.idsuite.retail',
-  playStoreId: 'com.homefuly.idsuite.retail',
-  appStoreUrl: 'https://apps.apple.com/us/app/homefuly/id1448690338',
-  appStoreId: '1448690338',
-  facebookPageId: '652491341906462',
-  facebookAppId: '652491341906462',
-  pinterestAppId: '78963155e9328e543f3c8741e7afb48c',
+  apiSocketUrl: '',
+  placeKey: '',
+  googleSiteVerification: '',
+  googleAPIKey: '',
+  googleClientId: '',
+  appleClientId: '',
+  googleClientSecret: '',
+  ga: '',
+  gtm: '',
+  optimize: '',
+  stripe: '',
+  freshchatToken: '',
+  CLEVERTAP_ACCOUNT_ID: '',
+  playStoreUrl: '',
+  playStoreId: '',
+  appStoreUrl: '',
+  appStoreId: '',
+  facebookPageId: '',
+  facebookAppId: '',
+  pinterestAppId: '',
   whatsAppShareBaseUrl: 'https://api.whatsapp.com/send',
 };
 const cloudinary = {
-  cloudName: 'Pep',
-  apiKey: '432541925957862',
-  apiSecret: 'dhn4tENhmmFqoefnjWXtcjlkfUw',
-  environmentVariable: 'CLOUDINARY_URL=cloudinary://432541925957862:dhn4tENhmmFqoefnjWXtcjlkfUw@Pep',
-  baseDeliveryURL: 'https://res.cloudinary.com/Pep',
-  apiBaseURL: '//api.cloudinary.com/v1_1/Pep',
+  cloudName: 'pep',
+  apiKey: '',
+  apiSecret: '',
+  environmentVariable: '',
+  baseDeliveryURL: '',
+  apiBaseURL: '',
 };
 
 const company = {
   logo: 'w_200/v1578101355/shared/Pep-logo_ase39m.svg',
-  name: 'Neo Design Labs Inc',
+  name: 'pep',
   product: 'Pep',
   productWithTM: 'Pep™',
   tagLine: 'Designing your imagination',
@@ -121,9 +121,4 @@ const internalPages = {
   },
 };
 
-const affirm = {
-  key: isProduction ? 'MQX1SBXQPC7ZPJNG' : 'QZMZ8RUP8KPJKAK7',
-  script: isProduction ? 'https://cdn1.affirm.com/js/v2/affirm.js' : 'https://sandbox.affirm.com/js/v2/affirm.js',
-};
-
-export { company, page, cloudinary, internalPages, affirm };
+export { company, page, cloudinary, internalPages };

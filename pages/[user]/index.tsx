@@ -11,6 +11,7 @@ import SocialLinks from '@components/Shared/SocialLinks';
 import { ChevronDoubleRightIcon, StarIcon, TicketIcon, TranslateIcon } from '@heroicons/react/outline';
 import { UnsplashData } from '@mocks/Unsplash';
 import { HomePageSEO } from '@utils/SEO'; // can also have jsonLD config
+import { GetStaticPaths, GetStaticProps } from 'next';
 import Link from 'next/link';
 import React from 'react';
 import CourseCard from '../../components/Cards/CourseCard';
@@ -31,8 +32,7 @@ const User: React.FC = (props) => {
             <SocialLinks />
             <div>
               <p className="text-sm text-slate-700">
-                Hey there {JSON.stringify(props)} 👋🏻 I am from Pep team and you can book a 1:1 session with me to know
-                more about Pep 🤓
+                Hey there 👋🏻 I am from Pep team and you can book a 1:1 session with me to know more about Pep 🤓
               </p>
             </div>
             <div className="flex mt-6 space-x-6 justify-center">
@@ -154,16 +154,16 @@ const User: React.FC = (props) => {
   );
 };
 
-export async function getStaticPaths() {
-  return { paths: [{ params: { user: 'saurabh' } }, { params: { user: 'chef-jordan' } }], fallback: false };
-}
+export const getStaticPaths: GetStaticPaths = async () => {
+  return { paths: [{ params: { user: 'saurabh' } }, { params: { user: 'chef-jordan' } }], fallback: true };
+};
 
-export async function getStaticProps({ params: { user } }) {
+export const getStaticProps: GetStaticProps = async ({ params: { user } }) => {
   console.log('user', user);
 
   return {
     props: { user },
   };
-}
+};
 
 export default React.memo(User);

@@ -7,18 +7,18 @@ const organizationSchema = {
   '@type': 'Organization',
   name: 'Pep',
   brand: 'Pep',
-  legalName: 'Neo Design Labs Inc',
-  url: 'https://www.Pep.com/',
-  logo: '//res.cloudinary.com/Pep/image/upload/w_200/v1578101355/shared/Pep-logo_ase39m.svg',
+  legalName: 'pep.live',
+  url: 'https://www.pep.live',
+  logo: '//res.cloudinary.com/dui8mpatf/image/upload/v1652759110/pep/pep-logo-dark_ndtc8k.svg',
   foundingDate: '22/04/2019',
   founders: [
     {
       '@type': 'Person',
-      name: 'Arnab Saharoy',
+      name: 'Nav Sarvesh',
     },
     {
       '@type': 'Person',
-      name: 'Vinay Indresh',
+      name: 'Swapnil',
     },
   ],
   address: {
@@ -33,23 +33,23 @@ const organizationSchema = {
     {
       '@type': 'ContactPoint',
       contactType: 'customer support',
-      telephone: '+1 (310) 483-7722',
-      email: 'hello@Pep.com',
+      telephone: '+91 (981) 483-7722',
+      email: 'hello@pep.live',
     },
   ],
   sameAs: [
-    'https://www.facebook.com/Pepapp/',
-    'https://twitter.com/Pepapp/',
-    'https://www.linkedin.com/company/Pep/',
-    'https://www.instagram.com/Pepapp/',
-    'https://www.pinterest.com/Pepapp/',
+    'https://www.facebook.com/pepapp/',
+    'https://twitter.com/pepapp/',
+    'https://www.linkedin.com/company/pep/',
+    'https://www.instagram.com/pepapp/',
+    'https://www.pinterest.com/pepapp/',
   ],
 };
 
 const openGraph = {
   type: 'website',
-  locale: 'en_US',
-  url: 'https://www.Pep.com/',
+  locale: 'en_IN',
+  url: 'https://www.pep.live/',
   title: `${company.product} - ${company.tagLine}`,
   description: company.description,
   images: [
@@ -81,13 +81,6 @@ const AppleMeta = [
   { key: 'formatDetection', name: 'format-detection', content: 'telephone=no' },
 ];
 
-const IEMeta = [
-  { key: 'msapplicationStartUrl', name: 'msapplication-starturl', content: '/' },
-  { key: 'msapplication-TileColor', name: 'msapplication-TileColor', content: '#ffffff' },
-  { key: 'msapplicationLogo', name: 'msapplication-square310x310logo', content: '/logo-icons/ms-icon-310x310.png' },
-  { key: 'msapplication-TileImage', name: 'msapplication-TileImage', content: '/logo-icons/ms-icon-144x144.png' },
-];
-
 const additionalMetaTags = [
   { key: 'language', name: 'language', content: 'ES' },
   { key: 'subject', name: 'subject', content: company.subject },
@@ -103,51 +96,22 @@ const additionalMetaTags = [
   { key: 'topic', name: 'topic', content: company.subject },
   { key: 'summary', name: 'summary', content: company.description },
   ...AppleMeta,
-  ...IEMeta,
 ];
 
 // // Link Section
 const AppleLink = [
-  { key: 'apple-touch-icon1', rel: 'apple-touch-icon', href: '/logo-icons/apple-icon.png' },
-  { key: 'apple-touch-icon2', rel: 'apple-touch-icon', sizes: '72x72', href: '/logo-icons/apple-icon-72x72.png' },
-  { key: 'apple-touch-icon3', rel: 'apple-touch-icon', sizes: '114x114', href: '/logo-icons/apple-icon-114x114.png' },
+  { key: 'apple-touch-icon1', rel: 'apple-touch-icon', sizes: '57x57', href: '/logo-icons/apple-icon-57x57.png' },
+  { key: 'apple-touch-icon2', rel: 'apple-touch-icon', sizes: '60x60', href: '/logo-icons/apple-icon-60x60.png' },
+  { key: 'apple-touch-icon3', rel: 'apple-touch-icon', sizes: '72x72', href: '/logo-icons/apple-icon-72x72.png' },
+  { key: 'apple-touch-icon4', rel: 'apple-touch-icon', sizes: '76x76', href: '/logo-icons/apple-icon-76x76.png' },
+  { key: 'apple-touch-icon5', rel: 'apple-touch-icon', sizes: '114x114', href: '/logo-icons/apple-icon-114x114.png' },
+  { key: 'apple-touch-icon6', rel: 'apple-touch-icon', sizes: '120x120', href: '/logo-icons/apple-icon-120x120.png' },
+  { key: 'apple-touch-icon7', rel: 'apple-touch-icon', sizes: '144x144', href: '/logo-icons/apple-icon-144x144.png' },
+  { key: 'apple-touch-icon8', rel: 'apple-touch-icon', sizes: '152x152', href: '/logo-icons/apple-icon-152x152.png' },
+  { key: 'apple-touch-icon9', rel: 'apple-touch-icon', sizes: '180x180', href: '/logo-icons/apple-icon-180x180.png' },
 ];
 
 const additionalLinkTags = [
-  { key: 'apple-touch-icon-57', rel: 'apple-touch-icon', sizes: '57x57', href: '/logo-icons/apple-icon-57x57.png' },
-  { key: 'apple-touch-icon-60', rel: 'apple-touch-icon', sizes: '60x60', href: '/logo-icons/apple-icon-60x60.png' },
-  { key: 'apple-touch-icon-72', rel: 'apple-touch-icon', sizes: '72x72', href: '/logo-icons/apple-icon-72x72.png' },
-  { key: 'apple-touch-icon-76', rel: 'apple-touch-icon', sizes: '76x76', href: '/logo-icons/apple-icon-76x76.png' },
-  {
-    key: 'apple-touch-icon-114',
-    rel: 'apple-touch-icon',
-    sizes: '114x114',
-    href: '/logo-icons/apple-icon-114x114.png',
-  },
-  {
-    key: 'apple-touch-icon-120',
-    rel: 'apple-touch-icon',
-    sizes: '120x120',
-    href: '/logo-icons/apple-icon-120x120.png',
-  },
-  {
-    key: 'apple-touch-icon-144',
-    rel: 'apple-touch-icon',
-    sizes: '144x144',
-    href: '/logo-icons/apple-icon-144x144.png',
-  },
-  {
-    key: 'apple-touch-icon-152',
-    rel: 'apple-touch-icon',
-    sizes: '152x152',
-    href: '/logo-icons/apple-icon-152x152.png',
-  },
-  {
-    key: 'apple-touch-icon-180',
-    rel: 'apple-touch-icon',
-    sizes: '180x180',
-    href: '/logo-icons/apple-icon-180x180.png',
-  },
   { key: 'icon-192', rel: 'icon', type: 'image/png', sizes: '192x192', href: '/logo-icons/android-icon-192x192.png' },
   { key: 'icon-32', rel: 'icon', type: 'image/png', sizes: '32x32', href: '/logo-icons/favicon-32x32.png' },
   { key: 'icon-96', rel: 'icon', type: 'image/png', sizes: '96x96', href: '/logo-icons/favicon-96x96.png' },
