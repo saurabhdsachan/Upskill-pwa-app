@@ -43,7 +43,6 @@ const Auth: React.FC = () => {
   const onOTPSubmit: SubmitHandler<Inputs> = async (data) => {
     const endpoint = `/user/v1/login/otp`;
     const resp = await fetcher(endpoint, { method: 'POST' });
-    console.log('resp', resp);
   };
 
   return (
