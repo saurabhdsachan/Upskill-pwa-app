@@ -1,39 +1,38 @@
 import { StarIcon } from '@heroicons/react/solid';
 import { blurredBgImage } from '@public/images/bg-base-64';
+import { classNames, getImageUrl } from '@utils/helpers';
+import dayjs from 'dayjs';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
-}
-
-const WorkshopCard = ({ src, type }: { src: string; type: 'v-card' | 'h-card' }) => {
+const WorkshopCard = ({ data, type }: { data: any; type: 'v-card' | 'h-card' }) => {
   return (
     <div className={classNames(type === 'v-card' ? 'flex-none' : 'flex-none px-3 first:pl-6 last:pr-6')}>
-      <Link href="/chef-jordan/workshops/book/learn-cooking-in-5-days">
+      <Link href={`/chef-jordan/workshops/book/learn-cooking-in-5-days`}>
         <a>
           <div
             className={classNames(
               type === 'v-card' ? 'w-screen/2' : 'w-screen/3',
-              'flex flex-col items-center justify-center gap-3  min-w-[130px] max-w-[156px]'
+              'flex flex-col justify-center gap-3  min-w-[130px] max-w-[156px]'
             )}
           >
             <div className="w-full rounded-xl shadow-lg relative">
               <Image
                 className="rounded-xl object-cover"
-                src={src}
-                alt="Chef Jordan"
+                src={getImageUrl(data?.coverImgUrl, { height: 120, width: 120 })}
+                alt={data?.title}
                 height={80}
                 width={80}
                 placeholder="blur"
                 layout="responsive"
                 blurDataURL={blurredBgImage}
               />
-              <span className="absolute top-1 left-1 rounded-lg bg-white py-1 px-2 text-xs">Career Counseling</span>
+              <span className="absolute top-1 left-1 rounded-lg bg-white py-1 px-2 text-xs">{data?.categoryName}</span>
             </div>
             <div>
-              <h4 className="mb-1">Cooking with Saurabh</h4>
+              <h4 className="leading-8 capitalize">{data?.title}</h4>
+              <p className="text-xs mb-2 text-slate-600">{dayjs(data?.startTime).format('DD MMM | HH:MM a')}</p>
               <div className="flex items-center mb-1">
                 {[0, 1, 2, 3, 4].map((rating) => (
                   <StarIcon
@@ -44,9 +43,7 @@ const WorkshopCard = ({ src, type }: { src: string; type: 'v-card' | 'h-card' })
                 ))}{' '}
                 <small className="text-xs text-slate-600 ml-1">5 (25)</small>
               </div>
-              <p className="text-slate-600 text-xs">May 15, 2020</p>
-              <p className="text-slate-600 text-xs">5:00 PM</p>
-              <h2 className="text-sm mt-1 font-normal">INR 2400/-</h2>
+              <h2 className="text-sm mt-1 font-normal">INR {data?.price}/-</h2>
             </div>
           </div>
         </a>

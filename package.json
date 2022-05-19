@@ -21,6 +21,7 @@
     ]
   },
   "dependencies": {
+    "dayjs": "^1.11.2",
     "gsap": "^3.10.4",
     "isomorphic-unfetch": "^3.1.0",
     "js-cookie": "^3.0.1",

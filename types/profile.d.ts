@@ -7,10 +7,7 @@ interface IProfile {
     active: boolean
   },
   canBookDemo: boolean,
-  expertises: IExpertises[],
-  expertise: {
-    chips: IChip[]
-  },
+  expertises: IExpertise[],
   chips: IChip[],
   storeLink: string,
   planItems: [],

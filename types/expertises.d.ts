@@ -1,4 +1,4 @@
-interface IExpertises {
+interface IExpertise {
   expertiseId: string;
   expertiseName: string;
   minSessionDuration: number;
