@@ -32,4 +32,29 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-export { debounce, arraysEqual, currencyFormat, classNames };
+interface IImageOptions {
+  height?: number;
+  width?: number;
+  format?: 'jpeg';
+  quality?: number;
+}
+
+const getImageUrl = (formattedUrl: string | null, options: IImageOptions): undefined | string => {
+  if (typeof formattedUrl !== 'string') {
+    return undefined;
+  }
+
+  // return '/imgs/userAvatar.jpeg';
+
+  return formattedUrl
+    .split('{height}')
+    .join(`h${options.height * 1.5 || 0}`)
+    .split('{width}')
+    .join(`w${options.width * 1.5 || 0}`)
+    .split('{format}')
+    .join(`${options.format || 'jpeg'}`)
+    .split('{quality}')
+    .join(`q${options.quality || 100}`);
+};
+
+export { debounce, arraysEqual, currencyFormat, classNames, getImageUrl };

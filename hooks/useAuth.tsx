@@ -1,19 +1,26 @@
-import fetcher from '@utils/fetcher';
-import useSWR from 'swr';
+import { TOKEN } from '@utils/constants';
+import Cookies from 'js-cookie';
+import { useState } from 'react';
 
 export default function useAuth() {
-  const { data, mutate, error } = useSWR(
-    'http://proxy.backend.dev.oneclub.live/store/v1/user/details/others?username=srb',
-    fetcher
-  );
+  const [user, setUser] = useState<IUser>();
+  const [isAuthed, setIsAuthed] = useState<boolean>(false);
 
-  const loading = !data && !error;
-  const loggedOut = error && error.status === 403;
+  const login = ({ user, token }: { user: IUser; token: string }) => {
+    setUser(user);
+    setIsAuthed(true);
+    Cookies.set(TOKEN, token);
+  };
+
+  const logout = () => {
+    setUser(null);
+    setIsAuthed(false);
+    Cookies.remove(TOKEN);
+  };
 
   return {
-    loading,
-    loggedOut,
-    user: data,
-    mutate,
+    user,
+    login,
+    logout,
   };
 }

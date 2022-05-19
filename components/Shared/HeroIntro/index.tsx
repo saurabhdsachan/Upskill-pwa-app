@@ -1,10 +1,10 @@
 import React from 'react';
 
-const index = () => {
+const index: React.FC<Pick<IUser, 'name' | 'username'>> = ({ name, username }) => {
   return (
     <div className="my-4">
-      <p className="text-state-900 text-lg font-bold">Chef Jordan</p>
-      <small className="text-slate-400 text-sm">Career Coach, Advisor, Chef</small>
+      <p className="text-state-900 text-lg font-bold">{name}</p>
+      <small className="text-slate-400 text-sm">{username}</small>
     </div>
   );
 };

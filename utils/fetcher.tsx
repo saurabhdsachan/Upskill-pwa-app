@@ -1,9 +1,12 @@
+import { TOKEN } from '@utils/constants';
 import fetch from 'isomorphic-unfetch';
+import Cookies from 'js-cookie';
 import toast from 'react-hot-toast';
 
 const APIBaseUrl = process.env.NEXT_PUBLIC_BACKEND_HOST;
 
 const fetcher = async (url, options) => {
+  const token = Cookies.get(TOKEN);
   const resp = fetch(`${APIBaseUrl}${url}`, {
     method: options.method || 'GET',
     mode: 'cors', // cors, no-cors, *cors, same-origin
@@ -17,9 +20,8 @@ const fetcher = async (url, options) => {
       'client-type': 'pwa',
       'country-code': 'IN',
       'device-timezone': 'Asia/Kolkata',
-      // token:
-      //   'eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI5ODJhODhlMS02NjAyLTRmOGYtOTgyYS03ZjFmNDJkMjBjYmYiLCJpYXQiOjE2NTI2ODM5MTUsIlVTRVJfQ0xBSU0iOnsidXNlcklkIjoiOTgyYTg4ZTEtNjYwMi00ZjhmLTk4MmEtN2YxZjQyZDIwY2JmIn0sImV4cCI6MTY1Mjk0MzExNX0.x75Swleb0MJV8hIOQ6a2ZLTdjoUsWbhzDJ8LtoFPwus',
-      // 'app-user-id': '982a88e1-6602-4f8f-982a-7f1f42d20cbf',
+      'app-user-id': '982a88e1-6602-4f8f-982a-7f1f42d20cbf',
+      ...(token && { token }),
     },
     ...(options.method === 'POST' && { body: JSON.stringify(options.body) }),
   });

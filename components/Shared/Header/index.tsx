@@ -31,7 +31,7 @@ const Header: React.FC = ({ backflow, title }: { backflow: boolean; title?: stri
                 <MenuAlt1Icon className="h-5 w-5" />
               </button>
             </div>
-            <div className="flex-1 flex items-center">Chef Jordan</div>
+            {title && <div className="flex-1 flex items-center">{title}</div>}
             <div className="flex justify-center items-center p-4">
               <div className="p-2 rounded-2xl mr-2">
                 <ShareIcon className="h-4 w-4" />

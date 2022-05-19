@@ -10,31 +10,32 @@ import SEOWrapper from '@components/Shared/SEO/SEOWrapper';
 import SocialLinks from '@components/Shared/SocialLinks';
 import { ChevronDoubleRightIcon, StarIcon, TicketIcon, TranslateIcon } from '@heroicons/react/outline';
 import { UnsplashData } from '@mocks/Unsplash';
+import fetcher from '@utils/fetcher';
 import { HomePageSEO } from '@utils/SEO'; // can also have jsonLD config
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Link from 'next/link';
 import React from 'react';
 import CourseCard from '../../components/Cards/CourseCard';
 
-const User: React.FC = (props) => {
+const User: React.FC<any> = ({ profileData }) => {
   return (
     <>
       <SEOWrapper seoProps={HomePageSEO.HomeSEO} />
       <Layout>
-        <Layout.Header />
+        <Layout.Header backflow={false} title={profileData?.user?.name} />
         <Layout.Body>
           <div className="px-6 pb-6 text-center bg-white">
             <Hero1 />
             <Avatar />
-            <HeroIntro />
+            <HeroIntro name={profileData?.user?.name} username={profileData?.user?.username} />
             <HeroGem />
             <HeroAction />
             <SocialLinks />
-            <div>
-              <p className="text-sm text-slate-700">
-                Hey there 👋🏻 I am from Pep team and you can book a 1:1 session with me to know more about Pep 🤓
-              </p>
-            </div>
+            {profileData?.user?.description && (
+              <div>
+                <p className="text-sm text-slate-700">{profileData?.user?.description}</p>
+              </div>
+            )}
             <div className="flex mt-6 space-x-6 justify-center">
               <Link href="/chef-jordan/reviews">
                 <a>
@@ -155,12 +156,15 @@ const User: React.FC = (props) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  return { paths: [{ params: { user: 'saurabh' } }, { params: { user: 'chef-jordan' } }], fallback: true };
+  return { paths: [{ params: { user: 'saurabh' } }, { params: { user: 'viveksharma' } }], fallback: true };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params: { user } }) => {
+  const endpoint = `/store/v1/user/details/others?username=${user}`;
+  const res = await fetcher(endpoint, {});
+
   return {
-    props: { user },
+    props: { profileData: res?.data },
   };
 };
 
