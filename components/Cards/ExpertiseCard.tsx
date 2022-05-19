@@ -16,18 +16,20 @@ const ExpertiseCard = ({ data, type }: { data: IExpertise; type: 'v-card' | 'h-c
               'flex flex-col justify-center gap-3  min-w-[130px] max-w-[156px]'
             )}
           >
-            <div className="w-full rounded-xl shadow-lg relative">
-              <Image
-                className="rounded-xl object-cover"
-                src={getImageUrl(data?.coverImageUrl, { height: 120, width: 120 })}
-                alt={data?.expertiseName}
-                height={80}
-                width={80}
-                placeholder="blur"
-                layout="responsive"
-                blurDataURL={blurredBgImage}
-              />
-            </div>
+            {data?.coverImageUrl && (
+              <div className="w-full rounded-xl shadow-lg relative">
+                <Image
+                  className="rounded-xl object-cover"
+                  src={getImageUrl(data?.coverImageUrl, { height: 120, width: 120 })}
+                  alt={data?.expertiseName}
+                  height={80}
+                  width={80}
+                  placeholder="blur"
+                  layout="responsive"
+                  blurDataURL={blurredBgImage}
+                />
+              </div>
+            )}
             <div>
               <h4 className="leading-8 capitalize">{data?.expertiseName}</h4>
               <p className="text-xs mb-2 text-slate-600">{data?.subLabel}</p>

@@ -1,20 +1,22 @@
 import Layout from '@components/Shared/Layout';
 import { StarIcon } from '@heroicons/react/solid';
 import { blurredBgImage } from '@public/images/bg-base-64';
-import { classNames } from '@utils/helpers';
+import fetcher from '@utils/fetcher';
+import { classNames, getImageUrl } from '@utils/helpers';
+import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import React from 'react';
 
 const reviews = {
-  average: 4,
-  totalCount: 1624,
+  average: 4.1,
+  totalCount: 10,
   counts: [
-    { rating: 5, count: 1019 },
-    { rating: 4, count: 162 },
-    { rating: 3, count: 97 },
-    { rating: 2, count: 199 },
-    { rating: 1, count: 147 },
+    { rating: 5, count: 6 },
+    { rating: 4, count: 1 },
+    { rating: 3, count: 2 },
+    { rating: 2, count: 0 },
+    { rating: 1, count: 1 },
   ],
   featured: [
     {
@@ -70,11 +72,13 @@ const reviews = {
   ],
 };
 
-const Reviews: React.FC = () => {
+const Reviews: React.FC = ({ ratingData, user }) => {
+  console.log('ratingData', ratingData);
+
   return (
     <Layout>
       <Head>
-        <title>Reviews Chef Jordan | Pep</title>
+        <title>{user} Rating | Pep</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout.Header backflow={true} title="Reviews" />
@@ -82,9 +86,11 @@ const Reviews: React.FC = () => {
         <div className="px-6">
           <div className="text-center sticky top-16 bg-white z-10 py-4">
             <h1 className="text-4xl">
-              4.4 <StarIcon className="inline w-10 h-10" aria-hidden="true" />
+              {ratingData?.averageRating} <StarIcon className="inline w-10 h-10" aria-hidden="true" />
             </h1>
-            <p>4 Ratings & 3 Reviews</p>
+            <p>
+              {ratingData?.numRatings} Ratings & {ratingData?.ratingBreakout?.HAS_REVIEW} Reviews
+            </p>
           </div>
           <div className="mt-6">
             <h3 className="sr-only">Review data</h3>
@@ -110,14 +116,14 @@ const Reviews: React.FC = () => {
                         {count.count > 0 ? (
                           <div
                             className="absolute inset-y-0 bg-yellow-400 border border-yellow-400 rounded-full"
-                            style={{ width: `calc(${count.count} / ${reviews.totalCount} * 100%)` }}
+                            style={{ width: `calc(${count.count} / ${ratingData?.numRatings} * 100%)` }}
                           />
                         ) : null}
                       </div>
                     </div>
                   </dt>
                   <dd className="ml-3 w-10 text-right tabular-nums text-sm text-gray-900">
-                    {Math.round((count.count / reviews.totalCount) * 100)}%
+                    {Math.round((count.count / ratingData?.numRatings) * 100)}%
                   </dd>
                 </div>
               ))}
@@ -128,14 +134,14 @@ const Reviews: React.FC = () => {
             <span className="bg-white px-5">Reviews</span>
           </div>
 
-          {reviews.featured.map((review) => (
-            <div key={review.id} className="py-4 border-b border-slate-200">
+          {ratingData?.ratings?.map((review) => (
+            <div key={review.ratingId} className="py-4 border-b border-slate-200">
               <div className="flex items-center">
                 <div className="relative bg-white w-12 h-12 rounded-full shadow-lg overflow-hidden">
                   <Image
                     className="object-cover rounded-full"
-                    src="https://images.unsplash.com/photo-1583394293214-28ded15ee548?auto=format&fit=crop&w=240"
-                    alt="Chef Jordan"
+                    src={getImageUrl(review?.reviewerImgUrl, { height: 300, width: 300 })}
+                    alt={review?.reviewerName}
                     width={180}
                     height={180}
                     placeholder="blur"
@@ -144,7 +150,7 @@ const Reviews: React.FC = () => {
                   />
                 </div>
                 <div className="ml-4">
-                  <h4 className="text-sm font-bold text-gray-900">{review.author}</h4>
+                  <h4 className="text-sm font-bold text-gray-900">{review.reviewerName}</h4>
                   <div className="mt-1 flex items-center">
                     {[0, 1, 2, 3, 4].map((rating) => (
                       <StarIcon
@@ -162,7 +168,7 @@ const Reviews: React.FC = () => {
               </div>
               <div
                 className="mt-2 space-y-6 text-sm text-gray-600"
-                dangerouslySetInnerHTML={{ __html: review.content }}
+                dangerouslySetInnerHTML={{ __html: review.review }}
               />
             </div>
           ))}
@@ -170,6 +176,25 @@ const Reviews: React.FC = () => {
       </Layout.Body>
     </Layout>
   );
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [{ params: { userId: '4fa37d3a-2a7e-40f9-b14f-b3a049055e17', user: 'sa14' } }],
+    fallback: true,
+  };
+};
+
+export const getStaticProps: GetStaticProps = async ({ params: { userId, user } }) => {
+  const endpoint = `/store/v1/rating/creator?userId=${userId}`;
+  const res = await fetcher(endpoint, {});
+
+  return {
+    props: {
+      ratingData: res?.data,
+      user,
+    },
+  };
 };
 
 export default Reviews;

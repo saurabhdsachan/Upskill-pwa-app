@@ -17,19 +17,23 @@ const CourseCard = ({ data, type }: { data: any; type: 'v-card' | 'h-card' }) =>
               'flex flex-col justify-center gap-3  min-w-[130px] max-w-[156px]'
             )}
           >
-            <div className="w-full rounded-xl shadow-lg relative">
-              <Image
-                className="rounded-xl object-cover"
-                src={getImageUrl(data?.coverImgUrl, { height: 120, width: 120 })}
-                alt={data?.title}
-                height={80}
-                width={80}
-                placeholder="blur"
-                layout="responsive"
-                blurDataURL={blurredBgImage}
-              />
-              <span className="absolute top-1 left-1 rounded-lg bg-white py-1 px-2 text-xs">{data?.categoryName}</span>
-            </div>
+            {data?.coverImgUrl && (
+              <div className="w-full rounded-xl shadow-lg relative">
+                <Image
+                  className="rounded-xl object-cover"
+                  src={getImageUrl(data?.coverImgUrl, { height: 120, width: 120 })}
+                  alt={data?.title}
+                  height={80}
+                  width={80}
+                  placeholder="blur"
+                  layout="responsive"
+                  blurDataURL={blurredBgImage}
+                />
+                <span className="absolute top-1 left-1 rounded-lg bg-white py-1 px-2 text-xs">
+                  {data?.categoryName}
+                </span>
+              </div>
+            )}
             <div>
               <h4 className="leading-8 capitalize">{data?.title}</h4>
               <p className="text-xs mb-2 text-slate-600">

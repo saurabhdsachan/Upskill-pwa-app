@@ -3,7 +3,7 @@ import ExpertiseScroll from '@components/ExpertiseScroll';
 import { Hero1 } from '@components/Hero';
 import HeroAction from '@components/HeroAction';
 import HeroGem from '@components/HeroGem';
-import PlanScroll from '@components/planScroll';
+import PlanScroll from '@components/PlanScroll';
 import Avatar from '@components/Shared/Avatar';
 import HeroIntro from '@components/Shared/HeroIntro';
 import Layout from '@components/Shared/Layout';
@@ -45,7 +45,7 @@ const User: React.FC<any> = ({ profileData }) => {
               <p className="text-sm text-slate-700">{profileData?.user?.description}</p>
             )}
             <div className="flex mt-6 space-x-6 justify-center">
-              <Link href={`/${profileData?.user?.username}/reviews`}>
+              <Link href={`/${profileData?.user?.username}/reviews/${profileData?.user?.userId}`}>
                 <a>
                   <div className="flex items-center justify-start space-x-2">
                     <div className="w-8 h-8 bg-blue-100 flex justify-center items-center rounded-full">
