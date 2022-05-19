@@ -2,6 +2,7 @@ import Layout from '@components/Shared/Layout';
 import { ArrowRightIcon } from '@heroicons/react/solid';
 import { blurredBgImage } from '@public/images/bg-base-64';
 import fetcher from '@utils/fetcher';
+import Cookies from 'js-cookie';
 import Head from 'next/head';
 import Image from 'next/image';
 import React, { useState } from 'react';
@@ -52,6 +53,7 @@ const Auth: React.FC = () => {
     });
     if (resp.status === 200) {
       setShowOTPField(false);
+      Cookies.set('token', resp?.data?.message);
     } else if (resp.status === 404) {
     }
   };

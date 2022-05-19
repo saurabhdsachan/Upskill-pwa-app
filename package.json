@@ -23,6 +23,7 @@
   "dependencies": {
     "gsap": "^3.10.4",
     "isomorphic-unfetch": "^3.1.0",
+    "js-cookie": "^3.0.1",
     "lottie-react-web": "^2.2.2",
     "next": "12.1.6",
     "next-pwa": "^5.5.2",

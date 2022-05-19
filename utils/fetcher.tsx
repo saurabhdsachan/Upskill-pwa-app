@@ -23,7 +23,6 @@ const fetcher = async (url, options) => {
     },
     ...(options.method === 'POST' && { body: JSON.stringify(options.body) }),
   });
-  console.log('resp', resp);
 
   toast.promise(resp, {
     loading: 'requesting',
