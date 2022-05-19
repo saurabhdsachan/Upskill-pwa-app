@@ -17,7 +17,9 @@ import Link from 'next/link';
 import React from 'react';
 import CourseCard from '../../components/Cards/CourseCard';
 
-const user: React.FC<any> = ({ profileData }) => {
+const User: React.FC<any> = ({ profileData }) => {
+  console.log('profileData', profileData);
+
   return (
     <>
       <SEOWrapper seoProps={HomePageSEO.HomeSEO} />
@@ -26,15 +28,21 @@ const user: React.FC<any> = ({ profileData }) => {
         <Layout.Body>
           <div className="px-6 pb-6 text-center bg-white">
             <Hero1 />
-            <Avatar />
+            <Avatar source={profileData?.user?.profileImgUrl} />
             <HeroIntro name={profileData?.user?.name} username={profileData?.user?.username} />
-            <HeroGem />
+            <HeroGem
+              followersCount={profileData?.user?.followersCount}
+              followingCount={profileData?.user?.followingCount}
+              sessionsTaken={profileData?.user?.sessionsTaken}
+            />
             <HeroAction />
-            <SocialLinks />
+            <SocialLinks
+              twitter={profileData?.user?.twitter}
+              facebook={profileData?.user?.fbUrl}
+              instagram={profileData?.user?.instaUrl}
+            />
             {profileData?.user?.description && (
-              <div>
-                <p className="text-sm text-slate-700">{profileData?.user?.description}</p>
-              </div>
+              <p className="text-sm text-slate-700">{profileData?.user?.description}</p>
             )}
             <div className="flex mt-6 space-x-6 justify-center">
               <Link href="/chef-jordan/reviews">
@@ -45,7 +53,9 @@ const user: React.FC<any> = ({ profileData }) => {
                     </div>
                     <div className="text-left">
                       <small className="text-xs  text-blue-500 block">Rating</small>
-                      <span className="text-xs">5.0 (1)</span>
+                      <span className="text-xs">
+                        {profileData?.rating?.averageRating} ({profileData?.rating?.ratingCount})
+                      </span>
                     </div>
                   </div>
                 </a>
@@ -56,7 +66,7 @@ const user: React.FC<any> = ({ profileData }) => {
                 </div>
                 <div className="text-left">
                   <small className="text-xs text-blue-500 block">Language</small>
-                  <span className="text-xs">Hindi, English</span>
+                  <span className="text-xs">{profileData?.user?.preferredLanguages.join(', ')}</span>
                 </div>
               </div>
             </div>
@@ -170,4 +180,4 @@ export const getStaticProps: GetStaticProps = async ({ params: { user } }) => {
   };
 };
 
-export default React.memo(user);
+export default React.memo(User);
