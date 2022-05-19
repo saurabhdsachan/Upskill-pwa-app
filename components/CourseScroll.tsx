@@ -1,10 +1,9 @@
 import { ChevronDoubleRightIcon } from '@heroicons/react/solid';
-import { UnsplashData } from '@mocks/Unsplash';
 import Link from 'next/link';
 import React from 'react';
 import CourseCard from './Cards/CourseCard';
 
-const CourseScroll = () => {
+const CourseScroll: React.FC<any> = ({ data }) => {
   return (
     <section>
       <div className="px-6 py-4">
@@ -25,8 +24,8 @@ const CourseScroll = () => {
       </div>
       <div className="relative overflow-auto">
         <div className="overflow-x-auto flex no-scrollbar">
-          {UnsplashData.slice(14, 20).map((item) => (
-            <CourseCard key={item.imageThumbnail} src={item.imageThumbnail} type="h-card" />
+          {data?.map((item) => (
+            <CourseCard key={item?.session?.sessionId} type="h-card" data={item?.session} />
           ))}
         </div>
       </div>

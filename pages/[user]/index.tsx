@@ -16,11 +16,10 @@ import { HomePageSEO } from '@utils/SEO'; // can also have jsonLD config
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Link from 'next/link';
 import React from 'react';
+import { If, Then } from 'react-if';
 import WorkshopScroll from '../../components/WorkshopScroll';
 
 const User: React.FC<any> = ({ profileData }) => {
-  console.log('profileData', profileData);
-
   return (
     <>
       <SEOWrapper seoProps={HomePageSEO.HomeSEO} />
@@ -90,14 +89,30 @@ const User: React.FC<any> = ({ profileData }) => {
             </div>
           )}
 
-          <br />
-          <ExpertiseScroll data={profileData?.expertises} />
-          <hr className="mt-10 mb-4 mx-6" />
-          <WorkshopScroll data={profileData?.groupItems} />
-          <hr className="mt-10 mb-4 mx-6" />
-          <CourseScroll data={profileData?.cohortItems} />
-          <hr className="mt-10 mb-4 mx-6" />
-          <PlanScroll data={profileData?.planItems} />
+          <If condition={profileData?.expertises?.length > 0}>
+            <Then>
+              <br />
+              <ExpertiseScroll data={profileData?.expertises} />
+            </Then>
+          </If>
+          <If condition={profileData?.groupItems?.length > 0}>
+            <Then>
+              <hr className="mt-10 mb-4 mx-6" />
+              <WorkshopScroll data={profileData?.groupItems} />
+            </Then>
+          </If>
+          <If condition={profileData?.cohortItems?.length > 0}>
+            <Then>
+              <hr className="mt-10 mb-4 mx-6" />
+              <CourseScroll data={profileData?.cohortItems} />
+            </Then>
+          </If>
+          <If condition={profileData?.planItems?.length > 0}>
+            <Then>
+              <hr className="mt-10 mb-4 mx-6" />
+              <PlanScroll data={profileData?.planItems} />
+            </Then>
+          </If>
         </Layout.Body>
         <Layout.PreFooter />
         <Layout.Footer />

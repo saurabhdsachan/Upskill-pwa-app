@@ -27,7 +27,6 @@ const ExpertiseCard = ({ data, type }: { data: IExpertise; type: 'v-card' | 'h-c
                 layout="responsive"
                 blurDataURL={blurredBgImage}
               />
-              <span className="absolute top-1 left-1 rounded-lg bg-white py-1 px-2 text-xs">Career Counseling</span>
             </div>
             <div>
               <h4 className="leading-8 capitalize">{data?.expertiseName}</h4>

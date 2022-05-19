@@ -48,9 +48,9 @@ const getImageUrl = (formattedUrl: string | null, options: IImageOptions): undef
 
   return formattedUrl
     .split('{height}')
-    .join(`h${options.height * 1.5 || 0}`)
+    .join(`h${options.height * 2 || 0}`)
     .split('{width}')
-    .join(`w${options.width * 1.5 || 0}`)
+    .join(`w${options.width * 2 || 0}`)
     .split('{format}')
     .join(`${options.format || 'jpeg'}`)
     .split('{quality}')
