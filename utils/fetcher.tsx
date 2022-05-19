@@ -1,13 +1,12 @@
 import { TOKEN } from '@utils/constants';
 import fetch from 'isomorphic-unfetch';
 import Cookies from 'js-cookie';
-import toast from 'react-hot-toast';
 
 const APIBaseUrl = process.env.NEXT_PUBLIC_BACKEND_HOST;
 
 const fetcher = async (url, options) => {
   const token = Cookies.get(TOKEN);
-  const resp = fetch(`${APIBaseUrl}${url}`, {
+  const resp = await fetch(`${APIBaseUrl}${url}`, {
     method: options.method || 'GET',
     mode: 'cors', // cors, no-cors, *cors, same-origin
     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -26,24 +25,16 @@ const fetcher = async (url, options) => {
     ...(options.method === 'POST' && { body: JSON.stringify(options.body) }),
   });
 
-  toast.promise(resp, {
-    loading: 'requesting',
-    success: 'successfully',
-    error: 'Please try again',
-  });
-
-  const respData = await resp;
-
-  if (respData.status <= 300) {
+  if (resp.status <= 300) {
     return {
-      status: respData.status,
-      statusText: respData.statusText,
-      data: await respData.json(),
+      status: resp.status,
+      statusText: resp.statusText,
+      data: await resp.json(),
     };
   } else {
     return {
-      status: respData.status,
-      statusText: respData.statusText,
+      status: resp.status,
+      statusText: resp.statusText,
     };
   }
 };

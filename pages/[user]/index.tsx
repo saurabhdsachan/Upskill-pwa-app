@@ -17,7 +17,7 @@ import Link from 'next/link';
 import React from 'react';
 import CourseCard from '../../components/Cards/CourseCard';
 
-const User: React.FC<any> = ({ profileData }) => {
+const user: React.FC<any> = ({ profileData }) => {
   return (
     <>
       <SEOWrapper seoProps={HomePageSEO.HomeSEO} />
@@ -164,8 +164,10 @@ export const getStaticProps: GetStaticProps = async ({ params: { user } }) => {
   const res = await fetcher(endpoint, {});
 
   return {
-    props: { profileData: res?.data },
+    props: {
+      profileData: res?.data,
+    },
   };
 };
 
-export default React.memo(User);
+export default React.memo(user);
