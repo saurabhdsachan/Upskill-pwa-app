@@ -1,14 +1,18 @@
 import { StarIcon } from '@heroicons/react/solid';
 import { blurredBgImage } from '@public/images/bg-base-64';
+import { CONNECT } from '@utils/constants';
 import { classNames, getImageUrl } from '@utils/helpers';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react';
 
-const ExpertiseCard = ({ data, type }: { data: IExpertise; type: 'v-card' | 'h-card' }) => {
+const ExpertiseCard = ({ data, type, userId }: { data: IExpertise; type: 'v-card' | 'h-card'; userId: string }) => {
+  const { query } = useRouter();
+
   return (
     <div className={classNames(type === 'v-card' ? 'flex-none' : 'flex-none px-3 first:pl-6 last:pr-6')}>
-      <Link href={`/chef-jordan/workshops/book/learn-cooking-in-5-days`}>
+      <Link href={`/${query?.user}/${CONNECT}/book/${data?.expertiseId}?uid=${userId}`}>
         <a>
           <div
             className={classNames(
@@ -31,17 +35,22 @@ const ExpertiseCard = ({ data, type }: { data: IExpertise; type: 'v-card' | 'h-c
               </div>
             )}
             <div>
-              <h4 className="leading-8 capitalize">{data?.expertiseName}</h4>
+              <h4 className="leading-6 capitalize line-clamp-2 mb-1">{data?.expertiseName}</h4>
               <p className="text-xs mb-2 text-slate-600">{data?.subLabel}</p>
               <div className="flex items-center mb-1">
                 {[0, 1, 2, 3, 4].map((rating) => (
                   <StarIcon
                     key={rating}
-                    className={classNames(5 > rating ? 'text-yellow-500' : 'text-gray-200', 'h-4 w-4 flex-shrink-0')}
+                    className={classNames(
+                      parseInt(data?.rating) > rating ? 'text-yellow-500' : 'text-gray-200',
+                      'h-4 w-4 flex-shrink-0'
+                    )}
                     aria-hidden="true"
                   />
                 ))}{' '}
-                <small className="text-xs text-slate-600 ml-1">5 (25)</small>
+                <small className="text-xs text-slate-600 ml-1">
+                  {data?.rating} ({data?.numRatings})
+                </small>
               </div>
               <h2 className="text-sm mt-1 font-normal">
                 {data?.currencyCode} {data?.price}/-

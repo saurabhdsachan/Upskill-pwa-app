@@ -1,15 +1,19 @@
 import { BookOpenIcon } from '@heroicons/react/outline';
 import { StarIcon } from '@heroicons/react/solid';
 import { blurredBgImage } from '@public/images/bg-base-64';
+import { COURSE } from '@utils/constants';
 import { classNames, getImageUrl } from '@utils/helpers';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react';
 
-const CourseCard = ({ data, type }: { data: any; type: 'v-card' | 'h-card' }) => {
+const CourseCard = ({ data, type, userId }: { data: any; type: 'v-card' | 'h-card'; userId: string }) => {
+  const { query } = useRouter();
+
   return (
     <div className={classNames(type === 'v-card' ? 'flex-none' : 'flex-none px-3 first:pl-6 last:pr-6')}>
-      <Link href={`/chef-jordan/workshops/book/learn-cooking-in-5-days`}>
+      <Link href={`/${query?.user}/${COURSE}/book/${data?.sessionId}?uid=${userId}`}>
         <a>
           <div
             className={classNames(
@@ -35,7 +39,7 @@ const CourseCard = ({ data, type }: { data: any; type: 'v-card' | 'h-card' }) =>
               </div>
             )}
             <div>
-              <h4 className="leading-8 capitalize">{data?.title}</h4>
+              <h4 className="leading-6 capitalize line-clamp-2 mb-1">{data?.title}</h4>
               <p className="text-xs mb-2 text-slate-600">
                 <BookOpenIcon className="w-4 h-4 inline mr-1" />
                 {data?.episodeCount} chapters
@@ -44,11 +48,16 @@ const CourseCard = ({ data, type }: { data: any; type: 'v-card' | 'h-card' }) =>
                 {[0, 1, 2, 3, 4].map((rating) => (
                   <StarIcon
                     key={rating}
-                    className={classNames(5 > rating ? 'text-yellow-500' : 'text-gray-200', 'h-4 w-4 flex-shrink-0')}
+                    className={classNames(
+                      parseInt(data?.rating) > rating ? 'text-yellow-500' : 'text-gray-200',
+                      'h-4 w-4 flex-shrink-0'
+                    )}
                     aria-hidden="true"
                   />
                 ))}{' '}
-                <small className="text-xs text-slate-600 ml-1">5 (25)</small>
+                <small className="text-xs text-slate-600 ml-1">
+                  {data?.rating} ({data?.numRatings})
+                </small>
               </div>
               <h2 className="text-sm mt-1 font-normal">INR {data?.price}/-</h2>
             </div>

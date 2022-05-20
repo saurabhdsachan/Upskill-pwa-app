@@ -2,14 +2,11 @@ import Layout from '@components/Shared/Layout';
 import { LightBulbIcon, TicketIcon, UserGroupIcon } from '@heroicons/react/outline';
 import { StarIcon } from '@heroicons/react/solid';
 import { blurredBgImage } from '@public/images/bg-base-64';
+import { classNames } from '@utils/helpers';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
-}
 
 const product = {
   name: 'Basic Tee',
@@ -195,4 +192,4 @@ const SessionDetail: React.FC = () => {
   );
 };
 
-export default SessionDetail;
+export default React.memo(SessionDetail);

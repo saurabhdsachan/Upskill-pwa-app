@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React from 'react';
 import CourseCard from './Cards/CourseCard';
 
-const CourseScroll: React.FC<any> = ({ data }) => {
+const CourseScroll: React.FC<any> = ({ data, userId }) => {
   return (
     <section>
       <div className="px-6 py-4">
@@ -25,7 +25,7 @@ const CourseScroll: React.FC<any> = ({ data }) => {
       <div className="relative overflow-auto">
         <div className="overflow-x-auto flex no-scrollbar">
           {data?.map((item) => (
-            <CourseCard key={item?.session?.sessionId} type="h-card" data={item?.session} />
+            <CourseCard key={item?.session?.sessionId} type="h-card" data={item?.session} userId={userId} />
           ))}
         </div>
       </div>

@@ -1,56 +1,68 @@
-import { StarIcon } from '@heroicons/react/solid';
+import { BookOpenIcon, StarIcon } from '@heroicons/react/solid';
 import { blurredBgImage } from '@public/images/bg-base-64';
+import { PLAN } from '@utils/constants';
+import { getImageUrl } from '@utils/helpers';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-const PlanCard = ({ src, type }: { src: string; type: 'v-card' | 'h-card' }) => {
+const PlanCard = ({ data, type, userId }: { data: any; type: 'v-card' | 'h-card'; userId: string }) => {
+  const { query } = useRouter();
+
   return (
     <div className={classNames(type === 'v-card' ? 'flex-none' : 'flex-none px-3 first:pl-6 last:pr-6')}>
-      <Link href="/chef-jordan/workshops/book/learn-cooking-in-5-days">
+      <Link href={`/${query?.user}/${PLAN}/book/${data?.sessionId}?uid=${userId}`}>
         <a>
           <div
             className={classNames(
               type === 'v-card' ? 'w-screen/2' : 'w-screen/3',
-              'flex flex-col items-center justify-center gap-3  min-w-[130px] max-w-[156px]'
+              'flex flex-col justify-center gap-3  min-w-[130px] max-w-[156px]'
             )}
           >
-            {src && (
-              <div className="w-full rounded-xl shadow-lg relative overflow-hidden">
+            {data?.coverImgUrl && (
+              <div className="w-full rounded-xl shadow-lg relative">
                 <Image
                   className="rounded-xl object-cover"
-                  src={src}
-                  alt="Chef Jordan"
+                  src={getImageUrl(data?.coverImgUrl, { height: 120, width: 120 })}
+                  alt={data?.title}
                   height={80}
                   width={80}
                   placeholder="blur"
                   layout="responsive"
                   blurDataURL={blurredBgImage}
                 />
-                <span className="absolute top-1 left-1 rounded-lg bg-white py-1 px-2 text-xs max-w-9/12 text-ellipsis overflow-hidden">
-                  Career Counseling
+                <span className="absolute top-1 left-1 rounded-lg bg-white py-1 px-2 text-xs">
+                  {data?.categoryName}
                 </span>
               </div>
             )}
             <div>
-              <h4 className="mb-1">Cooking with Saurabh</h4>
+              <h4 className="leading-6 capitalize line-clamp-2 mb-1">{data?.title}</h4>
+              <p className="text-xs mb-2 text-slate-600">
+                <BookOpenIcon className="w-4 h-4 inline mr-1" />
+                {data?.episodeCount} chapters
+              </p>
               <div className="flex items-center mb-1">
                 {[0, 1, 2, 3, 4].map((rating) => (
                   <StarIcon
                     key={rating}
-                    className={classNames(5 > rating ? 'text-yellow-500' : 'text-gray-200', 'h-4 w-4 flex-shrink-0')}
+                    className={classNames(
+                      parseInt(data?.rating) > rating ? 'text-yellow-500' : 'text-gray-200',
+                      'h-4 w-4 flex-shrink-0'
+                    )}
                     aria-hidden="true"
                   />
                 ))}{' '}
-                <small className="text-xs text-slate-600 ml-1">5 (25)</small>
+                <small className="text-xs text-slate-600 ml-1">
+                  {data?.rating} ({data?.numRatings})
+                </small>
               </div>
-              <p className="text-slate-600 text-xs">May 15, 2020</p>
-              <p className="text-slate-600 text-xs">5:00 PM</p>
-              <h2 className="text-sm mt-1 font-normal">INR 2400/-</h2>
+              <h2 className="text-sm mt-1 font-normal">INR {data?.price}/-</h2>
             </div>
           </div>
         </a>
