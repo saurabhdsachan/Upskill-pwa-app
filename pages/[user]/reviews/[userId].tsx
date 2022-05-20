@@ -16,7 +16,7 @@ const Reviews: React.FC = () => {
   if (error) return <p>An error has occurred.</p>;
   if (!data) return <p>Loading</p>;
 
-  console.log(data, router?.query?.userId);
+  const reviews = data?.data?.ratings?.filter((item) => item?.review);
 
   return (
     <Layout>
@@ -78,50 +78,51 @@ const Reviews: React.FC = () => {
             <span className="bg-white px-5">Reviews</span>
           </div>
 
-          {data?.data?.ratings
-            ?.filter((item) => item?.review)
-            ?.map((review) => (
-              <div key={review.ratingId} className="py-4 border-b border-slate-200">
-                <div className="flex items-center">
-                  <div className="relative bg-white w-12 h-12 rounded-full shadow-lg overflow-hidden">
-                    <Image
-                      className="object-cover rounded-full"
-                      src={
-                        review?.reviewerImgUrl
-                          ? getImageUrl(review?.reviewerImgUrl, { height: 100, width: 100 })
-                          : 'https://images.unsplash.com/photo-1602464729960-f95937746b68?auto=format&fit=crop&w=200'
-                      }
-                      alt={review?.reviewerName}
-                      width={48}
-                      height={48}
-                      placeholder="blur"
-                      layout="intrinsic"
-                      blurDataURL={blurredBgImage}
-                    />
-                  </div>
-                  <div className="ml-4">
-                    <h4 className="text-sm font-bold text-slate-900">{review.reviewerName}</h4>
-                    <div className="mt-1 flex items-center">
-                      {[0, 1, 2, 3, 4].map((rating) => (
-                        <StarIcon
-                          key={rating}
-                          className={classNames(
-                            review.rating > rating ? 'text-yellow-400' : 'text-slate-300',
-                            'h-5 w-5 flex-shrink-0'
-                          )}
-                          aria-hidden="true"
-                        />
-                      ))}
-                    </div>
-                    <p className="sr-only">{review.rating} out of 5 stars</p>
-                  </div>
+          {reviews?.map((review, index) => (
+            <div
+              key={review.ratingId}
+              className={classNames(reviews?.length - 1 !== index && 'border-b border-slate-200', 'py-4')}
+            >
+              <div className="flex items-center">
+                <div className="relative bg-white w-12 h-12 rounded-full shadow-lg overflow-hidden">
+                  <Image
+                    className="object-cover rounded-full"
+                    src={
+                      review?.reviewerImgUrl
+                        ? getImageUrl(review?.reviewerImgUrl, { height: 100, width: 100 })
+                        : 'https://images.unsplash.com/photo-1602464729960-f95937746b68?auto=format&fit=crop&w=200'
+                    }
+                    alt={review?.reviewerName}
+                    width={48}
+                    height={48}
+                    placeholder="blur"
+                    layout="intrinsic"
+                    blurDataURL={blurredBgImage}
+                  />
                 </div>
-                <div
-                  className="mt-2 space-y-6 text-sm text-slate-600"
-                  dangerouslySetInnerHTML={{ __html: review.review }}
-                />
+                <div className="ml-4">
+                  <h4 className="text-sm font-bold text-slate-900">{review.reviewerName}</h4>
+                  <div className="mt-1 flex items-center">
+                    {[0, 1, 2, 3, 4].map((rating) => (
+                      <StarIcon
+                        key={rating}
+                        className={classNames(
+                          review.rating > rating ? 'text-yellow-400' : 'text-slate-300',
+                          'h-5 w-5 flex-shrink-0'
+                        )}
+                        aria-hidden="true"
+                      />
+                    ))}
+                  </div>
+                  <p className="sr-only">{review.rating} out of 5 stars</p>
+                </div>
               </div>
-            ))}
+              <div
+                className="mt-2 space-y-6 text-sm text-slate-600"
+                dangerouslySetInnerHTML={{ __html: review.review }}
+              />
+            </div>
+          ))}
         </div>
       </Layout.Body>
     </Layout>

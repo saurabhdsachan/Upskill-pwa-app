@@ -9,73 +9,32 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-
-const product = {
-  name: 'Basic Tee',
-  price: '$35',
-  rating: 3.9,
-  reviewCount: 512,
-  href: '#',
-  description: `Yama (Principles or moral code)
-    Ahimsa - A principle of non-violence
-    Satya - A principle of Truthfulness
-    Asteya - A principle of non stealing
-    Brahmacharya - Continence / Celibacy
-    Aparigah - A principle of non-hoarding or non possessiveness
-    Niyama (Personal Disciplines)
-    Shoucha - Purity
-    Santosh - Contentment
-    Tapa - Endurance
-    Swadhyaya - Self study
-    Eshwar Pranidhan - Dedication
-    Asana (Yoga Positions or Yogic Postures)
-    A stable and comfortable posture which helps attain mental equilibrium.
-    
-    Pranayama (Yogic Breathing)
-    Extension and control of breath.
-    
-    Pratyahara (Withdrawal of Senses)
-    A mental preparation to increase the power of mind.
-    
-    Dharana (Concentration on Object)
-    Concentration of mind on one object and its field.
-    
-    Dhyan (Meditation)
-    With drawing mind from all external objects and Focusing it on one point and meditating on it.
-    
-    Samadhi (Salvation)
-    State of Super bliss, joy and merging individual consciousness in to universal consciousness. Union between Jivatman and Paramatman. Union of Shiva and Shakti in Sahasrar Chakra (the top of the head). Realizing the Bramhan (pure consciousness) or Realization of God is the ultimate achievement of Human Birth.
-  `,
-  details: [
-    'Group session | 3 audience size',
-    'Sessions on: Mon, Tue,Wed,Thu',
-    '10 Sessions: 5:00 pm - 7:00 PM (60 Min)',
-    'Machine wash cold with similar colors',
-    'Language: English',
-  ],
-};
+import { COURSE, PLAN, WORKSHOP } from '../../../../../utils/constants/index';
 
 const SessionDetail: React.FC = ({ data }) => {
+  const session = data?.groupSession || data?.cohortSession || data?.planSession;
   console.log('data', data);
+
+  const sessionTitle = session?.title || session?.name;
 
   return (
     <Layout>
       <Head>
-        <title>{data?.groupSession?.title} | Pep</title>
+        <title>{sessionTitle} | Pep</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Layout.Header backflow={true} title={data?.groupSession?.title} />
+      <Layout.Header backflow={true} title={sessionTitle} />
       <Layout.Body>
         <div className="bg-white min-h-free">
           <div className="bg-white overflow-hidden">
             <Image
               src={
-                data?.groupSession?.coverImgUrl
-                  ? getImageUrl(data?.groupSession?.coverImgUrl, { height: 0, width: 800 })
+                session?.coverImgUrl || session?.coverImageUrl
+                  ? getImageUrl(session?.coverImgUrl || session?.coverImageUrl, { height: 0, width: 800 })
                   : 'https://images.unsplash.com/photo-1602464729960-f95937746b68?auto=format&fit=crop&w=200'
               }
-              alt="how to cook"
-              title="ho to cook"
+              alt={sessionTitle}
+              title={sessionTitle}
               width="100%"
               height="100%"
               layout="responsive"
@@ -114,7 +73,7 @@ const SessionDetail: React.FC = ({ data }) => {
           <hr />
           <div className="px-6 py-4">
             <div>
-              <h1 className="text-2xl">{data?.groupSession?.title}</h1>
+              <h1 className="text-2xl">{sessionTitle}</h1>
               <div className="flex items-center my-1">
                 {[0, 1, 2, 3, 4].map((rating) => (
                   <StarIcon
@@ -131,8 +90,8 @@ const SessionDetail: React.FC = ({ data }) => {
                 </small>
               </div>
               <div>
-                <small className="text-slate-600 text-xs">INR</small>
-                <h4 className="font-semibold text-lg leading-6">1,243.00</h4>
+                <small className="text-slate-600 text-xs">{session?.currencyCode}</small>
+                <h4 className="font-semibold text-lg leading-6">{session?.price}</h4>
               </div>
             </div>
             <ul role="list" className="mt-2 leading-8">
@@ -144,25 +103,28 @@ const SessionDetail: React.FC = ({ data }) => {
                   <div className="absolute flex-shrink-0 flex items-center justify-center">
                     <span className="h-1.5 w-1.5 rounded-full bg-yellow-500" aria-hidden="true" />
                   </div>
-                  <div className="ml-3.5 text-sm font-medium text-gray-900">{data?.groupSession?.categoryName}</div>
+                  <div className="ml-3.5 text-sm font-medium text-gray-900">{session?.categoryName}</div>
                 </a>
               </li>
             </ul>
-            <div className="mt-4">
-              <h2 className="font-bold">Highlights</h2>
-              <div className="prose prose-sm">
-                <ul role="list">
-                  {data?.groupSession?.bullets.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
+
+            {session?.bullets && (
+              <div className="mt-4">
+                <h2 className="font-bold">Highlights</h2>
+                <div className="prose prose-sm">
+                  <ul role="list">
+                    {session?.bullets?.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-            </div>
+            )}
             <div className="mt-4">
               <h2 className="font-bold mb-2">Details</h2>
               <p
                 className="prose prose-sm whitespace-pre-line"
-                dangerouslySetInnerHTML={{ __html: data?.groupSession?.description }}
+                dangerouslySetInnerHTML={{ __html: session?.description }}
               />
             </div>
             <hr className="my-10" />
@@ -208,7 +170,22 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params: { sessionId, sessionType } }) => {
-  const endpoint = `/store/v1/sessions/details?sessionId=${sessionId}&sessionType=GROUP`;
+  let stype = '';
+  switch (sessionType) {
+    case WORKSHOP:
+      stype = 'GROUP';
+      break;
+    case COURSE:
+      stype = 'COHORT';
+      break;
+    case PLAN:
+      stype = 'PLAN';
+      break;
+
+    default:
+      stype = 'PLAN';
+  }
+  const endpoint = `/store/v1/sessions/details?sessionId=${sessionId}&sessionType=${stype}`;
   const res = await fetcher(endpoint, {});
 
   return {

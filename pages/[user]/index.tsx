@@ -20,8 +20,6 @@ import { If, Then } from 'react-if';
 import WorkshopScroll from '../../components/WorkshopScroll';
 
 const User: React.FC<any> = ({ profileData }) => {
-  console.log('profileData', profileData);
-
   return (
     <>
       <SEOWrapper seoProps={HomePageSEO.HomeSEO} />
