@@ -21,7 +21,11 @@ const Header: React.FC = ({ backflow, title }: { backflow: boolean; title?: stri
               <ArrowLeftIcon className="h-5 w-5" />
             </button>
           </div>
-          {title && <div className="flex-1 flex items-center">{title}</div>}
+          {title && (
+            <div className="flex-1 flex items-center pr-4 w-10">
+              <p className="truncate text-ellipsis">{title}</p>
+            </div>
+          )}
         </div>
       ) : (
         <>

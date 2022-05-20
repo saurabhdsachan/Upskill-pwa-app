@@ -2,7 +2,9 @@ import Layout from '@components/Shared/Layout';
 import { LightBulbIcon, TicketIcon, UserGroupIcon } from '@heroicons/react/outline';
 import { StarIcon } from '@heroicons/react/solid';
 import { blurredBgImage } from '@public/images/bg-base-64';
-import { classNames } from '@utils/helpers';
+import fetcher from '@utils/fetcher';
+import { classNames, getImageUrl } from '@utils/helpers';
+import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -53,19 +55,25 @@ const product = {
   ],
 };
 
-const SessionDetail: React.FC = () => {
+const SessionDetail: React.FC = ({ data }) => {
+  console.log('data', data);
+
   return (
     <Layout>
       <Head>
-        <title>How to cook in 10 days | Pep</title>
+        <title>{data?.groupSession?.title} | Pep</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Layout.Header backflow={true} title="How to cook in 10 days" />
+      <Layout.Header backflow={true} title={data?.groupSession?.title} />
       <Layout.Body>
         <div className="bg-white min-h-free">
           <div className="bg-white overflow-hidden">
             <Image
-              src="https://images.pep.live/images/img/2022-05-13%2F7/jpeg/q100/w700/h0/2771b301-420a-4cac-9183-83c7902d0dc7/0.jpeg"
+              src={
+                data?.groupSession?.coverImgUrl
+                  ? getImageUrl(data?.groupSession?.coverImgUrl, { height: 0, width: 800 })
+                  : 'https://images.unsplash.com/photo-1602464729960-f95937746b68?auto=format&fit=crop&w=200'
+              }
               alt="how to cook"
               title="ho to cook"
               width="100%"
@@ -80,8 +88,12 @@ const SessionDetail: React.FC = () => {
             <div className="relative bg-white w-14 h-14 border-2 rounded-full border-white shadow-xs overflow-hidden">
               <Image
                 className="object-cover rounded-full"
-                src="https://images.unsplash.com/photo-1583394293214-28ded15ee548?auto=format&fit=crop&w=240"
-                alt="Chef Jordan"
+                src={
+                  data?.user?.profileImgUrl
+                    ? getImageUrl(data?.user?.profileImgUrl, { height: 180, width: 180 })
+                    : 'https://images.unsplash.com/photo-1602464729960-f95937746b68?auto=format&fit=crop&w=200'
+                }
+                alt={data?.user?.name}
                 width={80}
                 height={80}
                 placeholder="blur"
@@ -90,8 +102,8 @@ const SessionDetail: React.FC = () => {
               />
             </div>
             <div className="flex-1">
-              <p className="font-bold leading-3">Chef Jordan</p>
-              <small className="text-slate-600">chefking</small>
+              <p className="font-bold leading-3">{data?.user?.name}</p>
+              <small className="text-slate-600">{data?.user?.username}</small>
             </div>
             <div>
               <button className="inline-flex items-center justify-center w-full py-1.5 px-3 border border-transparent rounded-lg text-sm font-medium text-white bg-gradient-to-r from-slate-500 to-slate-600 hover:bg-slate-700 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-400 shadow-xs shadow-slate-500/50">
@@ -101,19 +113,22 @@ const SessionDetail: React.FC = () => {
           </div>
           <hr />
           <div className="px-6 py-4">
-            <div className="flex">
-              <div className="flex-1">
-                <h1 className="text-2xl">Mindful Biryani</h1>
-                <div className="flex items-center my-1">
-                  {[0, 1, 2, 3, 4].map((rating) => (
-                    <StarIcon
-                      key={rating}
-                      className={classNames(5 > rating ? 'text-yellow-500' : 'text-gray-200', 'h-4 w-4 flex-shrink-0')}
-                      aria-hidden="true"
-                    />
-                  ))}{' '}
-                  <small className="text-xs text-slate-600 ml-1">5 (25)</small>
-                </div>
+            <div>
+              <h1 className="text-2xl">{data?.groupSession?.title}</h1>
+              <div className="flex items-center my-1">
+                {[0, 1, 2, 3, 4].map((rating) => (
+                  <StarIcon
+                    key={rating}
+                    className={classNames(
+                      parseInt(data?.rating?.averageRating) > rating ? 'text-yellow-500' : 'text-gray-200',
+                      'h-4 w-4 flex-shrink-0'
+                    )}
+                    aria-hidden="true"
+                  />
+                ))}{' '}
+                <small className="text-xs text-slate-600 ml-1">
+                  {data?.rating?.averageRating} ({data?.rating?.ratingCount})
+                </small>
               </div>
               <div>
                 <small className="text-slate-600 text-xs">INR</small>
@@ -129,26 +144,15 @@ const SessionDetail: React.FC = () => {
                   <div className="absolute flex-shrink-0 flex items-center justify-center">
                     <span className="h-1.5 w-1.5 rounded-full bg-yellow-500" aria-hidden="true" />
                   </div>
-                  <div className="ml-3.5 text-sm font-medium text-gray-900">Plan</div>
-                </a>{' '}
-              </li>
-              <li className="inline">
-                <a
-                  href="#"
-                  className="relative inline-flex items-center rounded-full border border-gray-300 px-3 py-0.5"
-                >
-                  <div className="absolute flex-shrink-0 flex items-center justify-center">
-                    <span className="h-1.5 w-1.5 rounded-full bg-indigo-500" aria-hidden="true" />
-                  </div>
-                  <div className="ml-3.5 text-sm font-medium text-gray-900">Yoga</div>
-                </a>{' '}
+                  <div className="ml-3.5 text-sm font-medium text-gray-900">{data?.groupSession?.categoryName}</div>
+                </a>
               </li>
             </ul>
             <div className="mt-4">
               <h2 className="font-bold">Highlights</h2>
               <div className="prose prose-sm">
                 <ul role="list">
-                  {product.details.map((item) => (
+                  {data?.groupSession?.bullets.map((item) => (
                     <li key={item}>{item}</li>
                   ))}
                 </ul>
@@ -158,7 +162,7 @@ const SessionDetail: React.FC = () => {
               <h2 className="font-bold mb-2">Details</h2>
               <p
                 className="prose prose-sm whitespace-pre-line"
-                dangerouslySetInnerHTML={{ __html: product.description }}
+                dangerouslySetInnerHTML={{ __html: data?.groupSession?.description }}
               />
             </div>
             <hr className="my-10" />
@@ -190,6 +194,28 @@ const SessionDetail: React.FC = () => {
       </Layout.Body>
     </Layout>
   );
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [
+      {
+        params: { user: 'himachalherbal', sessionId: '49099d99-ee71-4654-b94d-5a3ab7f99541', sessionType: 'workshop' },
+      },
+    ],
+    fallback: true,
+  };
+};
+
+export const getStaticProps: GetStaticProps = async ({ params: { sessionId, sessionType } }) => {
+  const endpoint = `/store/v1/sessions/details?sessionId=${sessionId}&sessionType=GROUP`;
+  const res = await fetcher(endpoint, {});
+
+  return {
+    props: {
+      data: res?.data,
+    },
+  };
 };
 
 export default React.memo(SessionDetail);

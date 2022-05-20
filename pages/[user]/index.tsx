@@ -100,7 +100,7 @@ const User: React.FC<any> = ({ profileData }) => {
           <If condition={profileData?.groupItems?.length > 0}>
             <Then>
               <hr className="mt-10 mb-4 mx-6" />
-              <WorkshopScroll data={profileData?.groupItems} userId={profileData?.user?.userId} />
+              <WorkshopScroll data={profileData?.groupItems} />
             </Then>
           </If>
           <If condition={profileData?.cohortItems?.length > 0}>
