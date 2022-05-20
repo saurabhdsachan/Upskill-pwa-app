@@ -57,4 +57,18 @@ const getImageUrl = (formattedUrl: string | null, options: IImageOptions): undef
     .join(`q${options.quality || 100}`);
 };
 
-export { debounce, arraysEqual, currencyFormat, classNames, getImageUrl };
+function formatRating(data) {
+  if (data?.HAS_REVIEW) delete data['HAS_REVIEW'];
+  const tmp = [];
+  for (let i = 5; i >= 1; i--) {
+    let x = {
+      rating: i,
+      count: data[i] || 0,
+    };
+    tmp.push(x);
+  }
+
+  return tmp;
+}
+
+export { debounce, arraysEqual, currencyFormat, classNames, getImageUrl, formatRating };

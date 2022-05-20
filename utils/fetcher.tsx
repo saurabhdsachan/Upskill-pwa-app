@@ -4,10 +4,10 @@ import Cookies from 'js-cookie';
 
 const APIBaseUrl = process.env.NEXT_PUBLIC_BACKEND_HOST;
 
-const fetcher = async (url, options) => {
+const fetcher = async (url: string, options?: any) => {
   const token = Cookies.get(TOKEN);
   const resp = await fetch(`${APIBaseUrl}${url}`, {
-    method: options.method || 'GET',
+    method: options?.method || 'GET',
     mode: 'cors', // cors, no-cors, *cors, same-origin
     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
     credentials: 'same-origin', // include, *same-origin, omit
@@ -22,7 +22,7 @@ const fetcher = async (url, options) => {
       'app-user-id': '982a88e1-6602-4f8f-982a-7f1f42d20cbf',
       ...(token && { token }),
     },
-    ...(options.method === 'POST' && { body: JSON.stringify(options.body) }),
+    ...(options?.method === 'POST' && { body: JSON.stringify(options.body) }),
   });
 
   if (resp.status <= 300) {
