@@ -1,9 +1,11 @@
+import Episodes from '@components/Episodes';
 import Layout from '@components/Shared/Layout';
-import { LightBulbIcon, TicketIcon, UserGroupIcon } from '@heroicons/react/outline';
+import QuickHelp from '@components/Shared/QuickHelp';
+import { TicketIcon, UserGroupIcon } from '@heroicons/react/outline';
 import { StarIcon } from '@heroicons/react/solid';
 import { blurredBgImage } from '@public/images/bg-base-64';
 import fetcher from '@utils/fetcher';
-import { classNames, getImageUrl } from '@utils/helpers';
+import { classNames, formatPrice, getImageUrl } from '@utils/helpers';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
@@ -12,8 +14,9 @@ import React from 'react';
 import { COURSE, PLAN, WORKSHOP } from '../../../../../utils/constants/index';
 
 const SessionDetail: React.FC = ({ data }) => {
-  const session = data?.groupSession || data?.cohortSession || data?.planSession;
   console.log('data', data);
+
+  const session = data?.groupSession || data?.cohortSession || data?.planSession;
 
   const sessionTitle = session?.title || session?.name;
 
@@ -44,26 +47,32 @@ const SessionDetail: React.FC = ({ data }) => {
             />
           </div>
           <div className="flex px-6 py-4 space-x-4 justify-center items-center">
-            <div className="relative bg-white w-14 h-14 border-2 rounded-full border-white shadow-xs overflow-hidden">
-              <Image
-                className="object-cover rounded-full"
-                src={
-                  data?.user?.profileImgUrl
-                    ? getImageUrl(data?.user?.profileImgUrl, { height: 180, width: 180 })
-                    : 'https://images.unsplash.com/photo-1602464729960-f95937746b68?auto=format&fit=crop&w=200'
-                }
-                alt={data?.user?.name}
-                width={80}
-                height={80}
-                placeholder="blur"
-                layout="intrinsic"
-                blurDataURL={blurredBgImage}
-              />
-            </div>
-            <div className="flex-1">
-              <p className="font-bold leading-3">{data?.user?.name}</p>
-              <small className="text-slate-600">{data?.user?.username}</small>
-            </div>
+            <Link href={`/${data?.user?.username}`}>
+              <a href="" className="flex-1">
+                <div className="flex space-x-4 justify-center items-center">
+                  <div className="relative bg-white w-14 h-14 border-2 rounded-full border-white shadow-xs overflow-hidden">
+                    <Image
+                      className="object-cover rounded-full"
+                      src={
+                        data?.user?.profileImgUrl
+                          ? getImageUrl(data?.user?.profileImgUrl, { height: 180, width: 180 })
+                          : 'https://images.unsplash.com/photo-1602464729960-f95937746b68?auto=format&fit=crop&w=200'
+                      }
+                      alt={data?.user?.name}
+                      width={80}
+                      height={80}
+                      placeholder="blur"
+                      layout="intrinsic"
+                      blurDataURL={blurredBgImage}
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <p className="font-bold leading-3">{data?.user?.name}</p>
+                    <small className="text-slate-600">{data?.user?.username}</small>
+                  </div>
+                </div>
+              </a>
+            </Link>
             <div>
               <button className="inline-flex items-center justify-center w-full py-1.5 px-3 border border-transparent rounded-lg text-sm font-medium text-white bg-gradient-to-r from-slate-500 to-slate-600 hover:bg-slate-700 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-400 shadow-xs shadow-slate-500/50">
                 <UserGroupIcon className="h-4 w-4 mr-2" /> <span className="text-xs">Follow</span>
@@ -72,26 +81,32 @@ const SessionDetail: React.FC = ({ data }) => {
           </div>
           <hr />
           <div className="px-6 py-4">
-            <div>
-              <h1 className="text-2xl">{sessionTitle}</h1>
-              <div className="flex items-center my-1">
-                {[0, 1, 2, 3, 4].map((rating) => (
-                  <StarIcon
-                    key={rating}
-                    className={classNames(
-                      parseInt(data?.rating?.averageRating) > rating ? 'text-yellow-500' : 'text-gray-200',
-                      'h-4 w-4 flex-shrink-0'
-                    )}
-                    aria-hidden="true"
-                  />
-                ))}{' '}
-                <small className="text-xs text-slate-600 ml-1">
-                  {data?.rating?.averageRating} ({data?.rating?.ratingCount})
-                </small>
+            <div className="flex space-x-4">
+              <div className="flex-1">
+                <h1 className="text-2xl">{sessionTitle}</h1>
+                <Link href="">
+                  <a>
+                    <div className="flex items-center my-1">
+                      {[0, 1, 2, 3, 4].map((rating) => (
+                        <StarIcon
+                          key={rating}
+                          className={classNames(
+                            parseInt(data?.rating?.averageRating) > rating ? 'text-yellow-500' : 'text-gray-200',
+                            'h-4 w-4 flex-shrink-0'
+                          )}
+                          aria-hidden="true"
+                        />
+                      ))}{' '}
+                      <small className="text-xs text-slate-600 ml-1">
+                        {data?.rating?.averageRating} ({data?.rating?.ratingCount})
+                      </small>
+                    </div>
+                  </a>
+                </Link>
               </div>
               <div>
                 <small className="text-slate-600 text-xs">{session?.currencyCode}</small>
-                <h4 className="font-semibold text-lg leading-6">{session?.price}</h4>
+                <h4 className="font-semibold text-lg leading-6">{formatPrice.format(session?.price)}</h4>
               </div>
             </div>
             <ul role="list" className="mt-2 leading-8">
@@ -127,22 +142,9 @@ const SessionDetail: React.FC = ({ data }) => {
                 dangerouslySetInnerHTML={{ __html: session?.description }}
               />
             </div>
+            {session?.episodes && <Episodes data={session?.episodes} />}
             <hr className="my-10" />
-            <div className="mt-4">
-              <LightBulbIcon className="w-10 h-10 text-slate-400" />
-              <h2 className="text-xl font-bold mb-10 text-slate-400">How to join</h2>
-              <h4 className="font-semibold mb-2">Option 1 - Through Expert&apos;s Pep Website:</h4>
-              <p className="prose prose-sm">
-                Click on the expert&apos;s Pep website link → Login/Signup → click on ‘Bookings‘ → You will see booking
-                details with ‘Join Now‘ button before 10 min of the start time
-              </p>
-              <br />
-              <h4 className="font-semibold mb-2">Option 2 - Through Pep App:</h4>
-              <p className="prose prose-sm">
-                Install Pep app from Google Playstore → Login/Signup → click on ‘Bookings‘ tab → You will see booking
-                details with ‘Join Now‘ button before 10 min of the start time
-              </p>
-            </div>
+            <QuickHelp />
           </div>
           <div className="p-6 sticky bottom-0 bg-white">
             <Link href="/chef-jordan/workshops/book/learn-cooking-in-5-days/slots">

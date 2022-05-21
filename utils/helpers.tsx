@@ -71,4 +71,9 @@ function formatRating(data) {
   return tmp;
 }
 
-export { debounce, arraysEqual, currencyFormat, classNames, getImageUrl, formatRating };
+var formatPrice = new Intl.NumberFormat('en-IN', {
+  style: 'currency',
+  currency: 'INR',
+});
+
+export { debounce, arraysEqual, currencyFormat, classNames, getImageUrl, formatRating, formatPrice };

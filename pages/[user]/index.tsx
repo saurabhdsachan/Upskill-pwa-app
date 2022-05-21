@@ -14,6 +14,7 @@ import { DEMO } from '@utils/constants';
 import fetcher from '@utils/fetcher';
 import { HomePageSEO } from '@utils/SEO'; // can also have jsonLD config
 import { GetStaticPaths, GetStaticProps } from 'next';
+import Head from 'next/head';
 import Link from 'next/link';
 import React from 'react';
 import { If, Then } from 'react-if';
@@ -24,6 +25,10 @@ const User: React.FC<any> = ({ profileData }) => {
     <>
       <SEOWrapper seoProps={HomePageSEO.HomeSEO} />
       <Layout>
+        <Head>
+          <title>{profileData?.user?.name} | Pep</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
         <Layout.Header backflow={false} title={profileData?.user?.name} />
         <Layout.Body>
           <div className="px-6 pb-6 text-center bg-white">
