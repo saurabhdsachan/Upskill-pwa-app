@@ -2,16 +2,30 @@ import Layout from '@components/Shared/Layout';
 import { TicketIcon } from '@heroicons/react/outline';
 import { CheckCircleIcon } from '@heroicons/react/solid';
 import { UnsplashData } from '@mocks/Unsplash';
+import fetcher from '@utils/fetcher';
 import Head from 'next/head';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react';
+import useSWR from 'swr';
 
 const Slots: React.FC = () => {
+  const router = useRouter();
+
+  const { data, error } = useSWR(
+    router?.query?.sessionType && router?.query?.sessionType
+      ? `/inventory/v1/${router?.query?.sessionType}/${router?.query?.sessionId}/user/instance?limit=20`
+      : '',
+    fetcher
+  );
+
+  if (error) return <p>An error has occurred.</p>;
+  if (!data) return <p>Loading</p>;
+
   return (
     <Layout>
       <Head>
         <title>Pick a slot | Pep</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout.Header backflow={true} title="Select a slot" />
       <Layout.Body>

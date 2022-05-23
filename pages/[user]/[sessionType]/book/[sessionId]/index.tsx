@@ -14,9 +14,8 @@ import Link from 'next/link';
 import React from 'react';
 import { CONNECT } from '../../../../../utils/constants/index';
 
-const SessionDetail: React.FC = ({ data }) => {
+const SessionDetail: React.FC = ({ data, sessionType }) => {
   const session = data?.groupSession || data?.cohortSession || data?.planSession || data;
-  console.log('session', session);
 
   const sessionTitle = session?.title || session?.name || session?.expertiseName;
 
@@ -24,7 +23,6 @@ const SessionDetail: React.FC = ({ data }) => {
     <Layout>
       <Head>
         <title>{sessionTitle} | Pep</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout.Header backflow={true} title={sessionTitle} />
       <Layout.Body>
@@ -145,11 +143,11 @@ const SessionDetail: React.FC = ({ data }) => {
               />
             </div>
             {session?.episodes && <Episodes data={session?.episodes} />}
-            <hr className="my-10" />
+            {!session?.episodes && <hr className="my-10" />}
             <QuickHelp />
           </div>
           <div className="p-6 sticky bottom-0 bg-white">
-            <Link href="/chef-jordan/workshops/book/learn-cooking-in-5-days/slots">
+            <Link href={`/chef-jordan/${sessionType}/book/${session?.sessionId}/slots`}>
               <a className="uppercase inline-flex items-center justify-center w-full py-4 border border-transparent rounded-xl text-sm font-medium text-white bg-gradient-to-r from-orange-600 to-orange-500 hover:bg-white-700 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-orange-400">
                 <TicketIcon className="h-4 w-4 mr-2" />
                 Choose Slot
@@ -203,6 +201,7 @@ export const getStaticProps: GetStaticProps = async ({ params: { sessionId, sess
   return {
     props: {
       data: res?.data,
+      sessionType,
     },
   };
 };

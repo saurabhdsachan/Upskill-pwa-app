@@ -1,4 +1,5 @@
 import { RefreshIcon } from '@heroicons/react/outline';
+import errorLottie from '@public/lotties/error.json';
 import { useRouter } from 'next/router';
 import React from 'react';
 import LottieAnimation from './LottieAnimation';
@@ -13,9 +14,9 @@ const EmptyState: React.FC<EmptyStateInterface> = ({ title, message, children })
   const router = useRouter();
 
   return (
-    <div className="md:max-w-3xl lg:max-w-lg mx-auto py-32 text-center">
+    <div className="text-center">
       <div className="text-center">
-        <LottieAnimation />
+        <LottieAnimation animationData={errorLottie} />
         <h3 className="mt-10 text-base font-medium text-gray-900">{title}</h3>
         <p className="mt-1 text-sm text-gray-500">{message}</p>
         <div className="mt-6">
