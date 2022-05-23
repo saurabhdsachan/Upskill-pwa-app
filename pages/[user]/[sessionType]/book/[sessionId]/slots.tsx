@@ -22,8 +22,6 @@ const Slots: React.FC = () => {
     fetcher
   );
 
-  console.log('data', data);
-
   if (error) return <p>An error has occurred.</p>;
   if (!data) return <p>Loading</p>;
 

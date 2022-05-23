@@ -1,5 +1,4 @@
 import { TOKEN } from '@utils/constants';
-import console from 'console';
 import fetch from 'isomorphic-unfetch';
 import Cookies from 'js-cookie';
 
@@ -25,8 +24,6 @@ const fetcher = async (url: string, options?: any) => {
     },
     ...(options?.method === 'POST' && { body: JSON.stringify(options.body) }),
   });
-
-  console.log('resp', resp);
 
   if (resp?.status <= 300) {
     return {
