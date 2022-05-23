@@ -67,8 +67,8 @@ const SessionDetail: React.FC = ({ data }) => {
                         blurDataURL={blurredBgImage}
                       />
                     </div>
-                    <div className="flex-1">
-                      <p className="font-bold leading-3">{data?.user?.name}</p>
+                    <div className="flex-1 w-[100px] break-all truncate text-ellipsis">
+                      <p className="font-bold leading-4">{data?.user?.name}</p>
                       <small className="text-slate-600">{data?.user?.username}</small>
                     </div>
                   </div>
