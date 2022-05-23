@@ -137,8 +137,6 @@ const Reviews: React.FC = () => {
           </Else>
         </If>
       </Layout.Body>
-      <Layout.PreFooter />
-      <Layout.Footer />
     </Layout>
   );
 };

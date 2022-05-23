@@ -1,4 +1,3 @@
-import { BookOpenIcon } from '@heroicons/react/outline';
 import { blurredBgImage } from '@public/images/bg-base-64';
 import { getImageUrl } from '@utils/helpers';
 import Image from 'next/image';
@@ -13,10 +12,8 @@ const Episodes = ({ data }) => {
           <div className="flex space-x-4 items-end mb-6">
             <div className="flex-1">
               <div>
-                <BookOpenIcon className="w-6 h-6 mb-2" />
-                <h3 className="font-bold">
-                  {index + 1}- {item?.title}
-                </h3>
+                <small className="text-xs text-slate-600">Chapter {index + 1}</small>
+                <h3 className="font-bold">{item?.title}</h3>
               </div>
             </div>
             <div className="relative bg-white w-20 h-20 rounded-xl border-2 border-white shadow overflow-hidden">
