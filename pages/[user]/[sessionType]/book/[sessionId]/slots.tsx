@@ -11,6 +11,7 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { Else, If, Then } from 'react-if';
 import useSWR from 'swr';
+import PlanSlotCard from '../../../../../components/Cards/PlanSlotCard';
 
 const Slots: React.FC = () => {
   const router = useRouter();
@@ -45,7 +46,7 @@ const Slots: React.FC = () => {
                   case COURSE:
                     return <CourseSlotCard key={slot?.instanceId} data={slot} />;
                   case PLAN:
-                    return <WorkshopSlotCard key={slot?.instanceId} data={slot} />;
+                    return <PlanSlotCard key={slot?.instanceId} data={slot} />;
                 }
               })}
             </div>
