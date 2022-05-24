@@ -1,5 +1,4 @@
 import errorLottie from '@public/lotties/error.json';
-import { useRouter } from 'next/router';
 import React from 'react';
 import LottieAnimation from './LottieAnimation';
 
@@ -10,8 +9,6 @@ interface EmptyStateInterface {
 }
 
 const EmptyState: React.FC<EmptyStateInterface> = ({ title, message, children }) => {
-  const router = useRouter();
-
   return (
     <div className="text-center flex min-h-free justify-center items-center">
       <div>

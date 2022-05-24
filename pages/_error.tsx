@@ -7,8 +7,7 @@ const Error = ({ statusCode }: { statusCode: number }): JSX.Element => {
   return (
     <Layout>
       <Head>
-        <title>Help | Pep</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>{statusCode} | Pep</title>
       </Head>
       <Layout.Header />
       <Layout.Body>

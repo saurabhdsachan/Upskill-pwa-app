@@ -17,8 +17,8 @@ const WorkshopCard = ({ data, type }: { data: any; type: 'v-card' | 'h-card' }) 
         <a>
           <div
             className={classNames(
-              type === 'v-card' ? 'w-screen/2' : 'w-screen/3',
-              'flex flex-col justify-center gap-3  min-w-[130px] max-w-[156px]'
+              type === 'v-card' ? 'w-screen/2' : 'w-screen/3 max-w-[156px]',
+              'flex flex-col justify-center gap-3'
             )}
           >
             <div className="w-full rounded-xl shadow-lg relative aspect-1 overflow-hidden">

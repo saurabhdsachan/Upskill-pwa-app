@@ -1,9 +1,18 @@
 import { ChevronDoubleRightIcon } from '@heroicons/react/solid';
+import { COURSE } from '@utils/constants';
 import Link from 'next/link';
 import React from 'react';
 import CourseCard from './Cards/CourseCard';
 
-const CourseScroll: React.FC<any> = ({ data, userId }) => {
+const CourseScroll: React.FC = ({
+  initData,
+  username,
+  userId,
+}: {
+  initData: any;
+  username: string;
+  userId: string;
+}) => {
   return (
     <section>
       <div className="px-6 py-4">
@@ -12,7 +21,7 @@ const CourseScroll: React.FC<any> = ({ data, userId }) => {
             <h3>Courses</h3>
           </div>
           <div>
-            <Link href="/chef-jordan/workshops">
+            <Link href={`/${username}/${COURSE}`}>
               <a>
                 <small className="text-xs text-slate-600">
                   See all <ChevronDoubleRightIcon className="w-2 h-2 inline" />{' '}
@@ -24,7 +33,7 @@ const CourseScroll: React.FC<any> = ({ data, userId }) => {
       </div>
       <div className="relative overflow-auto">
         <div className="overflow-x-auto flex no-scrollbar">
-          {data?.map((item) => (
+          {initData?.map((item) => (
             <CourseCard key={item?.session?.sessionId} type="h-card" data={item?.session} userId={userId} />
           ))}
         </div>

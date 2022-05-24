@@ -1,3 +1,6 @@
+import { CONNECT, PLAN, WORKSHOP } from './constants';
+import { COURSE } from './constants/index';
+
 function debounce(func, wait) {
   let timeout;
 
@@ -76,4 +79,17 @@ var formatPrice = new Intl.NumberFormat('en-IN', {
   currency: 'INR',
 });
 
-export { debounce, arraysEqual, currencyFormat, classNames, getImageUrl, formatRating, formatPrice };
+const sessionTypeMapper = (key: string) => {
+  switch (key) {
+    case WORKSHOP:
+      return 'GROUP';
+    case COURSE:
+      return 'COHORT';
+    case PLAN:
+      return 'PLAN';
+    case CONNECT:
+      return 'EXPERTISE';
+  }
+};
+
+export { debounce, arraysEqual, currencyFormat, classNames, getImageUrl, formatRating, formatPrice, sessionTypeMapper };
