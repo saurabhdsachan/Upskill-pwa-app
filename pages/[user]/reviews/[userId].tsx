@@ -1,25 +1,23 @@
 import EmptyState from '@components/Shared/EmptyState';
 import Layout from '@components/Shared/Layout';
 import { StarIcon } from '@heroicons/react/solid';
+import useFetcher from '@hooks/useFetcher';
 import { blurredBgImage } from '@public/images/bg-base-64';
-import fetcher from '@utils/fetcher';
 import { classNames, formatRating, getImageUrl } from '@utils/helpers';
 import Head from 'next/head';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { Else, If, Then } from 'react-if';
-import useSWR from 'swr';
 
 const Reviews: React.FC = () => {
   const router = useRouter();
-  const { data, error } = useSWR(
-    router?.query?.userId ? `/store/v1/rating/creator?userId=${router?.query?.userId}` : '',
-    fetcher
-  );
+  const { data, loading, error } = useFetcher({
+    endpoint: router?.query?.userId ? `/store/v1/rating/creator?userId=${router?.query?.userId}` : '',
+  });
 
   if (error) return <p>An error has occurred.</p>;
-  if (!data) return <p>Loading</p>;
+  if (loading) return <p>Loading</p>;
 
   const reviews = data?.data?.ratings?.filter((item) => item?.review);
 

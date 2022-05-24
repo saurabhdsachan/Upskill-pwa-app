@@ -33,7 +33,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en-US">
         <Head>
-          <link rel="icon" href="favicon.ico" />
+          <link rel="icon" href="/favicon.ico" />
           <link rel="manifest" href="/manifest.json" />
         </Head>
         <body className="container max-w-md mx-auto">

@@ -3,29 +3,30 @@ import WorkshopSlotCard from '@components/Cards/WorkshopSlotCard';
 import EmptyState from '@components/Shared/EmptyState';
 import Layout from '@components/Shared/Layout';
 import { TicketIcon } from '@heroicons/react/outline';
+import useFetcher from '@hooks/useFetcher';
 import { COURSE, PLAN, WORKSHOP } from '@utils/constants';
-import fetcher from '@utils/fetcher';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { Else, If, Then } from 'react-if';
-import useSWR from 'swr';
 import PlanSlotCard from '../../../../../components/Cards/PlanSlotCard';
 
 const Slots: React.FC = () => {
   const router = useRouter();
   const { sessionType, sessionId } = router?.query || {};
 
-  const { data, error } = useSWR(
-    sessionType && sessionId ? `/inventory/v1/${sessionType}/${sessionId}/user/instance?limit=20` : '',
-    fetcher
-  );
+  const endpoint =
+    sessionType === PLAN
+      ? `/bookings/v1/${sessionType}/slots?planId=${sessionId}`
+      : `/inventory/v1/${sessionType}/${sessionId}/user/instance?limit=20`;
+
+  const { data, error, loading } = useFetcher({ endpoint: sessionType && sessionId ? endpoint : '' });
 
   if (error) return <p>An error has occurred.</p>;
-  if (!data) return <p>Loading</p>;
+  if (loading) return <p>Loading</p>;
 
-  const { instances } = data?.data || [];
+  const instances = data?.data?.instances || data?.data?.startTimes;
 
   return (
     <Layout>
@@ -44,7 +45,7 @@ const Slots: React.FC = () => {
                   case COURSE:
                     return <CourseSlotCard key={slot?.instanceId} data={slot} />;
                   case PLAN:
-                    return <PlanSlotCard key={slot?.instanceId} data={slot} />;
+                    return <PlanSlotCard key={slot} data={slot} />;
                 }
               })}
             </div>

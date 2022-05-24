@@ -1,19 +1,15 @@
 import fetcher from '@utils/fetcher';
 import useSWR from 'swr';
 
-export default function useFetcher() {
-  const { data, mutate, error } = useSWR(
-    'http://proxy.backend.dev.oneclub.live/store/v1/user/details/others?username=srb',
-    fetcher
-  );
+export default function useFetcher({ endpoint }) {
+  const { data, mutate, error } = useSWR(endpoint, fetcher);
 
   const loading = !data && !error;
-  const loggedOut = error && error.status === 403;
 
   return {
     loading,
-    loggedOut,
-    user: data,
+    data,
+    error,
     mutate,
   };
 }
