@@ -63,7 +63,7 @@ const PlanCard = ({ data, type, userId }: { data: any; type: 'v-card' | 'h-card'
                     </div>
                   </div>
                 </li>
-                <li className="mt-1 capitalize">
+                <li className="mt-1 capitalize h-10">
                   <div className="flex space-x-1">
                     <div>
                       <CheckIcon className="w-3 h-3 inline text-green-600" />

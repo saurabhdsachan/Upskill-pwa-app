@@ -16,7 +16,7 @@ const Slots: React.FC = () => {
         <div className="p-6 items-center justify-center">
           <div className="relative">
             <div className="w-full mx-auto">
-              <LottieAnimation animationData={successLottie} loop={false} />
+              <LottieAnimation animationData={successLottie} loop={false} width={240} height={240} />
             </div>
           </div>
           <div className="my-6 px-6 text-center">
