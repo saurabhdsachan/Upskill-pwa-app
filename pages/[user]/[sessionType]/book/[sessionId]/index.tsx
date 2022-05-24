@@ -213,7 +213,7 @@ export const getStaticProps: GetStaticProps = async ({ params: { sessionId, sess
       endpoint = `/store/v1/sessions/details?sessionId=${sessionId}&sessionType=${sessionTypeMapper(sessionType)}`;
       break;
     case CONNECT: //TODO: remove hardcoded userID
-      endpoint = `/inventory/v1/expertise/user/4fa37d3a-2a7e-40f9-b14f-b3a049055e17/expertise/${sessionId}`;
+      endpoint = `/inventory/v1/expertise/user/55e6b80a-726b-430b-9988-52bc68c464e5/expertise/${sessionId}`;
       break;
   }
 
