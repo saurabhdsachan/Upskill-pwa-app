@@ -157,7 +157,7 @@ const SessionDetail: React.FC = ({ data, status, sessionType, user }) => {
                   <Case
                     condition={
                       (sessionType !== PLAN && data?.instances && data?.instances?.instances?.length) ||
-                      (sessionType === PLAN && !data?.planSession?.sessionMetaTags?.includes('PUBLISHED'))
+                      (sessionType === PLAN && !data?.planSession?.sessionMetaTags?.includes('PAUSED'))
                     }
                   >
                     <Link href={`/${user}/${sessionType}/book/${session?.sessionId}/slots`}>

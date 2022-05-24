@@ -1,4 +1,5 @@
 import CommonSEO from '@components/Shared/SEO/DefaultSeo';
+import { SlotProvider } from '@context/slotContext';
 import type { AppProps } from 'next/app';
 import React from 'react';
 import { Toaster } from 'react-hot-toast';
@@ -10,7 +11,9 @@ const MyApp = ({ Component, pageProps }: AppProps): React.ReactElement => {
     <>
       <CommonSEO />
       <ThemeProvider theme={{}}>
-        <Component {...pageProps} />
+        <SlotProvider>
+          <Component {...pageProps} />
+        </SlotProvider>
         <Toaster
           position="bottom-center"
           toastOptions={{
