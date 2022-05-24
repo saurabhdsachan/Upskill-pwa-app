@@ -1,4 +1,5 @@
 import EmptyState from '@components/Shared/EmptyState';
+import ErrorState from '@components/Shared/ErrorState';
 import Layout from '@components/Shared/Layout';
 import { StarIcon } from '@heroicons/react/solid';
 import useFetcher from '@hooks/useFetcher';
@@ -16,7 +17,7 @@ const Reviews: React.FC = () => {
     endpoint: router?.query?.userId ? `/store/v1/rating/creator?userId=${router?.query?.userId}` : '',
   });
 
-  if (error) return <p>An error has occurred.</p>;
+  if (error) return <ErrorState status={error?.status} />;
   if (loading) return <p>Loading</p>;
 
   const reviews = data?.data?.ratings?.filter((item) => item?.review);
@@ -79,9 +80,11 @@ const Reviews: React.FC = () => {
                 </dl>
               </div>
 
-              <div className="my-8 h-1 border-b border-slate-200 text-sm text-center">
-                <span className="bg-white px-5">Reviews</span>
-              </div>
+              {reviews?.length > 0 && (
+                <div className="my-8 h-1 border-b border-slate-200 text-sm text-center">
+                  <span className="bg-white px-5">Reviews</span>
+                </div>
+              )}
 
               {reviews?.map((review, index) => (
                 <div
@@ -95,7 +98,7 @@ const Reviews: React.FC = () => {
                         src={
                           review?.reviewerImgUrl
                             ? getImageUrl(review?.reviewerImgUrl, { height: 100, width: 100 })
-                            : 'https://images.unsplash.com/photo-1602464729960-f95937746b68?auto=format&fit=crop&w=200'
+                            : blurredBgImage
                         }
                         alt={review?.reviewerName}
                         width={48}

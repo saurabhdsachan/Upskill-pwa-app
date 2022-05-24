@@ -1,19 +1,13 @@
-import errorLottie from '@public/lotties/error.json';
+import emptyLottie from '@public/lotties/empty.json';
 import React from 'react';
 import LottieAnimation from './LottieAnimation';
-import SectionTitle from './SectionTitle';
 
-const ErrorState = ({ status }: { status: number }): JSX.Element => {
+const ErrorState = ({ status }: { status?: number }): JSX.Element => {
   return (
     <div className="container mx-auto px-4">
       <div className="mx-auto">
-        <LottieAnimation animationData={errorLottie} />
+        <LottieAnimation animationData={emptyLottie} height={300} width={300} />
       </div>
-      <SectionTitle
-        title="There is an error"
-        feature={`${status}`}
-        description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem aliquid quam eveniet, voluptatum animi ducimus fugit odit modi molestiae fugiat pariatur laudantium sunt laborum sapiente quo. Consequatur veniam debitis reprehenderit?"
-      />
     </div>
   );
 };

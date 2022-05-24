@@ -21,11 +21,11 @@ const WorkshopCard = ({ data, type }: { data: any; type: 'v-card' | 'h-card' }) 
               'flex flex-col justify-center gap-3  min-w-[130px] max-w-[156px]'
             )}
           >
-            <div className="w-full rounded-xl shadow-lg relative">
+            <div className="w-full rounded-xl shadow-lg relative aspect-1 overflow-hidden">
               <Image
-                className="rounded-xl object-cover"
-                src={getImageUrl(data?.coverImgUrl, { height: 120, width: 120 })}
-                alt={data?.title}
+                className={classNames(!data?.coverImgUrl && 'blur', 'rounded-xl object-cover')}
+                src={data?.coverImgUrl ? getImageUrl(data?.coverImgUrl, { height: 120, width: 120 }) : blurredBgImage}
+                alt={data?.expertiseName}
                 height={80}
                 width={80}
                 placeholder="blur"

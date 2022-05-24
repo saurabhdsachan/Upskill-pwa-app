@@ -24,23 +24,19 @@ const PlanCard = ({ data, type, userId }: { data: any; type: 'v-card' | 'h-card'
               'flex flex-col justify-center gap-3  min-w-[130px] max-w-[156px]'
             )}
           >
-            {data?.coverImgUrl && (
-              <div className="w-full rounded-xl shadow-lg relative">
-                <Image
-                  className="rounded-xl object-cover"
-                  src={getImageUrl(data?.coverImgUrl, { height: 120, width: 120 })}
-                  alt={data?.title}
-                  height={80}
-                  width={80}
-                  placeholder="blur"
-                  layout="responsive"
-                  blurDataURL={blurredBgImage}
-                />
-                <span className="absolute top-1 left-1 rounded-lg bg-white py-1 px-2 text-xs">
-                  {data?.categoryName}
-                </span>
-              </div>
-            )}
+            <div className="w-full rounded-xl shadow-lg relative aspect-1 overflow-hidden">
+              <Image
+                className={classNames(!data?.coverImgUrl && 'blur', 'rounded-xl object-cover')}
+                src={data?.coverImgUrl ? getImageUrl(data?.coverImgUrl, { height: 120, width: 120 }) : blurredBgImage}
+                alt={data?.expertiseName}
+                height={80}
+                width={80}
+                placeholder="blur"
+                layout="responsive"
+                blurDataURL={blurredBgImage}
+              />
+              <span className="absolute top-1 left-1 rounded-lg bg-white py-1 px-2 text-xs">{data?.categoryName}</span>
+            </div>
             <div>
               <h4 className="leading-6 capitalize line-clamp-2 mb-1">{data?.title}</h4>
               <p className="text-xs mb-2 text-slate-600">

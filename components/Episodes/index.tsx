@@ -20,9 +20,7 @@ const Episodes = ({ data }) => {
               <Image
                 className="object-cover rounded-xl"
                 src={
-                  item?.coverImageUrl
-                    ? getImageUrl(item?.coverImageUrl, { height: 180, width: 180 })
-                    : 'https://images.unsplash.com/photo-1602464729960-f95937746b68?auto=format&fit=crop&w=200'
+                  item?.coverImageUrl ? getImageUrl(item?.coverImageUrl, { height: 180, width: 180 }) : blurredBgImage
                 }
                 alt={item?.user?.name}
                 width={80}

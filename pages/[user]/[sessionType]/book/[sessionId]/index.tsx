@@ -35,7 +35,7 @@ const SessionDetail: React.FC = ({ data, sessionType, user }) => {
               src={
                 session?.coverImgUrl || session?.coverImageUrl
                   ? getImageUrl(session?.coverImgUrl || session?.coverImageUrl, { height: 0, width: 800 })
-                  : 'https://images.unsplash.com/photo-1602464729960-f95937746b68?auto=format&fit=crop&w=200'
+                  : blurredBgImage
               }
               alt={sessionTitle}
               title={sessionTitle}
@@ -58,7 +58,7 @@ const SessionDetail: React.FC = ({ data, sessionType, user }) => {
                         src={
                           data?.user?.profileImgUrl
                             ? getImageUrl(data?.user?.profileImgUrl, { height: 180, width: 180 })
-                            : 'https://images.unsplash.com/photo-1602464729960-f95937746b68?auto=format&fit=crop&w=200'
+                            : blurredBgImage
                         }
                         alt={data?.user?.name}
                         width={80}
