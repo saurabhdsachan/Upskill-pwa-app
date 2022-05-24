@@ -23,7 +23,7 @@ const Header: React.FC = ({ backflow, title }: { backflow: boolean; title?: stri
           </div>
           {title && (
             <div className="flex-1 flex items-center pr-4 w-10">
-              <p className="truncate text-ellipsis">{title}</p>
+              <p className="truncate text-ellipsis capitalize">{title}</p>
             </div>
           )}
         </div>
