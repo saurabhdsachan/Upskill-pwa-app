@@ -7,7 +7,7 @@ import { StarIcon } from '@heroicons/react/solid';
 import { blurredBgImage } from '@public/images/bg-base-64';
 import { COURSE, PLAN, WORKSHOP } from '@utils/constants/index';
 import fetcher from '@utils/fetcher';
-import { classNames, formatPrice, getImageUrl, sessionTypeMapper } from '@utils/helpers';
+import { classNames, formatPrice, getImageUrl, sessionTypeMapper, tsConvert, weekShortName } from '@utils/helpers';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
@@ -18,6 +18,8 @@ import { CONNECT } from '../../../../../utils/constants/index';
 
 const SessionDetail: React.FC = ({ data, status, sessionType, user }) => {
   const session = data?.groupSession || data?.cohortSession || data?.planSession || data;
+
+  console.log('session', session);
 
   const sessionTitle = session?.title || session?.name || session?.expertiseName;
 
@@ -96,7 +98,7 @@ const SessionDetail: React.FC = ({ data, status, sessionType, user }) => {
                           <StarIcon
                             key={rating}
                             className={classNames(
-                              parseInt(data?.rating?.averageRating) > rating ? 'text-yellow-500' : 'text-gray-200',
+                              parseInt(data?.rating?.averageRating) > rating ? 'text-yellow-500' : 'text-slate-200',
                               'h-4 w-4 flex-shrink-0'
                             )}
                             aria-hidden="true"
@@ -114,22 +116,24 @@ const SessionDetail: React.FC = ({ data, status, sessionType, user }) => {
                   </div>
                 </div>
                 {session?.categoryName && (
-                  <ul role="list" className="mt-2 leading-8">
+                  <ul role="list" className="my-2 leading-8">
                     <li className="inline">
                       <a
                         href="#"
-                        className="relative inline-flex items-center rounded-full border border-gray-300 px-3 py-0.5"
+                        className="relative inline-flex items-center rounded-full border border-slate-300 px-3 py-0.5"
                       >
                         <div className="absolute flex-shrink-0 flex items-center justify-center">
                           <span className="h-1.5 w-1.5 rounded-full bg-yellow-500" aria-hidden="true" />
                         </div>
-                        <div className="ml-3.5 text-sm font-medium text-gray-900">{session?.categoryName}</div>
+                        <div className="ml-3.5 text-sm font-medium text-slate-900 capitalize">
+                          {session?.categoryName?.toLowerCase()}
+                        </div>
                       </a>
                     </li>
                   </ul>
                 )}
 
-                {session?.bullets && (
+                {session?.bullets && sessionType !== PLAN && (
                   <div className="mt-4">
                     <h2 className="font-bold">Highlights</h2>
                     <div className="prose prose-sm">
@@ -141,6 +145,23 @@ const SessionDetail: React.FC = ({ data, status, sessionType, user }) => {
                     </div>
                   </div>
                 )}
+
+                {session?.daysOfWeek && sessionType === PLAN && (
+                  <div className="mt-4">
+                    <h2 className="font-bold">Highlights</h2>
+                    <div className="prose prose-sm capitalize">
+                      <ul role="list">
+                        <li>{session?.pax === 1 ? '1:1 session' : 'Group Session'}</li>
+                        <li>{session?.totalSessions} sessions</li>
+                        <li>
+                          Time: {tsConvert(session?.startTime)} ({session?.durationInMinutes} min)
+                        </li>
+                        <li>{weekShortName(session?.daysOfWeek).join(', ')}</li>
+                      </ul>
+                    </div>
+                  </div>
+                )}
+
                 <div className="mt-4">
                   <h2 className="font-bold mb-2">Details</h2>
                   <p
