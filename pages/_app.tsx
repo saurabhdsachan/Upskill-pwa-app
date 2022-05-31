@@ -1,4 +1,5 @@
 import CommonSEO from '@components/Shared/SEO/DefaultSeo';
+import { AuthProvider } from '@context/authContext';
 import { SlotProvider } from '@context/slotContext';
 import type { AppProps } from 'next/app';
 import React from 'react';
@@ -11,9 +12,11 @@ const MyApp = ({ Component, pageProps }: AppProps): React.ReactElement => {
     <>
       <CommonSEO />
       <ThemeProvider theme={{}}>
-        <SlotProvider>
-          <Component {...pageProps} />
-        </SlotProvider>
+        <AuthProvider>
+          <SlotProvider>
+            <Component {...pageProps} />
+          </SlotProvider>
+        </AuthProvider>
         <Toaster
           position="bottom-center"
           toastOptions={{
