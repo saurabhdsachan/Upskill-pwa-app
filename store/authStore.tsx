@@ -1,14 +1,16 @@
 export const createAuthStore = () => {
   return {
-    authedUserData: {
-      userId: '',
-      username: '',
-      name: '',
-      number: '',
-      phoneNumber: '',
-    },
-    setAuthedUserData(data) {
-      this.authedUserData = data;
+    authData: [
+      {
+        userId: '',
+        username: '',
+        name: '',
+        number: '',
+        phoneNumber: '',
+      },
+    ],
+    setAuthData(data) {
+      this.authData[0] = data;
     },
   };
 };
