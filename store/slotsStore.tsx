@@ -25,7 +25,6 @@ export const createSlotsStore = () => {
       this.slots.workshop = { instanceId };
     },
     setPlanSlots(data) {
-      console.log('data', data);
       const { startTime } = data;
       this.slots.plan = { startTime };
     },

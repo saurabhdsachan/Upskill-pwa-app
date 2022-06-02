@@ -12,14 +12,55 @@ import { bookConnectCall, bookDemoCall, bookPlanCall, bookSessionCall } from '@u
 import { observer } from 'mobx-react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useCallback } from 'react';
+import toast from 'react-hot-toast';
 import { Else, If, Then } from 'react-if';
+import useRazorpay, { RazorpayOptions } from 'react-razorpay';
+import { IRazorPaySuccessResponse } from 'types/razorPay';
 
 const Slots: React.FC = observer(() => {
+  const Razorpay = useRazorpay();
   const router = useRouter();
   const { slots, setConnectSlots, setPlanSlots, setCourseSlots, setWorkshopSlots } = useSlotsStore();
   const { authData } = useAuthStore();
   const { sessionType, sessionId } = router?.query || {};
+
+  const handlePayment = useCallback(
+    async ({ amount, currency, order_id }) => {
+      const options: RazorpayOptions = {
+        key: process.env.NEXT_PUBLIC_RAZORPAY_CLIENT_ID,
+        amount,
+        currency,
+        name: 'Pep',
+        description: 'Pep.live',
+        image: 'https://example.com/your_logo',
+        order_id,
+        handler: (response: IRazorPaySuccessResponse) => {
+          const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = response;
+          if (razorpay_order_id && razorpay_payment_id && razorpay_signature) {
+            router.replace('/success');
+          } else {
+            alert('Booking failed, please try again later');
+          }
+        },
+        prefill: {
+          name: authData.name,
+          email: 'youremail@example.com',
+          contact: '',
+        },
+        notes: {
+          address: 'Razorpay Corporate Office',
+        },
+        theme: {
+          color: '#000000',
+        },
+      };
+
+      const rzpay = new Razorpay(options);
+      rzpay.open();
+    },
+    [Razorpay, authData.mobile, authData.name, router]
+  );
 
   const endpoint =
     sessionType === PLAN
@@ -30,24 +71,34 @@ const Slots: React.FC = observer(() => {
 
   const instances = data?.data?.instances || data?.data?.startTimes;
 
-  const handleClick = () => {
+  const handleClick = async () => {
     if (!authData?.userId) {
       router.replace({
         pathname: '/auth',
         query: { returnUrl: router.asPath },
       });
     } else {
+      let bookingInitResponse;
       switch (sessionType) {
         case DEMO:
-          return bookDemoCall(slots.demo);
+          bookingInitResponse = await bookDemoCall(slots.demo);
         case CONNECT:
-          return bookConnectCall(slots.connect);
+          bookingInitResponse = await bookConnectCall(slots.connect);
         case WORKSHOP:
-          return bookSessionCall({ sessionType, sessionId, ...slots.workShops });
+          bookingInitResponse = await bookSessionCall({ sessionType, sessionId, ...slots.workShops });
         case COURSE:
-          return bookSessionCall({ sessionType, sessionId, ...slots.course });
+          bookingInitResponse = await bookSessionCall({ sessionType, sessionId, ...slots.course });
         case PLAN:
-          return bookPlanCall({ sessionId, ...slots.plan });
+          bookingInitResponse = await bookPlanCall({ sessionId, ...slots.plan });
+      }
+      if (bookingInitResponse?.status === 200 && bookingInitResponse?.data?.success) {
+        handlePayment({
+          amount: (bookingInitResponse?.data?.data?.price * 100).toString(),
+          currency: 'INR',
+          order_id: bookingInitResponse?.data?.data?.rpOrderId,
+        });
+      } else {
+        toast.error(bookingInitResponse?.data?.message);
       }
     }
   };

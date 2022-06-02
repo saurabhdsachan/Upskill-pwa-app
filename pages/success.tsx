@@ -2,6 +2,7 @@ import Layout from '@components/Shared/Layout';
 import LottieAnimation from '@components/Shared/LottieAnimation';
 import successLottie from '@public/lotties/success.json';
 import Head from 'next/head';
+import Link from 'next/link';
 import React from 'react';
 
 const Slots: React.FC = () => {
@@ -23,9 +24,11 @@ const Slots: React.FC = () => {
             <p className="mb-6">
               Your booking has been <br /> confirmed
             </p>
-            <button className="inline-flex items-center justify-center py-2 px-6 border border-transparent rounded-lg text-sm font-medium text-white bg-gradient-to-r from-gray-900 to-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-gray-400">
-              My Bookings
-            </button>
+            <Link href="/bookings/booked">
+              <a className="inline-flex items-center justify-center py-2 px-6 border border-transparent rounded-lg text-sm font-medium text-white bg-gradient-to-r from-gray-900 to-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-gray-400">
+                My Bookings
+              </a>
+            </Link>
           </div>
         </div>
       </Layout.Body>
