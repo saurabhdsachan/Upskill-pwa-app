@@ -33,7 +33,7 @@ const Slots: React.FC = observer(() => {
         currency,
         name: 'Pep',
         description: 'Pep.live',
-        image: 'https://example.com/your_logo',
+        image: 'https://cdn.razorpay.com/logos/Ij8ak6hPQABwob_medium.png',
         order_id,
         handler: (response: IRazorPaySuccessResponse) => {
           const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = response;
