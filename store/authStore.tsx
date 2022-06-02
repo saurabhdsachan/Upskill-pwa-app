@@ -7,6 +7,7 @@ export const createAuthStore = () => {
         name: '',
         number: '',
         phoneNumber: '',
+        profileImgUrl: '',
       },
     ],
     setAuthData(data) {

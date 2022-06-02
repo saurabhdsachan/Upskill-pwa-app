@@ -27,14 +27,14 @@ const fetcher = async (url: string, options?: any) => {
 
   if (resp?.status <= 300) {
     return {
-      status: resp.status,
-      statusText: resp.statusText,
-      data: await resp.json(),
+      status: resp?.status,
+      statusText: resp?.statusText,
+      data: await resp?.json(),
     };
   } else {
     return {
-      status: resp.status,
-      statusText: resp.statusText,
+      status: resp?.status,
+      statusText: resp?.statusText,
     };
   }
 };
