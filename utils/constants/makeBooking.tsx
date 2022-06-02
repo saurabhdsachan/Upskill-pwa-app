@@ -1,4 +1,5 @@
 import fetcher from '@utils/fetcher';
+import { sessionTypeMapper } from '@utils/helpers';
 
 export const bookDemoCall = async ({ creatorId, startTime, endTime }) => {
   const bookDemoEndpoint = `/bookings/v1/booking/demo`;
@@ -49,7 +50,7 @@ export const bookSessionCall = async ({ sessionId, sessionType, instanceId }) =>
   return await fetcher(endpoint, {
     method: 'POST',
     body: {
-      sessionType,
+      sessionType: sessionTypeMapper(sessionType),
       sessionId,
       instanceId,
     },

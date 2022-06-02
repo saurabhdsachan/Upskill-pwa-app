@@ -34,7 +34,7 @@ const Auth: React.FC = () => {
       if (resp.status === 200) {
         resolve('foo');
         setShowOTPField(true);
-      } else if (resp.status >= 400) {
+      } else {
         reject('');
       }
     });
@@ -64,7 +64,7 @@ const Auth: React.FC = () => {
         const { userId, username, name, number, phoneNumber, profileImgUrl } = resp?.data?.data;
         setAuthData({ userId, username, name, number, phoneNumber, profileImgUrl });
         setShowOTPField(false);
-      } else if (resp.status >= 400) {
+      } else {
         reject('');
       }
     });

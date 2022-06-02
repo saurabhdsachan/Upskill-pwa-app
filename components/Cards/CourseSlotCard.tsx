@@ -1,10 +1,19 @@
+import SelectionTick from '@components/Shared/SelectionTick';
 import { classNames } from '@utils/helpers';
 import dayjs from 'dayjs';
 import React from 'react';
 
-const CourseSlotCard = ({ data, onClick }) => {
+const CourseSlotCard = ({ data, onClick, isSelected }) => {
   return (
-    <div className="rounded-xl bg-white mb-6 shadow" role="button" aria-label="slot select" onClick={onClick}>
+    <div
+      className={classNames(
+        isSelected ? 'border-blue-600 text-blue-600' : 'border-slate-200',
+        ' border bg-white rounded-xl mb-6 shadow'
+      )}
+      role="button"
+      aria-label="slot select"
+      onClick={onClick}
+    >
       <div className="p-4 border-b border-dashed">
         <div className="flex items-center">
           <div className="flex-1">
@@ -12,7 +21,7 @@ const CourseSlotCard = ({ data, onClick }) => {
               {dayjs(data?.startTime).format('D MMM')} - {dayjs(data?.endTime).format("D MMM 'YY")}
             </p>
           </div>
-          <button className="h-6 w-6 rounded-full border border-slate-400" />
+          <SelectionTick isSelected={isSelected} />
         </div>
       </div>
       <div className="px-4 pt-4 pb-2">

@@ -7,7 +7,8 @@ import { useAuthStore } from '@context/authContext';
 import { useSlotsStore } from '@context/slotContext';
 import { TicketIcon } from '@heroicons/react/outline';
 import useFetcher from '@hooks/useFetcher';
-import { COURSE, PLAN, WORKSHOP } from '@utils/constants';
+import { CONNECT, COURSE, DEMO, PLAN, WORKSHOP } from '@utils/constants';
+import { bookConnectCall, bookDemoCall, bookPlanCall, bookSessionCall } from '@utils/constants/makeBooking';
 import { observer } from 'mobx-react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -16,7 +17,7 @@ import { Else, If, Then } from 'react-if';
 
 const Slots: React.FC = observer(() => {
   const router = useRouter();
-  const { slots, setSlotsData } = useSlotsStore();
+  const { slots, setConnectSlots, setPlanSlots, setCourseSlots, setWorkshopSlots } = useSlotsStore();
   const { authData } = useAuthStore();
   const { sessionType, sessionId } = router?.query || {};
 
@@ -36,19 +37,19 @@ const Slots: React.FC = observer(() => {
         query: { returnUrl: router.asPath },
       });
     } else {
+      switch (sessionType) {
+        case DEMO:
+          return bookDemoCall(slots.demo);
+        case CONNECT:
+          return bookConnectCall(slots.connect);
+        case WORKSHOP:
+          return bookSessionCall({ sessionType, sessionId, ...slots.workShops });
+        case COURSE:
+          return bookSessionCall({ sessionType, sessionId, ...slots.course });
+        case PLAN:
+          return bookPlanCall({ sessionId, ...slots.plan });
+      }
     }
-    // switch (sessionType) {
-    //   case DEMO:
-    //     return bookDemoCall({ creatorId, startTime, endTime });
-    //   case CONNECT:
-    //     return bookConnectCall({ creatorId, expertiseId, startTime, endTime });
-    //   case WORKSHOP:
-    //     return bookSessionCall({ sessionType, sessionId, instanceId });
-    //   case COURSE:
-    //     return bookSessionCall({ sessionType, sessionId, instanceId });
-    //   case PLAN:
-    //     return bookPlanCall({ sessionId, startTime: 1654347600000 });
-    // }
   };
 
   return (
@@ -64,14 +65,34 @@ const Slots: React.FC = observer(() => {
               {instances?.map((slot) => {
                 switch (sessionType) {
                   case WORKSHOP:
-                    return <WorkshopSlotCard key={slot?.instanceId} onClick={() => setSlotsData(slot)} data={slot} />;
+                    return (
+                      <WorkshopSlotCard
+                        key={slot?.instanceId}
+                        data={slot}
+                        onClick={() => setWorkshopSlots(slot)}
+                        isSelected={slot?.instanceId === slots?.workshop?.instanceId}
+                      />
+                    );
                   case COURSE:
-                    return <CourseSlotCard key={slot?.instanceId} onClick={() => setSlotsData(slot)} data={slot} />;
+                    return (
+                      <CourseSlotCard
+                        key={slot?.instanceId}
+                        data={slot}
+                        onClick={() => setCourseSlots(slot)}
+                        isSelected={slot?.instanceId === slots?.course?.instanceId}
+                      />
+                    );
                   case PLAN:
-                    return <PlanSlotCard key={slot} onClick={() => setSlotsData(slot)} data={slot} />;
+                    return (
+                      <PlanSlotCard
+                        key={slot}
+                        data={slot}
+                        onClick={() => setPlanSlots({ startTime: slot })}
+                        isSelected={slot === slots?.plan?.startTime}
+                      />
+                    );
                 }
               })}
-              {JSON.stringify(slots)}
             </div>
             <div className="p-6 sticky bottom-0 bg-white">
               <button
