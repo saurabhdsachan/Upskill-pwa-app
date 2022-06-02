@@ -19,16 +19,17 @@ const Body: React.FC<IBody> = ({ children }) => {
   const hideContent = () => setIsPermitted(false);
 
   const authCheck = useCallback(async () => {
+    setIsPermitted(true);
     const token = Cookies.get(TOKEN);
     const path = router?.asPath?.split('?')[0];
-    if (!authData[0].userId && token) {
+    if (!authData.userId && token) {
       const res = await verifyUser();
       if (res?.status === 200) {
         const { userId, username, name, number, phoneNumber, profileImgUrl } = res?.data?.user;
         setAuthData({ userId, username, name, number, phoneNumber, profileImgUrl });
       }
     } else if (!token && PRIVATE_PAGE_ROUTES.includes(path)) {
-      router.push({
+      router.replace({
         pathname: '/auth',
         query: { returnUrl: router.asPath },
       });
@@ -40,7 +41,6 @@ const Body: React.FC<IBody> = ({ children }) => {
     authCheck();
 
     // set authorized to false to hide page content while changing routes
-
     router.events.on('routeChangeStart', hideContent);
 
     // run auth check on route change

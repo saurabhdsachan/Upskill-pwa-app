@@ -2,9 +2,9 @@ import { classNames } from '@utils/helpers';
 import dayjs from 'dayjs';
 import React from 'react';
 
-const CourseSlotCard = ({ data }) => {
+const CourseSlotCard = ({ data, onClick }) => {
   return (
-    <div className="rounded-xl bg-white mb-6 shadow">
+    <div className="rounded-xl bg-white mb-6 shadow" role="button" aria-label="slot select" onClick={onClick}>
       <div className="p-4 border-b border-dashed">
         <div className="flex items-center">
           <div className="flex-1">

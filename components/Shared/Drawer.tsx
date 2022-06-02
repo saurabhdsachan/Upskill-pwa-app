@@ -29,19 +29,19 @@ const Drawer = observer(({ children, isOpen, setIsOpen }) => {
       >
         <article className="relative w-full max-w-lg flex flex-col overflow-y-scroll h-full">
           <div className="flex">
-            <If condition={authData[0]?.userId}>
+            <If condition={authData?.userId}>
               <Then>
                 <div className="flex-1 p-4 flex items-center">
-                  <Link href={`/${authData[0]?.username}`}>
+                  <Link href={`/${authData?.username}`}>
                     <a>
                       <div className="flex space-x-4">
                         <div className="w-10 h-10 bg-slate-500 flex justify-center items-center rounded-full">
-                          <If condition={authData[0]?.profileImgUrl}>
+                          <If condition={authData?.profileImgUrl}>
                             <Then>
                               <Image
                                 className="rounded-xl object-cover"
-                                src={getImageUrl(authData[0]?.profileImgUrl, { height: 180, width: 180 })}
-                                alt={authData[0]?.name}
+                                src={getImageUrl(authData?.profileImgUrl, { height: 180, width: 180 })}
+                                alt={authData?.name}
                                 width={180}
                                 height={180}
                                 placeholder="blur"
@@ -55,7 +55,7 @@ const Drawer = observer(({ children, isOpen, setIsOpen }) => {
                           </If>
                         </div>
                         <div className="h-10 flex-1 items-center">
-                          <HeroName name={authData[0]?.name} username={authData[0]?.username} />
+                          <HeroName name={authData?.name} username={authData?.username} />
                         </div>
                       </div>
                     </a>

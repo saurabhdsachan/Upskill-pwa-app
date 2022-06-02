@@ -2,9 +2,9 @@ import { ClockIcon } from '@heroicons/react/solid';
 import dayjs from 'dayjs';
 import React from 'react';
 
-const WorkshopSlotCard = ({ data }) => {
+const WorkshopSlotCard = ({ data, onClick }) => {
   return (
-    <div className="bg-white shadow-sm rounded-xl p-4 mb-6">
+    <div className="bg-white shadow-sm rounded-xl p-4 mb-6" role="button" aria-label="slot select" onClick={onClick}>
       <div className="flex">
         <div className="flex-1">
           <small className="text-xs text-slate-400">Date</small>

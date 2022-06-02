@@ -34,13 +34,13 @@ const Auth: React.FC = () => {
       if (resp.status === 200) {
         resolve('foo');
         setShowOTPField(true);
-      } else if (resp.status === 404) {
+      } else if (resp.status >= 400) {
         reject('');
       }
     });
 
     toast.promise(progress, {
-      loading: 'sending',
+      loading: 'submitting',
       success: 'OTP sent successfully',
       error: 'Please try again',
     });
@@ -56,12 +56,24 @@ const Auth: React.FC = () => {
         otp: data.otp,
       },
     });
-    if (resp.status === 200 && resp.data?.success) {
-      login({ token: resp?.data?.message, cb: () => router.push(router.query.returnUrl.toString() || '/') });
-      const { userId, username, name, number, phoneNumber, profileImgUrl } = resp?.data?.data;
-      setAuthData({ userId, username, name, number, phoneNumber, profileImgUrl });
-      setShowOTPField(false);
-    }
+
+    const progress = new Promise((resolve, reject) => {
+      if (resp.status === 200 && resp.data?.success) {
+        resolve('foo');
+        login({ token: resp?.data?.message, cb: () => router.push(router.query.returnUrl.toString() || '/') });
+        const { userId, username, name, number, phoneNumber, profileImgUrl } = resp?.data?.data;
+        setAuthData({ userId, username, name, number, phoneNumber, profileImgUrl });
+        setShowOTPField(false);
+      } else if (resp.status >= 400) {
+        reject('');
+      }
+    });
+
+    toast.promise(progress, {
+      loading: 'submitting',
+      success: 'Login successful',
+      error: 'OTP not valid',
+    });
   };
 
   return (

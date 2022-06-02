@@ -20,8 +20,6 @@ import { CONNECT } from '../../../../../utils/constants/index';
 const SessionDetail: React.FC = ({ data, status, sessionType, user }) => {
   const session = data?.groupSession || data?.cohortSession || data?.planSession || data;
 
-  console.log('session', session);
-
   const sessionTitle = session?.title || session?.name || session?.expertiseName;
 
   return (

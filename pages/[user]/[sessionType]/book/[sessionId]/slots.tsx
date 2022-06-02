@@ -15,9 +15,9 @@ import React from 'react';
 import { Else, If, Then } from 'react-if';
 
 const Slots: React.FC = observer(() => {
-  const slots = useSlotsStore();
-  const { authData, setAuthData } = useAuthStore();
   const router = useRouter();
+  const { slots, setSlotsData } = useSlotsStore();
+  const { authData } = useAuthStore();
   const { sessionType, sessionId } = router?.query || {};
 
   const endpoint =
@@ -30,20 +30,13 @@ const Slots: React.FC = observer(() => {
   const instances = data?.data?.instances || data?.data?.startTimes;
 
   const handleClick = () => {
-    setAuthData({
-      userId: 'qwq',
-      username: 'qwe',
-      name: 'er',
-      number: 'sdf',
-      phoneNumber: 'v',
-    });
-    // console.log('authedUserData', authedUserData);
-    // if (!authedUserData?.userId) {
-    //   router.push({
-    //     pathname: '/auth',
-    //     query: { returnUrl: router.asPath },
-    //   });
-    // }
+    if (!authData?.userId) {
+      router.replace({
+        pathname: '/auth',
+        query: { returnUrl: router.asPath },
+      });
+    } else {
+    }
     // switch (sessionType) {
     //   case DEMO:
     //     return bookDemoCall({ creatorId, startTime, endTime });
@@ -71,13 +64,14 @@ const Slots: React.FC = observer(() => {
               {instances?.map((slot) => {
                 switch (sessionType) {
                   case WORKSHOP:
-                    return <WorkshopSlotCard key={slot?.instanceId} data={slot} />;
+                    return <WorkshopSlotCard key={slot?.instanceId} onClick={() => setSlotsData(slot)} data={slot} />;
                   case COURSE:
-                    return <CourseSlotCard key={slot?.instanceId} data={slot} />;
+                    return <CourseSlotCard key={slot?.instanceId} onClick={() => setSlotsData(slot)} data={slot} />;
                   case PLAN:
-                    return <PlanSlotCard key={slot} data={slot} />;
+                    return <PlanSlotCard key={slot} onClick={() => setSlotsData(slot)} data={slot} />;
                 }
               })}
+              {JSON.stringify(slots)}
             </div>
             <div className="p-6 sticky bottom-0 bg-white">
               <button
@@ -85,7 +79,7 @@ const Slots: React.FC = observer(() => {
                 className="uppercase inline-flex items-center justify-center w-full py-4 border border-transparent rounded-xl text-sm font-medium text-white bg-gradient-to-r from-orange-600 to-orange-500 hover:bg-white-700 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-orange-400"
               >
                 <TicketIcon className="h-4 w-4 mr-2" />
-                Book Now
+                {!authData.userId && 'Login & '}Book Now
               </button>
             </div>
           </Then>
