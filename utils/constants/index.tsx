@@ -15,3 +15,7 @@ export const WEEKDAY = {
   sat: 5,
   sun: 6,
 };
+
+export const PUBLIC_PAGE_ROUTES = ['/auth'];
+
+export const PUBLIC_API_ROUTES = [''];
