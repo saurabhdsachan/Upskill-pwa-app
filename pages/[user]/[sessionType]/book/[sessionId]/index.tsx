@@ -1,5 +1,6 @@
 import Episodes from '@components/Episodes';
 import EmptyState from '@components/Shared/EmptyState';
+import HeroName from '@components/Shared/HeroName';
 import Layout from '@components/Shared/Layout';
 import QuickHelp from '@components/Shared/QuickHelp';
 import { TicketIcon, UserGroupIcon } from '@heroicons/react/outline';
@@ -73,10 +74,7 @@ const SessionDetail: React.FC = ({ data, status, sessionType, user }) => {
                             blurDataURL={blurredBgImage}
                           />
                         </div>
-                        <div className="flex-1 w-[100px] break-all truncate text-ellipsis">
-                          <p className="font-bold leading-4">{data?.user?.name}</p>
-                          <small className="text-slate-600">{data?.user?.username}</small>
-                        </div>
+                        <HeroName name={data?.user?.name} username={data?.user?.username} />
                       </div>
                     </a>
                   </Link>

@@ -61,8 +61,12 @@ const Header: React.FC = ({ backflow, title }: { backflow: boolean; title?: stri
                   </Link>
                 </li>
                 <li className="py-3">
-                  <CalendarIcon className="w-4 h-4 inline mr-4" />
-                  <span>Bookings</span>
+                  <Link href="/bookings/booked">
+                    <a>
+                      <CalendarIcon className="w-4 h-4 inline mr-4" />
+                      <span>Bookings</span>
+                    </a>
+                  </Link>
                 </li>
                 <li className="py-3">
                   <DownloadIcon className="w-4 h-4 inline mr-4" />
@@ -71,7 +75,7 @@ const Header: React.FC = ({ backflow, title }: { backflow: boolean; title?: stri
               </ul>
             </div>
             <div className="flex flex-col items-center justify-start">
-              <p className="text-xs text-slate-600 mb-2 -ml-6">Powered by</p>
+              <p className="text-xs text-slate-600 mb-2">Powered by</p>
               <svg width={343 / 5} height={108 / 5} fill="none" viewBox="0 0 343 108">
                 <g clipPath="url(#a)">
                   <path

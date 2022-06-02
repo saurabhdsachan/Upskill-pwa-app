@@ -1,4 +1,5 @@
 import React from 'react';
+import Body from './Body';
 import Footer from './Footer';
 import Header from './Header';
 import PreFooter from './PreFooter';
@@ -18,7 +19,7 @@ Layout.Header = ({ backflow, title }: { backflow?: boolean; title?: string }) =>
   <Header backflow={backflow ? true : false} title={title} />
 );
 
-Layout.Body = ({ children }: { children: React.ReactNode }) => <main id="main">{children}</main>;
+Layout.Body = ({ children }: { children: React.ReactNode }) => <Body>{children}</Body>;
 
 Layout.PreFooter = () => <PreFooter />;
 

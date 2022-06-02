@@ -1,26 +1,25 @@
-import { TOKEN } from '@utils/constants';
+import { DEVICE_ID, TOKEN } from '@utils/constants';
 import Cookies from 'js-cookie';
-import { useState } from 'react';
+import { nanoid } from 'nanoid';
 
 export default function useAuth() {
-  const [user, setUser] = useState<IUser>();
-  const [isAuthed, setIsAuthed] = useState<boolean>(false);
-
-  const login = ({ user, token }: { user: IUser; token: string }) => {
-    setUser(user);
-    setIsAuthed(true);
-    Cookies.set(TOKEN, token);
+  const setDeviceId = () => {
+    !Cookies.get(DEVICE_ID) && Cookies.set(DEVICE_ID, nanoid());
   };
 
-  const logout = () => {
-    setUser(null);
-    setIsAuthed(false);
+  const login = ({ token, cb }: { cb: () => void; token: string }) => {
+    Cookies.set(TOKEN, token);
+    cb && cb();
+  };
+
+  const logout = (cb) => {
     Cookies.remove(TOKEN);
+    cb && cb();
   };
 
   return {
-    user,
     login,
     logout,
+    setDeviceId,
   };
 }

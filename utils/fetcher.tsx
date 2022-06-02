@@ -1,11 +1,14 @@
 import { TOKEN } from '@utils/constants';
 import fetch from 'isomorphic-unfetch';
 import Cookies from 'js-cookie';
+import { DEVICE_ID } from './constants/index';
 
 const APIBaseUrl = process.env.NEXT_PUBLIC_BACKEND_HOST;
 
 const fetcher = async (url: string, options?: any) => {
   const token = Cookies.get(TOKEN);
+  const deviceId = Cookies.get(DEVICE_ID);
+
   const resp = await fetch(`${APIBaseUrl}${url}`, {
     method: options?.method || 'GET',
     mode: 'cors', // cors, no-cors, *cors, same-origin
@@ -13,7 +16,7 @@ const fetcher = async (url: string, options?: any) => {
     credentials: 'same-origin', // include, *same-origin, omit
     headers: {
       'Content-Type': 'application/json',
-      'device-id': 'f5fe6ec1-e11c-4a9c-b21e-ec5e33117418',
+      'device-id': deviceId,
       'client-version': '2.1.4-dev',
       'client-version-code': '97',
       'client-type': 'pwa',
@@ -27,14 +30,14 @@ const fetcher = async (url: string, options?: any) => {
 
   if (resp?.status <= 300) {
     return {
-      status: resp.status,
-      statusText: resp.statusText,
-      data: await resp.json(),
+      status: resp?.status,
+      statusText: resp?.statusText,
+      data: await resp?.json(),
     };
   } else {
     return {
-      status: resp.status,
-      statusText: resp.statusText,
+      status: resp?.status,
+      statusText: resp?.statusText,
     };
   }
 };

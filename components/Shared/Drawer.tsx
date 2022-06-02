@@ -1,8 +1,17 @@
+import { useAuthStore } from '@context/authContext';
 import { UserIcon, XIcon } from '@heroicons/react/outline';
+import { blurredBgImage } from '@public/images/bg-base-64';
+import { getImageUrl } from '@utils/helpers';
+import { observer } from 'mobx-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import { Else, If, Then } from 'react-if';
+import HeroName from './HeroName';
 
-export default function Drawer({ children, isOpen, setIsOpen }) {
+const Drawer = observer(({ children, isOpen, setIsOpen }) => {
+  const { authData } = useAuthStore();
+
   return (
     <div
       className={
@@ -20,18 +29,54 @@ export default function Drawer({ children, isOpen, setIsOpen }) {
       >
         <article className="relative w-full max-w-lg flex flex-col overflow-y-scroll h-full">
           <div className="flex">
-            <div className="flex-1 p-4 flex items-center">
-              <Link href="/auth">
-                <a>
-                  <div className="flex space-x-4">
-                    <div className="w-10 h-10 bg-slate-500 flex justify-center items-center rounded-full">
-                      <UserIcon className="h-4 w-4 text-white" />
-                    </div>
-                    <div className="h-10 flex items-center">Login / Signup</div>
-                  </div>
-                </a>
-              </Link>
-            </div>
+            <If condition={authData[0]?.userId}>
+              <Then>
+                <div className="flex-1 p-4 flex items-center">
+                  <Link href={`/${authData[0]?.username}`}>
+                    <a>
+                      <div className="flex space-x-4">
+                        <div className="w-10 h-10 bg-slate-500 flex justify-center items-center rounded-full">
+                          <If condition={authData[0]?.profileImgUrl}>
+                            <Then>
+                              <Image
+                                className="rounded-xl object-cover"
+                                src={getImageUrl(authData[0]?.profileImgUrl, { height: 180, width: 180 })}
+                                alt={authData[0]?.name}
+                                width={180}
+                                height={180}
+                                placeholder="blur"
+                                layout="intrinsic"
+                                blurDataURL={blurredBgImage}
+                              />
+                            </Then>
+                            <Else>
+                              <UserIcon className="h-4 w-4 text-white" />
+                            </Else>
+                          </If>
+                        </div>
+                        <div className="h-10 flex-1 items-center">
+                          <HeroName name={authData[0]?.name} username={authData[0]?.username} />
+                        </div>
+                      </div>
+                    </a>
+                  </Link>
+                </div>
+              </Then>
+              <Else>
+                <div className="flex-1 p-4 flex items-center">
+                  <Link href="/auth">
+                    <a>
+                      <div className="flex space-x-4">
+                        <div className="w-10 h-10 bg-slate-500 flex justify-center items-center rounded-full">
+                          <UserIcon className="h-4 w-4 text-white" />
+                        </div>
+                        <div className="h-10 flex items-center">Login / Signup</div>
+                      </div>
+                    </a>
+                  </Link>
+                </div>
+              </Else>
+            </If>
             <button
               className="h-20 w-20 flex justify-center items-center"
               onClick={() => {
@@ -52,4 +97,6 @@ export default function Drawer({ children, isOpen, setIsOpen }) {
       />
     </div>
   );
-}
+});
+
+export default Drawer;

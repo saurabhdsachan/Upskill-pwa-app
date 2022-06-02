@@ -1,4 +1,5 @@
 export const TOKEN = 'token';
+export const DEVICE_ID = 'device-id';
 
 export const DEMO = 'demo';
 export const CONNECT = 'connect';
@@ -15,3 +16,7 @@ export const WEEKDAY = {
   sat: 5,
   sun: 6,
 };
+
+export const PRIVATE_PAGE_ROUTES = ['/book', '/bookings/booked', '/bookings/received'];
+
+export const PRIVATE_API_ROUTES = [''];
