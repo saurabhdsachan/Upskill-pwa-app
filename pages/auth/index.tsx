@@ -1,10 +1,11 @@
 import Layout from '@components/Shared/Layout';
 import { ArrowRightIcon } from '@heroicons/react/solid';
+import useAuth from '@hooks/useAuth';
 import { blurredBgImage } from '@public/images/bg-base-64';
 import fetcher from '@utils/fetcher';
-import Cookies from 'js-cookie';
 import Head from 'next/head';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
@@ -16,6 +17,8 @@ type Inputs = {
 };
 
 const Auth: React.FC = () => {
+  const router = useRouter();
+  const { login } = useAuth();
   const { register, handleSubmit } = useForm<Inputs>();
   const [showOTPField, setShowOTPField] = useState<boolean>(false);
   const [mobile, setMobile] = useState<number>(0);
@@ -51,10 +54,9 @@ const Auth: React.FC = () => {
         otp: data.otp,
       },
     });
-    if (resp.status === 200) {
+    if (resp.status === 200 && resp.data?.success) {
+      login({ token: resp?.data?.message, cb: () => router.push(router.query.returnUrl.toString() || '/') });
       setShowOTPField(false);
-      Cookies.set('token', resp?.data?.message);
-    } else if (resp.status === 404) {
     }
   };
 

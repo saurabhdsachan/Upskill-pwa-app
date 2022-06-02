@@ -1,25 +1,18 @@
 import { TOKEN } from '@utils/constants';
 import Cookies from 'js-cookie';
-import { useState } from 'react';
 
 export default function useAuth() {
-  const [user, setUser] = useState<IUser>();
-  const [isAuthed, setIsAuthed] = useState<boolean>(false);
-
-  const login = ({ user, token }: { user: IUser; token: string }) => {
-    setUser(user);
-    setIsAuthed(true);
+  const login = ({ token, cb }: { cb: () => void; token: string }) => {
     Cookies.set(TOKEN, token);
+    cb && cb();
   };
 
-  const logout = () => {
-    setUser(null);
-    setIsAuthed(false);
+  const logout = (cb) => {
     Cookies.remove(TOKEN);
+    cb && cb();
   };
 
   return {
-    user,
     login,
     logout,
   };

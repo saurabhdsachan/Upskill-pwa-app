@@ -31,7 +31,7 @@ const Drawer = observer(({ children, isOpen, setIsOpen }) => {
             <If condition={authData[0]?.userId}>
               <Then>
                 <div className="flex-1 p-4 flex items-center">
-                  <Link href="/auth">
+                  <Link href="/bookings/booked">
                     <a>
                       <div className="flex space-x-4">
                         <div className="w-10 h-10 bg-slate-500 flex justify-center items-center rounded-full">
@@ -40,7 +40,7 @@ const Drawer = observer(({ children, isOpen, setIsOpen }) => {
                               <Image
                                 className="rounded-xl object-cover"
                                 src={getImageUrl(authData[0]?.profileImgUrl, { height: 180, width: 180 })}
-                                alt="Chef Jordan"
+                                alt={authData[0]?.name}
                                 width={180}
                                 height={180}
                                 placeholder="blur"
