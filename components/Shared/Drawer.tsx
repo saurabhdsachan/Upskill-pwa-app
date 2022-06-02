@@ -7,6 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { Else, If, Then } from 'react-if';
+import HeroName from './HeroName';
 
 const Drawer = observer(({ children, isOpen, setIsOpen }) => {
   const { authData } = useAuthStore();
@@ -31,7 +32,7 @@ const Drawer = observer(({ children, isOpen, setIsOpen }) => {
             <If condition={authData[0]?.userId}>
               <Then>
                 <div className="flex-1 p-4 flex items-center">
-                  <Link href="/bookings/booked">
+                  <Link href={`/${authData[0]?.username}`}>
                     <a>
                       <div className="flex space-x-4">
                         <div className="w-10 h-10 bg-slate-500 flex justify-center items-center rounded-full">
@@ -54,8 +55,7 @@ const Drawer = observer(({ children, isOpen, setIsOpen }) => {
                           </If>
                         </div>
                         <div className="h-10 flex-1 items-center">
-                          <p className="leading-4">{authData[0]?.name}</p>
-                          <small className="text-slate-600">{authData[0]?.username}</small>
+                          <HeroName name={authData[0]?.name} username={authData[0]?.username} />
                         </div>
                       </div>
                     </a>

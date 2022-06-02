@@ -1,4 +1,5 @@
 export const TOKEN = 'token';
+export const DEVICE_ID = 'device-id';
 
 export const DEMO = 'demo';
 export const CONNECT = 'connect';

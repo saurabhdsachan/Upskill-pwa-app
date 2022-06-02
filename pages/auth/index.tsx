@@ -1,4 +1,5 @@
 import Layout from '@components/Shared/Layout';
+import { useAuthStore } from '@context/authContext';
 import { ArrowRightIcon } from '@heroicons/react/solid';
 import useAuth from '@hooks/useAuth';
 import { blurredBgImage } from '@public/images/bg-base-64';
@@ -18,6 +19,7 @@ type Inputs = {
 
 const Auth: React.FC = () => {
   const router = useRouter();
+  const { authData, setAuthData } = useAuthStore();
   const { login } = useAuth();
   const { register, handleSubmit } = useForm<Inputs>();
   const [showOTPField, setShowOTPField] = useState<boolean>(false);
@@ -56,6 +58,8 @@ const Auth: React.FC = () => {
     });
     if (resp.status === 200 && resp.data?.success) {
       login({ token: resp?.data?.message, cb: () => router.push(router.query.returnUrl.toString() || '/') });
+      const { userId, username, name, number, phoneNumber, profileImgUrl } = resp?.data?.data;
+      setAuthData({ userId, username, name, number, phoneNumber, profileImgUrl });
       setShowOTPField(false);
     }
   };

@@ -12,7 +12,7 @@ import PlanCard from '../../../components/Cards/PlanCard';
 import WorkshopCard from '../../../components/Cards/WorkshopCard';
 import { CONNECT, COURSE, PLAN, WORKSHOP } from '../../../utils/constants/index';
 
-const Listing: React.FC = ({ data, status, user, sessionType }) => {
+const Listing: React.FC = ({ data, status, sessionType }) => {
   const sessions = data?.expertise || data?.items?.map((item) => item?.session);
 
   return (
