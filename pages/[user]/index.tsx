@@ -131,7 +131,7 @@ const User: React.FC<any> = ({ data, status }) => {
               </If>
               <If condition={data?.planItems?.length > 0}>
                 <Then>
-                  <hr className="mt-10 mb-4 mx-6" />
+                  {data?.cohortItems?.length > 0 && data?.groupItems?.length > 0 && <hr className="mt-10 mb-4 mx-6" />}
                   <PlanScroll initData={data?.planItems} username={data?.user?.username} userId={data?.user?.userId} />
                 </Then>
               </If>
