@@ -57,15 +57,15 @@ export const bookSessionCall = async ({ sessionId, sessionType, instanceId }) =>
   });
 };
 
-export const paymentVerify = async ({ orderId, rpPaymentId, success, signature }) => {
-  const endpoint = `/bookings/v1/booking/${orderId}/session/payment`;
+export const paymentVerify = async ({ oid, pid, sign }) => {
+  const endpoint = `/bookings/v1/booking/${oid}/session/payment`;
 
   return await fetcher(endpoint, {
     method: 'POST',
     body: {
-      rpPaymentId,
-      success,
-      signature,
+      rpPaymentId: pid,
+      success: true,
+      signature: sign,
     },
   });
 };

@@ -38,7 +38,13 @@ const Slots: React.FC = observer(() => {
         handler: (response: IRazorPaySuccessResponse) => {
           const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = response;
           if (razorpay_order_id && razorpay_payment_id && razorpay_signature) {
-            router.replace('/success');
+            router.replace(
+              {
+                pathname: '/success',
+                query: { oid: razorpay_order_id, pid: razorpay_payment_id, sign: razorpay_signature },
+              },
+              `/success?oid=${razorpay_order_id}&pid=${razorpay_payment_id}&sign=${razorpay_signature}`
+            );
           } else {
             alert('Booking failed, please try again later');
           }
@@ -59,7 +65,7 @@ const Slots: React.FC = observer(() => {
       const rzpay = new Razorpay(options);
       rzpay.open();
     },
-    [Razorpay, authData.mobile, authData.name, router]
+    [Razorpay, authData.name, router]
   );
 
   const endpoint =
@@ -82,14 +88,19 @@ const Slots: React.FC = observer(() => {
       switch (sessionType) {
         case DEMO:
           bookingInitResponse = await bookDemoCall(slots.demo);
+          break;
         case CONNECT:
           bookingInitResponse = await bookConnectCall(slots.connect);
+          break;
         case WORKSHOP:
           bookingInitResponse = await bookSessionCall({ sessionType, sessionId, ...slots.workShops });
+          break;
         case COURSE:
           bookingInitResponse = await bookSessionCall({ sessionType, sessionId, ...slots.course });
+          break;
         case PLAN:
           bookingInitResponse = await bookPlanCall({ sessionId, ...slots.plan });
+          break;
       }
       if (bookingInitResponse?.status === 200 && bookingInitResponse?.data?.success) {
         handlePayment({
