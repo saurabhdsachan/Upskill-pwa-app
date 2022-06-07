@@ -3,7 +3,7 @@ import { ChatAltIcon, UserGroupIcon } from '@heroicons/react/solid';
 import React from 'react';
 
 const HeroAction = () => {
-  const { dataBus, updateBottomSheetState } = useDataBusStore();
+  const { updateBottomSheetState } = useDataBusStore();
 
   return (
     <div className="flex space-x-4">
@@ -16,7 +16,10 @@ const HeroAction = () => {
         </button>
       </div>
       <div className="flex-1">
-        <button className="inline-flex items-center justify-center w-full py-3 border border-slate-400 rounded-xl text-sm font-medium text-slate-900 bg-white-600 hover:bg-white-700 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-400 shadow-sm shadow-white-500/50">
+        <button
+          onClick={() => updateBottomSheetState(true)}
+          className="inline-flex items-center justify-center w-full py-3 border border-slate-400 rounded-xl text-sm font-medium text-slate-900 bg-white-600 hover:bg-white-700 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-400 shadow-sm shadow-white-500/50"
+        >
           <ChatAltIcon className="h-4 w-4 mr-2" /> Chat
         </button>
       </div>

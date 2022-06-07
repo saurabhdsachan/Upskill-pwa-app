@@ -36,10 +36,10 @@ const Auth: React.FC = () => {
 
     const progress = new Promise((resolve, reject) => {
       if (resp.status === 200) {
-        resolve('foo');
+        resolve(resp?.data);
         setShowOTPField(true);
       } else {
-        reject('');
+        reject(resp?.statusText);
       }
     });
 

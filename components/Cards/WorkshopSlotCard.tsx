@@ -28,7 +28,7 @@ const WorkshopSlotCard = ({ data, onClick, isSelected }) => {
       <div className="flex">
         <div className="flex-1">
           <small className="text-xs text-slate-400">Start Time</small>
-          <p className="text-slate-900">{dayjs(data?.startTime).format("D MMM 'YY")}</p>
+          <p className="text-slate-900">{dayjs(data?.startTime).format('hh:mm a')}</p>
         </div>
         <div className="text-right">
           <small className="text-xs text-slate-400">Duration</small>

@@ -4,6 +4,7 @@ import { verifyUser } from '@utils/constants/makeCalls';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
 import React, { useCallback, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { Else, If, Then } from 'react-if';
 import LoadingState from '../LoadingState';
 
@@ -14,24 +15,30 @@ interface IBody {
 const Body: React.FC<IBody> = ({ children }) => {
   const router = useRouter();
   const { authData, setAuthData } = useAuthStore();
-  const [isPermitted, setIsPermitted] = useState(true);
+  const [isPermitted, setIsPermitted] = useState(false);
 
   const hideContent = () => setIsPermitted(false);
 
   const authCheck = useCallback(async () => {
-    setIsPermitted(true);
     const token = Cookies.get(TOKEN);
     const path = router?.asPath?.split('?')[0];
+    if ((authData.userId && token) || !PRIVATE_PAGE_ROUTES.includes(path)) {
+      setIsPermitted(true);
+    }
+
     if (!authData.userId && token) {
       const res = await verifyUser();
-      if (res?.status === 200) {
+      if (res?.status <= 400) {
+        setIsPermitted(true);
         const { userId, username, name, number, phoneNumber, profileImgUrl } = res?.data?.user;
         setAuthData({ userId, username, name, number, phoneNumber, profileImgUrl });
+      } else {
+        toast.error(res?.status === 403 ? 'Unauthorized' : 'Network Authentication Required');
       }
     } else if (!token && PRIVATE_PAGE_ROUTES.includes(path)) {
       router.replace({
         pathname: '/auth',
-        query: { returnUrl: router.asPath },
+        query: { returnUrl: router?.asPath },
       });
     }
   }, [authData, router, setAuthData]);

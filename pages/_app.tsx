@@ -27,9 +27,10 @@ const MyApp = ({ Component, pageProps }: AppProps): React.ReactElement => {
           </AuthProvider>
         </DataBusProvider>
         <Toaster
-          position="bottom-center"
+          position="top-center"
+          reverseOrder={true}
           toastOptions={{
-            className: 'shadow-lg',
+            className: 'shadow-lg text-sm',
           }}
         />
       </ThemeProvider>

@@ -54,8 +54,8 @@ const Drawer = observer(({ children, isOpen, setIsOpen }) => {
                             </Else>
                           </If>
                         </div>
-                        <div className="h-10 flex-1 items-center">
-                          <HeroName name={authData?.name} username={authData?.username} />
+                        <div className="h-10 flex-1 flex items-center justify-center">
+                          <HeroName name={authData?.name || authData?.number} username={authData?.username} />
                         </div>
                       </div>
                     </a>
