@@ -77,7 +77,7 @@ const Slots: React.FC = observer(() => {
 
   const instances = data?.data?.instances || data?.data?.startTimes;
 
-  const handleClick = async () => {
+  const handleClick = async (slots) => {
     if (!authData?.userId) {
       router.replace({
         pathname: '/auth',
@@ -93,7 +93,7 @@ const Slots: React.FC = observer(() => {
           bookingInitResponse = await bookConnectCall(slots.connect);
           break;
         case WORKSHOP:
-          bookingInitResponse = await bookSessionCall({ sessionType, sessionId, ...slots.workShops });
+          bookingInitResponse = await bookSessionCall({ sessionType, sessionId, ...slots.workShop });
           break;
         case COURSE:
           bookingInitResponse = await bookSessionCall({ sessionType, sessionId, ...slots.course });
@@ -158,7 +158,7 @@ const Slots: React.FC = observer(() => {
             </div>
             <div className="p-6 sticky bottom-0 bg-white">
               <button
-                onClick={handleClick}
+                onClick={() => handleClick(slots)}
                 className="uppercase inline-flex items-center justify-center w-full py-4 border border-transparent rounded-xl text-sm font-medium text-white bg-gradient-to-r from-orange-600 to-orange-500 hover:bg-white-700 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-orange-400"
               >
                 <TicketIcon className="h-4 w-4 mr-2" />

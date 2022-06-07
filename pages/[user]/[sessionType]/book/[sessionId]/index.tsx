@@ -3,6 +3,7 @@ import EmptyState from '@components/Shared/EmptyState';
 import HeroName from '@components/Shared/HeroName';
 import Layout from '@components/Shared/Layout';
 import QuickHelp from '@components/Shared/QuickHelp';
+import { useDataBusStore } from '@context/dataBusContext';
 import { TicketIcon, UserGroupIcon } from '@heroicons/react/outline';
 import { StarIcon } from '@heroicons/react/solid';
 import { blurredBgImage } from '@public/images/bg-base-64';
@@ -18,6 +19,8 @@ import { Case, Default, Else, If, Switch, Then } from 'react-if';
 import { CONNECT } from '../../../../../utils/constants/index';
 
 const SessionDetail: React.FC = ({ data, status, sessionType, user }) => {
+  const { updateBottomSheetState } = useDataBusStore();
+
   const session = data?.groupSession || data?.cohortSession || data?.planSession || data;
 
   const sessionTitle = session?.title || session?.name || session?.expertiseName;
@@ -77,7 +80,10 @@ const SessionDetail: React.FC = ({ data, status, sessionType, user }) => {
                     </a>
                   </Link>
                   <div>
-                    <button className="inline-flex items-center justify-center w-full py-1.5 px-3 border border-transparent rounded-lg text-sm font-medium text-white bg-gradient-to-r from-slate-500 to-slate-600 hover:bg-slate-700 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-400 shadow-xs shadow-slate-500/50">
+                    <button
+                      onClick={() => updateBottomSheetState(true)}
+                      className="inline-flex items-center justify-center w-full py-1.5 px-3 border border-transparent rounded-lg text-sm font-medium text-white bg-gradient-to-r from-slate-500 to-slate-600 hover:bg-slate-700 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-400 shadow-xs shadow-slate-500/50"
+                    >
                       <UserGroupIcon className="h-4 w-4 mr-2" /> <span className="text-xs">Follow</span>
                     </button>
                   </div>
@@ -197,6 +203,7 @@ const SessionDetail: React.FC = ({ data, status, sessionType, user }) => {
               </div>
             </div>
           </Layout.Body>
+          <Layout.Footer />
         </Then>
         <Else>
           <EmptyState title="Data not found" message="Data not found" />
