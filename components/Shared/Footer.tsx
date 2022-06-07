@@ -9,7 +9,7 @@ const Footer: React.FC = observer(() => {
   return (
     <BottomSheet
       onDismiss={() => updateBottomSheetState(false)}
-      snapPoints={({ maxHeight }) => [maxHeight / 3.5]}
+      snapPoints={({ maxHeight }) => [maxHeight / 2.75]}
       open={dataBus?.isBottomSheetOpen}
     >
       <div className="container">
