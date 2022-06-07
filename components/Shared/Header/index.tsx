@@ -69,14 +69,8 @@ const Header: React.FC = ({ backflow, title }: { backflow: boolean; title?: stri
                   </Link>
                 </li>
                 <li className="py-3">
-                  <a
-                    href="https://play.google.com/store/apps/details?id=pep.live"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <DownloadIcon className="w-4 h-4 inline mr-4" />
-                    <span>Download Pep App</span>
-                  </a>
+                  <DownloadIcon className="w-4 h-4 inline mr-4" />
+                  <span>Download Pep App</span>
                 </li>
               </ul>
             </div>

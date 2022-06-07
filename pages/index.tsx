@@ -21,6 +21,7 @@ const Home: React.FC = () => {
           </Link>
         </div>
       </Layout.Body>
+      <Layout.Footer />
     </Layout>
   );
 };
