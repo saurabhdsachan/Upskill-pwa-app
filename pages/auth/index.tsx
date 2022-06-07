@@ -27,8 +27,12 @@ const Auth: React.FC = () => {
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     setMobile(data?.mobile);
-    const endpoint = `/user/v1/otp?number=${data.mobile}&countryCode=91`;
-    const resp = await fetcher(endpoint, { data: 'sss' });
+    onMobileSubmit(data?.mobile);
+  };
+
+  const onMobileSubmit = async (mobile) => {
+    const endpoint = `/user/v1/otp?number=${mobile}&countryCode=91`;
+    const resp = await fetcher(endpoint);
 
     const progress = new Promise((resolve, reject) => {
       if (resp.status === 200) {
@@ -59,11 +63,11 @@ const Auth: React.FC = () => {
 
     const progress = new Promise((resolve, reject) => {
       if (resp.status === 200 && resp.data?.success) {
-        resolve('foo');
-        login({ token: resp?.data?.message, cb: () => router.push(router.query.returnUrl.toString() || '/') });
         const { userId, username, name, number, phoneNumber, profileImgUrl } = resp?.data?.data;
         setAuthData({ userId, username, name, number, phoneNumber, profileImgUrl });
         setShowOTPField(false);
+        resolve('foo');
+        login({ token: resp?.data?.message, cb: () => router.push(router?.query?.returnUrl?.toString() || '/') });
       } else {
         reject('');
       }
@@ -147,8 +151,18 @@ const Auth: React.FC = () => {
               <Then>
                 <div className="mt-6">
                   <div className="flex justify-between">
-                    <button className="text-xs px-2 py-1 rounded-full border border-slate-300">Change Number</button>
-                    <button className="text-xs px-2 py-1 rounded-full border border-slate-300">Resend OTP</button>
+                    <button
+                      className="text-xs px-2 py-1 rounded-full border border-slate-300"
+                      onClick={() => setShowOTPField(false)}
+                    >
+                      Change Number
+                    </button>
+                    <button
+                      className="text-xs px-2 py-1 rounded-full border border-slate-300"
+                      onClick={() => onMobileSubmit(mobile)}
+                    >
+                      Resend OTP
+                    </button>
                   </div>
                 </div>
               </Then>
