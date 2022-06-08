@@ -2,7 +2,7 @@ import { ChevronDoubleRightIcon } from '@heroicons/react/solid';
 import { CONNECT } from '@utils/constants';
 import Link from 'next/link';
 import React from 'react';
-import ExpertiseCard from './Cards/ExpertiseCard';
+import ConnectCard from './Cards/ConnectCard';
 
 const ExpertiseScroll: React.FC = ({
   initData,
@@ -34,7 +34,7 @@ const ExpertiseScroll: React.FC = ({
       <div className="relative overflow-auto">
         <div className="overflow-x-auto flex no-scrollbar">
           {initData?.map((item) => (
-            <ExpertiseCard key={item.expertiseId} type="h-card" data={item} userId={userId} />
+            <ConnectCard key={item.expertiseId} type="h-card" data={item} userId={userId} />
           ))}
         </div>
       </div>

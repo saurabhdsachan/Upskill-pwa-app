@@ -17,10 +17,12 @@ import Link from 'next/link';
 import React from 'react';
 import { Case, Default, Else, If, Switch, Then } from 'react-if';
 
-const SessionDetail: React.FC = ({ data, status, sessionType, user, userId }) => {
+const SessionDetail: React.FC = ({ data, status, sessionType, sessionId, user, userId }) => {
   const { updateBottomSheetState } = useDataBusStore();
 
   const session = data?.groupSession || data?.cohortSession || data?.planSession || data;
+
+  console.log('session', session);
 
   const sessionTitle = session?.title || session?.name || session?.expertiseName;
 
@@ -179,10 +181,11 @@ const SessionDetail: React.FC = ({ data, status, sessionType, user, userId }) =>
                   <Case
                     condition={
                       (sessionType !== PLAN && data?.instances && data?.instances?.instances?.length) ||
-                      (sessionType === PLAN && !data?.planSession?.sessionMetaTags?.includes('PAUSED'))
+                      (sessionType === PLAN && !data?.planSession?.sessionMetaTags?.includes('PAUSED')) ||
+                      sessionType === CONNECT
                     }
                   >
-                    <Link href={`/${user}/${userId}/${sessionType}/book/${session?.sessionId}/slots`}>
+                    <Link href={`/${user}/${userId}/${sessionType}/book/${sessionId}/slots`}>
                       <a className="uppercase inline-flex items-center justify-center w-full py-4 border border-transparent rounded-xl text-sm font-medium text-white bg-gradient-to-r from-orange-600 to-orange-500 hover:bg-white-700 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-orange-400">
                         <TicketIcon className="h-4 w-4 mr-2" />
                         Choose Slot
@@ -251,6 +254,7 @@ export const getStaticProps: GetStaticProps = async ({ params: { sessionId, sess
     props: {
       ...res,
       sessionType,
+      sessionId,
       user,
       userId,
     },

@@ -1,3 +1,4 @@
+import ConnectSlotCard from '@components/Cards/ConnectSlotCard';
 import CourseSlotCard from '@components/Cards/CourseSlotCard';
 import PlanSlotCard from '@components/Cards/PlanSlotCard';
 import WorkshopSlotCard from '@components/Cards/WorkshopSlotCard';
@@ -26,7 +27,7 @@ const Slots: React.FC = observer(() => {
   const router = useRouter();
   const { slots, setConnectSlots, setPlanSlots, setCourseSlots, setWorkshopSlots } = useSlotsStore();
   const { authData } = useAuthStore();
-  const { sessionType, sessionId } = router?.query || {};
+  const { sessionType, sessionId, userId } = router?.query || {};
 
   const handlePayment = useCallback(
     async ({ amount, currency, order_id }) => {
@@ -71,14 +72,23 @@ const Slots: React.FC = observer(() => {
     [Razorpay, authData.name, router]
   );
 
-  const endpoint =
-    sessionType === PLAN
-      ? `/bookings/v1/${sessionType}/slots?planId=${sessionId}`
-      : `/inventory/v1/${sessionType}/${sessionId}/user/instance?limit=20`;
+  let endpoint = '';
+
+  switch (sessionType) {
+    case PLAN:
+      endpoint = `/bookings/v1/${sessionType}/slots?planId=${sessionId}`;
+      break;
+    case CONNECT:
+      endpoint = `/store/v1/expertise/available-slots?creatorId=${userId}&expertiseId=${sessionId}`;
+      break;
+    default:
+      endpoint = `/inventory/v1/${sessionType}/${sessionId}/user/instance?limit=20`;
+      break;
+  }
 
   const { data, error, loading } = useFetcher({ endpoint: sessionType && sessionId ? endpoint : '' });
 
-  const instances = data?.data?.instances || data?.data?.startTimes;
+  const instances = data?.data?.instances || data?.data?.startTimes || data?.data?.daySlots;
 
   const handleClick = async () => {
     const slotsData = await toJS(slots);
@@ -143,6 +153,15 @@ const Slots: React.FC = observer(() => {
             <div className="min-h-free p-6 bg-slate-100">
               {instances?.map((slot) => {
                 switch (sessionType) {
+                  case CONNECT:
+                    return (
+                      <ConnectSlotCard
+                        key={slot?.label + slot?.availableSlots}
+                        data={slot}
+                        onClick={() => setConnectSlots(slot)}
+                        isSelected={slot?.instanceId === slots?.workshop?.instanceId}
+                      />
+                    );
                   case WORKSHOP:
                     return (
                       <WorkshopSlotCard

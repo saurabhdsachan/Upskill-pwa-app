@@ -1,5 +1,5 @@
+import ConnectCard from '@components/Cards/ConnectCard';
 import CourseCard from '@components/Cards/CourseCard';
-import ExpertiseCard from '@components/Cards/ExpertiseCard';
 import PlanCard from '@components/Cards/PlanCard';
 import WorkshopCard from '@components/Cards/WorkshopCard';
 import ErrorState from '@components/Shared/ErrorState';
@@ -35,7 +35,7 @@ const Listing: React.FC = ({ data, status, sessionType, user, userId }) => {
                 <div className="bg-white min-h-free">
                   <div className="px-6 grid gap-6 grid-cols-2 mb-10">
                     {sessions?.map((item) => (
-                      <ExpertiseCard key={`${CONNECT}-${item.expertiseId}`} type="v-card" data={item} userId={userId} />
+                      <ConnectCard key={`${CONNECT}-${item.expertiseId}`} type="v-card" data={item} userId={userId} />
                     ))}
                   </div>
                 </div>

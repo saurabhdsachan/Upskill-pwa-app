@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 
-const ExpertiseCard = ({ data, type, userId }: { data: IExpertise; type: 'v-card' | 'h-card'; userId: string }) => {
+const ConnectCard = ({ data, type, userId }: { data: IExpertise; type: 'v-card' | 'h-card'; userId: string }) => {
   const { query } = useRouter();
 
   return (
@@ -63,4 +63,4 @@ const ExpertiseCard = ({ data, type, userId }: { data: IExpertise; type: 'v-card
   );
 };
 
-export default ExpertiseCard;
+export default ConnectCard;
