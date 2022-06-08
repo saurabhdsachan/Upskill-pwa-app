@@ -12,6 +12,7 @@ import { TicketIcon } from '@heroicons/react/outline';
 import useFetcher from '@hooks/useFetcher';
 import { CONNECT, COURSE, DEMO, PAYMENT_STATUS, PLAN, WORKSHOP } from '@utils/constants';
 import { bookConnectCall, bookDemoCall, bookPlanCall, bookSessionCall } from '@utils/constants/makeBooking';
+import { classNames } from '@utils/helpers';
 import { toJS } from 'mobx';
 import { observer } from 'mobx-react';
 import Head from 'next/head';
@@ -150,18 +151,10 @@ const Slots: React.FC = observer(() => {
       <Layout.Body>
         <Switch>
           <Case condition={instances?.length && !loading && !error}>
-            <div className="min-h-free p-6 bg-slate-100">
+            <div className={classNames(sessionType === CONNECT ? 'py-6' : 'p-6', 'min-h-free bg-slate-100')}>
+              {sessionType === CONNECT && <ConnectSlotCard data={instances} onClick={setConnectSlots} />}
               {instances?.map((slot) => {
                 switch (sessionType) {
-                  case CONNECT:
-                    return (
-                      <ConnectSlotCard
-                        key={slot?.label + slot?.availableSlots}
-                        data={slot}
-                        onClick={() => setConnectSlots(slot)}
-                        isSelected={slot?.instanceId === slots?.workshop?.instanceId}
-                      />
-                    );
                   case WORKSHOP:
                     return (
                       <WorkshopSlotCard
