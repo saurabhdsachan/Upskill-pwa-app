@@ -2,13 +2,17 @@ import { DEVICE_ID, TOKEN } from '@utils/constants';
 import Cookies from 'js-cookie';
 import { nanoid } from 'nanoid';
 
-export default function useAuth() {
+const exp = 365;
+
+const CookieOptions = { expires: exp, domain: 'localhost', path: '/' };
+
+function useAuth() {
   const setDeviceId = () => {
-    !Cookies.get(DEVICE_ID) && Cookies.set(DEVICE_ID, nanoid());
+    Cookies.set(DEVICE_ID, nanoid(), CookieOptions);
   };
 
   const login = ({ token, cb }: { cb: () => void; token: string }) => {
-    token && Cookies.set(TOKEN, token);
+    token && Cookies.set(TOKEN, token, CookieOptions);
     cb && cb();
   };
 
@@ -23,3 +27,5 @@ export default function useAuth() {
     setDeviceId,
   };
 }
+
+export default useAuth;
