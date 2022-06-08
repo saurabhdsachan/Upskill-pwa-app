@@ -13,7 +13,7 @@ const PlanScroll: React.FC = ({ initData, username, userId }: { initData: any; u
             <h3>Plans</h3>
           </div>
           <div>
-            <Link href={`/${username}/${PLAN}`}>
+            <Link href={`/${username}/${userId}/${PLAN}`}>
               <a>
                 <small className="text-xs text-slate-600">
                   See all <ChevronDoubleRightIcon className="w-2 h-2 inline" />{' '}

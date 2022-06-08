@@ -12,7 +12,7 @@ const ExpertiseCard = ({ data, type, userId }: { data: IExpertise; type: 'v-card
 
   return (
     <div className={classNames(type === 'v-card' ? 'flex-none' : 'flex-none px-3 first:pl-6 last:pr-6')}>
-      <Link href={`/${query?.user}/${CONNECT}/book/${data?.expertiseId}`}>
+      <Link href={`/${query?.user}/${userId}/${CONNECT}/book/${data?.expertiseId}`}>
         <a>
           <div
             className={classNames(

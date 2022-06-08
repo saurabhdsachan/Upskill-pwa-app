@@ -33,7 +33,7 @@ const Slots: React.FC = () => {
         setLoading(false);
         setBookingDetails(res?.data);
       } else {
-        setLoading(true);
+        setLoading(false);
       }
     }
   }, [oid, pid, sign]);

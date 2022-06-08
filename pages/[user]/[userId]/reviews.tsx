@@ -1,6 +1,7 @@
 import EmptyState from '@components/Shared/EmptyState';
 import ErrorState from '@components/Shared/ErrorState';
 import Layout from '@components/Shared/Layout';
+import LoadingState from '@components/Shared/LoadingState';
 import { StarIcon } from '@heroicons/react/solid';
 import useFetcher from '@hooks/useFetcher';
 import { blurredBgImage } from '@public/images/bg-base-64';
@@ -9,16 +10,13 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { Else, If, Then } from 'react-if';
+import { Case, Switch } from 'react-if';
 
 const Reviews: React.FC = () => {
   const router = useRouter();
   const { data, loading, error } = useFetcher({
     endpoint: router?.query?.userId ? `/store/v1/rating/creator?userId=${router?.query?.userId}` : '',
   });
-
-  if (error) return <ErrorState status={error?.status} />;
-  if (loading) return <p>Loading</p>;
 
   const reviews = data?.data?.ratings?.filter((item) => item?.review);
 
@@ -30,8 +28,8 @@ const Reviews: React.FC = () => {
       </Head>
       <Layout.Header backflow={true} title="Reviews" />
       <Layout.Body>
-        <If condition={data?.data?.numRatings !== 0}>
-          <Then>
+        <Switch>
+          <Case condition={data?.data?.numRatings !== 0 && !loading}>
             <div className="px-6">
               <div className="text-center sticky top-16 bg-white z-10 py-4">
                 <h1 className="text-4xl">
@@ -132,11 +130,17 @@ const Reviews: React.FC = () => {
                 </div>
               ))}
             </div>
-          </Then>
-          <Else>
+          </Case>
+          <Case condition={data?.data?.numRatings === 0}>
             <EmptyState title="No reviews" message="Yet to be reviewed" />
-          </Else>
-        </If>
+          </Case>
+          <Case condition={loading}>
+            <LoadingState />
+          </Case>
+          <Case condition={error}>
+            <ErrorState status={error?.status} />
+          </Case>
+        </Switch>
       </Layout.Body>
     </Layout>
   );

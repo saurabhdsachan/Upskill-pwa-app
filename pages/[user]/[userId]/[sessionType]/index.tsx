@@ -1,18 +1,18 @@
 import CourseCard from '@components/Cards/CourseCard';
 import ExpertiseCard from '@components/Cards/ExpertiseCard';
+import PlanCard from '@components/Cards/PlanCard';
+import WorkshopCard from '@components/Cards/WorkshopCard';
 import ErrorState from '@components/Shared/ErrorState';
 import Layout from '@components/Shared/Layout';
+import { CONNECT, COURSE, PLAN, WORKSHOP } from '@utils/constants';
 import fetcher from '@utils/fetcher';
 import { sessionTypeMapper } from '@utils/helpers';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
 import React from 'react';
 import { Case, Else, If, Switch, Then } from 'react-if';
-import PlanCard from '../../../components/Cards/PlanCard';
-import WorkshopCard from '../../../components/Cards/WorkshopCard';
-import { CONNECT, COURSE, PLAN, WORKSHOP } from '../../../utils/constants/index';
 
-const Listing: React.FC = ({ data, status, sessionType }) => {
+const Listing: React.FC = ({ data, status, sessionType, user, userId }) => {
   const sessions = data?.expertise || data?.items?.map((item) => item?.session);
 
   return (
@@ -35,12 +35,7 @@ const Listing: React.FC = ({ data, status, sessionType }) => {
                 <div className="bg-white min-h-free">
                   <div className="px-6 grid gap-6 grid-cols-2 mb-10">
                     {sessions?.map((item) => (
-                      <ExpertiseCard
-                        key={`${CONNECT}-${item.expertiseId}`}
-                        type="v-card"
-                        data={item}
-                        userId={'55e6b80a-726b-430b-9988-52bc68c464e5'}
-                      />
+                      <ExpertiseCard key={`${CONNECT}-${item.expertiseId}`} type="v-card" data={item} userId={userId} />
                     ))}
                   </div>
                 </div>
@@ -49,12 +44,7 @@ const Listing: React.FC = ({ data, status, sessionType }) => {
                 <div className="bg-white min-h-free">
                   <div className="px-6 grid gap-6 grid-cols-2 mb-10">
                     {sessions?.map((item) => (
-                      <WorkshopCard
-                        key={`${WORKSHOP}-${item.sessionId}`}
-                        type="v-card"
-                        data={item}
-                        userId={'55e6b80a-726b-430b-9988-52bc68c464e5'}
-                      />
+                      <WorkshopCard key={`${WORKSHOP}-${item.sessionId}`} type="v-card" data={item} userId={userId} />
                     ))}
                   </div>
                 </div>
@@ -63,12 +53,7 @@ const Listing: React.FC = ({ data, status, sessionType }) => {
                 <div className="bg-white min-h-free">
                   <div className="px-6 grid gap-6 grid-cols-2 mb-10">
                     {sessions?.map((item) => (
-                      <CourseCard
-                        key={`${COURSE}-${item.sessionId}`}
-                        type="v-card"
-                        data={item}
-                        userId={'55e6b80a-726b-430b-9988-52bc68c464e5'}
-                      />
+                      <CourseCard key={`${COURSE}-${item.sessionId}`} type="v-card" data={item} userId={userId} />
                     ))}
                   </div>
                 </div>
@@ -77,12 +62,7 @@ const Listing: React.FC = ({ data, status, sessionType }) => {
                 <div className="bg-white min-h-free">
                   <div className="px-6 grid gap-6 grid-cols-2 mb-10">
                     {sessions?.map((item) => (
-                      <PlanCard
-                        key={`${PLAN}-${item.sessionId}`}
-                        type="v-card"
-                        data={item}
-                        userId={'55e6b80a-726b-430b-9988-52bc68c464e5'}
-                      />
+                      <PlanCard key={`${PLAN}-${item.sessionId}`} type="v-card" data={item} userId={userId} />
                     ))}
                   </div>
                 </div>
@@ -98,16 +78,15 @@ const Listing: React.FC = ({ data, status, sessionType }) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: [
-      { params: { user: 'saurabh', sessionType: WORKSHOP } },
-      { params: { user: 'viveksharma', sessionType: WORKSHOP } },
+      { params: { user: 'saurabh', userId: '', sessionType: WORKSHOP } },
+      { params: { user: 'viveksharma', userId: '', sessionType: WORKSHOP } },
     ],
     fallback: true,
   };
 };
 
-export const getStaticProps: GetStaticProps = async ({ params: { user, sessionType } }) => {
-  // TODO: remove hardcoded userID
-  const creatorId = '55e6b80a-726b-430b-9988-52bc68c464e5';
+export const getStaticProps: GetStaticProps = async ({ params: { user, userId, sessionType } }) => {
+  const creatorId = userId;
 
   let options = {
     method: 'GET',
@@ -149,6 +128,7 @@ export const getStaticProps: GetStaticProps = async ({ params: { user, sessionTy
     props: {
       ...res,
       user,
+      userId,
       sessionType,
     },
   };

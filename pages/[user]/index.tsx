@@ -10,6 +10,7 @@ import HeroIntro from '@components/Shared/HeroIntro';
 import Layout from '@components/Shared/Layout';
 import SEOWrapper from '@components/Shared/SEO/SEOWrapper';
 import SocialLinks from '@components/Shared/SocialLinks';
+import WorkshopScroll from '@components/WorkshopScroll';
 import { StarIcon, TicketIcon, TranslateIcon } from '@heroicons/react/outline';
 import { DEMO } from '@utils/constants';
 import fetcher from '@utils/fetcher';
@@ -19,7 +20,6 @@ import Head from 'next/head';
 import Link from 'next/link';
 import React from 'react';
 import { Else, If, Then } from 'react-if';
-import WorkshopScroll from '../../components/WorkshopScroll';
 
 const User: React.FC<any> = ({ data, status }) => {
   return (
@@ -55,7 +55,7 @@ const User: React.FC<any> = ({ data, status }) => {
                 />
                 {data?.user?.description && <p className="text-sm text-slate-700">{data?.user?.description}</p>}
                 <div className="flex mt-6 space-x-6 justify-center">
-                  <Link href={`/${data?.user?.username}/reviews/${data?.user?.userId}`}>
+                  <Link href={`/${data?.user?.username}/${data?.user?.userId}/reviews`}>
                     <a>
                       <div className="flex items-center justify-start space-x-2">
                         <div className="w-8 h-8 bg-blue-100 flex justify-center items-center rounded-full">
@@ -91,7 +91,7 @@ const User: React.FC<any> = ({ data, status }) => {
 
               {data?.canBookDemo && data?.demo?.active && (
                 <div className="border-t border-b px-6 py-4 border-slate-200 bg-white">
-                  <Link href={`/${data?.user?.username}/${DEMO}/book/${data?.user?.userId}`}>
+                  <Link href={`/${data?.user?.username}/${data?.user?.userId}/${DEMO}/book`}>
                     <a className="uppercase inline-flex items-center justify-center w-full py-3 border border-transparent rounded-xl text-sm font-medium text-white bg-gradient-to-r from-orange-600 to-orange-500 hover:bg-white-700 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-orange-400">
                       <TicketIcon className="h-4 w-4 mr-2" /> Book 1:1 Demo Session
                     </a>
@@ -146,7 +146,7 @@ const User: React.FC<any> = ({ data, status }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  return { paths: [{ params: { user: 'saurabh' } }, { params: { user: 'viveksharma' } }], fallback: true };
+  return { paths: [{ params: { user: 'srb' } }, { params: { user: 'viveksharma' } }], fallback: true };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params: { user } }) => {

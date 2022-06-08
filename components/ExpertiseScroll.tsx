@@ -21,7 +21,7 @@ const ExpertiseScroll: React.FC = ({
             <h3>1:1 Consultation</h3>
           </div>
           <div>
-            <Link href={`/${username}/${CONNECT}`}>
+            <Link href={`/${username}/${userId}/${CONNECT}`}>
               <a>
                 <small className="text-xs text-slate-600">
                   See all <ChevronDoubleRightIcon className="w-2 h-2 inline" />{' '}

@@ -13,7 +13,7 @@ const PlanCard = ({ data, type, userId }: { data: any; type: 'v-card' | 'h-card'
 
   return (
     <div className={classNames(type === 'v-card' ? 'flex-none' : 'flex-none px-3 first:pl-6 last:pr-6')}>
-      <Link href={`/${query?.user}/${PLAN}/book/${data?.sessionId}`}>
+      <Link href={`/${query?.user}/${userId}/${PLAN}/book/${data?.sessionId}`}>
         <a>
           <div
             className={classNames(

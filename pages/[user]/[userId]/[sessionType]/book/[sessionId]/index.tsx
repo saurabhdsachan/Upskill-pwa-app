@@ -7,7 +7,7 @@ import { useDataBusStore } from '@context/dataBusContext';
 import { TicketIcon, UserGroupIcon } from '@heroicons/react/outline';
 import { StarIcon } from '@heroicons/react/solid';
 import { blurredBgImage } from '@public/images/bg-base-64';
-import { COURSE, PLAN, WORKSHOP } from '@utils/constants/index';
+import { CONNECT, COURSE, PLAN, WORKSHOP } from '@utils/constants/index';
 import fetcher from '@utils/fetcher';
 import { classNames, formatPrice, getImageUrl, sessionTypeMapper, tsConvert, weekShortName } from '@utils/helpers';
 import { GetStaticPaths, GetStaticProps } from 'next';
@@ -16,9 +16,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { Case, Default, Else, If, Switch, Then } from 'react-if';
-import { CONNECT } from '../../../../../utils/constants/index';
 
-const SessionDetail: React.FC = ({ data, status, sessionType, user }) => {
+const SessionDetail: React.FC = ({ data, status, sessionType, user, userId }) => {
   const { updateBottomSheetState } = useDataBusStore();
 
   const session = data?.groupSession || data?.cohortSession || data?.planSession || data;
@@ -183,7 +182,7 @@ const SessionDetail: React.FC = ({ data, status, sessionType, user }) => {
                       (sessionType === PLAN && !data?.planSession?.sessionMetaTags?.includes('PAUSED'))
                     }
                   >
-                    <Link href={`/${user}/${sessionType}/book/${session?.sessionId}/slots`}>
+                    <Link href={`/${user}/${userId}/${sessionType}/book/${session?.sessionId}/slots`}>
                       <a className="uppercase inline-flex items-center justify-center w-full py-4 border border-transparent rounded-xl text-sm font-medium text-white bg-gradient-to-r from-orange-600 to-orange-500 hover:bg-white-700 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-orange-400">
                         <TicketIcon className="h-4 w-4 mr-2" />
                         Choose Slot
@@ -217,14 +216,19 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: [
       {
-        params: { user: 'himachalherbal', sessionId: '49099d99-ee71-4654-b94d-5a3ab7f99541', sessionType: 'workshop' },
+        params: {
+          user: 'himachalherbal',
+          userId: '',
+          sessionId: '49099d99-ee71-4654-b94d-5a3ab7f99541',
+          sessionType: 'workshop',
+        },
       },
     ],
     fallback: true,
   };
 };
 
-export const getStaticProps: GetStaticProps = async ({ params: { sessionId, sessionType, user } }) => {
+export const getStaticProps: GetStaticProps = async ({ params: { sessionId, sessionType, user, userId } }) => {
   let endpoint = '';
   switch (sessionType) {
     case WORKSHOP:
@@ -236,8 +240,8 @@ export const getStaticProps: GetStaticProps = async ({ params: { sessionId, sess
     case PLAN:
       endpoint = `/store/v1/sessions/details?sessionId=${sessionId}&sessionType=${sessionTypeMapper(sessionType)}`;
       break;
-    case CONNECT: //TODO: remove hardcoded userID
-      endpoint = `/inventory/v1/expertise/user/55e6b80a-726b-430b-9988-52bc68c464e5/expertise/${sessionId}`;
+    case CONNECT:
+      endpoint = `/inventory/v1/expertise/user/${userId}/expertise/${sessionId}`;
       break;
   }
 
@@ -248,6 +252,7 @@ export const getStaticProps: GetStaticProps = async ({ params: { sessionId, sess
       ...res,
       sessionType,
       user,
+      userId,
     },
   };
 };

@@ -21,7 +21,7 @@ const CourseScroll: React.FC = ({
             <h3>Courses</h3>
           </div>
           <div>
-            <Link href={`/${username}/${COURSE}`}>
+            <Link href={`/${username}/${userId}/${COURSE}`}>
               <a>
                 <small className="text-xs text-slate-600">
                   See all <ChevronDoubleRightIcon className="w-2 h-2 inline" />{' '}
