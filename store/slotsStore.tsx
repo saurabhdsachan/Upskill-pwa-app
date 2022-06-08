@@ -13,8 +13,8 @@ export const createSlotsStore = () => {
       this.slots.demo = { creatorId, startTime, endTime };
     },
     setConnectSlots(data) {
-      const { creatorId, expertiseId, startTime, endTime } = data;
-      this.slots.connect = { creatorId, expertiseId, startTime, endTime };
+      const { date, startTime, endTime } = data;
+      this.slots.connect = { date, startTime, endTime };
     },
     setCourseSlots(data) {
       const { instanceId } = data;

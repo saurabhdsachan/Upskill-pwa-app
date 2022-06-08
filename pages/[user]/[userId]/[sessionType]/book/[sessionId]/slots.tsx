@@ -26,7 +26,7 @@ import { IRazorPaySuccessResponse } from 'types/razorPay';
 const Slots: React.FC = observer(() => {
   const Razorpay = useRazorpay();
   const router = useRouter();
-  const { slots, setConnectSlots, setPlanSlots, setCourseSlots, setWorkshopSlots } = useSlotsStore();
+  const { slots, setPlanSlots, setCourseSlots, setWorkshopSlots } = useSlotsStore();
   const { authData } = useAuthStore();
   const { sessionType, sessionId, userId } = router?.query || {};
 
@@ -106,7 +106,11 @@ const Slots: React.FC = observer(() => {
           bookingInitResponse = await bookDemoCall(slotsData?.demo);
           break;
         case CONNECT:
-          bookingInitResponse = await bookConnectCall(slotsData?.connect);
+          bookingInitResponse = await bookConnectCall({
+            creatorId: userId,
+            expertiseId: sessionId,
+            ...slotsData?.connect,
+          });
           break;
         case WORKSHOP:
           bookingInitResponse = await bookSessionCall({ sessionType, sessionId, ...slotsData?.workshop });
@@ -152,7 +156,7 @@ const Slots: React.FC = observer(() => {
         <Switch>
           <Case condition={instances?.length && !loading && !error}>
             <div className={classNames(sessionType === CONNECT ? 'py-6' : 'p-6', 'min-h-free bg-slate-100')}>
-              {sessionType === CONNECT && <ConnectSlotCard data={instances} onClick={setConnectSlots} />}
+              {sessionType === CONNECT && <ConnectSlotCard data={instances} />}
               {instances?.map((slot) => {
                 switch (sessionType) {
                   case WORKSHOP:
