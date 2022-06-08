@@ -3,7 +3,7 @@ import { If, Then } from 'react-if';
 
 const HeroName = ({ name, username }) => {
   return (
-    <div className="flex-1 w-[100px] break-all truncate text-ellipsis">
+    <div className="flex-1 w-[80%] break-all truncate text-ellipsis">
       <p className="font-bold leading-4">{name}</p>
       <If condition={username}>
         <Then>

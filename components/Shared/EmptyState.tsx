@@ -1,4 +1,4 @@
-import errorLottie from '@public/lotties/error.json';
+import emptyLottie from '@public/lotties/empty.json';
 import React from 'react';
 import LottieAnimation from './LottieAnimation';
 
@@ -12,7 +12,7 @@ const EmptyState: React.FC<EmptyStateInterface> = ({ title, message, children })
   return (
     <div className="text-center flex min-h-free justify-center items-center">
       <div>
-        <LottieAnimation animationData={errorLottie} height={200} width={200} />
+        <LottieAnimation animationData={emptyLottie} height={200} width={200} loop={false} />
         <h3 className="text-base font-medium text-gray-900">{title}</h3>
         <p className="mt-1 text-sm text-gray-500">{message}</p>
       </div>

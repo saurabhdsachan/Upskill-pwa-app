@@ -6,10 +6,12 @@ export default function useFetcher({ endpoint }) {
 
   const loading = !data && !error;
 
+  const err = error || data?.status > 400;
+
   return {
     loading,
     data,
-    error,
+    error: err,
     mutate,
   };
 }

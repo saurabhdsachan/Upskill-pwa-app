@@ -8,7 +8,7 @@ export default function useAuth() {
   };
 
   const login = ({ token, cb }: { cb: () => void; token: string }) => {
-    Cookies.set(TOKEN, token);
+    token && Cookies.set(TOKEN, token);
     cb && cb();
   };
 

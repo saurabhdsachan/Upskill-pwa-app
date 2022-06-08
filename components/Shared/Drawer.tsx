@@ -39,7 +39,7 @@ const Drawer = observer(({ children, isOpen, setIsOpen }) => {
                           <If condition={authData?.profileImgUrl}>
                             <Then>
                               <Image
-                                className="rounded-xl object-cover"
+                                className="rounded-full object-cover"
                                 src={getImageUrl(authData?.profileImgUrl, { height: 180, width: 180 })}
                                 alt={authData?.name}
                                 width={180}

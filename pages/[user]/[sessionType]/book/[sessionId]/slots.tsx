@@ -2,19 +2,22 @@ import CourseSlotCard from '@components/Cards/CourseSlotCard';
 import PlanSlotCard from '@components/Cards/PlanSlotCard';
 import WorkshopSlotCard from '@components/Cards/WorkshopSlotCard';
 import EmptyState from '@components/Shared/EmptyState';
+import ErrorState from '@components/Shared/ErrorState';
 import Layout from '@components/Shared/Layout';
+import LoadingState from '@components/Shared/LoadingState';
 import { useAuthStore } from '@context/authContext';
 import { useSlotsStore } from '@context/slotContext';
 import { TicketIcon } from '@heroicons/react/outline';
 import useFetcher from '@hooks/useFetcher';
 import { CONNECT, COURSE, DEMO, PLAN, WORKSHOP } from '@utils/constants';
 import { bookConnectCall, bookDemoCall, bookPlanCall, bookSessionCall } from '@utils/constants/makeBooking';
+import { toJS } from 'mobx';
 import { observer } from 'mobx-react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useCallback } from 'react';
 import toast from 'react-hot-toast';
-import { Else, If, Then } from 'react-if';
+import { Case, Default, Switch } from 'react-if';
 import useRazorpay, { RazorpayOptions } from 'react-razorpay';
 import { IRazorPaySuccessResponse } from 'types/razorPay';
 
@@ -77,7 +80,9 @@ const Slots: React.FC = observer(() => {
 
   const instances = data?.data?.instances || data?.data?.startTimes;
 
-  const handleClick = async (slots) => {
+  const handleClick = async () => {
+    const slotsData = await toJS(slots);
+
     if (!authData?.userId) {
       router.replace({
         pathname: '/auth',
@@ -87,19 +92,19 @@ const Slots: React.FC = observer(() => {
       let bookingInitResponse;
       switch (sessionType) {
         case DEMO:
-          bookingInitResponse = await bookDemoCall(slots.demo);
+          bookingInitResponse = await bookDemoCall(slotsData?.demo);
           break;
         case CONNECT:
-          bookingInitResponse = await bookConnectCall(slots.connect);
+          bookingInitResponse = await bookConnectCall(slotsData?.connect);
           break;
         case WORKSHOP:
-          bookingInitResponse = await bookSessionCall({ sessionType, sessionId, ...slots.workShop });
+          bookingInitResponse = await bookSessionCall({ sessionType, sessionId, ...slotsData?.workshop });
           break;
         case COURSE:
-          bookingInitResponse = await bookSessionCall({ sessionType, sessionId, ...slots.course });
+          bookingInitResponse = await bookSessionCall({ sessionType, sessionId, ...slotsData?.course });
           break;
         case PLAN:
-          bookingInitResponse = await bookPlanCall({ sessionId, ...slots.plan });
+          bookingInitResponse = await bookPlanCall({ sessionId, ...slotsData?.plan });
           break;
       }
       if (bookingInitResponse?.status === 200 && bookingInitResponse?.data?.success) {
@@ -121,8 +126,8 @@ const Slots: React.FC = observer(() => {
       </Head>
       <Layout.Header backflow={true} title="Choose a slot" />
       <Layout.Body>
-        <If condition={instances?.length}>
-          <Then>
+        <Switch>
+          <Case condition={instances?.length && !loading && !error}>
             <div className="min-h-free p-6 bg-slate-100">
               {instances?.map((slot) => {
                 switch (sessionType) {
@@ -158,21 +163,27 @@ const Slots: React.FC = observer(() => {
             </div>
             <div className="p-6 sticky bottom-0 bg-white">
               <button
-                onClick={() => handleClick(slots)}
+                onClick={handleClick}
                 className="uppercase inline-flex items-center justify-center w-full py-4 border border-transparent rounded-xl text-sm font-medium text-white bg-gradient-to-r from-orange-600 to-orange-500 hover:bg-white-700 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-orange-400"
               >
                 <TicketIcon className="h-4 w-4 mr-2" />
                 {!authData.userId && 'Login & '}Book Now
               </button>
             </div>
-          </Then>
-          <Else>
+          </Case>
+          <Case condition={loading}>
+            <LoadingState />
+          </Case>
+          <Case condition={error}>
+            <ErrorState />
+          </Case>
+          <Default>
             <EmptyState title="No slots available" message="Right now there are no slots available" />
-          </Else>
-        </If>
+          </Default>
+        </Switch>
       </Layout.Body>
     </Layout>
   );
 });
 
-export default Slots;
+export default React.memo(Slots);
