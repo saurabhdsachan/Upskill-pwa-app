@@ -17,6 +17,10 @@ export const WEEKDAY = {
   sun: 6,
 };
 
+export const PAYMENT_STATUS = {
+  PAID: 'PAID',
+};
+
 export const PRIVATE_PAGE_ROUTES = ['/book', '/bookings/booked', '/bookings/received'];
 
 export const PRIVATE_API_ROUTES = [''];

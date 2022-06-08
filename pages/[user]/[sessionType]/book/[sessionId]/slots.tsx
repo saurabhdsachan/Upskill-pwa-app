@@ -9,7 +9,7 @@ import { useAuthStore } from '@context/authContext';
 import { useSlotsStore } from '@context/slotContext';
 import { TicketIcon } from '@heroicons/react/outline';
 import useFetcher from '@hooks/useFetcher';
-import { CONNECT, COURSE, DEMO, PLAN, WORKSHOP } from '@utils/constants';
+import { CONNECT, COURSE, DEMO, PAYMENT_STATUS, PLAN, WORKSHOP } from '@utils/constants';
 import { bookConnectCall, bookDemoCall, bookPlanCall, bookSessionCall } from '@utils/constants/makeBooking';
 import { toJS } from 'mobx';
 import { observer } from 'mobx-react';
@@ -108,11 +108,23 @@ const Slots: React.FC = observer(() => {
           break;
       }
       if (bookingInitResponse?.status === 200 && bookingInitResponse?.data?.success) {
-        handlePayment({
-          amount: (bookingInitResponse?.data?.data?.price * 100).toString(),
-          currency: 'INR',
-          order_id: bookingInitResponse?.data?.data?.rpOrderId,
-        });
+        if (
+          bookingInitResponse?.data?.data?.price !== 0 &&
+          bookingInitResponse?.data?.data?.paymentStatus !== PAYMENT_STATUS?.PAID
+        ) {
+          handlePayment({
+            amount: (bookingInitResponse?.data?.data?.price * 100).toString(),
+            currency: 'INR',
+            order_id: bookingInitResponse?.data?.data?.rpOrderId,
+          });
+        } else {
+          router.push({
+            pathname: '/success',
+            query: {
+              oid: bookingInitResponse?.data?.data?.bookingId,
+            },
+          });
+        }
       } else {
         toast.error(bookingInitResponse?.data?.message);
       }
