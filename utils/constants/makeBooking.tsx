@@ -2,9 +2,9 @@ import fetcher from '@utils/fetcher';
 import { sessionTypeMapper } from '@utils/helpers';
 
 export const bookDemoCall = async ({ creatorId, startTime, endTime }) => {
-  const bookDemoEndpoint = `/bookings/v1/booking/demo`;
+  const endpoint = `/bookings/v1/booking/demo`;
 
-  return await fetcher(bookDemoEndpoint, {
+  return await fetcher(endpoint, {
     method: 'POST',
     body: {
       creatorId,
@@ -17,9 +17,9 @@ export const bookDemoCall = async ({ creatorId, startTime, endTime }) => {
 };
 
 export const bookConnectCall = async ({ creatorId, expertiseId, startTime, endTime }) => {
-  const bookConnectEndpoint = `/bookings/v1/booking/expertise`;
+  const endpoint = `/bookings/v1/booking/expertise`;
 
-  return await fetcher(bookConnectEndpoint, {
+  return await fetcher(endpoint, {
     method: 'POST',
     body: {
       creatorId,
@@ -33,9 +33,9 @@ export const bookConnectCall = async ({ creatorId, expertiseId, startTime, endTi
 };
 
 export const bookPlanCall = async ({ sessionId, startTime }) => {
-  const bookPlanEndpoint = `/bookings/v1/booking/plan`;
+  const endpoint = `/bookings/v1/booking/plan`;
 
-  return await fetcher(bookPlanEndpoint, {
+  return await fetcher(endpoint, {
     method: 'POST',
     body: {
       sessionId,

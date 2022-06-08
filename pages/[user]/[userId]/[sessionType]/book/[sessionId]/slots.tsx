@@ -19,7 +19,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useCallback } from 'react';
 import toast from 'react-hot-toast';
-import { Case, Default, Switch } from 'react-if';
+import { Case, Default, Else, If, Switch, Then } from 'react-if';
 import useRazorpay, { RazorpayOptions } from 'react-razorpay';
 import { IRazorPaySuccessResponse } from 'types/razorPay';
 
@@ -76,11 +76,14 @@ const Slots: React.FC = observer(() => {
   let endpoint = '';
 
   switch (sessionType) {
-    case PLAN:
-      endpoint = `/bookings/v1/${sessionType}/slots?planId=${sessionId}`;
+    case DEMO:
+      endpoint = `/store/v1/demo/available-slots?creatorId=${userId}`;
       break;
     case CONNECT:
       endpoint = `/store/v1/expertise/available-slots?creatorId=${userId}&expertiseId=${sessionId}`;
+      break;
+    case PLAN:
+      endpoint = `/bookings/v1/${sessionType}/slots?planId=${sessionId}`;
       break;
     default:
       endpoint = `/inventory/v1/${sessionType}/${sessionId}/user/instance?limit=20`;
@@ -103,7 +106,7 @@ const Slots: React.FC = observer(() => {
       let bookingInitResponse;
       switch (sessionType) {
         case DEMO:
-          bookingInitResponse = await bookDemoCall(slotsData?.demo);
+          bookingInitResponse = await bookDemoCall({ creatorId: userId, ...slotsData?.demo });
           break;
         case CONNECT:
           bookingInitResponse = await bookConnectCall({
@@ -124,6 +127,7 @@ const Slots: React.FC = observer(() => {
       }
       if (bookingInitResponse?.status === 200 && bookingInitResponse?.data?.success) {
         if (
+          sessionType !== DEMO &&
           bookingInitResponse?.data?.data?.price !== 0 &&
           bookingInitResponse?.data?.data?.paymentStatus !== PAYMENT_STATUS?.PAID
         ) {
@@ -155,39 +159,50 @@ const Slots: React.FC = observer(() => {
       <Layout.Body>
         <Switch>
           <Case condition={instances?.length && !loading && !error}>
-            <div className={classNames(sessionType === CONNECT ? 'py-6' : 'p-6', 'min-h-free bg-slate-100')}>
-              {sessionType === CONNECT && <ConnectSlotCard data={instances} />}
-              {instances?.map((slot) => {
-                switch (sessionType) {
-                  case WORKSHOP:
-                    return (
-                      <WorkshopSlotCard
-                        key={slot?.instanceId}
-                        data={slot}
-                        onClick={() => setWorkshopSlots(slot)}
-                        isSelected={slot?.instanceId === slots?.workshop?.instanceId}
-                      />
-                    );
-                  case COURSE:
-                    return (
-                      <CourseSlotCard
-                        key={slot?.instanceId}
-                        data={slot}
-                        onClick={() => setCourseSlots(slot)}
-                        isSelected={slot?.instanceId === slots?.course?.instanceId}
-                      />
-                    );
-                  case PLAN:
-                    return (
-                      <PlanSlotCard
-                        key={slot}
-                        data={slot}
-                        onClick={() => setPlanSlots({ startTime: slot })}
-                        isSelected={slot === slots?.plan?.startTime}
-                      />
-                    );
-                }
-              })}
+            <div
+              className={classNames(
+                sessionType === CONNECT || sessionType === DEMO ? 'py-6' : 'p-6',
+                'min-h-free bg-slate-100'
+              )}
+            >
+              <If condition={sessionType === CONNECT || sessionType === DEMO}>
+                <Then>
+                  <ConnectSlotCard data={instances} sessionType={sessionType} />
+                </Then>
+                <Else>
+                  {instances?.map((slot) => {
+                    switch (sessionType) {
+                      case WORKSHOP:
+                        return (
+                          <WorkshopSlotCard
+                            key={slot?.instanceId}
+                            data={slot}
+                            onClick={() => setWorkshopSlots(slot)}
+                            isSelected={slot?.instanceId === slots?.workshop?.instanceId}
+                          />
+                        );
+                      case COURSE:
+                        return (
+                          <CourseSlotCard
+                            key={slot?.instanceId}
+                            data={slot}
+                            onClick={() => setCourseSlots(slot)}
+                            isSelected={slot?.instanceId === slots?.course?.instanceId}
+                          />
+                        );
+                      case PLAN:
+                        return (
+                          <PlanSlotCard
+                            key={slot}
+                            data={slot}
+                            onClick={() => setPlanSlots({ startTime: slot })}
+                            isSelected={slot === slots?.plan?.startTime}
+                          />
+                        );
+                    }
+                  })}
+                </Else>
+              </If>
             </div>
             <div className="p-6 sticky bottom-0 bg-white">
               <button

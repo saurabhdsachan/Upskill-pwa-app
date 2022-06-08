@@ -9,8 +9,8 @@ export const createSlotsStore = () => {
     },
 
     setDemoSlots(data) {
-      const { creatorId, startTime, endTime } = data;
-      this.slots.demo = { creatorId, startTime, endTime };
+      const { date, startTime, endTime } = data;
+      this.slots.demo = { date, startTime, endTime };
     },
     setConnectSlots(data) {
       const { date, startTime, endTime } = data;

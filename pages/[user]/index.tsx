@@ -91,7 +91,7 @@ const User: React.FC<any> = ({ data, status }) => {
 
               {data?.canBookDemo && data?.demo?.active && (
                 <div className="border-t border-b px-6 py-4 border-slate-200 bg-white">
-                  <Link href={`/${data?.user?.username}/${data?.user?.userId}/${DEMO}/book`}>
+                  <Link href={`/${data?.user?.username}/${data?.user?.userId}/${DEMO}/book/demo/slots`}>
                     <a className="uppercase inline-flex items-center justify-center w-full py-3 border border-transparent rounded-xl text-sm font-medium text-white bg-gradient-to-r from-orange-600 to-orange-500 hover:bg-white-700 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-orange-400">
                       <TicketIcon className="h-4 w-4 mr-2" /> Book 1:1 Demo Session
                     </a>
