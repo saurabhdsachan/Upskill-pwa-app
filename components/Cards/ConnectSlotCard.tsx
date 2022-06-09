@@ -6,7 +6,6 @@ import { observer } from 'mobx-react';
 import React, { useEffect, useState } from 'react';
 
 const ConnectSlotCard = observer(({ data, sessionType }) => {
-  console.log('data', data);
   const isDemo = sessionType === DEMO;
   const { slots, setConnectSlots, setDemoSlots } = useSlotsStore();
   const [selectedDate, setSelectedDate] = useState(

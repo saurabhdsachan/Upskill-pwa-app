@@ -22,11 +22,11 @@ const Body: React.FC<IBody> = ({ children }) => {
   const authCheck = useCallback(async () => {
     const token = Cookies.get(TOKEN);
     const path = router?.asPath?.split('?')[0];
-    if ((authData.userId && token) || !PRIVATE_PAGE_ROUTES.includes(path)) {
+    if ((authData?.userId && token) || !PRIVATE_PAGE_ROUTES.includes(path)) {
       setIsPermitted(true);
     }
 
-    if (!authData.userId && token) {
+    if (!authData?.userId && token) {
       const res = await verifyUser();
       if (res?.status <= 400) {
         setIsPermitted(true);

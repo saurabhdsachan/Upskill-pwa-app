@@ -1,16 +1,28 @@
-import { ArrowLeftIcon, CalendarIcon, DownloadIcon, HomeIcon, MenuAlt1Icon, ShareIcon } from '@heroicons/react/outline';
+import { useAuthStore } from '@context/authContext';
+import {
+  ArrowLeftIcon,
+  CalendarIcon,
+  DownloadIcon,
+  HomeIcon,
+  LogoutIcon,
+  MenuAlt1Icon,
+  ShareIcon,
+} from '@heroicons/react/outline';
+import useAuth from '@hooks/useAuth';
+import { observer } from 'mobx-react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
+import { If, Then } from 'react-if';
 import Drawer from '../Drawer';
 
-const Header: React.FC = ({ backflow, title }: { backflow: boolean; title?: string }) => {
+const Header: React.FC = observer(({ backflow, title }: { backflow: boolean; title?: string }) => {
+  const { authData, setAuthData } = useAuthStore();
+  const { logout } = useAuth();
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const router = useRouter();
 
-  const handleGoBack = () => {
-    router.back();
-  };
+  const handleGoBack = () => router.back();
 
   return (
     <header className="flex h-16 sticky top-0 z-20 bg-white">
@@ -37,20 +49,20 @@ const Header: React.FC = ({ backflow, title }: { backflow: boolean; title?: stri
             </div>
             <div className="flex-1 flex items-center">{title || ''}</div>
             <div className="flex justify-center items-center p-4">
-              <div className="p-2 rounded-2xl mr-2">
+              <button className="p-2 rounded-2xl mr-2">
                 <ShareIcon className="h-4 w-4" />
-              </div>
-              <div className="p-2 rounded-2xl">
+              </button>
+              <button className="p-2 rounded-2xl">
                 <CalendarIcon className="h-4 w-4" />
-              </div>
+              </button>
             </div>
           </div>
         </>
       )}
       <Drawer setIsOpen={setIsOpen} isOpen={isOpen}>
-        <div className="p-6 flex-1">
+        <div className="py-6 flex-1">
           <div className="flex flex-col h-full">
-            <div className="flex-1">
+            <div className="flex px-6">
               <ul>
                 <li className="py-3">
                   <Link href="/">
@@ -69,10 +81,34 @@ const Header: React.FC = ({ backflow, title }: { backflow: boolean; title?: stri
                   </Link>
                 </li>
                 <li className="py-3">
-                  <DownloadIcon className="w-4 h-4 inline mr-4" />
-                  <span>Download Pep App</span>
+                  <a
+                    href="https://play.google.com/store/apps/details?id=pep.live"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <DownloadIcon className="w-4 h-4 inline mr-4" />
+                    <span>Download Pep App</span>
+                  </a>
                 </li>
               </ul>
+            </div>
+            <div className="flex-1 px-6 text-red-600">
+              <If condition={authData?.userId}>
+                <Then>
+                  <hr className="my-6" />
+                  <button
+                    onClick={() =>
+                      logout(() => {
+                        setAuthData(null);
+                        router.push('/');
+                      })
+                    }
+                  >
+                    <LogoutIcon className="w-4 h-4 inline mr-4" />
+                    <span>Logout</span>
+                  </button>
+                </Then>
+              </If>
             </div>
             <div className="flex flex-col items-center justify-start">
               <p className="text-xs text-slate-600 mb-2">Powered by</p>
@@ -103,6 +139,6 @@ const Header: React.FC = ({ backflow, title }: { backflow: boolean; title?: stri
       </Drawer>
     </header>
   );
-};
+});
 
 export default Header;
