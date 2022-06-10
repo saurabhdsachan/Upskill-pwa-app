@@ -7,6 +7,7 @@ import { classNames } from '@utils/helpers';
 import { toJS } from 'mobx';
 import { observer } from 'mobx-react';
 import Head from 'next/head';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useCallback, useEffect } from 'react';
 
@@ -35,19 +36,56 @@ const Bookings: React.FC = observer(() => {
   return (
     <Layout>
       <Head>
-        <title>Booked Bookings | Pep</title>
+        <title>{bookingType} bookings | Pep</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout.Header backflow={true} title="My Bookings" />
       <Layout.Body>
         <div className="">
-          {isCreator && <div>Creator</div>}
+          {isCreator && (
+            <div>
+              <Link
+                href={{
+                  pathname: `/bookings/booked`,
+                  query: { type, bookingType: 'booked' },
+                }}
+                as={`/bookings/booked?type=${type}`}
+              >
+                <a
+                  className={classNames(
+                    'w-32 py-2 text-sm leading-5 bg-white rounded-lg',
+                    bookingType === 'booked' ? 'bg-gray-900 text-white' : 'text-gray-900 bg-gray-100 hover:bg-gray-300'
+                  )}
+                >
+                  Booked
+                </a>
+              </Link>
+              <Link
+                href={{
+                  pathname: `/bookings/received`,
+                  query: { type, bookingType: 'received' },
+                }}
+                as={`/bookings/received?type=${type}`}
+              >
+                <a
+                  className={classNames(
+                    'w-32 py-2 text-sm leading-5 bg-white rounded-lg',
+                    bookingType === 'received'
+                      ? 'bg-gray-900 text-white'
+                      : 'text-gray-900 bg-gray-100 hover:bg-gray-300'
+                  )}
+                >
+                  Received
+                </a>
+              </Link>
+            </div>
+          )}
           <Tab.Group
             defaultIndex={Object.values(FEED_TYPE).indexOf(type)}
             onChange={(index) => {
               router.push(
                 { pathname: `/bookings/${bookingType}`, query: { type: Object.values(FEED_TYPE)[index], bookingType } },
-                `/bookings/${bookingType}?type=${type}`
+                `/bookings/${bookingType}?type=${Object.values(FEED_TYPE)[index]}`
               );
             }}
           >
