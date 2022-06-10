@@ -7,7 +7,9 @@ const Bullets = ({ data, title }: { data: string[]; title?: string }) => {
       <div className="prose prose-sm">
         <ul role="list">
           {data.map((item) => (
-            <li key={item}>{item}</li>
+            <li key={item}>
+              <span className="text-xs">{item}</span>
+            </li>
           ))}
         </ul>
       </div>
@@ -15,4 +17,4 @@ const Bullets = ({ data, title }: { data: string[]; title?: string }) => {
   );
 };
 
-export default Bullets;
+export default React.memo(Bullets);

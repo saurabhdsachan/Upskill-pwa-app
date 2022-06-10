@@ -1,5 +1,7 @@
 import BookingCard from '@components/Cards/BookingCard';
+import EmptyState from '@components/Shared/EmptyState';
 import Layout from '@components/Shared/Layout';
+import QuickHelp from '@components/Shared/QuickHelp';
 import { useAuthStore } from '@context/authContext';
 import { Tab } from '@headlessui/react';
 import { getBookings } from '@utils/apiData';
@@ -11,6 +13,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useCallback, useEffect, useState } from 'react';
+import { Else, If, Then } from 'react-if';
 
 const Bookings: React.FC = observer(() => {
   const [bookingList, setBookingList] = useState([]);
@@ -45,7 +48,7 @@ const Bookings: React.FC = observer(() => {
       </Head>
       <Layout.Header backflow={false} title="My Bookings" />
       <Layout.Body>
-        <div className="">
+        <div className="bg-white">
           {isCreator && (
             <div className="bg-white flex">
               <Link
@@ -57,8 +60,8 @@ const Bookings: React.FC = observer(() => {
               >
                 <a
                   className={classNames(
-                    bookingType === 'booked' ? 'bg-blue-600 text-white' : ' bg-gray-100',
-                    'py-3 text-sm leading-5 bg-white flex-1 text-center focus:outline-none'
+                    bookingType === 'booked' ? 'border-blue-500' : ' border-gray-100',
+                    'py-3 border-b-2 text-sm leading-5 bg-white flex-1 text-center focus:outline-none'
                   )}
                 >
                   Booked
@@ -73,8 +76,8 @@ const Bookings: React.FC = observer(() => {
               >
                 <a
                   className={classNames(
-                    bookingType === 'received' ? 'bg-blue-600 text-white' : ' bg-gray-100',
-                    'py-3 text-sm leading-5 bg-white flex-1 text-center focus:outline-none'
+                    bookingType === 'received' ? 'border-blue-500' : ' border-gray-100',
+                    'py-3 border-b-2 text-sm leading-5 bg-white flex-1 text-center focus:outline-none'
                   )}
                 >
                   Received
@@ -100,7 +103,7 @@ const Bookings: React.FC = observer(() => {
                       className={({ selected }) =>
                         classNames(
                           selected ? 'border-blue-500' : 'border-slate-100 text-slate-400',
-                          'px-4 py-3 border-b-2 text-sm bg-white whitespace-nowrap focus:outline-none'
+                          'px-4 py-3 border-b-2 text-xs bg-white whitespace-nowrap focus:outline-none'
                         )
                       }
                     >
@@ -110,18 +113,30 @@ const Bookings: React.FC = observer(() => {
                 </div>
               </div>
             </Tab.List>
+
             <Tab.Panels>
               {Object.entries(FEED_TYPE).map((item) => (
-                <Tab.Panel key={`${item[1]}-panel`} className="bg-slate-100 min-h-free p-4">
-                  {bookingList?.map((booking) => {
-                    return <BookingCard key={booking?.booking?.bookingId} data={booking} type={type} />;
-                  })}
+                <Tab.Panel key={`${item[1]}-panel`} className="min-h-free p-4">
+                  <If condition={bookingList !== null}>
+                    <Then>
+                      {bookingList?.map((booking) => {
+                        return <BookingCard key={booking?.booking?.bookingId} data={booking} type={type} />;
+                      })}
+                      <div className="mt-14">
+                        <QuickHelp />
+                      </div>
+                    </Then>
+                    <Else>
+                      <EmptyState title="No bookings found" />
+                    </Else>
+                  </If>
                 </Tab.Panel>
               ))}
             </Tab.Panels>
           </Tab.Group>
         </div>
       </Layout.Body>
+      {bookingList !== null && <Layout.PreFooter />}
       <Layout.Footer />
     </Layout>
   );
