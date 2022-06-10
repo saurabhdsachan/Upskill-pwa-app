@@ -28,7 +28,6 @@ const Bookings: React.FC = observer(() => {
         feedType: type?.toUpperCase(),
         cursor: null,
       });
-      console.log('first', res?.data?.chips);
       setBookingList(res?.data?.items);
       setTabList(res?.data?.chips);
     }
@@ -44,7 +43,7 @@ const Bookings: React.FC = observer(() => {
         <title>{bookingType} bookings | Pep</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Layout.Header backflow={true} title="My Bookings" />
+      <Layout.Header backflow={false} title="My Bookings" />
       <Layout.Body>
         <div className="">
           {isCreator && (
@@ -59,7 +58,7 @@ const Bookings: React.FC = observer(() => {
                 <a
                   className={classNames(
                     bookingType === 'booked' ? 'bg-blue-600 text-white' : ' bg-gray-100',
-                    'py-3 text-sm leading-5 bg-white flex-1 text-center'
+                    'py-3 text-sm leading-5 bg-white flex-1 text-center focus:outline-none'
                   )}
                 >
                   Booked
@@ -75,7 +74,7 @@ const Bookings: React.FC = observer(() => {
                 <a
                   className={classNames(
                     bookingType === 'received' ? 'bg-blue-600 text-white' : ' bg-gray-100',
-                    'py-3 text-sm leading-5 bg-white flex-1 text-center'
+                    'py-3 text-sm leading-5 bg-white flex-1 text-center focus:outline-none'
                   )}
                 >
                   Received
@@ -100,8 +99,8 @@ const Bookings: React.FC = observer(() => {
                       key={item[1]}
                       className={({ selected }) =>
                         classNames(
-                          selected ? 'border-blue-500' : 'border-slate-100',
-                          'px-4 py-3 border-b-2 text-sm bg-white whitespace-nowrap uppercase'
+                          selected ? 'border-blue-500' : 'border-slate-100 text-slate-400',
+                          'px-4 py-3 border-b-2 text-sm bg-white whitespace-nowrap focus:outline-none'
                         )
                       }
                     >
@@ -115,7 +114,7 @@ const Bookings: React.FC = observer(() => {
               {Object.entries(FEED_TYPE).map((item) => (
                 <Tab.Panel key={`${item[1]}-panel`} className="bg-slate-100 min-h-free p-4">
                   {bookingList?.map((booking) => {
-                    return <BookingCard key={booking?.booking?.bookingId} data={booking} />;
+                    return <BookingCard key={booking?.booking?.bookingId} data={booking} type={type} />;
                   })}
                 </Tab.Panel>
               ))}
@@ -123,6 +122,7 @@ const Bookings: React.FC = observer(() => {
           </Tab.Group>
         </div>
       </Layout.Body>
+      <Layout.Footer />
     </Layout>
   );
 });
