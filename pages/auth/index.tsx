@@ -63,8 +63,8 @@ const Auth: React.FC = () => {
 
     const progress = new Promise((resolve, reject) => {
       if (resp.status === 200 && resp.data?.success) {
-        const { userId, username, name, number, phoneNumber, profileImgUrl } = resp?.data?.data;
-        setAuthData({ userId, username, name, number, phoneNumber, profileImgUrl });
+        const { creator, userId, username, name, number, phoneNumber, profileImgUrl } = resp?.data?.data;
+        setAuthData({ creator, userId, username, name, number, phoneNumber, profileImgUrl });
         setShowOTPField(false);
         resolve('foo');
         login({ token: resp?.data?.message, cb: () => router.push(router?.query?.returnUrl?.toString() || '/') });

@@ -3,7 +3,7 @@ import LoadingState from '@components/Shared/LoadingState';
 import LottieAnimation from '@components/Shared/LottieAnimation';
 import { blurredBgImage } from '@public/images/bg-base-64';
 import successLottie from '@public/lotties/success.json';
-import { paymentVerify } from '@utils/constants/makeBooking';
+import { paymentVerify } from '@utils/apiData';
 import { classNames, getImageUrl } from '@utils/helpers';
 import Head from 'next/head';
 import Image from 'next/image';

@@ -1,6 +1,7 @@
 export const createAuthStore = () => {
   return {
     authData: {
+      creator: false,
       userId: '',
       username: '',
       name: '',

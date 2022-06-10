@@ -7,6 +7,19 @@ export const WORKSHOP = 'workshop';
 export const COURSE = 'course';
 export const PLAN = 'plan';
 
+export const USER_TYPE = {
+  USER: 'user',
+  CREATOR: 'creator',
+};
+
+export const FEED_TYPE = {
+  TODAY: 'today',
+  UPCOMING: 'upcoming',
+  PAST: 'past',
+  CANCELLED: 'cancelled',
+  INPROGRESS: 'in_progress',
+};
+
 export const WEEKDAY = {
   mon: 0,
   tue: 1,

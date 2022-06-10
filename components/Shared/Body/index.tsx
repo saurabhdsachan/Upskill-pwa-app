@@ -1,6 +1,6 @@
 import { useAuthStore } from '@context/authContext';
+import { verifyUser } from '@utils/apiData';
 import { PRIVATE_PAGE_ROUTES, TOKEN } from '@utils/constants';
-import { verifyUser } from '@utils/constants/makeCalls';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
 import React, { useCallback, useEffect, useState } from 'react';
@@ -30,8 +30,8 @@ const Body: React.FC<IBody> = ({ children }) => {
       const res = await verifyUser();
       if (res?.status <= 400) {
         setIsPermitted(true);
-        const { userId, username, name, number, phoneNumber, profileImgUrl } = res?.data?.user;
-        setAuthData({ userId, username, name, number, phoneNumber, profileImgUrl });
+        const { creator, userId, username, name, number, phoneNumber, profileImgUrl } = res?.data?.user;
+        setAuthData({ creator, userId, username, name, number, phoneNumber, profileImgUrl });
       } else {
         toast.error(res?.status === 403 ? 'Unauthorized' : 'Network Authentication Required');
       }

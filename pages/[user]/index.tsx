@@ -30,14 +30,12 @@ const User: React.FC<any> = ({ data, status }) => {
           <title>{data?.user?.name} | Pep</title>
         </Head>
         <Layout.Header backflow={false} title={data?.user?.name} />
-        <If condition={status > 300}>
-          <Then>
-            <Layout.Body>
+        <Layout.Body>
+          <If condition={status > 300}>
+            <Then>
               <EmptyState title="User not found" message="User is not available on Pep" />
-            </Layout.Body>
-          </Then>
-          <Else>
-            <Layout.Body>
+            </Then>
+            <Else>
               <div className="px-6 pb-6 text-center bg-white">
                 <Hero1 />
                 <Avatar source={data?.user?.profileImgUrl} />
@@ -135,9 +133,9 @@ const User: React.FC<any> = ({ data, status }) => {
                   <PlanScroll initData={data?.planItems} username={data?.user?.username} userId={data?.user?.userId} />
                 </Then>
               </If>
-            </Layout.Body>
-          </Else>
-        </If>
+            </Else>
+          </If>
+        </Layout.Body>
         <Layout.PreFooter />
         <Layout.Footer />
       </Layout>

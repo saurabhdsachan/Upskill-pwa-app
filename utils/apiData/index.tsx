@@ -1,6 +1,12 @@
 import fetcher from '@utils/fetcher';
 import { sessionTypeMapper } from '@utils/helpers';
 
+export const verifyUser = async () => {
+  const endpoint = '/store/v1/user/details';
+
+  return await fetcher(endpoint, { method: 'GET' });
+};
+
 export const bookDemoCall = async ({ creatorId, startTime, endTime }) => {
   const endpoint = `/bookings/v1/booking/demo`;
 
@@ -66,6 +72,20 @@ export const paymentVerify = async ({ oid, pid, sign }) => {
       rpPaymentId: pid,
       success: true,
       signature: sign,
+    },
+  });
+};
+
+export const getBookings = async ({ userType, feedType, cursor }) => {
+  const endpoint = `/feed/v1/bookings`;
+
+  return await fetcher(endpoint, {
+    method: 'POST',
+    body: {
+      userType,
+      feedType,
+      cursor,
+      limit: 18,
     },
   });
 };
