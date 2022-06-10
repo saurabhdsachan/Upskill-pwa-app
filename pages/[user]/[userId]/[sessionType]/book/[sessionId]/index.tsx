@@ -1,8 +1,10 @@
 import Episodes from '@components/Episodes';
+import Bullets from '@components/Shared/Bullets';
 import EmptyState from '@components/Shared/EmptyState';
 import HeroName from '@components/Shared/HeroName';
 import Layout from '@components/Shared/Layout';
 import QuickHelp from '@components/Shared/QuickHelp';
+import Tags from '@components/Shared/Tags';
 import { useDataBusStore } from '@context/dataBusContext';
 import { TicketIcon, UserGroupIcon } from '@heroicons/react/outline';
 import { StarIcon } from '@heroicons/react/solid';
@@ -116,36 +118,9 @@ const SessionDetail: React.FC = ({ data, status, sessionType, sessionId, user, u
                     <h4 className="font-semibold text-lg leading-6">{formatPrice.format(session?.price)}</h4>
                   </div>
                 </div>
-                {session?.categoryName && (
-                  <ul role="list" className="my-2 leading-8">
-                    <li className="inline">
-                      <a
-                        href="#"
-                        className="relative inline-flex items-center rounded-full border border-slate-300 px-3 py-0.5"
-                      >
-                        <div className="absolute flex-shrink-0 flex items-center justify-center">
-                          <span className="h-1.5 w-1.5 rounded-full bg-yellow-500" aria-hidden="true" />
-                        </div>
-                        <div className="ml-3.5 text-sm font-medium text-slate-900 capitalize">
-                          {session?.categoryName?.toLowerCase()}
-                        </div>
-                      </a>
-                    </li>
-                  </ul>
-                )}
+                {session?.categoryName && <Tags data={[session?.categoryName]} />}
 
-                {session?.bullets && sessionType !== PLAN && (
-                  <div className="mt-4">
-                    <h2 className="font-bold">Highlights</h2>
-                    <div className="prose prose-sm">
-                      <ul role="list">
-                        {session?.bullets?.map((item) => (
-                          <li key={item}>{item}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                )}
+                {session?.bullets && sessionType !== PLAN && <Bullets title="Highlights" data={session?.bullets} />}
 
                 {session?.daysOfWeek && sessionType === PLAN && (
                   <div className="mt-4">

@@ -1,3 +1,4 @@
+import BookingCard from '@components/Cards/BookingCard';
 import Layout from '@components/Shared/Layout';
 import { useAuthStore } from '@context/authContext';
 import { Tab } from '@headlessui/react';
@@ -9,9 +10,11 @@ import { observer } from 'mobx-react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 const Bookings: React.FC = observer(() => {
+  const [bookingList, setBookingList] = useState([]);
+  const [tabList, setTabList] = useState([]);
   const { authData } = useAuthStore();
   const isCreator = toJS(authData)?.creator;
   const router = useRouter();
@@ -25,7 +28,9 @@ const Bookings: React.FC = observer(() => {
         feedType: type?.toUpperCase(),
         cursor: null,
       });
-      console.log('res', res);
+      console.log('first', res?.data?.chips);
+      setBookingList(res?.data?.items);
+      setTabList(res?.data?.chips);
     }
   }, [bookingType, type]);
 
@@ -43,7 +48,7 @@ const Bookings: React.FC = observer(() => {
       <Layout.Body>
         <div className="">
           {isCreator && (
-            <div>
+            <div className="bg-white flex">
               <Link
                 href={{
                   pathname: `/bookings/booked`,
@@ -53,8 +58,8 @@ const Bookings: React.FC = observer(() => {
               >
                 <a
                   className={classNames(
-                    'w-32 py-2 text-sm leading-5 bg-white rounded-lg',
-                    bookingType === 'booked' ? 'bg-gray-900 text-white' : 'text-gray-900 bg-gray-100 hover:bg-gray-300'
+                    bookingType === 'booked' ? 'bg-blue-600 text-white' : ' bg-gray-100',
+                    'py-3 text-sm leading-5 bg-white flex-1 text-center'
                   )}
                 >
                   Booked
@@ -69,10 +74,8 @@ const Bookings: React.FC = observer(() => {
               >
                 <a
                   className={classNames(
-                    'w-32 py-2 text-sm leading-5 bg-white rounded-lg',
-                    bookingType === 'received'
-                      ? 'bg-gray-900 text-white'
-                      : 'text-gray-900 bg-gray-100 hover:bg-gray-300'
+                    bookingType === 'received' ? 'bg-blue-600 text-white' : ' bg-gray-100',
+                    'py-3 text-sm leading-5 bg-white flex-1 text-center'
                   )}
                 >
                   Received
@@ -91,18 +94,18 @@ const Bookings: React.FC = observer(() => {
           >
             <Tab.List>
               <div className="relative overflow-auto">
-                <div className="overflow-x-auto flex no-scrollbar">
-                  {Object.entries(FEED_TYPE).map((item) => (
+                <div className="overflow-x-auto flex no-scrollbar sticky top-40">
+                  {Object.entries(FEED_TYPE).map((item, index) => (
                     <Tab
                       key={item[1]}
                       className={({ selected }) =>
                         classNames(
                           selected ? 'border-blue-500' : 'border-slate-100',
-                          'px-4 py-2 border-b-2 text-sm bg-white whitespace-nowrap uppercase'
+                          'px-4 py-3 border-b-2 text-sm bg-white whitespace-nowrap uppercase'
                         )
                       }
                     >
-                      {item[1]}
+                      {tabList[index]?.chipName || item[1]}
                     </Tab>
                   ))}
                 </div>
@@ -110,8 +113,10 @@ const Bookings: React.FC = observer(() => {
             </Tab.List>
             <Tab.Panels>
               {Object.entries(FEED_TYPE).map((item) => (
-                <Tab.Panel key={item[1]} className="bg-slate-100 min-h-free p-4">
-                  <div className="p-4 rounded-xl bg-white border border-slate-200 shadow-xs">{item[1]}</div>
+                <Tab.Panel key={`${item[1]}-panel`} className="bg-slate-100 min-h-free p-4">
+                  {bookingList?.map((booking) => {
+                    return <BookingCard key={booking?.booking?.bookingId} data={booking} />;
+                  })}
                 </Tab.Panel>
               ))}
             </Tab.Panels>
