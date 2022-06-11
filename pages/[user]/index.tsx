@@ -64,6 +64,7 @@ const User: React.FC<IUserPage> = ({ data, status }) => {
                   twitter={data?.user?.twitterUrl}
                   facebook={data?.user?.fbUrl}
                   instagram={data?.user?.instaUrl}
+                  youtube={data?.user?.ytUrl}
                 />
                 {data?.user?.description && <p className="text-sm text-slate-700">{data?.user?.description}</p>}
                 <div className="flex mt-6 space-x-6 justify-center">

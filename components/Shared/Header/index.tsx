@@ -23,6 +23,8 @@ const Header: React.FC = observer(({ backflow, title }: { backflow: boolean; tit
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const router = useRouter();
 
+  console.log('router', router);
+
   const handleGoBack = () => router.back();
 
   return (
@@ -50,7 +52,16 @@ const Header: React.FC = observer(({ backflow, title }: { backflow: boolean; tit
             </div>
             <div className="flex-1 flex items-center">{title || ''}</div>
             <div className="flex justify-center items-center p-4">
-              <button onClick={() => socialShare({ title: 'x', text: 'x', url: 'x' })} className="p-2 rounded-2xl mr-2">
+              <button
+                onClick={() =>
+                  socialShare({
+                    title: `Find ${router?.query?.user}&apos;s website on this link`,
+                    text: 'pep live',
+                    url: `https://pep.live/${router?.query?.user}`,
+                  })
+                }
+                className="p-2 rounded-2xl mr-2"
+              >
                 <ShareIcon className="h-4 w-4" />
               </button>
               <Link href="/bookings/booked?type=today">
