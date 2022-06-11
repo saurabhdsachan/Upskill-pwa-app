@@ -23,8 +23,6 @@ const Header: React.FC = observer(({ backflow, title }: { backflow: boolean; tit
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const router = useRouter();
 
-  console.log('router', router);
-
   const handleGoBack = () => router.back();
 
   return (
