@@ -1,19 +1,19 @@
-FROM node:16-alpine
+FROM --platform=linux/amd64 node:17
 
-ENV PORT 3000
+ENV CN_WORK_DIR="/opt/pwa-pep"
 
-# Create app directory
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+RUN mkdir -p $CN_WORK_DIR
 
-# Install app dependencies
-COPY package.json yarn.lock /usr/src/app/
-RUN yarn
+WORKDIR $CN_WORK_DIR
 
-# Bundle app source
-COPY . /usr/src/app
+COPY package.json yarn.lock ./
 
-RUN yarn build
+COPY . .
+
+RUN yarn install
+
+RUN yarn run build
+
 EXPOSE 3000
 
-CMD [ "yarn", "start" ]
+CMD [ "yarn", "run", "start"]
