@@ -158,7 +158,7 @@ const User: React.FC<IUserPage> = ({ data, status }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  return { paths: [{ params: { user: 'srb' } }, { params: { user: 'viveksharma' } }], fallback: true };
+  return { paths: [{ params: { user: 'nikhil' } }], fallback: true };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params: { user } }) => {

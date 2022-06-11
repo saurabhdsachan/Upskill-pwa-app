@@ -106,8 +106,7 @@ const Listing: React.FC<IListing> = ({ data, status, sessionType, user, userId }
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: [
-      { params: { user: 'saurabh', userId: '', sessionType: SESSION_TYPE.WORKSHOP } },
-      { params: { user: 'viveksharma', userId: '', sessionType: SESSION_TYPE.WORKSHOP } },
+      { params: { user: 'sa14', userId: '4fa37d3a-2a7e-40f9-b14f-b3a049055e17', sessionType: SESSION_TYPE.CONNECT } },
     ],
     fallback: true,
   };
@@ -123,7 +122,7 @@ export const getStaticProps: GetStaticProps = async ({ params: { user, userId, s
       filter: {
         creatorId,
         tense: 'UPCOMING',
-        sessionType: sessionTypeMapper(sessionType),
+        sessionType: sessionTypeMapper(sessionType as string),
       },
       limit: 25,
     },

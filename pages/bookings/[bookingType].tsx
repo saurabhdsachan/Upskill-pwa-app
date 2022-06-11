@@ -15,6 +15,11 @@ import { useRouter } from 'next/router';
 import React, { useCallback, useEffect, useState } from 'react';
 import { Else, If, Then } from 'react-if';
 
+interface IQuery {
+  type?: string;
+  bookingType?: string;
+}
+
 const Bookings: React.FC = observer(() => {
   const [bookingList, setBookingList] = useState([]);
   const [tabList, setTabList] = useState([]);
@@ -22,7 +27,7 @@ const Bookings: React.FC = observer(() => {
   const isCreator = toJS(authData)?.creator;
   const router = useRouter();
 
-  const { type, bookingType } = router?.query;
+  const { type, bookingType }: IQuery = router?.query;
 
   const getBookingData = useCallback(async () => {
     if (authData.userId && type && bookingType) {
@@ -86,7 +91,7 @@ const Bookings: React.FC = observer(() => {
             </div>
           )}
           <Tab.Group
-            defaultIndex={Object.values(FEED_TYPE).indexOf(type)}
+            defaultIndex={Object.values(FEED_TYPE).indexOf(type as string)}
             onChange={(index) => {
               router.push(
                 { pathname: `/bookings/${bookingType}`, query: { type: Object.values(FEED_TYPE)[index], bookingType } },

@@ -204,10 +204,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
     paths: [
       {
         params: {
-          user: 'himachalherbal',
-          userId: '',
-          sessionId: '49099d99-ee71-4654-b94d-5a3ab7f99541',
-          sessionType: 'workshop',
+          user: 'sa14',
+          userId: '4fa37d3a-2a7e-40f9-b14f-b3a049055e17',
+          sessionId: '43a01fd1-44b8-474d-9358-a307bd7bcd0e',
+          sessionType: SESSION_TYPE.CONNECT,
         },
       },
     ],
