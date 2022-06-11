@@ -107,7 +107,7 @@ const Bookings: React.FC = observer(() => {
                         )
                       }
                     >
-                      {tabList[index]?.chipName || item[1]}
+                      {tabList.length !== 0 ? tabList[index]?.chipName : item[1]}
                     </Tab>
                   ))}
                 </div>

@@ -4,12 +4,12 @@ interface IExpertise {
   minSessionDuration: number;
   price: number;
   currencyCode: string;
-  preferredLanguages: string[],
+  preferredLanguages: string[];
   description: string;
-  rating?: string,
-  numRatings: number,
+  rating?: string;
+  numRatings: number;
   coverImageUrl: string;
-  videoUrl?: string,
-  thumbnailUrl?: string,
+  videoUrl?: string;
+  thumbnailUrl?: string;
   subLabel: string;
 }
