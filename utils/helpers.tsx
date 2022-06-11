@@ -1,3 +1,4 @@
+import toast from 'react-hot-toast';
 import { SESSION_TYPE, WEEKDAY } from './constants';
 
 const debounce = (func, wait) => {
@@ -133,6 +134,15 @@ const parseJwt = (token) => {
   return JSON.parse(jsonPayload);
 };
 
+const socialShare = async ({ title, text, url }) => {
+  try {
+    await navigator.share({ title, text, url });
+    toast.success('Shared successfully');
+  } catch (err) {
+    toast.error('Error in sharing');
+  }
+};
+
 export {
   debounce,
   arraysEqual,
@@ -145,4 +155,5 @@ export {
   weekShortName,
   tsConvert,
   parseJwt,
+  socialShare,
 };
