@@ -4,7 +4,11 @@ import { nanoid } from 'nanoid';
 
 const exp = 365;
 
-const CookieOptions = { expires: exp, domain: 'localhost', path: '/' };
+const CookieOptions = {
+  expires: exp,
+  domain: process.env.NODE_ENV === 'production' ? '.pep-pwa.vercel.app' : 'localhost',
+  path: '/',
+};
 
 function useAuth() {
   const setDeviceId = () => {
