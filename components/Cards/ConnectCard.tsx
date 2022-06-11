@@ -1,6 +1,6 @@
 import { StarIcon } from '@heroicons/react/solid';
 import { blurredBgImage } from '@public/images/bg-base-64';
-import { CONNECT } from '@utils/constants';
+import { SESSION_TYPE } from '@utils/constants';
 import { classNames, getImageUrl } from '@utils/helpers';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -12,7 +12,7 @@ const ConnectCard = ({ data, type, userId }: { data: IExpertise; type: 'v-card' 
 
   return (
     <div className={classNames(type === 'v-card' ? 'flex-none' : 'flex-none px-3 first:pl-6 last:pr-6')}>
-      <Link href={`/${query?.user}/${userId}/${CONNECT}/book/${data?.expertiseId}`}>
+      <Link href={`/${query?.user}/${userId}/${SESSION_TYPE.CONNECT}/book/${data?.expertiseId}`}>
         <a>
           <div
             className={classNames(

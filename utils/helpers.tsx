@@ -1,5 +1,4 @@
-import { CONNECT, PLAN, WEEKDAY, WORKSHOP } from './constants';
-import { COURSE } from './constants/index';
+import { SESSION_TYPE, WEEKDAY } from './constants';
 
 const debounce = (func, wait) => {
   let timeout;
@@ -80,13 +79,13 @@ const formatPrice = new Intl.NumberFormat('en-IN', {
 
 const sessionTypeMapper = (key: string) => {
   switch (key) {
-    case WORKSHOP:
+    case SESSION_TYPE.WORKSHOP:
       return 'GROUP';
-    case COURSE:
+    case SESSION_TYPE.COURSE:
       return 'COHORT';
-    case PLAN:
+    case SESSION_TYPE.PLAN:
       return 'PLAN';
-    case CONNECT:
+    case SESSION_TYPE.CONNECT:
       return 'EXPERTISE';
   }
 };

@@ -1,12 +1,12 @@
 import SelectionTick from '@components/Shared/SelectionTick';
 import { useSlotsStore } from '@context/slotContext';
-import { DEMO } from '@utils/constants';
+import { SESSION_TYPE } from '@utils/constants';
 import { classNames } from '@utils/helpers';
 import { observer } from 'mobx-react';
 import React, { useEffect, useState } from 'react';
 
 const ConnectSlotCard = observer(({ data, sessionType }) => {
-  const isDemo = sessionType === DEMO;
+  const isDemo = sessionType === SESSION_TYPE.DEMO;
   const { slots, setConnectSlots, setDemoSlots } = useSlotsStore();
   const [selectedDate, setSelectedDate] = useState(
     (isDemo ? slots?.demo?.date : slots?.connect?.date) || data[0]?.date || ''

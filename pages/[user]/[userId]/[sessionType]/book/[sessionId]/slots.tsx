@@ -11,7 +11,7 @@ import { useSlotsStore } from '@context/slotContext';
 import { TicketIcon } from '@heroicons/react/outline';
 import useFetcher from '@hooks/useFetcher';
 import { bookConnectCall, bookDemoCall, bookPlanCall, bookSessionCall } from '@utils/apiData';
-import { CONNECT, COURSE, DEMO, PAYMENT_STATUS, PLAN, WORKSHOP } from '@utils/constants';
+import { PAYMENT_STATUS, SESSION_TYPE } from '@utils/constants';
 import { classNames } from '@utils/helpers';
 import { toJS } from 'mobx';
 import { observer } from 'mobx-react';
@@ -76,13 +76,13 @@ const Slots: React.FC = observer(() => {
   let endpoint = '';
 
   switch (sessionType) {
-    case DEMO:
+    case SESSION_TYPE.DEMO:
       endpoint = `/store/v1/demo/available-slots?creatorId=${userId}`;
       break;
-    case CONNECT:
+    case SESSION_TYPE.CONNECT:
       endpoint = `/store/v1/expertise/available-slots?creatorId=${userId}&expertiseId=${sessionId}`;
       break;
-    case PLAN:
+    case SESSION_TYPE.PLAN:
       endpoint = `/bookings/v1/${sessionType}/slots?planId=${sessionId}`;
       break;
     default:
@@ -105,31 +105,31 @@ const Slots: React.FC = observer(() => {
     } else {
       let bookingInitResponse;
       switch (sessionType) {
-        case DEMO:
+        case SESSION_TYPE.DEMO:
           bookingInitResponse = await bookDemoCall({ creatorId: userId, ...slotsData?.demo });
           break;
-        case CONNECT:
+        case SESSION_TYPE.CONNECT:
           bookingInitResponse = await bookConnectCall({
             creatorId: userId,
             expertiseId: sessionId,
             ...slotsData?.connect,
           });
           break;
-        case WORKSHOP:
+        case SESSION_TYPE.WORKSHOP:
           bookingInitResponse = await bookSessionCall({ sessionType, sessionId, ...slotsData?.workshop });
           break;
-        case COURSE:
+        case SESSION_TYPE.COURSE:
           bookingInitResponse = await bookSessionCall({ sessionType, sessionId, ...slotsData?.course });
           break;
-        case PLAN:
+        case SESSION_TYPE.PLAN:
           bookingInitResponse = await bookPlanCall({ sessionId, ...slotsData?.plan });
           break;
       }
       if (bookingInitResponse?.status === 200 && bookingInitResponse?.data?.success) {
         if (
-          sessionType !== DEMO &&
+          sessionType !== SESSION_TYPE.DEMO &&
           bookingInitResponse?.data?.data?.price !== 0 &&
-          bookingInitResponse?.data?.data?.paymentStatus !== PAYMENT_STATUS?.PAID
+          bookingInitResponse?.data?.data?.paymentStatus !== PAYMENT_STATUS.PAID
         ) {
           handlePayment({
             amount: (bookingInitResponse?.data?.data?.price * 100).toString(),
@@ -161,18 +161,18 @@ const Slots: React.FC = observer(() => {
           <Case condition={instances?.length && !loading && !error}>
             <div
               className={classNames(
-                sessionType === CONNECT || sessionType === DEMO ? 'py-6' : 'p-6',
+                sessionType === SESSION_TYPE.CONNECT || sessionType === SESSION_TYPE.DEMO ? 'py-6' : 'p-6',
                 'min-h-free bg-slate-100'
               )}
             >
-              <If condition={sessionType === CONNECT || sessionType === DEMO}>
+              <If condition={sessionType === SESSION_TYPE.CONNECT || sessionType === SESSION_TYPE.DEMO}>
                 <Then>
                   <ConnectSlotCard data={instances} sessionType={sessionType} />
                 </Then>
                 <Else>
                   {instances?.map((slot) => {
                     switch (sessionType) {
-                      case WORKSHOP:
+                      case SESSION_TYPE.WORKSHOP:
                         return (
                           <WorkshopSlotCard
                             key={slot?.instanceId}
@@ -181,7 +181,7 @@ const Slots: React.FC = observer(() => {
                             isSelected={slot?.instanceId === slots?.workshop?.instanceId}
                           />
                         );
-                      case COURSE:
+                      case SESSION_TYPE.COURSE:
                         return (
                           <CourseSlotCard
                             key={slot?.instanceId}
@@ -190,7 +190,7 @@ const Slots: React.FC = observer(() => {
                             isSelected={slot?.instanceId === slots?.course?.instanceId}
                           />
                         );
-                      case PLAN:
+                      case SESSION_TYPE.PLAN:
                         return (
                           <PlanSlotCard
                             key={slot}

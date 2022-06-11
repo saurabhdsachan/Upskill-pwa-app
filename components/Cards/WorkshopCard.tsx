@@ -1,6 +1,6 @@
 import { StarIcon } from '@heroicons/react/solid';
 import { blurredBgImage } from '@public/images/bg-base-64';
-import { WORKSHOP } from '@utils/constants';
+import { SESSION_TYPE } from '@utils/constants';
 import { classNames, getImageUrl } from '@utils/helpers';
 import dayjs from 'dayjs';
 import Image from 'next/image';
@@ -13,7 +13,7 @@ const WorkshopCard = ({ data, type, userId }: { data: any; type: 'v-card' | 'h-c
 
   return (
     <div className={classNames(type === 'v-card' ? 'flex-none' : 'flex-none px-3 first:pl-6 last:pr-6')}>
-      <Link href={`/${query?.user}/${userId}/${WORKSHOP}/book/${data?.sessionId}`}>
+      <Link href={`/${query?.user}/${userId}/${SESSION_TYPE.WORKSHOP}/book/${data?.sessionId}`}>
         <a>
           <div
             className={classNames(

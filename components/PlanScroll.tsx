@@ -1,10 +1,16 @@
 import { ChevronDoubleRightIcon } from '@heroicons/react/solid';
-import { PLAN } from '@utils/constants';
+import { SESSION_TYPE } from '@utils/constants';
 import Link from 'next/link';
 import React from 'react';
 import PlanCard from './Cards/PlanCard';
 
-const PlanScroll: React.FC = ({ initData, username, userId }: { initData: any; username: string; userId: string }) => {
+interface IPlanScroll {
+  initData: IPlanItem[];
+  username: string;
+  userId: string;
+}
+
+const PlanScroll: React.FC<IPlanScroll> = ({ initData, username, userId }) => {
   return (
     <section>
       <div className="px-6 py-4">
@@ -13,7 +19,7 @@ const PlanScroll: React.FC = ({ initData, username, userId }: { initData: any; u
             <h3>Plans</h3>
           </div>
           <div>
-            <Link href={`/${username}/${userId}/${PLAN}`}>
+            <Link href={`/${username}/${userId}/${SESSION_TYPE.PLAN}`}>
               <a>
                 <small className="text-xs text-slate-600">
                   See all <ChevronDoubleRightIcon className="w-2 h-2 inline" />{' '}

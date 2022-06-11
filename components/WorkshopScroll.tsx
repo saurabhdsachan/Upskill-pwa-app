@@ -1,18 +1,16 @@
 import { ChevronDoubleRightIcon } from '@heroicons/react/solid';
-import { WORKSHOP } from '@utils/constants';
+import { SESSION_TYPE } from '@utils/constants';
 import Link from 'next/link';
 import React from 'react';
 import WorkshopCard from './Cards/WorkshopCard';
 
-const WorkshopScroll: React.FC = ({
-  initData,
-  username,
-  userId,
-}: {
-  initData: any;
+interface IWorkshopScroll {
+  initData: IGroupItem[];
   username: string;
   userId: string;
-}) => {
+}
+
+const WorkshopScroll: React.FC<IWorkshopScroll> = ({ initData, username, userId }) => {
   return (
     <section>
       <div className="px-6 py-4">
@@ -21,7 +19,7 @@ const WorkshopScroll: React.FC = ({
             <h3>Workshops</h3>
           </div>
           <div>
-            <Link href={`/${username}/${userId}/${WORKSHOP}`}>
+            <Link href={`/${username}/${userId}/${SESSION_TYPE.WORKSHOP}`}>
               <a>
                 <small className="text-xs text-slate-600">
                   See all <ChevronDoubleRightIcon className="w-2 h-2 inline" />{' '}

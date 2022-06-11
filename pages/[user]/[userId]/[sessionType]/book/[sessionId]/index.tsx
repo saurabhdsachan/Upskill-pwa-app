@@ -9,7 +9,7 @@ import { useDataBusStore } from '@context/dataBusContext';
 import { TicketIcon, UserGroupIcon } from '@heroicons/react/outline';
 import { StarIcon } from '@heroicons/react/solid';
 import { blurredBgImage } from '@public/images/bg-base-64';
-import { CONNECT, COURSE, PLAN, WORKSHOP } from '@utils/constants/index';
+import { SESSION_TYPE } from '@utils/constants';
 import fetcher from '@utils/fetcher';
 import { classNames, formatPrice, getImageUrl, sessionTypeMapper, tsConvert, weekShortName } from '@utils/helpers';
 import { GetStaticPaths, GetStaticProps } from 'next';
@@ -19,7 +19,16 @@ import Link from 'next/link';
 import React from 'react';
 import { Case, Default, Else, If, Switch, Then } from 'react-if';
 
-const SessionDetail: React.FC = ({ data, status, sessionType, sessionId, user, userId }) => {
+interface ISessionDetail {
+  data: ISession | any;
+  status: number;
+  sessionType: SESSION_TYPE;
+  sessionId: string;
+  user: IUser;
+  userId: string;
+}
+
+const SessionDetail: React.FC<ISessionDetail> = ({ data, status, sessionType, sessionId, user, userId }) => {
   const { updateBottomSheetState } = useDataBusStore();
 
   const session = data?.groupSession || data?.cohortSession || data?.planSession || data;
@@ -120,9 +129,11 @@ const SessionDetail: React.FC = ({ data, status, sessionType, sessionId, user, u
                 </div>
                 {session?.categoryName && <Tags data={[session?.categoryName]} />}
 
-                {session?.bullets && sessionType !== PLAN && <Bullets title="Highlights" data={session?.bullets} />}
+                {session?.bullets && sessionType !== SESSION_TYPE.PLAN && (
+                  <Bullets title="Highlights" data={session?.bullets} />
+                )}
 
-                {session?.daysOfWeek && sessionType === PLAN && (
+                {session?.daysOfWeek && sessionType === SESSION_TYPE.PLAN && (
                   <div className="mt-4">
                     <h2 className="font-bold">Highlights</h2>
                     <div className="prose prose-sm capitalize">
@@ -153,9 +164,9 @@ const SessionDetail: React.FC = ({ data, status, sessionType, sessionId, user, u
                 <Switch>
                   <Case
                     condition={
-                      (sessionType !== PLAN && data?.instances && data?.instances?.instances?.length) ||
-                      (sessionType === PLAN && !data?.planSession?.sessionMetaTags?.includes('PAUSED')) ||
-                      sessionType === CONNECT
+                      (sessionType !== SESSION_TYPE.PLAN && data?.instances && data?.instances?.instances?.length) ||
+                      (sessionType === SESSION_TYPE.PLAN && !data?.planSession?.sessionMetaTags?.includes('PAUSED')) ||
+                      sessionType === SESSION_TYPE.CONNECT
                     }
                   >
                     <Link href={`/${user}/${userId}/${sessionType}/book/${sessionId}/slots`}>
@@ -207,16 +218,16 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params: { sessionId, sessionType, user, userId } }) => {
   let endpoint = '';
   switch (sessionType) {
-    case WORKSHOP:
+    case SESSION_TYPE.WORKSHOP:
       endpoint = `/store/v1/sessions/details?sessionId=${sessionId}&sessionType=${sessionTypeMapper(sessionType)}`;
       break;
-    case COURSE:
+    case SESSION_TYPE.COURSE:
       endpoint = `/store/v1/sessions/details?sessionId=${sessionId}&sessionType=${sessionTypeMapper(sessionType)}`;
       break;
-    case PLAN:
+    case SESSION_TYPE.PLAN:
       endpoint = `/store/v1/sessions/details?sessionId=${sessionId}&sessionType=${sessionTypeMapper(sessionType)}`;
       break;
-    case CONNECT:
+    case SESSION_TYPE.CONNECT:
       endpoint = `/inventory/v1/expertise/user/${userId}/expertise/${sessionId}`;
       break;
   }

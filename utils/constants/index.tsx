@@ -1,11 +1,19 @@
 export const TOKEN = 'token';
 export const DEVICE_ID = 'device-id';
 
-export const DEMO = 'demo';
-export const CONNECT = 'connect';
-export const WORKSHOP = 'workshop';
-export const COURSE = 'course';
-export const PLAN = 'plan';
+// export const DEMO = 'demo';
+// export const CONNECT = 'connect';
+// export const WORKSHOP = 'workshop';
+// export const COURSE = 'course';
+// export const PLAN = 'plan';
+
+export enum SESSION_TYPE {
+  DEMO = 'demo',
+  CONNECT = 'connect',
+  WORKSHOP = 'workshop',
+  COURSE = 'course',
+  PLAN = 'plan',
+}
 
 export const USER_TYPE = {
   USER: 'user',
@@ -30,9 +38,9 @@ export const WEEKDAY = {
   sun: 6,
 };
 
-export const PAYMENT_STATUS = {
-  PAID: 'PAID',
-};
+export enum PAYMENT_STATUS {
+  PAID = 'PAID',
+}
 
 export const PRIVATE_PAGE_ROUTES = ['/book', '/bookings/booked', '/bookings/received'];
 

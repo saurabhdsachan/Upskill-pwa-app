@@ -10,9 +10,13 @@ interface IUser {
   username: string;
   gender?: string;
   dob?: string;
-  preferredLanguages: null;
+  rating: IRating;
+  preferredLanguages: string[];
   createdAt: number;
   updatedAt: number;
+  followersCount: number;
+  followingCount: number;
+  sessionsTaken: number;
   fbUrl?: string;
   instaUrl?: string;
   ytUrl?: string;

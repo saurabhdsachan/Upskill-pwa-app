@@ -1,14 +1,11 @@
 import React from 'react';
 
-const SocialLinks: React.FC = ({
-  twitter,
-  facebook,
-  instagram,
-}: {
+interface ISocialLinks {
   twitter?: string;
   facebook?: string;
   instagram?: string;
-}) => {
+}
+const SocialLinks: React.FC<ISocialLinks> = ({ twitter, facebook, instagram }) => {
   return (
     <div className="my-6 justify-center flex space-x-2">
       {facebook && (
@@ -51,4 +48,4 @@ const SocialLinks: React.FC = ({
   );
 };
 
-export default SocialLinks;
+export default React.memo(SocialLinks);

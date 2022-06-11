@@ -1,18 +1,16 @@
 import { ChevronDoubleRightIcon } from '@heroicons/react/solid';
-import { CONNECT } from '@utils/constants';
+import { SESSION_TYPE } from '@utils/constants';
 import Link from 'next/link';
 import React from 'react';
 import ConnectCard from './Cards/ConnectCard';
 
-const ExpertiseScroll: React.FC = ({
-  initData,
-  username,
-  userId,
-}: {
-  initData: any;
+interface IExpertiseScroll {
+  initData: IExpertise[];
   username: string;
   userId: string;
-}) => {
+}
+
+const ExpertiseScroll: React.FC<IExpertiseScroll> = ({ initData, username, userId }) => {
   return (
     <section>
       <div className="px-6 py-4">
@@ -21,7 +19,7 @@ const ExpertiseScroll: React.FC = ({
             <h3>1:1 Consultation</h3>
           </div>
           <div>
-            <Link href={`/${username}/${userId}/${CONNECT}`}>
+            <Link href={`/${username}/${userId}/${SESSION_TYPE.CONNECT}`}>
               <a>
                 <small className="text-xs text-slate-600">
                   See all <ChevronDoubleRightIcon className="w-2 h-2 inline" />{' '}

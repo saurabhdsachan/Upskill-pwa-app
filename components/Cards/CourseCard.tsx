@@ -1,7 +1,7 @@
 import { BookOpenIcon } from '@heroicons/react/outline';
 import { StarIcon } from '@heroicons/react/solid';
 import { blurredBgImage } from '@public/images/bg-base-64';
-import { COURSE } from '@utils/constants';
+import { SESSION_TYPE } from '@utils/constants';
 import { classNames, getImageUrl } from '@utils/helpers';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -13,7 +13,7 @@ const CourseCard = ({ data, type, userId }: { data: any; type: 'v-card' | 'h-car
 
   return (
     <div className={classNames(type === 'v-card' ? 'flex-none' : 'flex-none px-3 first:pl-6 last:pr-6')}>
-      <Link href={`/${query?.user}/${userId}/${COURSE}/book/${data?.sessionId}`}>
+      <Link href={`/${query?.user}/${userId}/${SESSION_TYPE.COURSE}/book/${data?.sessionId}`}>
         <a>
           <div
             className={classNames(

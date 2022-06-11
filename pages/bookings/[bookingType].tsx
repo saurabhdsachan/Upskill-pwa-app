@@ -25,7 +25,7 @@ const Bookings: React.FC = observer(() => {
   const { type, bookingType } = router?.query;
 
   const getBookingData = useCallback(async () => {
-    if (type && bookingType) {
+    if (authData.userId && type && bookingType) {
       const res = await getBookings({
         userType: (bookingType === 'received' ? USER_TYPE.CREATOR : USER_TYPE.USER)?.toUpperCase(),
         feedType: type?.toUpperCase(),
@@ -34,7 +34,7 @@ const Bookings: React.FC = observer(() => {
       setBookingList(res?.data?.items);
       setTabList(res?.data?.chips);
     }
-  }, [bookingType, type]);
+  }, [authData.userId, bookingType, type]);
 
   useEffect(() => {
     getBookingData();
@@ -107,7 +107,7 @@ const Bookings: React.FC = observer(() => {
                         )
                       }
                     >
-                      {tabList.length !== 0 ? tabList[index]?.chipName : item[1]}
+                      {tabList?.length !== 0 ? tabList[index]?.chipName : item[1]}
                     </Tab>
                   ))}
                 </div>
