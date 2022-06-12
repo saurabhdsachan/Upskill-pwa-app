@@ -56,7 +56,7 @@ const BookingCard = ({ data: { booking }, type }) => {
   });
 
   return (
-    <div className="mb-4 rounded-xl bg-white border border-slate-200 shadow-xs">
+    <div className="mb-4 rounded-2xl bg-white border border-slate-300 shadow-xs">
       <div className="flex space-x-4 p-4">
         <div className="w-12 h-12 rounded-xl shadow relative aspect-1 overflow-hidden">
           <Image
@@ -105,7 +105,7 @@ const BookingCard = ({ data: { booking }, type }) => {
             </div>
           </Then>
         </If>
-        <If condition={type === FEED_TYPE.TODAY && !sessionEnded}>
+        <If condition={(type === FEED_TYPE.TODAY || type === FEED_TYPE.UPCOMING) && !sessionEnded}>
           <Then>
             <div className="flex mt-4 space-x-4">
               <If condition={linkActive}>
