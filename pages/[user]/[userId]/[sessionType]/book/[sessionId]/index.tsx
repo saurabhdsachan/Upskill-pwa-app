@@ -29,7 +29,7 @@ interface ISessionDetail {
 }
 
 const SessionDetail: React.FC<ISessionDetail> = ({ data, status, sessionType, sessionId, user, userId }) => {
-  const { updateBottomSheetState } = useDataBusStore();
+  const { updateDownloadAppBottomSheetState } = useDataBusStore();
 
   const session = data?.groupSession || data?.cohortSession || data?.planSession || data;
 
@@ -91,7 +91,7 @@ const SessionDetail: React.FC<ISessionDetail> = ({ data, status, sessionType, se
                   </Link>
                   <div>
                     <button
-                      onClick={() => updateBottomSheetState(true)}
+                      onClick={() => updateDownloadAppBottomSheetState(true)}
                       className="inline-flex items-center justify-center w-full py-1.5 px-3 border border-transparent rounded-lg text-sm font-medium text-white bg-gradient-to-r from-slate-500 to-slate-600 hover:bg-slate-700 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-400 shadow-xs shadow-slate-500/50"
                     >
                       <UserGroupIcon className="h-4 w-4 mr-2" /> <span className="text-xs">Follow</span>

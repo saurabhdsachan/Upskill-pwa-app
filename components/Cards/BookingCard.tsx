@@ -22,7 +22,13 @@ const BookingCard = ({ data: { booking }, type }) => {
 
   const sessionEnded = booking?.endTime < Date.now();
 
-  const { updateBottomSheetState } = useDataBusStore();
+  const { updateDownloadAppBottomSheetState, updateSessionRecordingList, updateShowRecordingBottomSheetState } =
+    useDataBusStore();
+
+  const handleViewRecording = (data) => {
+    updateSessionRecordingList(data);
+    updateShowRecordingBottomSheetState(true);
+  };
 
   const openSessionLink = () => {
     var a = document.createElement('a');
@@ -91,17 +97,19 @@ const BookingCard = ({ data: { booking }, type }) => {
           <Then>
             <div className="flex mt-4 space-x-4">
               <button
-                onClick={() => updateBottomSheetState(true)}
+                onClick={() => updateDownloadAppBottomSheetState(true)}
                 className="inline-flex items-center justify-center w-full py-2 border border-slate-400 rounded-xl text-sm font-medium focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-200 shadow-sm"
               >
                 Rate Session
               </button>
-              <button
-                onClick={() => updateBottomSheetState(true)}
-                className="inline-flex items-center justify-center w-full py-2 border border-slate-400 rounded-xl text-sm font-medium focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-200 shadow-sm"
-              >
-                View Recording
-              </button>
+              {booking?.recording && (
+                <button
+                  onClick={() => handleViewRecording(booking?.recording)}
+                  className="inline-flex items-center justify-center w-full py-2 border border-slate-400 rounded-xl text-sm font-medium focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-200 shadow-sm"
+                >
+                  View Recording
+                </button>
+              )}
             </div>
           </Then>
         </If>

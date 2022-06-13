@@ -1,11 +1,19 @@
 export const createDataBusStore = () => {
   return {
     dataBus: {
-      isBottomSheetOpen: false,
+      sessionRecordingList: {},
+      isDownloadAppBottomSheetOpen: false,
+      isShowRecordingBottomSheetOpen: false,
     },
 
-    updateBottomSheetState(data) {
-      this.dataBus.isBottomSheetOpen = data;
+    updateDownloadAppBottomSheetState(data) {
+      this.dataBus.isDownloadAppBottomSheetOpen = data;
+    },
+    updateShowRecordingBottomSheetState(data) {
+      this.dataBus.isShowRecordingBottomSheetOpen = data;
+    },
+    updateSessionRecordingList(data) {
+      this.dataBus.sessionRecordingList = data;
     },
   };
 };

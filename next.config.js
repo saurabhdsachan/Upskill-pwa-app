@@ -8,7 +8,7 @@ module.exports = withPWA({
   poweredByHeader: false,
   crossOrigin: 'anonymous',
   images: {
-    domains: ['images.pep.live', 'd8f709fu111oc.cloudfront.net', 'images.unsplash.com', 'res.cloudinary.com'],
+    domains: ['images.pep.live', 'd8f709fu111oc.cloudfront.net', 'res.cloudinary.com'],
   },
   pwa: {
     runtimeCaching,

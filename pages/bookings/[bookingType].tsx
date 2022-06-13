@@ -133,7 +133,7 @@ const Bookings: React.FC = observer(() => {
                       </div>
                     </Then>
                     <Else>
-                      <EmptyState title="No bookings found" />
+                      <EmptyState title={`No ${type} bookings found`} />
                     </Else>
                   </If>
                 </Tab.Panel>
