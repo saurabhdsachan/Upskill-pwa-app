@@ -15,17 +15,26 @@ const QuickHelp = () => {
             <Disclosure.Button as={Fragment}>
               <div className="flex items-center justify-between">
                 <div className="flex-1">
-                  <h4>Option 1 - Through Expert&apos;s Pep Website</h4>
+                  <h4 className="font-bold">Option 1 - Through Expert&apos;s Pep Website</h4>
                 </div>
                 <ChevronRightIcon className={classNames(open ? 'rotate-90' : '', 'transform w-4 h-4')} />
               </div>
             </Disclosure.Button>
-            <Disclosure.Panel className="mt-2">
-              <p className="prose prose-sm">
-                Click on the expert&apos;s Pep website link → Login/Signup → click on ‘Bookings‘ → You will see booking
-                details with ‘Join Now‘ button before 10 min of the start time
-              </p>
-            </Disclosure.Panel>
+            <Transition
+              enter="transition duration-100 ease-out"
+              enterFrom="transform scale-95 opacity-0"
+              enterTo="transform scale-100 opacity-100"
+              leave="transition duration-75 ease-out"
+              leaveFrom="transform scale-100 opacity-100"
+              leaveTo="transform scale-95 opacity-0"
+            >
+              <Disclosure.Panel className="mt-2">
+                <p className="prose prose-sm">
+                  Click on the expert&apos;s Pep website link → Login/Signup → click on ‘Bookings‘ → You will see
+                  booking details with ‘Join Now‘ button before 10 min of the start time
+                </p>
+              </Disclosure.Panel>
+            </Transition>
           </>
         )}
       </Disclosure>
@@ -36,7 +45,7 @@ const QuickHelp = () => {
             <Disclosure.Button as={Fragment}>
               <div className="flex items-center justify-between">
                 <div className="flex-1">
-                  <h4>Option 2 - Through Pep App</h4>
+                  <h4 className="font-bold">Option 2 - Through Pep App</h4>
                 </div>
                 <ChevronRightIcon className={classNames(open ? 'rotate-90' : '', 'transform w-4 h-4')} />
               </div>

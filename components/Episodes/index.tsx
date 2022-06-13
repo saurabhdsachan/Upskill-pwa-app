@@ -1,14 +1,13 @@
 import { blurredBgImage } from '@public/images/bg-base-64';
 import { getImageUrl } from '@utils/helpers';
 import Image from 'next/image';
-import React from 'react';
 
 const Episodes = ({ data }) => {
   return (
     <div className="mt-4">
       <h2 className="font-bold mb-4">{data?.length} Episodes</h2>
       {data?.map((item, index) => (
-        <div className="mb-6 bg-slate-100 p-6 rounded-xl" key={item?.episodeId}>
+        <div className="mb-6 bg-slate-100 p-4 rounded-2xl" key={item?.episodeId}>
           <div className="flex space-x-4 items-end mb-6">
             <div className="flex-1">
               <div>

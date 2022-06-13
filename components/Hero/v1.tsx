@@ -1,24 +1,17 @@
+import Image from 'next/image';
 import React from 'react';
 
 const v1: React.FC = () => {
   return (
-    <div className="aspect-h-9 aspect-w-16 rounded-xl shadow-xs overflow-hidden">
-      <video
-        className="rounded-2xl"
-        muted
-        loop
-        preload="metadata"
-        playsInline
-        autoPlay
-        width={500}
-        height={250}
-        poster="https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?auto=format&fit=crop&w=600&h=340"
-      >
-        <source
-          src="https://res.cloudinary.com/dui8mpatf/video/upload/v1652982097/pep/travel_cxuckh.mp4"
-          type="video/mp4"
-        />
-      </video>
+    <div className="rounded-xl shadow-xs overflow-hidden">
+      <Image
+        alt="backdrop"
+        className="aspect-h-9 aspect-w-16 object-cover"
+        src="https://res.cloudinary.com/dui8mpatf/image/upload/v1655103179/pep/jali_ugqyob.jpg"
+        layout="responsive"
+        height="250px"
+        width="800px"
+      />
     </div>
   );
 };

@@ -30,6 +30,7 @@ const Bookings: React.FC = observer(() => {
   const { type, bookingType }: IQuery = router?.query;
 
   const getBookingData = useCallback(async () => {
+    setBookingList([]);
     if (authData.userId && type && bookingType) {
       const res = await getBookings({
         userType: (bookingType === 'received' ? USER_TYPE.CREATOR : USER_TYPE.USER)?.toUpperCase(),
@@ -53,7 +54,7 @@ const Bookings: React.FC = observer(() => {
       </Head>
       <Layout.Header backflow={false} title="My Bookings" />
       <Layout.Body>
-        <div className="bg-white">
+        <div className="bg-white relative">
           {isCreator && (
             <div className="bg-white flex">
               <Link
@@ -99,9 +100,9 @@ const Bookings: React.FC = observer(() => {
               );
             }}
           >
-            <Tab.List>
-              <div className="relative overflow-auto">
-                <div className="overflow-x-auto flex no-scrollbar sticky top-40">
+            <Tab.List className="sticky top-14 bg-white z-10">
+              <div className="overflow-auto">
+                <div className="overflow-x-auto flex no-scrollbar">
                   {Object.entries(FEED_TYPE).map((item, index) => (
                     <Tab
                       key={item[1]}
@@ -122,7 +123,7 @@ const Bookings: React.FC = observer(() => {
             <Tab.Panels>
               {Object.entries(FEED_TYPE).map((item) => (
                 <Tab.Panel key={`${item[1]}-panel`} className="min-h-free p-4">
-                  <If condition={bookingList !== null}>
+                  <If condition={bookingList !== null && bookingList?.length !== 0}>
                     <Then>
                       {bookingList?.map((booking) => {
                         return <BookingCard key={booking?.booking?.bookingId} data={booking} type={type} />;
@@ -141,7 +142,7 @@ const Bookings: React.FC = observer(() => {
           </Tab.Group>
         </div>
       </Layout.Body>
-      {bookingList !== null && <Layout.PreFooter />}
+      {bookingList?.length !== 0 && bookingList !== null && <Layout.PreFooter />}
       <Layout.Footer />
     </Layout>
   );
