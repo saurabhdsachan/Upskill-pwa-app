@@ -1,11 +1,18 @@
 import RecordingCard from '@components/Cards/RecordingCard';
 import { useDataBusStore } from '@context/dataBusContext';
 import { observer } from 'mobx-react';
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { BottomSheet } from 'react-spring-bottom-sheet';
 
 const Footer: React.FC = observer(() => {
-  const { dataBus, updateDownloadAppBottomSheetState, updateShowRecordingBottomSheetState } = useDataBusStore();
+  const {
+    dataBus,
+    updateDownloadAppBottomSheetState,
+    updateShowRecordingBottomSheetState,
+    updateSessionRecordingList,
+  } = useDataBusStore();
+  const playerRef = useRef();
+  const [playerUrl, setPlayerUrl] = useState('');
 
   return (
     <>
@@ -32,7 +39,11 @@ const Footer: React.FC = observer(() => {
         </div>
       </BottomSheet>
       <BottomSheet
-        onDismiss={() => updateShowRecordingBottomSheetState(false)}
+        onDismiss={() => {
+          setPlayerUrl('');
+          updateSessionRecordingList(null);
+          updateShowRecordingBottomSheetState(false);
+        }}
         snapPoints={({ maxHeight }) => [maxHeight / 1.2]}
         open={dataBus?.isShowRecordingBottomSheetOpen}
       >
@@ -42,9 +53,25 @@ const Footer: React.FC = observer(() => {
             <small className="text-slate-400 mb-6 text-xs">
               Total recordings : {dataBus?.sessionRecordingList?.recordings?.length}
             </small>
+            {playerUrl && (
+              <video
+                className="rounded-2xl mt-6"
+                preload="metadata"
+                muted
+                loop
+                controls
+                autoPlay
+                width={500}
+                height={250}
+              >
+                <source src={playerUrl} type="video/mp4" />
+              </video>
+            )}
+            <div ref={playerRef} />
+
             <div className="mt-6">
               {dataBus?.sessionRecordingList?.recordings?.map((record) => (
-                <RecordingCard key={record?.name} data={record} />
+                <RecordingCard key={record?.name} data={record} cb={() => setPlayerUrl(record?.url)} />
               ))}
             </div>
           </div>
