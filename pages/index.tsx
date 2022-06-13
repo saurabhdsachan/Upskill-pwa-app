@@ -1,9 +1,18 @@
 import Layout from '@components/Shared/Layout';
+import Cookies from 'js-cookie';
 import Head from 'next/head';
 import Link from 'next/link';
-import React from 'react';
+import { useRouter } from 'next/router';
+import React, { useEffect } from 'react';
+import { ROOT_URL } from '../utils/constants/index';
 
 const Home: React.FC = () => {
+  const router = useRouter();
+  useEffect(() => {
+    const rootUrl = Cookies.get(ROOT_URL);
+    router.push({ pathname: rootUrl ? `/${rootUrl}` : '/', query: { user: rootUrl } }, `/${rootUrl}`);
+  }, [router]);
+
   return (
     <Layout>
       <Head>

@@ -12,13 +12,14 @@ import SEOWrapper from '@components/Shared/SEO/SEOWrapper';
 import SocialLinks from '@components/Shared/SocialLinks';
 import WorkshopScroll from '@components/WorkshopScroll';
 import { StarIcon, TicketIcon, TranslateIcon } from '@heroicons/react/outline';
+import useAuth from '@hooks/useAuth';
 import { SESSION_TYPE } from '@utils/constants';
 import fetcher from '@utils/fetcher';
 import { HomePageSEO } from '@utils/SEO'; // can also have jsonLD config
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Else, If, Then } from 'react-if';
 
 interface IUserPage {
@@ -36,6 +37,12 @@ interface IUserPage {
 }
 
 const User: React.FC<IUserPage> = ({ data, status }) => {
+  const { setUsername } = useAuth();
+
+  useEffect(() => {
+    setUsername(data?.user?.username);
+  });
+
   return (
     <>
       <SEOWrapper seoProps={HomePageSEO.HomeSEO} />

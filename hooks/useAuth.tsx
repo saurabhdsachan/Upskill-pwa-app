@@ -1,4 +1,4 @@
-import { DEVICE_ID, TOKEN } from '@utils/constants';
+import { DEVICE_ID, ROOT_URL, TOKEN } from '@utils/constants';
 import Cookies from 'js-cookie';
 import { nanoid } from 'nanoid';
 
@@ -15,6 +15,10 @@ function useAuth() {
     Cookies.set(DEVICE_ID, nanoid(), CookieOptions);
   };
 
+  const setUsername = (name) => {
+    Cookies.set(ROOT_URL, name, CookieOptions);
+  };
+
   const login = ({ token, cb }: { cb: () => void; token: string }) => {
     token && Cookies.set(TOKEN, token, CookieOptions);
     cb && cb();
@@ -29,6 +33,7 @@ function useAuth() {
     login,
     logout,
     setDeviceId,
+    setUsername,
   };
 }
 

@@ -5,9 +5,35 @@ import { getImageUrl } from '@utils/helpers';
 import { observer } from 'mobx-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
 import { Else, If, Then } from 'react-if';
 import HeroName from './HeroName';
+
+const getUserPartialUI = (authData) => (
+  <div className="flex space-x-4">
+    <div className="w-10 h-10 bg-slate-500 flex justify-center items-center rounded-full">
+      <If condition={authData?.profileImgUrl}>
+        <Then>
+          <Image
+            className="rounded-full object-cover"
+            src={getImageUrl(authData?.profileImgUrl, { height: 180, width: 180 })}
+            alt={authData?.name}
+            width={180}
+            height={180}
+            placeholder="blur"
+            layout="intrinsic"
+            blurDataURL={blurredBgImage}
+          />
+        </Then>
+        <Else>
+          <UserIcon className="h-4 w-4 text-white" />
+        </Else>
+      </If>
+    </div>
+    <div className="h-10 flex-1 flex items-center justify-center">
+      <HeroName name={authData?.name || authData?.number} username={authData?.username} />
+    </div>
+  </div>
+);
 
 const Drawer = observer(({ children, isOpen, setIsOpen }) => {
   const { authData } = useAuthStore();
@@ -32,34 +58,14 @@ const Drawer = observer(({ children, isOpen, setIsOpen }) => {
             <If condition={authData?.userId}>
               <Then>
                 <div className="flex-1 p-4 flex items-center">
-                  <Link href={`/${authData?.username}`}>
-                    <a>
-                      <div className="flex space-x-4">
-                        <div className="w-10 h-10 bg-slate-500 flex justify-center items-center rounded-full">
-                          <If condition={authData?.profileImgUrl}>
-                            <Then>
-                              <Image
-                                className="rounded-full object-cover"
-                                src={getImageUrl(authData?.profileImgUrl, { height: 180, width: 180 })}
-                                alt={authData?.name}
-                                width={180}
-                                height={180}
-                                placeholder="blur"
-                                layout="intrinsic"
-                                blurDataURL={blurredBgImage}
-                              />
-                            </Then>
-                            <Else>
-                              <UserIcon className="h-4 w-4 text-white" />
-                            </Else>
-                          </If>
-                        </div>
-                        <div className="h-10 flex-1 flex items-center justify-center">
-                          <HeroName name={authData?.name || authData?.number} username={authData?.username} />
-                        </div>
-                      </div>
-                    </a>
-                  </Link>
+                  <If condition={authData?.creator}>
+                    <Then>
+                      <Link href={`/${authData?.username}`}>
+                        <a>{getUserPartialUI(authData)}</a>
+                      </Link>
+                    </Then>
+                    <Else>{getUserPartialUI(authData)}</Else>
+                  </If>
                 </div>
               </Then>
               <Else>
