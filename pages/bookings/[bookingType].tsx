@@ -29,6 +29,8 @@ const Bookings: React.FC = observer(() => {
 
   const { type, bookingType }: IQuery = router?.query;
 
+  const tabs = Object.values(FEED_TYPE);
+
   const getBookingData = useCallback(async () => {
     setBookingList([]);
     if (authData.userId && type && bookingType) {
@@ -92,11 +94,11 @@ const Bookings: React.FC = observer(() => {
             </div>
           )}
           <Tab.Group
-            defaultIndex={Object.values(FEED_TYPE).indexOf(type as string)}
+            defaultIndex={tabs?.indexOf(type as string)}
             onChange={(index) => {
               router.push(
-                { pathname: `/bookings/${bookingType}`, query: { type: Object.values(FEED_TYPE)[index], bookingType } },
-                `/bookings/${bookingType}?type=${Object.values(FEED_TYPE)[index]}`
+                { pathname: `/bookings/${bookingType}`, query: { type: tabs[index], bookingType } },
+                `/bookings/${bookingType}?type=${tabs[index]}`
               );
             }}
           >
