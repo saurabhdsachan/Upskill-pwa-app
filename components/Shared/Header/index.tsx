@@ -47,7 +47,7 @@ const Header: React.FC = observer(({ backflow, title }: { backflow: boolean; tit
             <div className="flex justify-center items-center">
               <button className="btn btn-primary w-16 p-6" onClick={() => setIsOpen(true)}>
                 <MenuAlt1Icon className="h-5 w-5" aria-hidden="true" />
-                <span className="Menu">Back</span>
+                <span className="sr-only">menu</span>
               </button>
             </div>
             <div className="flex-1 flex items-center">{title || ''}</div>
