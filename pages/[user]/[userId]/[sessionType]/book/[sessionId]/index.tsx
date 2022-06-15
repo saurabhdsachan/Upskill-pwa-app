@@ -211,7 +211,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
         },
       },
     ],
-    fallback: true,
+    fallback: 'blocking',
   };
 };
 
@@ -242,6 +242,7 @@ export const getStaticProps: GetStaticProps = async ({ params: { sessionId, sess
       user,
       userId,
     },
+    revalidate: 10,
   };
 };
 
