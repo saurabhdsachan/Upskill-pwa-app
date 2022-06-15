@@ -25,7 +25,7 @@ function useAuth() {
   };
 
   const logout = (cb) => {
-    Cookies.remove(TOKEN);
+    Cookies.remove(TOKEN, CookieOptions);
     cb && cb();
   };
 
