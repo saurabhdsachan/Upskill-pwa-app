@@ -31,7 +31,8 @@ const Header: React.FC = observer(({ backflow, title }: { backflow: boolean; tit
         <div className="flex flex-1">
           <div className="flex justify-center items-center">
             <button className="btn btn-primary w-16 p-6" onClick={handleGoBack}>
-              <ArrowLeftIcon className="h-5 w-5" />
+              <ArrowLeftIcon className="h-5 w-5" aria-hidden="true" />
+              <span className="sr-only">Back</span>
             </button>
           </div>
           {title && (
@@ -45,7 +46,8 @@ const Header: React.FC = observer(({ backflow, title }: { backflow: boolean; tit
           <div className="flex flex-1">
             <div className="flex justify-center items-center">
               <button className="btn btn-primary w-16 p-6" onClick={() => setIsOpen(true)}>
-                <MenuAlt1Icon className="h-5 w-5" />
+                <MenuAlt1Icon className="h-5 w-5" aria-hidden="true" />
+                <span className="Menu">Back</span>
               </button>
             </div>
             <div className="flex-1 flex items-center">{title || ''}</div>
@@ -60,11 +62,12 @@ const Header: React.FC = observer(({ backflow, title }: { backflow: boolean; tit
                 }
                 className="p-2 rounded-2xl mr-2"
               >
-                <ShareIcon className="h-4 w-4" />
+                <ShareIcon className="h-4 w-4" aria-hidden="true" />
+                <span className="sr-only">Share</span>
               </button>
               <Link href="/bookings/booked?type=today">
                 <a className="p-2 rounded-2xl">
-                  <CalendarIcon className="h-4 w-4" />
+                  <CalendarIcon className="h-4 w-4" aria-hidden="true" />
                 </a>
               </Link>
             </div>
@@ -79,7 +82,7 @@ const Header: React.FC = observer(({ backflow, title }: { backflow: boolean; tit
                 <li className="py-3">
                   <Link href="/">
                     <a>
-                      <HomeIcon className="w-4 h-4 inline mr-4" />
+                      <HomeIcon className="w-4 h-4 inline mr-4" aria-hidden="true" />
                       <span>Home</span>
                     </a>
                   </Link>
@@ -87,7 +90,7 @@ const Header: React.FC = observer(({ backflow, title }: { backflow: boolean; tit
                 <li className="py-3">
                   <Link href="/bookings/booked?type=today">
                     <a>
-                      <CalendarIcon className="w-4 h-4 inline mr-4" />
+                      <CalendarIcon className="w-4 h-4 inline mr-4" aria-hidden="true" />
                       <span>Bookings</span>
                     </a>
                   </Link>
@@ -98,7 +101,7 @@ const Header: React.FC = observer(({ backflow, title }: { backflow: boolean; tit
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <DownloadIcon className="w-4 h-4 inline mr-4" />
+                    <DownloadIcon className="w-4 h-4 inline mr-4" aria-hidden="true" />
                     <span>Download Pep App</span>
                   </a>
                 </li>
@@ -116,7 +119,7 @@ const Header: React.FC = observer(({ backflow, title }: { backflow: boolean; tit
                       })
                     }
                   >
-                    <LogoutIcon className="w-4 h-4 inline mr-4" />
+                    <LogoutIcon className="w-4 h-4 inline mr-4" aria-hidden="true" />
                     <span>Logout</span>
                   </button>
                 </Then>

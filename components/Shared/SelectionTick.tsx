@@ -1,12 +1,11 @@
 import { CheckCircleIcon } from '@heroicons/react/solid';
-import React from 'react';
 import { Else, If, Then } from 'react-if';
 
 const SelectionTick = ({ isSelected }) => {
   return (
     <If condition={isSelected}>
       <Then>
-        <CheckCircleIcon className="h-6 w-6 inline" />
+        <CheckCircleIcon className="h-6 w-6 inline" aria-hidden="true" />
       </Then>
       <Else>
         <svg height="22" width="22" viewBox="0 0 48 48" className="fill-slate-400 inline">

@@ -84,7 +84,7 @@ const User: React.FC<IUserPage> = observer(({ data, status }) => {
                     <a>
                       <div className="flex items-center justify-start space-x-2">
                         <div className="w-8 h-8 bg-blue-100 flex justify-center items-center rounded-full">
-                          <StarIcon className="h-4 w-4 text-blue-500" />
+                          <StarIcon className="h-4 w-4 text-blue-500" aria-hidden="true" />
                         </div>
                         <div className="text-left">
                           <small className="text-xs  text-blue-500 block">Rating</small>
@@ -99,7 +99,7 @@ const User: React.FC<IUserPage> = observer(({ data, status }) => {
                     <Then>
                       <div className="flex items-center justify-start space-x-2">
                         <div className="w-8 h-8 bg-blue-100 flex justify-center items-center rounded-full">
-                          <TranslateIcon className="h-4 w-4 text-blue-500" />
+                          <TranslateIcon className="h-4 w-4 text-blue-500" aria-hidden="true" />
                         </div>
                         <div className="text-left">
                           <small className="text-xs text-blue-500 block">Language</small>
@@ -122,7 +122,7 @@ const User: React.FC<IUserPage> = observer(({ data, status }) => {
                 <div className="border-t border-b px-6 py-4 border-slate-200 bg-white">
                   <Link href={`/${data?.user?.username}/${data?.user?.userId}/${SESSION_TYPE.DEMO}/book/demo/slots`}>
                     <a className="uppercase inline-flex items-center justify-center w-full py-3 border border-transparent rounded-xl text-sm font-medium text-white bg-gradient-to-r from-orange-600 to-orange-500 hover:bg-white-700 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-orange-400">
-                      <TicketIcon className="h-4 w-4 mr-2" /> Book 1:1 Demo Session
+                      <TicketIcon className="h-4 w-4 mr-2" aria-hidden="true" /> Book 1:1 Demo Session
                     </a>
                   </Link>
                 </div>

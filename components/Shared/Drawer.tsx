@@ -25,7 +25,8 @@ const getUserPartialUI = (authData) => (
           />
         </Then>
         <Else>
-          <UserIcon className="h-4 w-4 text-white" />
+          <UserIcon className="h-4 w-4 text-white" aria-hidden="true" />
+          <span className="sr-only">User</span>
         </Else>
       </If>
     </div>
@@ -74,7 +75,8 @@ const Drawer = observer(({ children, isOpen, setIsOpen }) => {
                     <a>
                       <div className="flex space-x-4">
                         <div className="w-10 h-10 bg-slate-500 flex justify-center items-center rounded-full">
-                          <UserIcon className="h-4 w-4 text-white" />
+                          <UserIcon className="h-4 w-4 text-white" aria-hidden="true" />
+                          <span className="sr-only">User</span>
                         </div>
                         <div className="h-10 flex items-center">Login / Signup</div>
                       </div>
@@ -89,7 +91,8 @@ const Drawer = observer(({ children, isOpen, setIsOpen }) => {
                 setIsOpen(false);
               }}
             >
-              <XIcon className="h-5 w-5" />
+              <XIcon className="h-5 w-5" aria-hidden="true" />
+              <span className="sr-only">Close panel</span>
             </button>
           </div>
           {children}

@@ -6,7 +6,6 @@ import { classNames, getImageUrl } from '@utils/helpers';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React from 'react';
 
 const CourseCard = ({ data, type, userId }: { data: any; type: 'v-card' | 'h-card'; userId: string }) => {
   const { query } = useRouter();
@@ -37,7 +36,7 @@ const CourseCard = ({ data, type, userId }: { data: any; type: 'v-card' | 'h-car
             <div>
               <h4 className="leading-6 capitalize line-clamp-2 mb-1">{data?.title}</h4>
               <p className="text-xs mb-2 text-slate-600">
-                <BookOpenIcon className="w-4 h-4 inline mr-1" />
+                <BookOpenIcon className="w-4 h-4 inline mr-1" aria-hidden="true" />
                 {data?.episodeCount} chapters
               </p>
               <div className="flex items-center mb-1">

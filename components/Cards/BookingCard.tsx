@@ -80,9 +80,9 @@ const BookingCard = ({ data: { booking }, type }) => {
           <h3 className="text-base capitalize">
             {booking?.label}{' '}
             {booking.bookingStatus === 'CANCELLED' ? (
-              <XCircleIcon className="w-5 h-5 inline text-red-400" />
+              <XCircleIcon className="w-5 h-5 inline text-red-400" aria-hidden="true" />
             ) : (
-              <CheckCircleIcon className="w-5 h-5 inline text-blue-500" />
+              <CheckCircleIcon className="w-5 h-5 inline text-blue-500" aria-hidden="true" />
             )}
           </h3>
           <small className="text-slate-600 text-xs">

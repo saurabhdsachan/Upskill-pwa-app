@@ -209,7 +209,7 @@ const Slots: React.FC = observer(() => {
                 onClick={handleClick}
                 className="uppercase inline-flex items-center justify-center w-full py-4 border border-transparent rounded-xl text-sm font-medium text-white bg-gradient-to-r from-orange-600 to-orange-500 hover:bg-white-700 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-orange-400"
               >
-                <TicketIcon className="h-4 w-4 mr-2" />
+                <TicketIcon className="h-4 w-4 mr-2" aria-hidden="true" />
                 {!authData?.userId && 'Login & '}Book Now
               </button>
             </div>

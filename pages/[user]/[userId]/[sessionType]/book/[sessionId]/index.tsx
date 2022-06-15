@@ -67,14 +67,14 @@ const SessionDetail: React.FC<ISessionDetail> = ({ data, status, sessionType, se
               {data?.user && (
                 <div className="flex px-6 py-4 space-x-4 justify-center items-center">
                   <Link href={`/${data?.user?.username}`}>
-                    <a href="" className="flex-1">
+                    <a className="flex-1">
                       <div className="flex space-x-4 justify-center items-center">
                         <div className="relative bg-white w-14 h-14 border-2 rounded-full border-white shadow-xs overflow-hidden">
                           <Image
                             className="object-cover rounded-full"
                             src={
                               data?.user?.profileImgUrl
-                                ? getImageUrl(data?.user?.profileImgUrl, { height: 180, width: 180 })
+                                ? getImageUrl(data?.user?.profileImgUrl, { height: 120, width: 120 })
                                 : blurredBgImage
                             }
                             alt={data?.user?.name}
@@ -94,7 +94,8 @@ const SessionDetail: React.FC<ISessionDetail> = ({ data, status, sessionType, se
                       onClick={() => updateDownloadAppBottomSheetState(true)}
                       className="inline-flex items-center justify-center w-full py-1.5 px-3 border border-transparent rounded-lg text-sm font-medium text-white bg-gradient-to-r from-slate-500 to-slate-600 hover:bg-slate-700 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-400 shadow-xs shadow-slate-500/50"
                     >
-                      <UserGroupIcon className="h-4 w-4 mr-2" /> <span className="text-xs">Follow</span>
+                      <UserGroupIcon className="h-4 w-4 mr-2" aria-hidden="true" />{' '}
+                      <span className="text-xs">Follow</span>
                     </button>
                   </div>
                 </div>
@@ -171,7 +172,7 @@ const SessionDetail: React.FC<ISessionDetail> = ({ data, status, sessionType, se
                   >
                     <Link href={`/${user}/${userId}/${sessionType}/book/${sessionId}/slots`}>
                       <a className="uppercase inline-flex items-center justify-center w-full py-4 border border-transparent rounded-xl text-sm font-medium text-white bg-gradient-to-r from-orange-600 to-orange-500 hover:bg-white-700 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-orange-400">
-                        <TicketIcon className="h-4 w-4 mr-2" />
+                        <TicketIcon className="h-4 w-4 mr-2" aria-hidden="true" />
                         Choose Slot
                       </a>
                     </Link>
@@ -181,7 +182,7 @@ const SessionDetail: React.FC<ISessionDetail> = ({ data, status, sessionType, se
                       disabled
                       className="uppercase inline-flex items-center justify-center w-full py-4 border border-transparent rounded-xl text-sm font-medium bg-slate-200 hover:bg-white-700 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-400"
                     >
-                      <TicketIcon className="h-4 w-4 mr-2" />
+                      <TicketIcon className="h-4 w-4 mr-2" aria-hidden="true" />
                       No slots available
                     </button>
                   </Default>

@@ -2,7 +2,6 @@ import SelectionTick from '@components/Shared/SelectionTick';
 import { CalendarIcon } from '@heroicons/react/outline';
 import { classNames } from '@utils/helpers';
 import dayjs from 'dayjs';
-import React from 'react';
 
 const PlanSlotCard = ({ data, onClick, isSelected }) => {
   return (
@@ -16,7 +15,7 @@ const PlanSlotCard = ({ data, onClick, isSelected }) => {
       onClick={onClick}
     >
       <div className="flex-1">
-        <CalendarIcon className="h-4 w-4 mr-2 inline-block" />
+        <CalendarIcon className="h-4 w-4 mr-2 inline-block" aria-hidden="true" />
         {dayjs(data).format('D MMM (ddd)')}
       </div>
       <div>

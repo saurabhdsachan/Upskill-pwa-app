@@ -145,7 +145,8 @@ const Auth: React.FC = () => {
               type="submit"
               className="mt-8 uppercase inline-flex items-center justify-center w-full p-5 border-b border-transparent text-sm font-medium text-white bg-slate-900 hover:bg-white-700 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-400 rounded-xl"
             >
-              {showOTPField ? 'Login / Signup' : 'Send OTP'} <ArrowRightIcon className="h-4 w-4 ml-2" />
+              {showOTPField ? 'Login / Signup' : 'Send OTP'}{' '}
+              <ArrowRightIcon className="h-4 w-4 ml-2" aria-hidden="true" />
             </button>
             <If condition={showOTPField}>
               <Then>

@@ -17,7 +17,7 @@ const PlanHighlight: React.FC<IPlanHighlight> = ({ pax, numSessions, startTime, 
         <li className="mt-1 capitalize">
           <div className="flex space-x-1">
             <div>
-              <CheckIcon className="w-3 h-3 inline text-green-600" />
+              <CheckIcon className="w-3 h-3 inline text-green-600" aria-hidden="true" />
             </div>
             <div className="flex-1">{pax === 1 ? '1:1 session' : 'Group Session'}</div>
           </div>
@@ -25,7 +25,7 @@ const PlanHighlight: React.FC<IPlanHighlight> = ({ pax, numSessions, startTime, 
         <li className="mt-1 capitalize">
           <div className="flex space-x-1">
             <div>
-              <CheckIcon className="w-3 h-3 inline text-green-600" />
+              <CheckIcon className="w-3 h-3 inline text-green-600" aria-hidden="true" />
             </div>
             <div className="flex-1">{numSessions} sessions</div>
           </div>
@@ -33,7 +33,7 @@ const PlanHighlight: React.FC<IPlanHighlight> = ({ pax, numSessions, startTime, 
         <li className="mt-1 ">
           <div className="flex space-x-1">
             <div>
-              <CheckIcon className="w-3 h-3 inline text-green-600" />
+              <CheckIcon className="w-3 h-3 inline text-green-600" aria-hidden="true" />
             </div>
             <div className="flex-1">
               Time: {tsConvert(startTime)}
@@ -44,7 +44,7 @@ const PlanHighlight: React.FC<IPlanHighlight> = ({ pax, numSessions, startTime, 
         <li className="mt-1 capitalize h-10">
           <div className="flex space-x-1">
             <div>
-              <CheckIcon className="w-3 h-3 inline text-green-600" />
+              <CheckIcon className="w-3 h-3 inline text-green-600" aria-hidden="true" />
             </div>
             <div className="flex-1">{weekShortName(days).join(', ')}</div>
           </div>

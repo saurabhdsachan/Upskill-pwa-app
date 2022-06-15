@@ -2,7 +2,6 @@ import SelectionTick from '@components/Shared/SelectionTick';
 import { ClockIcon } from '@heroicons/react/solid';
 import { classNames } from '@utils/helpers';
 import dayjs from 'dayjs';
-import React from 'react';
 
 const WorkshopSlotCard = ({ data, onClick, isSelected }) => {
   return (
@@ -33,8 +32,8 @@ const WorkshopSlotCard = ({ data, onClick, isSelected }) => {
         <div className="text-right">
           <small className="text-xs text-slate-400">Duration</small>
           <p className="text-slate-900">
-            <ClockIcon className="w-4 h-4 inline text-slate-400" /> {(data?.endTime - data?.startTime) / (1000 * 60)}{' '}
-            mins
+            <ClockIcon className="w-4 h-4 inline text-slate-400" aria-hidden="true" />{' '}
+            {(data?.endTime - data?.startTime) / (1000 * 60)} mins
           </p>
         </div>
       </div>

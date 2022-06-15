@@ -6,7 +6,8 @@ import { Fragment } from 'react';
 const QuickHelp = () => {
   return (
     <div className="mt-4">
-      <LightBulbIcon className="w-10 h-10 text-slate-400" />
+      <LightBulbIcon className="w-10 h-10 text-slate-400" aria-hidden="true" />
+      <span className="sr-only">How ho join</span>
       <h2 className="text-xl font-bold mb-6 text-slate-400">How to join</h2>
 
       <Disclosure defaultOpen={true}>
