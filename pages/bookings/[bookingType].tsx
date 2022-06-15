@@ -21,6 +21,9 @@ interface IQuery {
 }
 
 const Bookings: React.FC = observer(() => {
+  const [timeFrame, setTimeFrame] = useState<string>(FEED_TYPE.TODAY);
+  const [bookingTypeState, setBookingTypeState] = useState<string>(FEED_TYPE.TODAY);
+  const [cursor, setCursor] = useState<string | null>(null);
   const [bookingList, setBookingList] = useState([]);
   const [tabList, setTabList] = useState([]);
   const { authData } = useAuthStore();
@@ -30,6 +33,16 @@ const Bookings: React.FC = observer(() => {
   const { type, bookingType }: IQuery = router?.query;
 
   const tabs = Object.values(FEED_TYPE);
+
+  const getMoreData = async () => {
+    const res = await getBookings({
+      userType: (bookingType === 'received' ? USER_TYPE.CREATOR : USER_TYPE.USER)?.toUpperCase(),
+      feedType: type?.toUpperCase(),
+      cursor,
+    });
+    setBookingList([...bookingList, ...res?.data?.items]);
+    setCursor(res?.data?.cursor);
+  };
 
   const getBookingData = useCallback(async () => {
     setBookingList([]);
@@ -41,6 +54,9 @@ const Bookings: React.FC = observer(() => {
       });
       setBookingList(res?.data?.items);
       setTabList(res?.data?.chips);
+      setCursor(res?.data?.cursor);
+      setTimeFrame(type);
+      setBookingTypeState(bookingType);
     }
   }, [authData.userId, bookingType, type]);
 
@@ -115,7 +131,7 @@ const Bookings: React.FC = observer(() => {
                         )
                       }
                     >
-                      {tabList?.length !== 0 ? tabList[index]?.chipName : item[1]}
+                      {tabList?.[index]?.chipName || item[1]}
                     </Tab>
                   ))}
                 </div>
@@ -130,6 +146,16 @@ const Bookings: React.FC = observer(() => {
                       {bookingList?.map((booking) => {
                         return <BookingCard key={booking?.booking?.bookingId} data={booking} type={type} />;
                       })}
+                      <div className="flex">
+                        {!!cursor && bookingList?.length > 0 && (
+                          <button
+                            className="from-blue-600 to-blue-500 focus:ring-blue-400 uppercase inline-flex items-center justify-center w-full py-3 border border-transparent rounded-xl text-sm font-medium text-white bg-gradient-to-r hover:bg-white-700 focus:outline-none focus:ring-1 focus:ring-offset-2"
+                            onClick={getMoreData}
+                          >
+                            Load More
+                          </button>
+                        )}
+                      </div>
                       <div className="mt-14">
                         <QuickHelp />
                       </div>
