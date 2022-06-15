@@ -11,11 +11,13 @@ import Layout from '@components/Shared/Layout';
 import SEOWrapper from '@components/Shared/SEO/SEOWrapper';
 import SocialLinks from '@components/Shared/SocialLinks';
 import WorkshopScroll from '@components/WorkshopScroll';
+import { useAuthStore } from '@context/authContext';
 import { StarIcon, TicketIcon, TranslateIcon } from '@heroicons/react/outline';
 import useAuth from '@hooks/useAuth';
 import { SESSION_TYPE } from '@utils/constants';
 import fetcher from '@utils/fetcher';
 import { HomePageSEO } from '@utils/SEO'; // can also have jsonLD config
+import { observer } from 'mobx-react';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -36,10 +38,15 @@ interface IUserPage {
   status: number;
 }
 
-const User: React.FC<IUserPage> = ({ data, status }) => {
+const User: React.FC<IUserPage> = observer(({ data, status }) => {
   const { setUsername } = useAuth();
+  const { authData } = useAuthStore();
 
-  useEffect(() => setUsername(data?.user?.username));
+  useEffect(() => {
+    if (authData?.username !== data?.user?.username) {
+      setUsername(data?.user?.username);
+    }
+  }, [authData?.username, data?.user?.username, setUsername]);
 
   return (
     <>
@@ -165,7 +172,7 @@ const User: React.FC<IUserPage> = ({ data, status }) => {
       </Layout>
     </>
   );
-};
+});
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return { paths: [{ params: { user: 'nikhil' } }], fallback: true };
