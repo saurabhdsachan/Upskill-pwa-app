@@ -74,12 +74,12 @@ const SessionDetail: React.FC<ISessionDetail> = ({ data, status, sessionType, se
                             className="object-cover rounded-full"
                             src={
                               data?.user?.profileImgUrl
-                                ? getImageUrl(data?.user?.profileImgUrl, { height: 120, width: 120 })
+                                ? getImageUrl(data?.user?.profileImgUrl, { height: 90, width: 90 })
                                 : blurredBgImage
                             }
                             alt={data?.user?.name}
-                            width={80}
-                            height={80}
+                            width={60}
+                            height={60}
                             placeholder="blur"
                             layout="intrinsic"
                             blurDataURL={blurredBgImage}
@@ -125,7 +125,7 @@ const SessionDetail: React.FC<ISessionDetail> = ({ data, status, sessionType, se
                   </div>
                   <div>
                     <small className="text-slate-600 text-xs">{session?.currencyCode}</small>
-                    <h4 className="font-semibold text-lg leading-6">{formatPrice.format(session?.price)}</h4>
+                    <h3 className="font-semibold text-lg leading-6">{formatPrice.format(session?.price)}</h3>
                   </div>
                 </div>
                 {session?.categoryName && <Tags data={[session?.categoryName]} />}
