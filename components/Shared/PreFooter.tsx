@@ -6,7 +6,7 @@ const PreFooter: React.FC = () => (
   <div className="px-6 pt-20">
     <Image
       className="object-contain"
-      src="https://res.cloudinary.com/dui8mpatf/image/upload/v1653278641/pep/on-top_tweyuz.svg"
+      src="https://res.cloudinary.com/dui8mpatf/image/upload/w_800/v1653277990/pep/on-top_yea2ik.png"
       alt="pep on top"
       height={450}
       width={642}
