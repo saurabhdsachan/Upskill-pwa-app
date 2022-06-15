@@ -42,8 +42,15 @@
      "src": "\/logo-icons/android-icon-192x192.png",
      "sizes": "192x192",
      "type": "image\/png",
-     "density": "4.0"
-    }
+     "density": "4.0",
+     "purpose": "any maskable"
+    },
+    {
+      "src": "\/logo-icons/android-icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image\/png",
+      "density": "4.0"
+     }
    ],
 	"prefer_related_applications": false,
 	"related_applications": [
