@@ -1,4 +1,4 @@
 interface IRating {
-  averageRating: string
-  ratingCount: null
+  averageRating: string;
+  ratingCount: null;
 }

@@ -3,7 +3,7 @@ interface ISession {
   coverImgUrl: string;
   creatorId: string;
   creatorName: string;
-  days: null
+  days: null;
   displayPrice: string;
   duration: number;
   endTime: number;

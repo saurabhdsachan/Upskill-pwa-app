@@ -1,5 +1,5 @@
 interface ICohortItem {
-  booking?: null
+  booking?: null;
   session: ISession;
-  type: string
+  type: string;
 }
