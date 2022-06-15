@@ -19,4 +19,4 @@ const HeroGem = ({ followersCount, followingCount, sessionsTaken }) => {
   );
 };
 
-export default HeroGem;
+export default React.memo(HeroGem);

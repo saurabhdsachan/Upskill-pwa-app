@@ -1,5 +1,6 @@
 import { useDataBusStore } from '@context/dataBusContext';
 import { ChatAltIcon, UserGroupIcon } from '@heroicons/react/solid';
+import React from 'react';
 
 const HeroAction = () => {
   const { updateDownloadAppBottomSheetState } = useDataBusStore();
@@ -26,4 +27,4 @@ const HeroAction = () => {
   );
 };
 
-export default HeroAction;
+export default React.memo(HeroAction);

@@ -39,9 +39,7 @@ interface IUserPage {
 const User: React.FC<IUserPage> = ({ data, status }) => {
   const { setUsername } = useAuth();
 
-  useEffect(() => {
-    setUsername(data?.user?.username);
-  });
+  useEffect(() => setUsername(data?.user?.username));
 
   return (
     <>
@@ -90,22 +88,26 @@ const User: React.FC<IUserPage> = ({ data, status }) => {
                       </div>
                     </a>
                   </Link>
-                  <div className="flex items-center justify-start space-x-2">
-                    <div className="w-8 h-8 bg-blue-100 flex justify-center items-center rounded-full">
-                      <TranslateIcon className="h-4 w-4 text-blue-500" />
-                    </div>
-                    <div className="text-left">
-                      <small className="text-xs text-blue-500 block">Language</small>
-                      <span className="text-xs capitalize">
-                        {data?.user?.preferredLanguages
-                          .slice(0, 2)
-                          .map((item) => item.toLowerCase())
-                          .join(', ')}
-                        {data?.user?.preferredLanguages?.length > 2 &&
-                          ` +${data?.user?.preferredLanguages?.length - 2} more`}
-                      </span>
-                    </div>
-                  </div>
+                  <If condition={data?.user?.preferredLanguages?.length !== 0}>
+                    <Then>
+                      <div className="flex items-center justify-start space-x-2">
+                        <div className="w-8 h-8 bg-blue-100 flex justify-center items-center rounded-full">
+                          <TranslateIcon className="h-4 w-4 text-blue-500" />
+                        </div>
+                        <div className="text-left">
+                          <small className="text-xs text-blue-500 block">Language</small>
+                          <span className="text-xs capitalize">
+                            {data?.user?.preferredLanguages
+                              .slice(0, 2)
+                              .map((item) => item.toLowerCase())
+                              .join(', ')}
+                            {data?.user?.preferredLanguages?.length > 2 &&
+                              ` +${data?.user?.preferredLanguages?.length - 2} more`}
+                          </span>
+                        </div>
+                      </div>
+                    </Then>
+                  </If>
                 </div>
               </div>
 

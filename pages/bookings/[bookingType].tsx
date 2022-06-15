@@ -67,7 +67,7 @@ const Bookings: React.FC = observer(() => {
                 <a
                   className={classNames(
                     bookingType === 'booked' ? 'border-blue-500' : ' border-gray-100',
-                    'py-3 border-b-2 text-sm leading-5 bg-white flex-1 text-center focus:outline-none'
+                    'pb-3 border-b-2 text-sm leading-5 bg-white flex-1 text-center focus:outline-none'
                   )}
                 >
                   Booked
@@ -83,7 +83,7 @@ const Bookings: React.FC = observer(() => {
                 <a
                   className={classNames(
                     bookingType === 'received' ? 'border-blue-500' : ' border-gray-100',
-                    'py-3 border-b-2 text-sm leading-5 bg-white flex-1 text-center focus:outline-none'
+                    'pb-3 border-b-2 text-sm leading-5 bg-white flex-1 text-center focus:outline-none'
                   )}
                 >
                   Received
