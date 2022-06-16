@@ -1,5 +1,5 @@
 import { useAuthStore } from '@context/authContext';
-import { initAnalytics, LandingPage, PwaInstalled, RouteChange } from '@utils/analytics';
+import { initAnalytics, PwaInstalled, RouteChange } from '@utils/analytics';
 import { verifyUser } from '@utils/apiData';
 import { PRIVATE_PAGE_ROUTES, TOKEN } from '@utils/constants';
 import Cookies from 'js-cookie';
@@ -63,8 +63,7 @@ const Body: React.FC<IBody> = ({ children }) => {
 
   useEffect(() => {
     initAnalytics();
-    LandingPage({ route: window.location.pathname });
-    router.events.on('routeChangeComplete', () => RouteChange({ route: window.location.pathname }));
+    router.events.on('routeChangeComplete', () => RouteChange(window.location.pathname + window.location.search));
     window.addEventListener('appinstalled', (evt) => PwaInstalled({ evt }));
   });
 

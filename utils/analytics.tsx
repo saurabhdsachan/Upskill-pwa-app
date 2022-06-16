@@ -15,6 +15,8 @@ ReactGA.event({
 
 import ReactGA from 'react-ga4';
 
+const prod = process.env.NODE_ENV === 'production';
+
 interface ILogEvent {
   category: string;
   action: string;
@@ -30,11 +32,6 @@ enum EVENT_NAME {
   PAGEVIEW = 'page-view',
 }
 
-const dataToPush = (data, type) => {
-  console.log('Analytics', data, type);
-  window.dataLayer.push({ data, ...{ event: type } });
-};
-
 const initAnalytics = () => {
   if (!window?.GA_INITIALIZED) {
     ReactGA.initialize(process.env.NEXT_PUBLIC_GOOGLE_GA4_PROP_ID);
@@ -42,12 +39,17 @@ const initAnalytics = () => {
   }
 };
 
-const logPageView = () => {
-  ReactGA.send({ hitType: EVENT_NAME.PAGEVIEW, page: window.location.pathname + window.location.search });
+const dataToPush = (data, type) => {
+  console.log('Analytics', data, type);
+  window.dataLayer.push({ data, ...{ event: type } });
+};
+
+const logPageView = (data) => {
+  prod && ReactGA.send({ hitType: EVENT_NAME.PAGEVIEW, page: data });
 };
 
 const logEvent = ({ category = '', action = '', label = '', value = 0 }: ILogEvent) => {
-  if (category && action) {
+  if (prod && category && action) {
     ReactGA.event({
       category,
       action,
@@ -69,12 +71,12 @@ const PushEvent = async (data) => {
 
 const LandingPage = (data) => {
   dataToPush(data, EVENT_NAME.LANDINGPAGE);
-  logPageView();
+  logPageView(data);
 };
 
 const RouteChange = (data) => {
   dataToPush(data, EVENT_NAME.ROUTECHANGE);
-  logPageView();
+  logPageView(data);
 };
 
 const PwaInstalled = (data) => {
