@@ -1,9 +1,10 @@
+import Button from '@components/Shared/Button/Button';
 import SelectionTick from '@components/Shared/SelectionTick';
 import { useSlotsStore } from '@context/slotContext';
 import { SESSION_TYPE } from '@utils/constants';
 import { classNames } from '@utils/helpers';
 import { observer } from 'mobx-react';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const ConnectSlotCard = observer(({ data, sessionType }) => {
   const isDemo = sessionType === SESSION_TYPE.DEMO;
@@ -71,19 +72,18 @@ const ConnectSlotCard = observer(({ data, sessionType }) => {
               <div className="overflow-x-auto flex no-scrollbar">
                 {item?.slots?.map((slot) => (
                   <div className="flex-none p-1 first:pl-6 last:pr-6" key={slot?.unixEndTime}>
-                    <button
+                    <Button
                       disabled={!slot?.available}
                       onClick={() => handleTimeSelect({ startTime: slot?.unixStartTime, endTime: slot?.unixEndTime })}
-                      className={classNames(
-                        slots?.connect?.startTime === slot?.unixStartTime ||
-                          slots?.demo?.startTime === slot?.unixStartTime
-                          ? 'border-blue-600 text-blue-600 focus:ring-blue-400'
-                          : 'border-slate-200 text-slate-600  focus:ring-slate-400',
-                        ' rounded-xl bg-white border px-4 py-1.5 focus:outline-none focus:ring-1 focus:ring-offset-2'
-                      )}
+                      bg={
+                        (slots?.connect?.startTime === slot?.unixStartTime ||
+                          slots?.demo?.startTime === slot?.unixStartTime) &&
+                        'blue'
+                      }
+                      className="px-4 py-1.5"
                     >
-                      <p className="text-sm">{slot?.startTime}</p>
-                    </button>
+                      {slot?.startTime}
+                    </Button>
                   </div>
                 ))}
               </div>

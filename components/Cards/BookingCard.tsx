@@ -1,7 +1,8 @@
 import Bullets from '@components/Shared/Bullets';
+import Button from '@components/Shared/Button/Button';
 import Tags from '@components/Shared/Tags';
 import { useDataBusStore } from '@context/dataBusContext';
-import { CheckCircleIcon, XCircleIcon } from '@heroicons/react/outline';
+import { CheckCircleIcon, StarIcon, VideoCameraIcon, XCircleIcon } from '@heroicons/react/outline';
 import { blurredBgImage } from '@public/images/bg-base-64';
 import { FEED_TYPE } from '@utils/constants';
 import { classNames, formatPrice, getImageUrl } from '@utils/helpers';
@@ -96,19 +97,15 @@ const BookingCard = ({ data: { booking }, type }) => {
         <If condition={type === FEED_TYPE.PAST}>
           <Then>
             <div className="flex mt-4 space-x-4">
-              <button
-                onClick={() => updateDownloadAppBottomSheetState(true)}
-                className="inline-flex items-center justify-center w-full py-2 border border-slate-400 rounded-xl text-sm font-medium focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-200 shadow-sm"
-              >
+              <Button onClick={() => updateDownloadAppBottomSheetState(true)}>
+                <StarIcon className="w-4 h-4 mr-2 inline" aria-hidden="true" />
                 Rate Session
-              </button>
+              </Button>
               {booking?.recording && (
-                <button
-                  onClick={() => handleViewRecording(booking?.recording)}
-                  className="inline-flex items-center justify-center w-full py-2 border border-slate-400 rounded-xl text-sm font-medium focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-200 shadow-sm"
-                >
-                  View Recording
-                </button>
+                <Button onClick={() => handleViewRecording(booking?.recording)}>
+                  <VideoCameraIcon className="w-4 h-4 mr-2 inline" aria-hidden="true" />
+                  Recordings
+                </Button>
               )}
             </div>
           </Then>
@@ -118,29 +115,23 @@ const BookingCard = ({ data: { booking }, type }) => {
             <div className="flex mt-4 space-x-4">
               <If condition={linkActive}>
                 <Then>
-                  <button
-                    onClick={openSessionLink}
-                    className="from-blue-600 to-blue-500 focus:ring-blue-400 uppercase inline-flex items-center justify-center w-full py-3 border border-transparent rounded-xl text-sm font-medium text-white bg-gradient-to-r hover:bg-white-700 focus:outline-none focus:ring-1 focus:ring-offset-2"
-                  >
+                  <Button bg="blue" onClick={openSessionLink} size="big" className="uppercase">
                     LIVE {dayjs(booking?.startTime).fromNow()}
-                  </button>
+                  </Button>
                 </Then>
               </If>
               <If condition={sessionActive}>
                 <Then>
-                  <button
-                    onClick={openSessionLink}
-                    className="from-orange-600 to-orange-500 focus:ring-orange-400 uppercase inline-flex items-center justify-center w-full py-3 border border-transparent rounded-xl text-sm font-medium text-white bg-gradient-to-r hover:bg-white-700 focus:outline-none focus:ring-1 focus:ring-offset-2"
-                  >
+                  <Button bg="orange" onClick={openSessionLink} size="big" className="uppercase">
                     LIVE - JOIN NOW
-                  </button>
+                  </Button>
                 </Then>
               </If>
               <If condition={!sessionActive && !linkActive}>
                 <Then>
-                  <button className="mt-4 inline-flex items-center justify-center w-full py-2 border border-slate-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-200 shadow-sm">
+                  <Button size="big" className="uppercase">
                     Session will start {dayjs(booking?.startTime).fromNow()}
-                  </button>
+                  </Button>
                 </Then>
               </If>
             </div>

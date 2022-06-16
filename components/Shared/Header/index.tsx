@@ -15,6 +15,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { If, Then } from 'react-if';
+import Button from '../Button/Button';
 import Drawer from '../Drawer';
 
 const Header: React.FC = observer(({ backflow, title }: { backflow: boolean; title?: string }) => {
@@ -30,10 +31,10 @@ const Header: React.FC = observer(({ backflow, title }: { backflow: boolean; tit
       {backflow ? (
         <div className="flex flex-1">
           <div className="flex justify-center items-center">
-            <button className="btn btn-primary w-16 p-6" onClick={handleGoBack}>
+            <Button raw className="w-16 h-16" onClick={handleGoBack}>
               <ArrowLeftIcon className="h-5 w-5" aria-hidden="true" />
               <span className="sr-only">Back</span>
-            </button>
+            </Button>
           </div>
           {title && (
             <div className="flex-1 flex items-center pr-4 w-10">
@@ -45,14 +46,15 @@ const Header: React.FC = observer(({ backflow, title }: { backflow: boolean; tit
         <>
           <div className="flex flex-1">
             <div className="flex justify-center items-center">
-              <button className="btn btn-primary w-16 p-6" onClick={() => setIsOpen(true)}>
+              <Button raw className="w-16 h-16" onClick={() => setIsOpen(true)}>
                 <MenuAlt1Icon className="h-5 w-5" aria-hidden="true" />
                 <span className="sr-only">menu</span>
-              </button>
+              </Button>
             </div>
             <div className="flex-1 flex items-center">{title || ''}</div>
             <div className="flex justify-center items-center p-4">
-              <button
+              <Button
+                raw
                 onClick={() =>
                   socialShare({
                     title: `Find ${router?.query?.user}&apos;s website on this link`,
@@ -60,13 +62,13 @@ const Header: React.FC = observer(({ backflow, title }: { backflow: boolean; tit
                     url: `https://pep.live/${router?.query?.user}`,
                   })
                 }
-                className="p-2 rounded-2xl mr-2"
+                className="p-2 mr-2"
               >
                 <ShareIcon className="h-4 w-4" aria-hidden="true" />
                 <span className="sr-only">Share</span>
-              </button>
+              </Button>
               <Link href="/bookings/booked?type=today">
-                <a className="p-2 rounded-2xl">
+                <a className="p-2">
                   <CalendarIcon className="h-4 w-4" aria-hidden="true" />
                 </a>
               </Link>
@@ -107,11 +109,13 @@ const Header: React.FC = observer(({ backflow, title }: { backflow: boolean; tit
                 </li>
               </ul>
             </div>
-            <div className="flex-1 px-6 text-red-600">
+            <div className="flex-1 px-6">
               <If condition={authData?.userId}>
                 <Then>
                   <hr className="my-6" />
-                  <button
+                  <Button
+                    raw
+                    className="text-red-600"
                     onClick={() =>
                       logout(() => {
                         setAuthData(null);
@@ -121,7 +125,7 @@ const Header: React.FC = observer(({ backflow, title }: { backflow: boolean; tit
                   >
                     <LogoutIcon className="w-4 h-4 inline mr-4" aria-hidden="true" />
                     <span>Logout</span>
-                  </button>
+                  </Button>
                 </Then>
               </If>
             </div>

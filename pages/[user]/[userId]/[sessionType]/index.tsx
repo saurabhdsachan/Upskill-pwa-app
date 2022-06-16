@@ -30,14 +30,12 @@ const Listing: React.FC<IListing> = ({ data, status, sessionType, user, userId }
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout.Header backflow={true} title={sessionType} />
-      <If condition={status > 300}>
-        <Then>
-          <Layout.Body>
+      <Layout.Body>
+        <If condition={status > 300}>
+          <Then>
             <ErrorState status={400} />
-          </Layout.Body>
-        </Then>
-        <Else>
-          <Layout.Body>
+          </Then>
+          <Else>
             <Switch>
               <Case condition={sessionType === SESSION_TYPE.CONNECT}>
                 <div className="bg-white min-h-free">
@@ -96,9 +94,9 @@ const Listing: React.FC<IListing> = ({ data, status, sessionType, user, userId }
                 </div>
               </Case>
             </Switch>
-          </Layout.Body>
-        </Else>
-      </If>
+          </Else>
+        </If>
+      </Layout.Body>
     </Layout>
   );
 };

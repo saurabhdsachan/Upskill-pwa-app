@@ -6,6 +6,7 @@ import { observer } from 'mobx-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Else, If, Then } from 'react-if';
+import Button from './Button/Button';
 import HeroName from './HeroName';
 
 const getUserPartialUI = (authData) => (
@@ -85,15 +86,10 @@ const Drawer = observer(({ children, isOpen, setIsOpen }) => {
                 </div>
               </Else>
             </If>
-            <button
-              className="h-20 w-20 flex justify-center items-center"
-              onClick={() => {
-                setIsOpen(false);
-              }}
-            >
+            <Button raw className="h-20 w-20" onClick={() => setIsOpen(false)}>
               <XIcon className="h-5 w-5" aria-hidden="true" />
               <span className="sr-only">Close panel</span>
-            </button>
+            </Button>
           </div>
           {children}
         </article>

@@ -1,5 +1,6 @@
 import Episodes from '@components/Episodes';
 import Bullets from '@components/Shared/Bullets';
+import Button from '@components/Shared/Button/Button';
 import EmptyState from '@components/Shared/EmptyState';
 import HeroName from '@components/Shared/HeroName';
 import Layout from '@components/Shared/Layout';
@@ -90,13 +91,14 @@ const SessionDetail: React.FC<ISessionDetail> = ({ data, status, sessionType, se
                     </a>
                   </Link>
                   <div>
-                    <button
+                    <Button
+                      bg="slate"
                       onClick={() => updateDownloadAppBottomSheetState(true)}
-                      className="inline-flex items-center justify-center w-full py-1.5 px-3 border border-transparent rounded-lg text-sm font-medium text-white bg-gradient-to-r from-slate-500 to-slate-600 hover:bg-slate-700 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-400 shadow-xs shadow-slate-500/50"
+                      className="py-1.5 px-3 bg-slate-500"
                     >
                       <UserGroupIcon className="h-4 w-4 mr-2" aria-hidden="true" />{' '}
                       <span className="text-xs">Follow</span>
-                    </button>
+                    </Button>
                   </div>
                 </div>
               )}
@@ -178,13 +180,10 @@ const SessionDetail: React.FC<ISessionDetail> = ({ data, status, sessionType, se
                     </Link>
                   </Case>
                   <Default>
-                    <button
-                      disabled
-                      className="uppercase inline-flex items-center justify-center w-full py-4 border border-transparent rounded-xl text-sm font-medium bg-slate-200 hover:bg-white-700 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-400"
-                    >
+                    <Button disabled size="xl" className="uppercase">
                       <TicketIcon className="h-4 w-4 mr-2" aria-hidden="true" />
                       No slots available
-                    </button>
+                    </Button>
                   </Default>
                 </Switch>
               </div>

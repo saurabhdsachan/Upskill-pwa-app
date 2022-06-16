@@ -1,3 +1,4 @@
+import Button from '@components/Shared/Button/Button';
 import Layout from '@components/Shared/Layout';
 import { useAuthStore } from '@context/authContext';
 import { ArrowRightIcon } from '@heroicons/react/solid';
@@ -101,8 +102,9 @@ const Auth: React.FC = () => {
               blurDataURL={blurredBgImage}
             />
           </div>
-          <h1 className="text-4xl my-16 text-slate-900 leading-10">
-            Hey, <br />
+          <h1 className="w-60 text-4xl my-16 leading-snug">
+            Hey,
+            <br />
             Login Now
           </h1>
           <form onSubmit={handleSubmit(showOTPField ? onOTPSubmit : onSubmit)}>
@@ -141,29 +143,21 @@ const Auth: React.FC = () => {
                 </Else>
               </If>
             </div>
-            <button
-              type="submit"
-              className="mt-8 uppercase inline-flex items-center justify-center w-full p-5 border-b border-transparent text-sm font-medium text-white bg-slate-900 hover:bg-white-700 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-400 rounded-xl"
-            >
+            <Button bg="slate" size="xl" type="submit" className="mt-8 uppercase bg-slate-900">
               {showOTPField ? 'Login / Signup' : 'Send OTP'}{' '}
               <ArrowRightIcon className="h-4 w-4 ml-2" aria-hidden="true" />
-            </button>
+            </Button>
             <If condition={showOTPField}>
               <Then>
-                <div className="mt-6">
-                  <div className="flex justify-between">
-                    <button
-                      className="text-xs px-2 py-1 rounded-full border border-slate-300"
-                      onClick={() => setShowOTPField(false)}
-                    >
+                <div>
+                  <p className="text-xs text-center my-4">OTP has been sent to {mobile}</p>
+                  <div className="flex justify-between space-x-4">
+                    <Button className="text-xs" onClick={() => setShowOTPField(false)}>
                       Change Number
-                    </button>
-                    <button
-                      className="text-xs px-2 py-1 rounded-full border border-slate-300"
-                      onClick={() => onMobileSubmit(mobile)}
-                    >
+                    </Button>
+                    <Button className="text-xs" onClick={() => onMobileSubmit(mobile)}>
                       Resend OTP
-                    </button>
+                    </Button>
                   </div>
                 </div>
               </Then>
