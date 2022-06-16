@@ -40,7 +40,6 @@ const initAnalytics = () => {
 };
 
 const dataToPush = (data, type) => {
-  console.log('Analytics', data, type);
   window.dataLayer.push({ data, ...{ event: type } });
 };
 
