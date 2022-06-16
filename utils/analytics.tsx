@@ -33,13 +33,16 @@ enum EVENT_NAME {
 }
 
 const initAnalytics = () => {
+  // @ts-ignore
   if (!window?.GA_INITIALIZED) {
     ReactGA.initialize(process.env.NEXT_PUBLIC_GOOGLE_GA4_PROP_ID);
+    // @ts-ignore
     window.GA_INITIALIZED = true;
   }
 };
 
 const dataToPush = (data, type) => {
+  // @ts-ignore
   window.dataLayer.push({ data, ...{ event: type } });
 };
 
