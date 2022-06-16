@@ -12,6 +12,22 @@ interface IButton {
   raw?: boolean;
 }
 
+const Blue = () => (
+  <button className="from-blue-600 to-blue-500 hover:bg-blue-700 focus:ring-blue-400 shadow-blue-500/50">Dummy</button>
+);
+
+const Slate = () => (
+  <button className="from-slate-600 to-slate-500 hover:bg-slate-700 focus:ring-slate-400 shadow-slate-500/50">
+    Dummy
+  </button>
+);
+
+const Orange = () => (
+  <button className="from-orange-600 to-orange-500 hover:bg-orange-700 focus:ring-orange-400 shadow-orange-500/50">
+    Dummy
+  </button>
+);
+
 const Button: React.FC<IButton> = ({ onClick, raw, bg, size, className, type = 'button', disabled, children }) => {
   const handleClick = () => {
     onClick && onClick();
