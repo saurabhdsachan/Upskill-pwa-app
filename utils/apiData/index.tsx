@@ -89,3 +89,9 @@ export const getBookings = async ({ userType, feedType, cursor }) => {
     },
   });
 };
+
+export const fromShortUrlKey = async ({ key }) => {
+  const endpoint = `/store/v1/sessions/details/mini?keyId=${key}`;
+
+  return await fetcher(endpoint);
+};

@@ -18,7 +18,7 @@ import { SESSION_TYPE } from '@utils/constants';
 import fetcher from '@utils/fetcher';
 import { HomePageSEO } from '@utils/SEO'; // can also have jsonLD config
 import { observer } from 'mobx-react';
-import { GetStaticPaths, GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import React, { useEffect } from 'react';
@@ -174,11 +174,7 @@ const User: React.FC<IUserPage> = observer(({ data, status }) => {
   );
 });
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  return { paths: [{ params: { user: 'nikhil' } }], fallback: true };
-};
-
-export const getStaticProps: GetStaticProps = async ({ params: { user } }) => {
+export const getServerSideProps: GetServerSideProps = async ({ params: { user } }) => {
   const endpoint = `/store/v1/user/details/others?username=${user}`;
   const res = await fetcher(endpoint);
 

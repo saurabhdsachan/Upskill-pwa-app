@@ -91,6 +91,19 @@ const sessionTypeMapper = (key: string) => {
   }
 };
 
+const sessionTypeMapperReverse = (key: string) => {
+  switch (key) {
+    case 'GROUP':
+      return SESSION_TYPE.WORKSHOP;
+    case 'COHORT':
+      return SESSION_TYPE.COURSE;
+    case 'PLAN':
+      return SESSION_TYPE.PLAN;
+    case 'EXPERTISE':
+      return SESSION_TYPE.CONNECT;
+  }
+};
+
 const weekShortName = (days) =>
   days
     ?.map((day) => day.substr(0, 3).toLowerCase())
@@ -152,6 +165,7 @@ export {
   formatRating,
   formatPrice,
   sessionTypeMapper,
+  sessionTypeMapperReverse,
   weekShortName,
   tsConvert,
   parseJwt,
