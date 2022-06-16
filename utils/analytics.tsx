@@ -29,7 +29,7 @@ enum EVENT_NAME {
   LANDINGPAGE = 'landing-page',
   ROUTECHANGE = 'route-change',
   PWAINSTALLED = 'pwa-installed',
-  PAGEVIEW = 'page-view',
+  PAGEVIEW = 'pageview',
 }
 
 const initAnalytics = () => {
