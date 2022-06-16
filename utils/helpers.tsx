@@ -151,9 +151,7 @@ const socialShare = async ({ title, text, url }) => {
   try {
     await navigator.share({ title, text, url });
     toast.success('Shared successfully');
-  } catch (err) {
-    toast.error('Error in sharing');
-  }
+  } catch (err) {}
 };
 
 export {

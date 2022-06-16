@@ -20,7 +20,7 @@ type Inputs = {
 
 const Auth: React.FC = () => {
   const router = useRouter();
-  const { authData, setAuthData } = useAuthStore();
+  const { setAuthData } = useAuthStore();
   const { login } = useAuth();
   const { register, handleSubmit } = useForm<Inputs>();
   const [showOTPField, setShowOTPField] = useState<boolean>(false);
@@ -32,6 +32,11 @@ const Auth: React.FC = () => {
   };
 
   const onMobileSubmit = async (mobile) => {
+    if (!mobile) {
+      toast.error('Enter mobile number');
+
+      return;
+    }
     const endpoint = `/user/v1/otp?number=${mobile}&countryCode=91`;
     const resp = await fetcher(endpoint);
 
@@ -119,7 +124,7 @@ const Auth: React.FC = () => {
                       <div className="mt-1">
                         <input
                           {...register('otp', { required: showOTPField })}
-                          type="number"
+                          type="text"
                           className="text-center p-4 block w-full rounded-xl bg-slate-200 border-b border-transparent focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-100 focus:border-slate-100"
                         />
                       </div>

@@ -21,7 +21,7 @@ const Footer: React.FC = observer(() => {
         snapPoints={({ maxHeight }) => [maxHeight / 3]}
         open={dataBus?.isDownloadAppBottomSheetOpen}
       >
-        <div className="container">
+        <div className="container mx-auto">
           <div className="p-6 text-center">
             <h3 className="text-lg mb-6">Download the app</h3>
             <p className="text-slate-600 mb-6">
@@ -47,7 +47,7 @@ const Footer: React.FC = observer(() => {
         snapPoints={({ maxHeight }) => [maxHeight / 1.2]}
         open={dataBus?.isShowRecordingBottomSheetOpen}
       >
-        <div className="container">
+        <div className="container mx-auto">
           <div className="p-6 text-center">
             <h3 className="text-lg">Recording List</h3>
             <small className="text-slate-400 mb-6 text-xs">
