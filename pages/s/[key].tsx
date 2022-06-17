@@ -4,25 +4,9 @@ import { fromShortUrlKey } from '@utils/apiData';
 import { sessionTypeMapperReverse } from '@utils/helpers';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
-import React, { useEffect } from 'react';
+import React from 'react';
 
-const ShortPage = ({ data }) => {
-  const session = data?.groupSession || data?.cohortSession || data?.planSession || data;
-
-  const sessionType = sessionTypeMapperReverse(data?.sessionType);
-
-  const router = useRouter();
-  useEffect(() => {
-    router.replace(
-      {
-        pathname: `/${data?.user?.username}/${data?.user?.userId}/${sessionType}/book/${session?.sessionId}`,
-        query: { user: data?.user?.userId, userId: data?.user?.userId, sessionType, sessionId: session?.sessionId },
-      },
-      `/${data?.user?.username}/${data?.user?.userId}/${sessionType}/book/${session?.sessionId}`
-    );
-  }, [data?.sessionType, data?.user?.userId, data?.user?.username, router, session?.sessionId, sessionType]);
-
+const ShortPage = () => {
   return (
     <Layout>
       <Head>
@@ -43,10 +27,18 @@ const ShortPage = ({ data }) => {
 export const getServerSideProps: GetServerSideProps = async ({ params: { key } }) => {
   const res = await fromShortUrlKey({ key });
 
+  const session = res?.data?.groupSession || res?.data?.cohortSession || res?.data?.planSession || res?.data;
+
+  const sessionType = sessionTypeMapperReverse(res?.data?.sessionType);
+
+  const redirectURL = `/${res?.data?.user?.username}/${res?.data?.user?.userId}/${sessionType}/book/${session?.sessionId}`;
+
   return {
-    props: {
-      ...res,
+    redirect: {
+      permanent: false,
+      destination: redirectURL,
     },
+    props: {},
   };
 };
 
