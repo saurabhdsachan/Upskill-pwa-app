@@ -5,85 +5,81 @@ import { ArrowRightIcon } from '@heroicons/react/solid';
 import useAuth from '@hooks/useAuth';
 import { blurredBgImage } from '@public/images/bg-base-64';
 import fetcher from '@utils/fetcher';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 import Head from 'next/head';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Else, If, Then } from 'react-if';
-
-type Inputs = {
-  mobile: number;
-  otp: string;
-};
 
 const Auth: React.FC = () => {
   const router = useRouter();
   const { setAuthData } = useAuthStore();
   const { login } = useAuth();
-  const { register, handleSubmit } = useForm<Inputs>();
-  const [showOTPField, setShowOTPField] = useState<boolean>(false);
-  const [mobile, setMobile] = useState<number>(0);
+  const [mobileValue, setMobileValue] = useState<string>('');
 
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    setMobile(data?.mobile);
-    onMobileSubmit(data?.mobile);
+  const mobileValidation = (values) => {
+    const errors = {};
+    if (!values.mobile) {
+      // @ts-ignore
+      errors.mobile = 'Required';
+    } else if (!/^([789]{1})([\d]{3})[(\D\s)]?[\d]{3}[(\D\s)]?[\d]{3}$/i.test(values.mobile)) {
+      // @ts-ignore
+      errors.mobile = 'Invalid mobile number';
+    }
+
+    return errors;
   };
 
-  const onMobileSubmit = async (mobile) => {
-    if (!mobile) {
-      toast.error('Enter mobile number');
-
-      return;
+  const otpValidation = (values) => {
+    const errors = {};
+    if (!values.otp) {
+      // @ts-ignore
+      errors.otp = 'Required';
+    } else if (!/^[\d]{6}$/i.test(values.otp)) {
+      // @ts-ignore
+      errors.otp = 'Invalid mobile number';
     }
-    const endpoint = `/user/v1/otp?number=${mobile}&countryCode=91`;
+
+    return errors;
+  };
+
+  const onMobileSubmit = async (values, { setSubmitting }) => {
+    const endpoint = `/user/v1/otp?number=${values?.mobile}&countryCode=91`;
     const resp = await fetcher(endpoint);
 
-    const progress = new Promise((resolve, reject) => {
-      if (resp.status === 200) {
-        resolve(resp?.data);
-        setShowOTPField(true);
-      } else {
-        reject(resp?.statusText);
-      }
-    });
-
-    toast.promise(progress, {
-      loading: 'submitting',
-      success: 'OTP sent successfully',
-      error: 'Please try again',
-    });
+    if (resp.status === 200) {
+      toast.success('OTP sent successfully');
+      setMobileValue(values?.mobile);
+      setSubmitting && setSubmitting(false);
+    } else {
+      toast.error('Try again');
+      setSubmitting && setSubmitting(false);
+    }
   };
 
-  const onOTPSubmit: SubmitHandler<Inputs> = async (data) => {
+  const onOTPSubmit = async (values, { setSubmitting }) => {
     const endpoint = `/user/v1/login/otp`;
     const resp = await fetcher(endpoint, {
       method: 'POST',
       body: {
         countryCode: '91',
-        number: mobile,
-        otp: data.otp,
+        number: mobileValue,
+        otp: values?.otp,
       },
     });
 
-    const progress = new Promise((resolve, reject) => {
-      if (resp.status === 200 && resp.data?.success) {
-        const { creator, userId, username, name, number, phoneNumber, profileImgUrl } = resp?.data?.data;
-        setAuthData({ creator, userId, username, name, number, phoneNumber, profileImgUrl });
-        setShowOTPField(false);
-        resolve('foo');
-        login({ token: resp?.data?.message, cb: () => router.push(router?.query?.returnUrl?.toString() || '/') });
-      } else {
-        reject('');
-      }
-    });
-
-    toast.promise(progress, {
-      loading: 'submitting',
-      success: 'Login successful',
-      error: 'OTP not valid',
-    });
+    if (resp.status === 200 && resp.data?.success) {
+      toast.success('Login successful');
+      const { creator, userId, username, name, number, phoneNumber, profileImgUrl } = resp?.data?.data;
+      setSubmitting && setSubmitting(false);
+      setAuthData({ creator, userId, username, name, number, phoneNumber, profileImgUrl });
+      login({ token: resp?.data?.message, cb: () => router.push(router?.query?.returnUrl?.toString() || '/') });
+    } else {
+      toast.error('OTP not valid');
+      setSubmitting && setSubmitting(false);
+    }
   };
 
   return (
@@ -112,66 +108,83 @@ const Auth: React.FC = () => {
             <br />
             Login Now
           </h1>
-          <form onSubmit={handleSubmit(showOTPField ? onOTPSubmit : onSubmit)}>
-            <div className="mt-4">
-              <If condition={showOTPField}>
-                <Then>
-                  <div className="mt-4">
-                    <div className="col-span-2">
-                      <label htmlFor="otp" className="block text-sm font-medium text-gray-700">
-                        OTP
-                      </label>
-                      <div className="mt-1">
-                        <input
-                          {...register('otp', { required: showOTPField })}
-                          type="text"
-                          className="text-center p-4 block w-full rounded-xl bg-slate-200 border-b border-transparent focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-100 focus:border-slate-100"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </Then>
-                <Else>
-                  <div className="col-span-2">
-                    <label htmlFor="otp" className="block text-sm font-medium text-gray-700">
+
+          <If condition={!mobileValue}>
+            <Then>
+              <Formik
+                initialValues={{ mobile: '' }}
+                validate={(values) => mobileValidation(values)}
+                onSubmit={(values, { setSubmitting }) => onMobileSubmit(values, { setSubmitting })}
+              >
+                {({ isSubmitting }) => (
+                  <Form>
+                    <label htmlFor="mobile" className="my-2 block">
                       Mobile
                     </label>
-                    <div className="mt-1">
-                      <input
-                        {...register('mobile', { required: showOTPField })}
-                        type="tel"
-                        placeholder="Mobile Number"
-                        className="p-4 block w-full rounded-xl bg-slate-200 border-b border-transparent focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-100 focus:border-slate-100"
-                      />
+                    <Field
+                      type="tel"
+                      name="mobile"
+                      placeholder="mobile number"
+                      className="p-4 block w-full rounded-xl bg-slate-200 border-b border-transparent focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-100 focus:border-slate-100"
+                    />
+                    <div className="h-8">
+                      <ErrorMessage name="mobile" component="small" className="text-xs text-red-600" />
                     </div>
-                  </div>
-                </Else>
-              </If>
-            </div>
-            <Button bg="slate" size="xl" type="submit" className="mt-8 uppercase bg-slate-900">
-              {showOTPField ? 'Login / Signup' : 'Send OTP'}{' '}
-              <ArrowRightIcon className="h-4 w-4 ml-2" aria-hidden="true" />
-            </Button>
-            <If condition={showOTPField}>
-              <Then>
-                <div>
-                  <p className="text-xs text-center my-4">OTP has been sent to {mobile}</p>
-                  <div className="flex justify-between space-x-4">
-                    <Button className="text-xs" onClick={() => setShowOTPField(false)}>
-                      Change Number
+
+                    <Button bg="slate" size="xl" type="submit" disabled={isSubmitting}>
+                      Submit <ArrowRightIcon className="h-4 w-4 ml-2" aria-hidden="true" />
                     </Button>
-                    <Button className="text-xs" onClick={() => onMobileSubmit(mobile)}>
-                      Resend OTP
+                  </Form>
+                )}
+              </Formik>
+            </Then>
+            <Else>
+              <Formik
+                initialValues={{ otp: '' }}
+                validate={(values) => otpValidation(values)}
+                onSubmit={(values, { setSubmitting }) => onOTPSubmit(values, { setSubmitting })}
+              >
+                {({ isSubmitting }) => (
+                  <Form>
+                    <label htmlFor="otp" className="my-2 block">
+                      OTP
+                    </label>
+                    <Field
+                      type="text"
+                      name="otp"
+                      placeholder="OTP"
+                      className="p-4 block w-full rounded-xl bg-slate-200 border-b border-transparent focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-100 focus:border-slate-100"
+                    />
+                    <div className="h-8">
+                      <ErrorMessage name="otp" component="small" className="text-xs text-red-600" />
+                    </div>
+
+                    <Button bg="slate" size="xl" type="submit" disabled={isSubmitting}>
+                      Submit
                     </Button>
-                  </div>
+                  </Form>
+                )}
+              </Formik>
+              <div>
+                <p className="text-xs text-center my-4">OTP has been sent to {mobileValue}</p>
+                <div className="flex justify-between space-x-4">
+                  <Button className="text-xs" onClick={() => setMobileValue('')}>
+                    Change Number
+                  </Button>
+                  <Button
+                    className="text-xs"
+                    onClick={() => onMobileSubmit({ mobile: mobileValue }, { setSubmitting: () => {} })}
+                  >
+                    Resend OTP
+                  </Button>
                 </div>
-              </Then>
-            </If>
-          </form>
+              </div>
+            </Else>
+          </If>
         </div>
       </Layout.Body>
     </Layout>
   );
 };
 
-export default Auth;
+export default React.memo(Auth);

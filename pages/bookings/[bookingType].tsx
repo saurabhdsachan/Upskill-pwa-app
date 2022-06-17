@@ -2,6 +2,7 @@ import BookingCard from '@components/Cards/BookingCard';
 import Button from '@components/Shared/Button/Button';
 import EmptyState from '@components/Shared/EmptyState';
 import Layout from '@components/Shared/Layout';
+import LoadingState from '@components/Shared/LoadingState';
 import QuickHelp from '@components/Shared/QuickHelp';
 import { useAuthStore } from '@context/authContext';
 import { Tab } from '@headlessui/react';
@@ -22,8 +23,6 @@ interface IQuery {
 }
 
 const Bookings: React.FC = observer(() => {
-  const [timeFrame, setTimeFrame] = useState<string>(FEED_TYPE.TODAY);
-  const [bookingTypeState, setBookingTypeState] = useState<string>(FEED_TYPE.TODAY);
   const [cursor, setCursor] = useState<string | null>(null);
   const [bookingList, setBookingList] = useState([]);
   const [tabList, setTabList] = useState([]);
@@ -56,8 +55,6 @@ const Bookings: React.FC = observer(() => {
       setBookingList(res?.data?.items);
       setTabList(res?.data?.chips);
       setCursor(res?.data?.cursor);
-      setTimeFrame(type);
-      setBookingTypeState(bookingType);
     }
   }, [authData?.userId, bookingType, type]);
 
@@ -78,22 +75,6 @@ const Bookings: React.FC = observer(() => {
             <div className="bg-white flex">
               <Link
                 href={{
-                  pathname: `/bookings/booked`,
-                  query: { type, bookingType: 'booked' },
-                }}
-                as={`/bookings/booked?type=${type}`}
-              >
-                <a
-                  className={classNames(
-                    bookingType === 'booked' ? 'border-blue-500' : ' border-gray-100',
-                    'pb-3 border-b-2 text-sm leading-5 bg-white flex-1 text-center focus:outline-none'
-                  )}
-                >
-                  Booked
-                </a>
-              </Link>
-              <Link
-                href={{
                   pathname: `/bookings/received`,
                   query: { type, bookingType: 'received' },
                 }}
@@ -108,64 +89,87 @@ const Bookings: React.FC = observer(() => {
                   Received
                 </a>
               </Link>
+              <Link
+                href={{
+                  pathname: `/bookings/booked`,
+                  query: { type, bookingType: 'booked' },
+                }}
+                as={`/bookings/booked?type=${type}`}
+              >
+                <a
+                  className={classNames(
+                    bookingType === 'booked' ? 'border-blue-500' : ' border-gray-100',
+                    'pb-3 border-b-2 text-sm leading-5 bg-white flex-1 text-center focus:outline-none'
+                  )}
+                >
+                  Booked
+                </a>
+              </Link>
             </div>
           )}
-          <Tab.Group
-            defaultIndex={tabs?.indexOf(type as string)}
-            onChange={(index) => {
-              router.push(
-                { pathname: `/bookings/${bookingType}`, query: { type: tabs[index], bookingType } },
-                `/bookings/${bookingType}?type=${tabs[index]}`
-              );
-            }}
-          >
-            <Tab.List className="sticky top-14 bg-white z-10">
-              <div className="overflow-auto">
-                <div className="overflow-x-auto flex no-scrollbar">
-                  {Object.entries(FEED_TYPE).map((item, index) => (
-                    <Tab
-                      key={item[1]}
-                      className={({ selected }) =>
-                        classNames(
-                          selected ? 'border-blue-500' : 'border-slate-100 text-slate-400',
-                          'px-4 py-3 border-b-2 text-xs bg-white whitespace-nowrap focus:outline-none'
-                        )
-                      }
-                    >
-                      {tabList?.[index]?.chipName || item[1]}
-                    </Tab>
-                  ))}
-                </div>
-              </div>
-            </Tab.List>
+          <If condition={tabList.length !== 0}>
+            <Then>
+              <Tab.Group
+                defaultIndex={tabs?.indexOf(type as string)}
+                onChange={(index) => {
+                  router.push(
+                    { pathname: `/bookings/${bookingType}`, query: { type: tabs[index], bookingType } },
+                    `/bookings/${bookingType}?type=${tabs[index]}`
+                  );
+                }}
+              >
+                <Tab.List className="sticky top-14 bg-white z-10">
+                  <div className="overflow-auto">
+                    <div className="overflow-x-auto flex no-scrollbar">
+                      {Object.entries(FEED_TYPE).map((item, index) => (
+                        <Tab
+                          key={item[1]}
+                          className={({ selected }) =>
+                            classNames(
+                              selected ? 'border-blue-500' : 'border-slate-100 text-slate-400',
+                              'px-4 py-3 border-b-2 text-xs bg-white whitespace-nowrap focus:outline-none'
+                            )
+                          }
+                        >
+                          {tabList?.[index]?.chipName}
+                        </Tab>
+                      ))}
+                    </div>
+                  </div>
+                </Tab.List>
 
-            <Tab.Panels>
-              {Object.entries(FEED_TYPE).map((item) => (
-                <Tab.Panel key={`${item[1]}-panel`} className="min-h-free p-4">
-                  <If condition={bookingList !== null && bookingList?.length !== 0}>
-                    <Then>
-                      {bookingList?.map((booking) => {
-                        return <BookingCard key={booking?.booking?.bookingId} data={booking} type={type} />;
-                      })}
-                      <div className="flex">
-                        {!!cursor && bookingList?.length > 0 && (
-                          <Button size="big" bg="blue" onClick={getMoreData}>
-                            Load More
-                          </Button>
-                        )}
-                      </div>
-                      <div className="mt-14">
-                        <QuickHelp />
-                      </div>
-                    </Then>
-                    <Else>
-                      <EmptyState title={`No ${type} bookings found`} />
-                    </Else>
-                  </If>
-                </Tab.Panel>
-              ))}
-            </Tab.Panels>
-          </Tab.Group>
+                <Tab.Panels>
+                  {Object.entries(FEED_TYPE).map((item) => (
+                    <Tab.Panel key={`${item[1]}-panel`} className="min-h-free p-4">
+                      <If condition={bookingList !== null && bookingList?.length !== 0}>
+                        <Then>
+                          {bookingList?.map((booking) => {
+                            return <BookingCard key={booking?.booking?.bookingId} data={booking} type={type} />;
+                          })}
+                          <div className="flex">
+                            {!!cursor && bookingList?.length > 0 && (
+                              <Button size="big" bg="blue" onClick={getMoreData}>
+                                Load More
+                              </Button>
+                            )}
+                          </div>
+                          <div className="mt-14">
+                            <QuickHelp />
+                          </div>
+                        </Then>
+                        <Else>
+                          <EmptyState title={`No ${type} bookings found`} />
+                        </Else>
+                      </If>
+                    </Tab.Panel>
+                  ))}
+                </Tab.Panels>
+              </Tab.Group>
+            </Then>
+            <Else>
+              <LoadingState />
+            </Else>
+          </If>
         </div>
       </Layout.Body>
       {bookingList?.length !== 0 && bookingList !== null && <Layout.PreFooter />}

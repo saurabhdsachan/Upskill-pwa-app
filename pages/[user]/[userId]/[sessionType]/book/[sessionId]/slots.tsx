@@ -208,7 +208,7 @@ const Slots: React.FC = observer(() => {
             <div className="p-6 sticky bottom-0 bg-white">
               <Button bg="orange" onClick={handleClick} className="uppercase py-4">
                 <TicketIcon className="h-4 w-4 mr-2" aria-hidden="true" />
-                {!authData?.userId && 'Login & '}Book Now
+                Book Now
               </Button>
             </div>
           </Case>
