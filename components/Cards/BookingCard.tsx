@@ -5,7 +5,7 @@ import { useDataBusStore } from '@context/dataBusContext';
 import { CheckCircleIcon, StarIcon, VideoCameraIcon, XCircleIcon } from '@heroicons/react/outline';
 import { blurredBgImage } from '@public/images/bg-base-64';
 import { FEED_TYPE } from '@utils/constants';
-import { classNames, formatPrice, getImageUrl } from '@utils/helpers';
+import { classNames, getImageUrl } from '@utils/helpers';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import Image from 'next/image';
@@ -91,9 +91,7 @@ const BookingCard = ({ data: { booking }, type }) => {
               <CheckCircleIcon className="w-5 h-5 inline text-blue-500" aria-hidden="true" />
             )}
           </h3>
-          <small className="text-slate-600 text-xs">
-            {'INR'} {formatPrice.format(200)}
-          </small>
+          <small className="text-slate-600 text-xs">{booking?.priceLabel}</small>
         </div>
       </div>
       <Tags data={tagNames()} />

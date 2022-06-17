@@ -45,13 +45,13 @@ const Drawer = observer(({ children, isOpen, setIsOpen }) => {
       className={
         'fixed overflow-hidden h-full z-10 bg-slate-900 bg-opacity-50 inset-0 transform ease-in-out ' +
         (isOpen
-          ? ' transition-opacity opacity-100 duration-500 translate-x-0  '
+          ? ' transition-opacity opacity-100 duration-800 translate-x-0  '
           : ' transition-all opacity-90 -translate-x-full  ')
       }
     >
       <section
         className={
-          'w-3/4 max-w-lg left-0 absolute bg-white h-full shadow-xl delay-400 duration-200 ease-in-out transition-all transform ' +
+          'w-3/4 max-w-lg left-0 absolute bg-white h-full shadow-xl delay-400 duration-500 ease-in-out transition-all transform ' +
           (isOpen ? ' translate-x-0 ' : ' -translate-x-full ')
         }
       >
@@ -94,12 +94,7 @@ const Drawer = observer(({ children, isOpen, setIsOpen }) => {
           {children}
         </article>
       </section>
-      <section
-        className="w-screen h-full"
-        onClick={() => {
-          setIsOpen(false);
-        }}
-      />
+      <section className="w-screen h-full" onClick={() => setIsOpen(false)} />
     </div>
   );
 });
