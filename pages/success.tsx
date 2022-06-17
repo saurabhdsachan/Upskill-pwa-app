@@ -99,7 +99,7 @@ const Slots: React.FC = () => {
                       <p className="text-slate-400">Status: {bookingDetails?.paymentStatus}</p>
                       <p className="text-slate-400">{bookingDetails?.priceLabel}</p>
                     </div>
-                    <Link href="/bookings/booked">
+                    <Link href="/bookings/booked?type=today">
                       <a className="inline-flex items-center justify-center py-2 px-6 border border-transparent rounded-lg text-sm font-medium text-white bg-gradient-to-r from-gray-900 to-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-gray-400">
                         My Bookings
                       </a>

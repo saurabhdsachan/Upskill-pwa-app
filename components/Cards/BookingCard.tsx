@@ -10,6 +10,7 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { If, Then } from 'react-if';
 
 dayjs.extend(relativeTime);
@@ -29,6 +30,10 @@ const BookingCard = ({ data: { booking }, type }) => {
   const handleViewRecording = (data) => {
     updateSessionRecordingList(data);
     updateShowRecordingBottomSheetState(true);
+  };
+
+  const giveInfo = () => {
+    toast.error(' You can join the session on or 10 minutes before the session starts', { id: 'joinInfo' });
   };
 
   const openSessionLink = () => {
@@ -63,7 +68,7 @@ const BookingCard = ({ data: { booking }, type }) => {
   });
 
   return (
-    <div className="mb-4 rounded-2xl bg-white border border-slate-300 shadow-xs">
+    <div className="mb-4 rounded-2xl bg-white border border-slate-200 shadow-xs">
       <div className="flex space-x-4 p-4">
         <div className="w-12 h-12 rounded-xl shadow relative aspect-1 overflow-hidden">
           <Image
@@ -101,10 +106,15 @@ const BookingCard = ({ data: { booking }, type }) => {
                 <StarIcon className="w-4 h-4 mr-2 inline" aria-hidden="true" />
                 Rate Session
               </Button>
-              {booking?.recording && (
+              {booking?.recording ? (
                 <Button onClick={() => handleViewRecording(booking?.recording)}>
                   <VideoCameraIcon className="w-4 h-4 mr-2 inline" aria-hidden="true" />
                   Recordings
+                </Button>
+              ) : (
+                <Button disabled>
+                  <VideoCameraIcon className="w-4 h-4 mr-2 inline" aria-hidden="true" />
+                  Unavailable
                 </Button>
               )}
             </div>
@@ -129,7 +139,7 @@ const BookingCard = ({ data: { booking }, type }) => {
               </If>
               <If condition={!sessionActive && !linkActive}>
                 <Then>
-                  <Button size="big" className="uppercase">
+                  <Button size="big" className="uppercase" onClick={giveInfo}>
                     Session will start {dayjs(booking?.startTime).fromNow()}
                   </Button>
                 </Then>

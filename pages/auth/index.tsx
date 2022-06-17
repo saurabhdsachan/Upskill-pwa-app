@@ -50,11 +50,11 @@ const Auth: React.FC = () => {
     const resp = await fetcher(endpoint);
 
     if (resp.status === 200) {
-      toast.success('OTP sent successfully');
+      toast.success('OTP sent successfully', { id: 'success' });
       setMobileValue(values?.mobile);
       setSubmitting && setSubmitting(false);
     } else {
-      toast.error('Try again');
+      toast.error('Try again', { id: 'error' });
       setSubmitting && setSubmitting(false);
     }
   };
@@ -71,13 +71,13 @@ const Auth: React.FC = () => {
     });
 
     if (resp.status === 200 && resp.data?.success) {
-      toast.success('Login successful');
+      toast.success('Login successful', { id: 'success' });
       const { creator, userId, username, name, number, phoneNumber, profileImgUrl } = resp?.data?.data;
       setSubmitting && setSubmitting(false);
       setAuthData({ creator, userId, username, name, number, phoneNumber, profileImgUrl });
       login({ token: resp?.data?.message, cb: () => router.push(router?.query?.returnUrl?.toString() || '/') });
     } else {
-      toast.error('OTP not valid');
+      toast.error('OTP not valid', { id: 'error' });
       setSubmitting && setSubmitting(false);
     }
   };

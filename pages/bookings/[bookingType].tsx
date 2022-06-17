@@ -3,7 +3,6 @@ import Button from '@components/Shared/Button/Button';
 import EmptyState from '@components/Shared/EmptyState';
 import Layout from '@components/Shared/Layout';
 import LoadingState from '@components/Shared/LoadingState';
-import QuickHelp from '@components/Shared/QuickHelp';
 import { useAuthStore } from '@context/authContext';
 import { Tab } from '@headlessui/react';
 import { getBookings } from '@utils/apiData';
@@ -152,9 +151,6 @@ const Bookings: React.FC = observer(() => {
                                 Load More
                               </Button>
                             )}
-                          </div>
-                          <div className="mt-14">
-                            <QuickHelp />
                           </div>
                         </Then>
                         <Else>

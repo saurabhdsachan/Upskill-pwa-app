@@ -150,7 +150,7 @@ const parseJwt = (token) => {
 const socialShare = async ({ title, text, url }) => {
   try {
     await navigator.share({ title, text, url });
-    toast.success('Shared successfully');
+    toast.success('Shared successfully', { id: 'success' });
   } catch (err) {}
 };
 

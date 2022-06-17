@@ -34,7 +34,7 @@ const Body: React.FC<IBody> = ({ children }) => {
         const { creator, userId, username, name, number, phoneNumber, profileImgUrl } = res?.data?.user;
         setAuthData({ creator, userId, username, name, number, phoneNumber, profileImgUrl });
       } else {
-        toast.error(res?.status === 403 ? 'Unauthorized' : 'Network Authentication Required');
+        toast.error(res?.status === 403 ? 'Unauthorized' : 'Network Authentication Required', { id: 'error' });
       }
     } else if (!token && PRIVATE_PAGE_ROUTES.includes(path)) {
       router.replace({

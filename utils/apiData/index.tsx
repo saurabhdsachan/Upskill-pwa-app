@@ -1,5 +1,6 @@
 import fetcher from '@utils/fetcher';
 import { sessionTypeMapper } from '@utils/helpers';
+import toast from 'react-hot-toast';
 
 export const verifyUser = async () => {
   const endpoint = '/store/v1/user/details';
@@ -8,6 +9,11 @@ export const verifyUser = async () => {
 };
 
 export const bookDemoCall = async ({ creatorId, startTime, endTime }) => {
+  if (!creatorId || !startTime || !endTime) {
+    toast.error('Slot selection pending', { id: 'error' });
+
+    return;
+  }
   const endpoint = `/bookings/v1/booking/demo`;
 
   return await fetcher(endpoint, {
@@ -23,6 +29,11 @@ export const bookDemoCall = async ({ creatorId, startTime, endTime }) => {
 };
 
 export const bookConnectCall = async ({ creatorId, expertiseId, startTime, endTime }) => {
+  if (!creatorId || !expertiseId || !startTime || !endTime) {
+    toast.error('Slot selection pending', { id: 'error' });
+
+    return;
+  }
   const endpoint = `/bookings/v1/booking/expertise`;
 
   return await fetcher(endpoint, {
@@ -39,6 +50,11 @@ export const bookConnectCall = async ({ creatorId, expertiseId, startTime, endTi
 };
 
 export const bookPlanCall = async ({ sessionId, startTime }) => {
+  if (!sessionId || !startTime) {
+    toast.error('Slot selection pending', { id: 'error' });
+
+    return;
+  }
   const endpoint = `/bookings/v1/booking/plan`;
 
   return await fetcher(endpoint, {
@@ -51,6 +67,11 @@ export const bookPlanCall = async ({ sessionId, startTime }) => {
 };
 
 export const bookSessionCall = async ({ sessionId, sessionType, instanceId }) => {
+  if (!sessionId || !sessionType || !instanceId) {
+    toast.error('Slot selection pending', { id: 'error' });
+
+    return;
+  }
   const endpoint = `/bookings/v1/booking/session`;
 
   return await fetcher(endpoint, {
