@@ -104,6 +104,15 @@ const sessionTypeMapperReverse = (key: string) => {
   }
 };
 
+const getPageTitle = (sessionType) => {
+  switch (sessionType) {
+    case SESSION_TYPE.CONNECT:
+      return 'Expertise';
+    default:
+      return `${sessionType}s`;
+  }
+};
+
 const weekShortName = (days) =>
   days
     ?.map((day) => day.substr(0, 3).toLowerCase())
@@ -164,6 +173,7 @@ export {
   formatPrice,
   sessionTypeMapper,
   sessionTypeMapperReverse,
+  getPageTitle,
   weekShortName,
   tsConvert,
   parseJwt,

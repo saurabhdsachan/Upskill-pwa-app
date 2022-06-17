@@ -67,7 +67,7 @@ const Bookings: React.FC = observer(() => {
         <title>{bookingType} bookings | Pep</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Layout.Header backflow={false} title="My Bookings" />
+      <Layout.Header backflow={true} title="My Bookings" />
       <Layout.Body>
         <div className="bg-white relative">
           {isCreator && (

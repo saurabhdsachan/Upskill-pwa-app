@@ -6,8 +6,8 @@ import ErrorState from '@components/Shared/ErrorState';
 import Layout from '@components/Shared/Layout';
 import { SESSION_TYPE } from '@utils/constants';
 import fetcher from '@utils/fetcher';
-import { sessionTypeMapper } from '@utils/helpers';
-import { GetStaticPaths, GetStaticProps } from 'next';
+import { getPageTitle, sessionTypeMapper } from '@utils/helpers';
+import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import React from 'react';
 import { Case, Else, If, Switch, Then } from 'react-if';
@@ -26,10 +26,10 @@ const Listing: React.FC<IListing> = ({ data, status, sessionType, user, userId }
   return (
     <Layout>
       <Head>
-        <title>{sessionType} | Pep</title>
+        <title>{getPageTitle(sessionType)} | Pep</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Layout.Header backflow={true} title={sessionType} />
+      <Layout.Header backflow={true} title={getPageTitle(sessionType)} />
       <Layout.Body>
         <If condition={status > 300}>
           <Then>
@@ -101,16 +101,7 @@ const Listing: React.FC<IListing> = ({ data, status, sessionType, user, userId }
   );
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  return {
-    paths: [
-      { params: { user: 'sa14', userId: '4fa37d3a-2a7e-40f9-b14f-b3a049055e17', sessionType: SESSION_TYPE.CONNECT } },
-    ],
-    fallback: true,
-  };
-};
-
-export const getStaticProps: GetStaticProps = async ({ params: { user, userId, sessionType } }) => {
+export const getServerSideProps: GetServerSideProps = async ({ params: { user, userId, sessionType } }) => {
   const creatorId = userId;
 
   let options = {
@@ -122,7 +113,7 @@ export const getStaticProps: GetStaticProps = async ({ params: { user, userId, s
         tense: 'UPCOMING',
         sessionType: sessionTypeMapper(sessionType as string),
       },
-      limit: 25,
+      limit: 18,
     },
   };
 

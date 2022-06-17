@@ -1,5 +1,6 @@
 import { ChevronDoubleRightIcon } from '@heroicons/react/solid';
 import { SESSION_TYPE } from '@utils/constants';
+import { getPageTitle } from '@utils/helpers';
 import Link from 'next/link';
 import React from 'react';
 import WorkshopCard from './Cards/WorkshopCard';
@@ -16,7 +17,7 @@ const WorkshopScroll: React.FC<IWorkshopScroll> = ({ initData, username, userId 
       <div className="px-6 py-4">
         <div className="flex">
           <div className="flex-1">
-            <h3>Workshops</h3>
+            <h3>{getPageTitle(SESSION_TYPE.WORKSHOP)}</h3>
           </div>
           <div>
             <Link href={`/${username}/${userId}/${SESSION_TYPE.WORKSHOP}`}>

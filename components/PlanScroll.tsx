@@ -1,5 +1,6 @@
 import { ChevronDoubleRightIcon } from '@heroicons/react/solid';
 import { SESSION_TYPE } from '@utils/constants';
+import { getPageTitle } from '@utils/helpers';
 import Link from 'next/link';
 import React from 'react';
 import PlanCard from './Cards/PlanCard';
@@ -16,7 +17,7 @@ const PlanScroll: React.FC<IPlanScroll> = ({ initData, username, userId }) => {
       <div className="px-6 py-4">
         <div className="flex">
           <div className="flex-1">
-            <h3>Plans</h3>
+            <h3>{getPageTitle(SESSION_TYPE.PLAN)}</h3>
           </div>
           <div>
             <Link href={`/${username}/${userId}/${SESSION_TYPE.PLAN}`}>

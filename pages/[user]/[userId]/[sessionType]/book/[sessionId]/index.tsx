@@ -153,7 +153,7 @@ const SessionDetail: React.FC<ISessionDetail> = ({ data, status, sessionType, se
                 )}
 
                 <div className="mt-4">
-                  <h2 className="font-bold mb-2">Details</h2>
+                  <h2 className="font-bold mb-2">Description</h2>
                   <p
                     className="prose prose-sm whitespace-pre-line"
                     dangerouslySetInnerHTML={{ __html: session?.description }}

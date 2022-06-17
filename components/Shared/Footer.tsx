@@ -9,6 +9,7 @@ const Footer: React.FC = observer(() => {
     dataBus,
     updateDownloadAppBottomSheetState,
     updateShowRecordingBottomSheetState,
+    updateShowLanguageBottomSheetState,
     updateSessionRecordingList,
   } = useDataBusStore();
   const playerRef = useRef();
@@ -73,6 +74,27 @@ const Footer: React.FC = observer(() => {
               {dataBus?.sessionRecordingList?.recordings?.map((record) => (
                 <RecordingCard key={record?.name} data={record} cb={() => setPlayerUrl(record?.url)} />
               ))}
+            </div>
+          </div>
+        </div>
+      </BottomSheet>
+      <BottomSheet
+        onDismiss={() => updateShowLanguageBottomSheetState(false)}
+        snapPoints={({ maxHeight }) => [maxHeight / 2]}
+        open={dataBus?.isShowLanguageBottomSheetOpen}
+      >
+        <div className="container mx-auto">
+          <div className="p-6 text-center">
+            <h3 className="text-lg mb-6">Language</h3>
+            {}
+            <div className="prose prose-sm capitalize text-left">
+              <ul role="list">
+                {dataBus?.userLanguageList?.map((item) => (
+                  <li key={item}>
+                    <span>{item.toLowerCase()}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>

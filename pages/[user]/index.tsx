@@ -12,6 +12,7 @@ import SEOWrapper from '@components/Shared/SEO/SEOWrapper';
 import SocialLinks from '@components/Shared/SocialLinks';
 import WorkshopScroll from '@components/WorkshopScroll';
 import { useAuthStore } from '@context/authContext';
+import { useDataBusStore } from '@context/dataBusContext';
 import { StarIcon, TicketIcon, TranslateIcon } from '@heroicons/react/outline';
 import useAuth from '@hooks/useAuth';
 import { SESSION_TYPE } from '@utils/constants';
@@ -41,6 +42,12 @@ interface IUserPage {
 const User: React.FC<IUserPage> = observer(({ data, status }) => {
   const { setUsername } = useAuth();
   const { authData } = useAuthStore();
+  const { updateUserLanguageList, updateShowLanguageBottomSheetState } = useDataBusStore();
+
+  const handleViewLanguages = (data) => {
+    updateUserLanguageList(data);
+    updateShowLanguageBottomSheetState(true);
+  };
 
   useEffect(() => {
     if (authData?.username !== data?.user?.username) {
@@ -53,7 +60,7 @@ const User: React.FC<IUserPage> = observer(({ data, status }) => {
       <SEOWrapper seoProps={HomePageSEO.HomeSEO} />
       <Layout>
         <Head>
-          <title>{data?.user?.name} | Pep</title>
+          <title>{data?.user?.name || 'User not found'} | Pep</title>
         </Head>
         <Layout.Header backflow={false} title={data?.user?.name} />
         <Layout.Body>
@@ -101,7 +108,11 @@ const User: React.FC<IUserPage> = observer(({ data, status }) => {
                         <div className="w-8 h-8 bg-blue-100 flex justify-center items-center rounded-full">
                           <TranslateIcon className="h-4 w-4 text-blue-500" aria-hidden="true" />
                         </div>
-                        <div className="text-left">
+                        <div
+                          className="text-left"
+                          role="button"
+                          onClick={() => handleViewLanguages(data?.user?.preferredLanguages)}
+                        >
                           <small className="text-xs text-blue-500 block">Language</small>
                           <span className="text-xs capitalize">
                             {data?.user?.preferredLanguages

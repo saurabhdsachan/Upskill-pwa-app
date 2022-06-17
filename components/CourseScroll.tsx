@@ -1,5 +1,6 @@
 import { ChevronDoubleRightIcon } from '@heroicons/react/solid';
 import { SESSION_TYPE } from '@utils/constants';
+import { getPageTitle } from '@utils/helpers';
 import Link from 'next/link';
 import React from 'react';
 import CourseCard from './Cards/CourseCard';
@@ -16,7 +17,7 @@ const CourseScroll: React.FC<ICourseScroll> = ({ initData, username, userId }) =
       <div className="px-6 py-4">
         <div className="flex">
           <div className="flex-1">
-            <h3>Courses</h3>
+            <h3>{getPageTitle(SESSION_TYPE.COURSE)}</h3>
           </div>
           <div>
             <Link href={`/${username}/${userId}/${SESSION_TYPE.COURSE}`}>
