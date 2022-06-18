@@ -107,7 +107,7 @@ const sessionTypeMapperReverse = (key: string) => {
 const getPageTitle = (sessionType) => {
   switch (sessionType) {
     case SESSION_TYPE.CONNECT:
-      return 'Expertise';
+      return '1:1 Consultations';
     default:
       return `${sessionType}s`;
   }

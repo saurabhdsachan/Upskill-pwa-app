@@ -6,7 +6,6 @@ import dayjs from 'dayjs';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React from 'react';
 
 const WorkshopCard = ({ data, type, userId }: { data: any; type: 'v-card' | 'h-card'; userId: string }) => {
   const { query } = useRouter();
@@ -36,7 +35,9 @@ const WorkshopCard = ({ data, type, userId }: { data: any; type: 'v-card' | 'h-c
             </div>
             <div>
               <h4 className="leading-6 capitalize line-clamp-2 mb-1">{data?.title}</h4>
-              <p className="text-xs mb-2 text-slate-600">{dayjs(data?.startTime).format('DD MMM | HH:MM a')}</p>
+              <p className="text-xs mb-2 text-slate-600">
+                {data?.startTime === 0 ? 'No Slots Available' : dayjs(data?.startTime).format('DD MMM | HH:MM a')}
+              </p>
               <div className="flex items-center mb-1">
                 {[0, 1, 2, 3, 4].map((rating) => (
                   <StarIcon
