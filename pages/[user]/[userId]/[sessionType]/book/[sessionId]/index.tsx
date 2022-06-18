@@ -175,7 +175,9 @@ const SessionDetail: React.FC<ISessionDetail> = ({ data, status, sessionType, se
                     <Link href={`/${user}/${userId}/${sessionType}/book/${sessionId}/slots`}>
                       <a className="uppercase inline-flex items-center justify-center w-full py-4 border border-transparent rounded-xl text-sm font-medium text-white bg-gradient-to-r from-orange-600 to-orange-500 hover:bg-white-700 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-orange-400">
                         <TicketIcon className="h-4 w-4 mr-2" aria-hidden="true" />
-                        Choose Slot
+                        {sessionType === SESSION_TYPE.CONNECT || sessionType === SESSION_TYPE.DEMO
+                          ? 'Book 1-1 Session'
+                          : 'Choose Slot'}
                       </a>
                     </Link>
                   </Case>

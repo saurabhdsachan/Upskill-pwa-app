@@ -24,7 +24,7 @@ const Auth: React.FC = () => {
     if (!values.mobile) {
       // @ts-ignore
       errors.mobile = 'Required';
-    } else if (!/^([789]{1})([\d]{3})[(\D\s)]?[\d]{3}[(\D\s)]?[\d]{3}$/i.test(values.mobile)) {
+    } else if (!/^([6789]{1})([\d]{3})[(\D\s)]?[\d]{3}[(\D\s)]?[\d]{3}$/i.test(values.mobile)) {
       // @ts-ignore
       errors.mobile = 'Invalid mobile number';
     }
@@ -39,7 +39,7 @@ const Auth: React.FC = () => {
       errors.otp = 'Required';
     } else if (!/^[\d]{6}$/i.test(values.otp)) {
       // @ts-ignore
-      errors.otp = 'Invalid mobile number';
+      errors.otp = 'Enter 6 digit OTP';
     }
 
     return errors;

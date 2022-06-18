@@ -139,7 +139,7 @@ const BookingCard = ({ data: { booking }, type, authData }) => {
               <If condition={!sessionActive && !linkActive}>
                 <Then>
                   <Button size="big" className="uppercase" onClick={giveInfo}>
-                    Session will start {dayjs(booking?.startTime).fromNow()}
+                    Starts at {dayjs(booking?.startTime).format('hh:mm a')}
                   </Button>
                 </Then>
               </If>

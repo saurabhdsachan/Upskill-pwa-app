@@ -153,7 +153,10 @@ const Slots: React.FC = observer(() => {
       <Head>
         <title>Pick a slot | Pep</title>
       </Head>
-      <Layout.Header backflow={true} title="Choose a slot" />
+      <Layout.Header
+        backflow={true}
+        title={sessionType === SESSION_TYPE.PLAN ? 'Pick a start date' : 'Choose a slot'}
+      />
       <Layout.Body>
         <Switch>
           <Case condition={instances?.length && !loading && !error}>
@@ -205,7 +208,7 @@ const Slots: React.FC = observer(() => {
             <div className="p-6 sticky bottom-0 bg-white">
               <Button bg="orange" onClick={handleClick} className="uppercase py-4">
                 <TicketIcon className="h-4 w-4 mr-2" aria-hidden="true" />
-                Book Now
+                {sessionType === SESSION_TYPE.PLAN ? 'Confirm & Pay' : 'Book Now'}
               </Button>
             </div>
           </Case>
