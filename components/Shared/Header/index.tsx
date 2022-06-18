@@ -68,8 +68,9 @@ const Header: React.FC = observer(({ backflow, title }: { backflow: boolean; tit
                 <span className="sr-only">Share</span>
               </Button>
               <Link href="/bookings/booked?type=today">
-                <a className="p-2">
-                  <CalendarIcon className="h-4 w-4" aria-hidden="true" />
+                <a className="px-2 py-1 inline-flex items-center justify-center w-full border border-slate-400 rounded-lg text-sm font-medium bg-white hover:bg-white-700 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-slate-400">
+                  <CalendarIcon className="h-3 w-3 mr-2" aria-hidden="true" />
+                  <span className="text-xs">My Bookings</span>
                 </a>
               </Link>
             </div>

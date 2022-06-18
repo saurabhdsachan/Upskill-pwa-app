@@ -121,12 +121,20 @@ const Auth: React.FC = () => {
                     <label htmlFor="mobile" className="my-2 block">
                       Mobile
                     </label>
-                    <Field
-                      type="tel"
-                      name="mobile"
-                      placeholder="mobile number"
-                      className="text-center p-4 block w-full rounded-xl bg-slate-200 border-b border-transparent focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-100 focus:border-slate-100"
-                    />
+                    <div className="flex space-x-2">
+                      <input
+                        readOnly
+                        type="text"
+                        placeholder="+91"
+                        className="text-center w-1/4 px-2 py-4 block rounded-xl bg-slate-200 border-b border-transparent focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-100 focus:border-slate-100"
+                      />
+                      <Field
+                        type="tel"
+                        name="mobile"
+                        placeholder="mobile number"
+                        className="text-center p-4 block w-full rounded-xl bg-slate-200 border-b border-transparent focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-100 focus:border-slate-100"
+                      />
+                    </div>
                     <div className="h-8 text-center">
                       <ErrorMessage name="mobile" component="small" className="text-xs text-red-600" />
                     </div>
