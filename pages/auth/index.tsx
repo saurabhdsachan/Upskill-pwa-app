@@ -125,14 +125,14 @@ const Auth: React.FC = () => {
                       type="tel"
                       name="mobile"
                       placeholder="mobile number"
-                      className="p-4 block w-full rounded-xl bg-slate-200 border-b border-transparent focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-100 focus:border-slate-100"
+                      className="text-center p-4 block w-full rounded-xl bg-slate-200 border-b border-transparent focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-100 focus:border-slate-100"
                     />
-                    <div className="h-8">
+                    <div className="h-8 text-center">
                       <ErrorMessage name="mobile" component="small" className="text-xs text-red-600" />
                     </div>
 
                     <Button bg="slate" size="xl" type="submit" disabled={isSubmitting}>
-                      Submit <ArrowRightIcon className="h-4 w-4 ml-2" aria-hidden="true" />
+                      Send OTP <ArrowRightIcon className="h-4 w-4 ml-2" aria-hidden="true" />
                     </Button>
                   </Form>
                 )}
@@ -153,9 +153,9 @@ const Auth: React.FC = () => {
                       type="text"
                       name="otp"
                       placeholder="OTP"
-                      className="p-4 block w-full rounded-xl bg-slate-200 border-b border-transparent focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-100 focus:border-slate-100"
+                      className="text-center p-4 block w-full rounded-xl bg-slate-200 border-b border-transparent focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-100 focus:border-slate-100"
                     />
-                    <div className="h-8">
+                    <div className="h-8 text-center">
                       <ErrorMessage name="otp" component="small" className="text-xs text-red-600" />
                     </div>
 
