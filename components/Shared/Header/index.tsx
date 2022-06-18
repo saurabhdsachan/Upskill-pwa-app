@@ -9,17 +9,16 @@ import {
   ShareIcon,
 } from '@heroicons/react/outline';
 import useAuth from '@hooks/useAuth';
-import { socialShare } from '@utils/helpers';
 import { observer } from 'mobx-react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { If, Then } from 'react-if';
+import { Else, If, Then } from 'react-if';
 import Button from '../Button/Button';
 import Drawer from '../Drawer';
 
 const Header: React.FC = observer(({ backflow, title }: { backflow: boolean; title?: string }) => {
-  const { authData, setAuthData } = useAuthStore();
+  const { dataBus, authData, setAuthData } = useAuthStore();
   const { logout } = useAuth();
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const router = useRouter();
@@ -28,55 +27,40 @@ const Header: React.FC = observer(({ backflow, title }: { backflow: boolean; tit
 
   return (
     <header className="flex h-16 sticky top-0 z-20 bg-white">
-      {backflow ? (
-        <div className="flex flex-1">
-          <div className="flex justify-center items-center">
-            <Button raw className="w-16 h-16" onClick={handleGoBack}>
-              <ArrowLeftIcon className="h-5 w-5" aria-hidden="true" />
-              <span className="sr-only">Back</span>
-            </Button>
-          </div>
-          {title && (
-            <div className="flex-1 flex items-center pr-4 w-10">
-              <p className="truncate text-ellipsis">{title}</p>
-            </div>
-          )}
-        </div>
-      ) : (
-        <>
-          <div className="flex flex-1">
-            <div className="flex justify-center items-center">
+      <div className="flex flex-1">
+        <div className="flex justify-center items-center">
+          <If condition={backflow}>
+            <Then>
+              <Button raw className="w-16 h-16" onClick={handleGoBack}>
+                <ArrowLeftIcon className="h-5 w-5" aria-hidden="true" />
+                <span className="sr-only">Back</span>
+              </Button>
+            </Then>
+            <Else>
               <Button raw className="w-16 h-16" onClick={() => setIsOpen(true)}>
                 <MenuAlt1Icon className="h-5 w-5" aria-hidden="true" />
                 <span className="sr-only">menu</span>
               </Button>
-            </div>
-            <div className="flex-1 flex items-center">{title || ''}</div>
-            <div className="flex justify-center items-center p-4">
-              <Button
-                raw
-                onClick={() =>
-                  socialShare({
-                    title: `Find ${router?.query?.user}&apos;s website on this link`,
-                    text: 'pep live',
-                    url: `https://pep.live/${router?.query?.user}`,
-                  })
-                }
-                className="p-2 mr-2"
-              >
-                <ShareIcon className="h-4 w-4" aria-hidden="true" />
-                <span className="sr-only">Share</span>
-              </Button>
-              <Link href="/bookings/booked?type=today">
-                <a className="px-2 py-1 inline-flex items-center justify-center w-full border border-slate-400 rounded-lg text-sm font-medium bg-white hover:bg-white-700 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-slate-400">
-                  <CalendarIcon className="h-3 w-3 mr-2" aria-hidden="true" />
-                  <span className="text-xs">My Bookings</span>
-                </a>
-              </Link>
-            </div>
-          </div>
-        </>
-      )}
+            </Else>
+          </If>
+        </div>
+        <div className="flex-1 flex items-center">{title || ''}</div>
+        <div className="flex justify-center items-center p-4">
+          {dataBus?.shareData?.message && (
+            <a href={dataBus?.shareData?.message} className="p-2 mr-2">
+              <ShareIcon className="h-4 w-4" aria-hidden="true" />
+              <span className="sr-only">Share</span>
+            </a>
+          )}
+          <Link href="/bookings/booked?type=today">
+            <a className="px-2 py-1 inline-flex items-center justify-center w-full border border-slate-400 rounded-lg text-sm font-medium bg-white hover:bg-white-700 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-slate-400">
+              <CalendarIcon className="h-3 w-3 mr-2" aria-hidden="true" />
+              <span className="text-xs">My Bookings</span>
+            </a>
+          </Link>
+        </div>
+      </div>
+
       <Drawer setIsOpen={setIsOpen} isOpen={isOpen}>
         <div className="py-6 flex-1">
           <div className="flex flex-col h-full">

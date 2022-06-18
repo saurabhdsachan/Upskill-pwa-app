@@ -1,6 +1,7 @@
 export const createDataBusStore = () => {
   return {
     dataBus: {
+      shareData: {},
       userLanguageList: [],
       sessionRecordingList: {},
       isDownloadAppBottomSheetOpen: false,
@@ -8,6 +9,9 @@ export const createDataBusStore = () => {
       isShowLanguageBottomSheetOpen: false,
     },
 
+    updateShareData(data) {
+      this.dataBus.shareData = data;
+    },
     updateUserLanguageList(data) {
       this.dataBus.userLanguageList = data;
     },
