@@ -36,7 +36,7 @@ const WorkshopCard = ({ data, type, userId }: { data: any; type: 'v-card' | 'h-c
             <div>
               <h4 className="leading-6 capitalize line-clamp-2 mb-1">{data?.title}</h4>
               <p className="text-xs mb-2 text-slate-600">
-                {data?.startTime === 0 ? 'No Slots Available' : dayjs(data?.startTime).format('DD MMM | HH:MM a')}
+                {data?.startTime === 0 ? 'No Slots Available' : dayjs(data?.startTime).format('DD MMM | hh:mm a')}
               </p>
               <div className="flex items-center mb-1">
                 {[0, 1, 2, 3, 4].map((rating) => (

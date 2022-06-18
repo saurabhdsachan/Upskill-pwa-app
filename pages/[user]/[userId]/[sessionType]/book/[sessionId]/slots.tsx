@@ -19,6 +19,7 @@ import { observer } from 'mobx-react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useCallback } from 'react';
+import toast from 'react-hot-toast';
 import { Case, Default, Else, If, Switch, Then } from 'react-if';
 import useRazorpay, { RazorpayOptions } from 'react-razorpay';
 import { IRazorPaySuccessResponse } from 'types/razorPay';
@@ -144,6 +145,8 @@ const Slots: React.FC = observer(() => {
             },
           });
         }
+      } else {
+        bookingInitResponse?.data?.message && toast.error(bookingInitResponse?.data?.message);
       }
     }
   };

@@ -111,7 +111,10 @@ const User: React.FC<IUserPage> = observer(({ data, status }) => {
                         <div
                           className="text-left"
                           role="button"
-                          onClick={() => handleViewLanguages(data?.user?.preferredLanguages)}
+                          onClick={() =>
+                            data?.user?.preferredLanguages?.length > 2 &&
+                            handleViewLanguages(data?.user?.preferredLanguages)
+                          }
                         >
                           <small className="text-xs text-blue-500 block">Language</small>
                           <span className="text-xs capitalize">

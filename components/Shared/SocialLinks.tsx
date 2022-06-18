@@ -12,7 +12,9 @@ const SocialLinks: React.FC<ISocialLinks> = ({ twitter, facebook, instagram, you
       {facebook && (
         <a
           href={facebook}
-          className="text-slate-800 bg-slate-100 p-2 hover:text-blue-800 focus:ring-1 focus:ring-slate-500 focus:outline-none rounded-xl"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-slate-800 bg-slate-100 p-2 hover:text-blue-800 focus:ring-1 focus:ring-blue-800 focus:outline-none rounded-xl"
         >
           <span className="sr-only">Facebook</span>
           <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 512 512" aria-hidden="true">
@@ -26,7 +28,9 @@ const SocialLinks: React.FC<ISocialLinks> = ({ twitter, facebook, instagram, you
       {instagram && (
         <a
           href={instagram}
-          className="text-slate-800 bg-slate-100 p-2 hover:text-red-500 focus:ring-1 focus:ring-slate-500 focus:outline-none rounded-xl"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-slate-800 bg-slate-100 p-2 hover:text-pink-500 focus:ring-1 focus:ring-pink-500 focus:outline-none rounded-xl"
         >
           <span className="sr-only">Instagram</span>
           <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 512 512" aria-hidden="true">
@@ -37,7 +41,9 @@ const SocialLinks: React.FC<ISocialLinks> = ({ twitter, facebook, instagram, you
       {twitter && (
         <a
           href={twitter}
-          className="text-slate-800 bg-slate-100 p-2 hover:text-blue-400 focus:ring-1 focus:ring-slate-500 focus:outline-none rounded-xl"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-slate-800 bg-slate-100 p-2 hover:text-blue-400 focus:ring-1 focus:ring-blue-400 focus:outline-none rounded-xl"
         >
           <span className="sr-only">Twitter</span>
           <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 512 512" aria-hidden="true">
@@ -48,7 +54,9 @@ const SocialLinks: React.FC<ISocialLinks> = ({ twitter, facebook, instagram, you
       {youtube && (
         <a
           href={youtube}
-          className="text-slate-800 bg-slate-100 p-2 hover:text-red-600 focus:ring-1 focus:ring-slate-500 focus:outline-none rounded-xl"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-slate-800 bg-slate-100 p-2 hover:text-red-600 focus:ring-1 focus:ring-red-600 focus:outline-none rounded-xl"
         >
           <span className="sr-only">youtube</span>
           <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 50 50" aria-hidden="true">

@@ -107,6 +107,7 @@ const SessionDetail: React.FC<ISessionDetail> = ({ data, status, sessionType, se
                 <div className="flex space-x-4">
                   <div className="flex-1">
                     <h1 className="text-2xl capitalize">{sessionTitle}</h1>
+                    {session?.subLabel && <small className="text-xs text-slate-400">{session?.subLabel}</small>}
                     {session?.rating && (
                       <div className="flex items-center my-1">
                         {[0, 1, 2, 3, 4].map((rating) => (
