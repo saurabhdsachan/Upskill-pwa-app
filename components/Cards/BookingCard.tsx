@@ -2,7 +2,7 @@ import Bullets from '@components/Shared/Bullets';
 import Button from '@components/Shared/Button/Button';
 import Tags from '@components/Shared/Tags';
 import { useDataBusStore } from '@context/dataBusContext';
-import { CheckCircleIcon, StarIcon, VideoCameraIcon, XCircleIcon } from '@heroicons/react/outline';
+import { StarIcon, VideoCameraIcon } from '@heroicons/react/outline';
 import { blurredBgImage } from '@public/images/bg-base-64';
 import { FEED_TYPE } from '@utils/constants';
 import { classNames, getImageUrl } from '@utils/helpers';
@@ -15,7 +15,7 @@ import { If, Then } from 'react-if';
 
 dayjs.extend(relativeTime);
 
-const BookingCard = ({ data: { booking }, type }) => {
+const BookingCard = ({ data: { booking }, type, authData }) => {
   const [timeRemaining, setTimeRemaining] = useState(booking?.startTime - Date.now());
 
   const linkActive = timeRemaining / (1000 * 60) <= 10 && booking?.startTime - Date.now() > 0;
@@ -83,14 +83,13 @@ const BookingCard = ({ data: { booking }, type }) => {
           />
         </div>
         <div className="flex-1">
-          <h3 className="text-base capitalize">
-            {booking?.label}{' '}
-            {booking.bookingStatus === 'CANCELLED' ? (
-              <XCircleIcon className="w-5 h-5 inline text-red-400" aria-hidden="true" />
-            ) : (
-              <CheckCircleIcon className="w-5 h-5 inline text-blue-500" aria-hidden="true" />
-            )}
-          </h3>
+          <h3 className="text-base capitalize inline">{booking?.label} </h3>
+          {booking.bookingStatus === 'CANCELLED' ? (
+            <small className="text-xs text-red-600">(Cancelled)</small>
+          ) : (
+            <small className="text-xs text-green-600">(Booked)</small>
+          )}
+          <br />
           <small className="text-slate-600 text-xs">{booking?.priceLabel}</small>
         </div>
       </div>
@@ -100,10 +99,12 @@ const BookingCard = ({ data: { booking }, type }) => {
         <If condition={type === FEED_TYPE.PAST}>
           <Then>
             <div className="flex mt-4 space-x-4">
-              <Button onClick={() => updateDownloadAppBottomSheetState(true)}>
-                <StarIcon className="w-4 h-4 mr-2 inline" aria-hidden="true" />
-                Rate Session
-              </Button>
+              {!authData?.creator && (
+                <Button onClick={() => updateDownloadAppBottomSheetState(true)}>
+                  <StarIcon className="w-4 h-4 mr-2 inline" aria-hidden="true" />
+                  Rate Session
+                </Button>
+              )}
               {booking?.recording ? (
                 <Button onClick={() => handleViewRecording(booking?.recording)}>
                   <VideoCameraIcon className="w-4 h-4 mr-2 inline" aria-hidden="true" />

@@ -11,8 +11,6 @@ import { useRouter } from 'next/router';
 const CourseCard = ({ data, type, userId }: { data: any; type: 'v-card' | 'h-card'; userId: string }) => {
   const { query } = useRouter();
 
-  console.log('data', data);
-
   return (
     <div className={classNames(type === 'v-card' ? 'flex-none' : 'flex-none px-3 first:pl-6 last:pr-6')}>
       <Link href={`/${query?.user}/${userId}/${SESSION_TYPE.COURSE}/book/${data?.sessionId}`}>

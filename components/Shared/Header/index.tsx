@@ -90,7 +90,7 @@ const Header: React.FC = observer(({ backflow, title }: { backflow: boolean; tit
                   </Link>
                 </li>
                 <li className="py-3">
-                  <Link href="/bookings/booked?type=today">
+                  <Link href={authData?.creator ? '/bookings/received?type=today' : '/bookings/booked?type=today'}>
                     <a>
                       <CalendarIcon className="w-4 h-4 inline mr-4" aria-hidden="true" />
                       <span>Bookings</span>

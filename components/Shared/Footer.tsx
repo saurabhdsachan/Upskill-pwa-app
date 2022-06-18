@@ -86,7 +86,6 @@ const Footer: React.FC = observer(() => {
         <div className="container mx-auto">
           <div className="p-6 text-center">
             <h3 className="text-lg mb-6">Language</h3>
-            {}
             <div className="prose prose-sm capitalize text-left">
               <ul role="list">
                 {dataBus?.userLanguageList?.map((item) => (

@@ -143,7 +143,14 @@ const Bookings: React.FC = observer(() => {
                       <If condition={bookingList !== null && bookingList?.length !== 0}>
                         <Then>
                           {bookingList?.map((booking) => {
-                            return <BookingCard key={booking?.booking?.bookingId} data={booking} type={type} />;
+                            return (
+                              <BookingCard
+                                key={booking?.booking?.bookingId}
+                                authData={authData}
+                                data={booking}
+                                type={type}
+                              />
+                            );
                           })}
                           <div className="flex">
                             {!!cursor && bookingList?.length > 0 && (
