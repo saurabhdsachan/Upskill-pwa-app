@@ -15,9 +15,9 @@ const Episodes = ({ data }) => {
                 <h3 className="font-bold break-all">{item?.title}</h3>
               </div>
             </div>
-            <div className="relative bg-white w-20 h-20 rounded-xl border-2 border-white shadow overflow-hidden">
+            <div className="relative bg-white w-20 h-20 rounded-xl border-2 border-white shadow-xl overflow-hidden">
               <Image
-                className="object-cover rounded-xl"
+                className="object-cover rounded-l"
                 src={
                   item?.coverImageUrl ? getImageUrl(item?.coverImageUrl, { height: 180, width: 180 }) : blurredBgImage
                 }
@@ -32,7 +32,7 @@ const Episodes = ({ data }) => {
           </div>
           <div>
             <p
-              className="prose prose-sm whitespace-pre-line break-all"
+              className="prose prose-sm whitespace-pre-line break-normal"
               dangerouslySetInnerHTML={{ __html: item?.description }}
             />
           </div>

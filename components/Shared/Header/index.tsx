@@ -14,6 +14,7 @@ import { observer } from 'mobx-react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
+import Marquee from 'react-fast-marquee';
 import { Else, If, Then } from 'react-if';
 import Button from '../Button/Button';
 import Drawer from '../Drawer';
@@ -57,12 +58,16 @@ const Header: React.FC = observer(
               </Else>
             </If>
           </div>
-          <div className="flex-1 flex items-center truncate">{title || ''}</div>
-          <div className="flex justify-center items-center p-4">
+          <div className="flex-1 flex items-center truncate w-20">
+            <Marquee pauseOnHover gradientWidth={2} delay={2} play={title?.length > 30}>
+              <span className="mr-5">{title || ''}</span>
+            </Marquee>
+          </div>
+          <div className="flex justify-center items-center py-4 pl-2 pr-6">
             {showShare && dataBus?.shareData?.message && (
               <a
                 href={`https://wa.me/?text=${dataBus?.shareData?.message}`}
-                className="p-2 mr-2"
+                className="p-2"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -72,7 +77,7 @@ const Header: React.FC = observer(
             )}
             {showBooking && (
               <Link href="/bookings/booked?type=today">
-                <a className="px-2 py-1 inline-flex items-center justify-center w-full border border-slate-400 rounded-lg text-sm font-medium bg-white hover:bg-white-700 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-slate-400">
+                <a className="ml-2 px-2 py-1 inline-flex items-center justify-center w-full border border-slate-400 rounded-lg text-sm font-medium bg-white hover:bg-white-700 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-slate-400">
                   <CalendarIcon className="h-3 w-3 mr-2" aria-hidden="true" />
                   <span className="text-xs">My Bookings</span>
                 </a>

@@ -126,13 +126,13 @@ const Auth: React.FC = () => {
                         readOnly
                         type="text"
                         placeholder="+91"
-                        className="text-center w-1/4 px-2 py-4 block rounded-xl bg-slate-200 border-b border-transparent focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-100 focus:border-slate-100"
+                        className="text-center w-1/4 py-4 block rounded-xl bg-slate-200 border-b border-transparent focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-100 focus:border-slate-100"
                       />
                       <Field
                         type="tel"
                         name="mobile"
-                        placeholder="mobile number"
-                        className="text-center p-4 block w-full rounded-xl bg-slate-200 border-b border-transparent focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-100 focus:border-slate-100"
+                        placeholder="Mobile Number"
+                        className="py-4 px-6 block w-full rounded-xl bg-slate-200 border-b border-transparent focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-100 focus:border-slate-100"
                       />
                     </div>
                     <div className="h-8 text-center">
