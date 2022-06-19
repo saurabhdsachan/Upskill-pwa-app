@@ -18,6 +18,7 @@ import Marquee from 'react-fast-marquee';
 import { Else, If, Then } from 'react-if';
 import Button from '../Button/Button';
 import Drawer from '../Drawer';
+import LogoutModal from '../LogoutModal';
 
 const Header: React.FC = observer(
   ({
@@ -31,13 +32,27 @@ const Header: React.FC = observer(
     showShare?: boolean;
     showBooking?: boolean;
   }) => {
+    const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false);
     const { authData, setAuthData } = useAuthStore();
     const { dataBus } = useDataBusStore();
     const { logout } = useAuth();
     const [isOpen, setIsOpen] = React.useState<boolean>(false);
     const router = useRouter();
 
+    const openModal = () => {
+      setIsModalOpen(true);
+      setIsOpen(false);
+    };
+
+    const closeModal = () => setIsModalOpen(false);
+
     const handleGoBack = () => router.back();
+
+    const handleLogout = () =>
+      logout(() => {
+        setAuthData(null);
+        router.push('/');
+      });
 
     return (
       <header className="flex h-16 sticky top-0 z-20 bg-white">
@@ -123,19 +138,11 @@ const Header: React.FC = observer(
                 <If condition={authData?.userId}>
                   <Then>
                     <hr className="my-6" />
-                    <Button
-                      raw
-                      className="text-red-600"
-                      onClick={() =>
-                        logout(() => {
-                          setAuthData(null);
-                          router.push('/');
-                        })
-                      }
-                    >
+                    <Button raw className="text-red-600" onClick={openModal}>
                       <LogoutIcon className="w-4 h-4 inline mr-4" aria-hidden="true" />
                       <span>Logout</span>
                     </Button>
+                    <LogoutModal isOpen={isModalOpen} onConfirm={handleLogout} onCancel={closeModal} />
                   </Then>
                 </If>
               </div>

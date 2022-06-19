@@ -38,7 +38,7 @@ const Button: React.FC<IButton> = ({ onClick, raw, bg, size, className, type = '
   const xlClasses = 'py-4';
 
   const baseClass =
-    'inline-flex items-center justify-center disabled:bg-slate-100 disabled:text-slate-400 disabled:border-transparent';
+    'inline-flex items-center justify-center disabled:bg-slate-100 disabled:text-slate-400 disabled:border-transparent focus:outline-none';
 
   const shapeClasses =
     'w-full p-2 border rounded-xl text-sm font-medium focus:outline-none focus:ring-1 focus:ring-offset-2 shadow-sm';
