@@ -26,7 +26,7 @@ const Reviews: React.FC = () => {
         <title>{router?.query?.user} Rating | Pep</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Layout.Header backflow={true} title="Reviews" />
+      <Layout.Header title="Reviews" backflow={true} showShare={true} showBooking={true} />
       <Layout.Body>
         <Switch>
           <Case condition={data?.data?.numRatings !== 0 && !loading}>

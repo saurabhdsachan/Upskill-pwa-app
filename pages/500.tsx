@@ -10,7 +10,7 @@ const ServerSideError: React.FC = () => {
         <title>Page Not Found | Pep</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Layout.Header />
+      <Layout.Header title="Error" backflow={true} showShare={false} showBooking={false} />
       <Layout.Body>
         <ErrorState status={500} />
       </Layout.Body>

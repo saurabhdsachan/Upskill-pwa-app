@@ -21,7 +21,7 @@ const Home: React.FC = () => {
         <title>Home | Pep</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Layout.Header backflow={false} />
+      <Layout.Header title="Home" backflow={true} showShare={false} showBooking={false} />
       <Layout.Body>
         <div className="p-6">
           <p className="text-center p-6">Placeholder Page</p>

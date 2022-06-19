@@ -69,7 +69,7 @@ const SessionDetail: React.FC<ISessionDetail> = ({ data, status, sessionType, se
           {sessionTitle} by {user} | Pep
         </title>
       </Head>
-      <Layout.Header backflow={true} title={sessionTitle} />
+      <Layout.Header title={sessionTitle} backflow={true} showShare={true} showBooking={false} />
       <If condition={status < 300}>
         <Then>
           <Layout.Body>

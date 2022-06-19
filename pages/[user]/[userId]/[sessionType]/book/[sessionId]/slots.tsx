@@ -157,8 +157,10 @@ const Slots: React.FC = observer(() => {
         <title>Pick a slot | Pep</title>
       </Head>
       <Layout.Header
-        backflow={true}
         title={sessionType === SESSION_TYPE.PLAN ? 'Pick a start date' : 'Choose a slot'}
+        backflow={true}
+        showShare={false}
+        showBooking={false}
       />
       <Layout.Body>
         <Switch>

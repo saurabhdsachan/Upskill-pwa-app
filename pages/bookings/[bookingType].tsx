@@ -45,7 +45,7 @@ const Bookings: React.FC = observer(() => {
 
   const getBookingData = useCallback(async () => {
     setBookingList([]);
-    if (authData.userId && type && bookingType) {
+    if (authData?.userId && type && bookingType) {
       const res = await getBookings({
         userType: (bookingType === BOOKING_TYPE.RECEIVED ? USER_TYPE.CREATOR : USER_TYPE.USER)?.toUpperCase(),
         feedType: type?.toUpperCase(),
@@ -67,7 +67,7 @@ const Bookings: React.FC = observer(() => {
         <title>{bookingType} bookings | Pep</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Layout.Header backflow={true} title="My Bookings" />
+      <Layout.Header title="My Bookings" backflow={true} showShare={false} showBooking={false} />
       <Layout.Body>
         <div className="bg-white relative">
           {isCreator && (

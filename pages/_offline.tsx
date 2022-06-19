@@ -10,7 +10,7 @@ const Offline: React.FC = () => {
         <title>Offline | Pep</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Layout.Header />
+      <Layout.Header title="Offline" backflow={true} showShare={false} showBooking={false} />
       <Layout.Body>
         <EmptyState title="Connection Offline" message="Please check your network settings" />
       </Layout.Body>

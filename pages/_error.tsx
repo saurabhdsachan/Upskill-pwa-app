@@ -1,7 +1,6 @@
 import ErrorState from '@components/Shared/ErrorState';
 import Layout from '@components/Shared/Layout';
 import Head from 'next/head';
-import React from 'react';
 
 const Error = ({ statusCode }: { statusCode: number }): JSX.Element => {
   return (
@@ -9,7 +8,7 @@ const Error = ({ statusCode }: { statusCode: number }): JSX.Element => {
       <Head>
         <title>{statusCode} | Pep</title>
       </Head>
-      <Layout.Header />
+      <Layout.Header title="Error" backflow={true} showShare={false} showBooking={false} />
       <Layout.Body>
         <ErrorState status={statusCode} />
       </Layout.Body>

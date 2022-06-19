@@ -29,7 +29,7 @@ const Listing: React.FC<IListing> = ({ data, status, sessionType, user, userId }
         <title>{getPageTitle(sessionType)} | Pep</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Layout.Header backflow={true} title={getPageTitle(sessionType)} />
+      <Layout.Header title={getPageTitle(sessionType)} backflow={true} showShare={false} showBooking={false} />
       <Layout.Body>
         <If condition={status > 300}>
           <Then>

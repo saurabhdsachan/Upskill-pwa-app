@@ -73,7 +73,7 @@ const User: React.FC<IUserPage> = observer(({ data, status }) => {
         <Head>
           <title>{data?.user?.name || 'User not found'} | Pep</title>
         </Head>
-        <Layout.Header backflow={false} title={data?.user?.name} />
+        <Layout.Header title={data?.user?.name} backflow={false} showShare={true} showBooking={true} />
         <Layout.Body>
           <If condition={status > 300}>
             <Then>
