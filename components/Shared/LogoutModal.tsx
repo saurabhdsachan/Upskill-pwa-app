@@ -10,7 +10,7 @@ interface ILogoutModal {
 }
 
 const LogoutModal: React.FC<ILogoutModal> = ({ isOpen, onConfirm, onCancel }) => {
-  const closeModal = () => onCancel(false);
+  const closeModal = () => onCancel();
 
   return (
     <>
