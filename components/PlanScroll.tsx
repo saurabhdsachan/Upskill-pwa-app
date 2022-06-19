@@ -17,7 +17,7 @@ const PlanScroll: React.FC<IPlanScroll> = ({ initData, username, userId }) => {
       <div className="px-6 py-4">
         <div className="flex">
           <div className="flex-1">
-            <h3>{getPageTitle(SESSION_TYPE.PLAN)}</h3>
+            <h3 className="capitalize">{getPageTitle(SESSION_TYPE.PLAN)}</h3>
           </div>
           <div>
             <Link href={`/${username}/${userId}/${SESSION_TYPE.PLAN}`}>

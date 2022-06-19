@@ -5,14 +5,14 @@ import Image from 'next/image';
 const Episodes = ({ data }) => {
   return (
     <div className="mt-4">
-      <h2 className="font-bold mb-4">{data?.length} Episodes</h2>
+      <h2 className="font-bold mb-4">{data?.length} Chapters</h2>
       {data?.map((item, index) => (
         <div className="mb-6 bg-slate-100 p-4 rounded-2xl" key={item?.episodeId}>
           <div className="flex space-x-4 items-end mb-6">
             <div className="flex-1">
               <div>
                 <small className="text-xs text-slate-600">Chapter {index + 1}</small>
-                <h3 className="font-bold">{item?.title}</h3>
+                <h3 className="font-bold break-all">{item?.title}</h3>
               </div>
             </div>
             <div className="relative bg-white w-20 h-20 rounded-xl border-2 border-white shadow overflow-hidden">
@@ -31,7 +31,10 @@ const Episodes = ({ data }) => {
             </div>
           </div>
           <div>
-            <p className="prose prose-sm whitespace-pre-line" dangerouslySetInnerHTML={{ __html: item?.description }} />
+            <p
+              className="prose prose-sm whitespace-pre-line break-all"
+              dangerouslySetInnerHTML={{ __html: item?.description }}
+            />
           </div>
         </div>
       ))}

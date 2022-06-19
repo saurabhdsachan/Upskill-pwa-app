@@ -17,7 +17,7 @@ const CourseScroll: React.FC<ICourseScroll> = ({ initData, username, userId }) =
       <div className="px-6 py-4">
         <div className="flex">
           <div className="flex-1">
-            <h3>{getPageTitle(SESSION_TYPE.COURSE)}</h3>
+            <h3 className="capitalize">{getPageTitle(SESSION_TYPE.COURSE)}</h3>
           </div>
           <div>
             <Link href={`/${username}/${userId}/${SESSION_TYPE.COURSE}`}>

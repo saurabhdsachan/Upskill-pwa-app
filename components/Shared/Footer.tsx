@@ -56,7 +56,7 @@ const Footer: React.FC = observer(() => {
             </small>
             {playerUrl && (
               <video
-                className="rounded-2xl mt-6"
+                className="rounded-2xl mt-6 mx-auto"
                 preload="metadata"
                 muted
                 loop
