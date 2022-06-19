@@ -11,7 +11,12 @@ const WorkshopCard = ({ data, type, userId }: { data: any; type: 'v-card' | 'h-c
   const { query } = useRouter();
 
   return (
-    <div className={classNames(type === 'v-card' ? 'flex-none' : 'flex-none px-3 first:pl-6 last:pr-6')}>
+    <div
+      className={classNames(
+        type === 'v-card' ? 'flex-none' : 'flex-none px-3 first:pl-6 last:pr-6',
+        data?.startTime === 0 && 'grayscale'
+      )}
+    >
       <Link href={`/${query?.user}/${userId}/${SESSION_TYPE.WORKSHOP}/book/${data?.sessionId}`}>
         <a>
           <div

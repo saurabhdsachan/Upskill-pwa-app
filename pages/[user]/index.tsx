@@ -42,12 +42,23 @@ interface IUserPage {
 const User: React.FC<IUserPage> = observer(({ data, status }) => {
   const { setUsername } = useAuth();
   const { authData } = useAuthStore();
+  const { updateDownloadAppBottomSheetState, updateShareData } = useDataBusStore();
   const { updateUserLanguageList, updateShowLanguageBottomSheetState } = useDataBusStore();
 
   const handleViewLanguages = (data) => {
     updateUserLanguageList(data);
     updateShowLanguageBottomSheetState(true);
   };
+
+  useEffect(() => {
+    if (data?.user?.name) {
+      updateShareData({
+        text: data?.user?.name,
+        url: window.location.href,
+        message: 'hi',
+      });
+    }
+  }, [data?.user?.name, updateShareData]);
 
   useEffect(() => {
     if (authData?.username !== data?.user?.username) {

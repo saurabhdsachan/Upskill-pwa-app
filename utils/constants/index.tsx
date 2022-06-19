@@ -15,6 +15,11 @@ export const USER_TYPE = {
   CREATOR: 'creator',
 };
 
+export const BOOKING_TYPE = {
+  BOOKED: 'booked',
+  RECEIVED: 'received',
+};
+
 export const FEED_TYPE = {
   TODAY: 'today',
   UPCOMING: 'upcoming',
@@ -37,6 +42,6 @@ export enum PAYMENT_STATUS {
   PAID = 'PAID',
 }
 
-export const PRIVATE_PAGE_ROUTES = ['/book', '/bookings/booked', '/bookings/received'];
+export const PRIVATE_PAGE_ROUTES = ['/book', `/bookings/${BOOKING_TYPE.BOOKED}`, `/bookings/${BOOKING_TYPE.RECEIVED}`];
 
 export const PRIVATE_API_ROUTES = [''];

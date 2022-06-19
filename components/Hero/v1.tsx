@@ -3,7 +3,7 @@ import React from 'react';
 
 const v1: React.FC = () => {
   return (
-    <div className="rounded-xl shadow-xs overflow-hidden">
+    <div className="rounded-xl overflow-hidden grayscale">
       <Image
         alt="backdrop"
         className="aspect-h-9 aspect-w-16 object-cover"

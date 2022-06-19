@@ -6,7 +6,7 @@ import LoadingState from '@components/Shared/LoadingState';
 import { useAuthStore } from '@context/authContext';
 import { Tab } from '@headlessui/react';
 import { getBookings } from '@utils/apiData';
-import { FEED_TYPE, USER_TYPE } from '@utils/constants';
+import { BOOKING_TYPE, FEED_TYPE, USER_TYPE } from '@utils/constants';
 import { classNames } from '@utils/helpers';
 import { toJS } from 'mobx';
 import { observer } from 'mobx-react';
@@ -35,7 +35,7 @@ const Bookings: React.FC = observer(() => {
 
   const getMoreData = async () => {
     const res = await getBookings({
-      userType: (bookingType === 'received' ? USER_TYPE.CREATOR : USER_TYPE.USER)?.toUpperCase(),
+      userType: (bookingType === BOOKING_TYPE.RECEIVED ? USER_TYPE.CREATOR : USER_TYPE.USER)?.toUpperCase(),
       feedType: type?.toUpperCase(),
       cursor,
     });
@@ -47,7 +47,7 @@ const Bookings: React.FC = observer(() => {
     setBookingList([]);
     if (authData.userId && type && bookingType) {
       const res = await getBookings({
-        userType: (bookingType === 'received' ? USER_TYPE.CREATOR : USER_TYPE.USER)?.toUpperCase(),
+        userType: (bookingType === BOOKING_TYPE.RECEIVED ? USER_TYPE.CREATOR : USER_TYPE.USER)?.toUpperCase(),
         feedType: type?.toUpperCase(),
         cursor: null,
       });
@@ -75,13 +75,13 @@ const Bookings: React.FC = observer(() => {
               <Link
                 href={{
                   pathname: `/bookings/received`,
-                  query: { type, bookingType: 'received' },
+                  query: { type, bookingType: BOOKING_TYPE.RECEIVED },
                 }}
                 as={`/bookings/received?type=${type}`}
               >
                 <a
                   className={classNames(
-                    bookingType === 'received' ? 'border-blue-500' : ' border-gray-100',
+                    bookingType === BOOKING_TYPE.RECEIVED ? 'border-blue-500' : ' border-gray-100',
                     'pb-3 border-b-2 text-sm leading-5 bg-white flex-1 text-center focus:outline-none'
                   )}
                 >
@@ -91,13 +91,13 @@ const Bookings: React.FC = observer(() => {
               <Link
                 href={{
                   pathname: `/bookings/booked`,
-                  query: { type, bookingType: 'booked' },
+                  query: { type, bookingType: BOOKING_TYPE.BOOKED },
                 }}
                 as={`/bookings/booked?type=${type}`}
               >
                 <a
                   className={classNames(
-                    bookingType === 'booked' ? 'border-blue-500' : ' border-gray-100',
+                    bookingType === BOOKING_TYPE.BOOKED ? 'border-blue-500' : ' border-gray-100',
                     'pb-3 border-b-2 text-sm leading-5 bg-white flex-1 text-center focus:outline-none'
                   )}
                 >
@@ -149,6 +149,7 @@ const Bookings: React.FC = observer(() => {
                                 authData={authData}
                                 data={booking}
                                 type={type}
+                                bookingType={bookingType}
                               />
                             );
                           })}

@@ -1,4 +1,5 @@
 import { useAuthStore } from '@context/authContext';
+import { useDataBusStore } from '@context/dataBusContext';
 import {
   ArrowLeftIcon,
   CalendarIcon,
@@ -18,7 +19,8 @@ import Button from '../Button/Button';
 import Drawer from '../Drawer';
 
 const Header: React.FC = observer(({ backflow, title }: { backflow: boolean; title?: string }) => {
-  const { dataBus, authData, setAuthData } = useAuthStore();
+  const { authData, setAuthData } = useAuthStore();
+  const { dataBus } = useDataBusStore();
   const { logout } = useAuth();
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const router = useRouter();
@@ -44,10 +46,15 @@ const Header: React.FC = observer(({ backflow, title }: { backflow: boolean; tit
             </Else>
           </If>
         </div>
-        <div className="flex-1 flex items-center">{title || ''}</div>
+        <div className="flex-1 flex items-center truncate">{title || ''}</div>
         <div className="flex justify-center items-center p-4">
           {dataBus?.shareData?.message && (
-            <a href={dataBus?.shareData?.message} className="p-2 mr-2">
+            <a
+              href={`https://wa.me/?text=${dataBus?.shareData?.message}`}
+              className="p-2 mr-2"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <ShareIcon className="h-4 w-4" aria-hidden="true" />
               <span className="sr-only">Share</span>
             </a>

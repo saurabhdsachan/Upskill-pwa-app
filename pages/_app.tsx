@@ -30,7 +30,7 @@ const MyApp = ({ Component, pageProps }: AppProps): React.ReactElement => {
           </AuthProvider>
         </DataBusProvider>
         <Toaster
-          position="top-center"
+          position="bottom-center"
           reverseOrder={true}
           toastOptions={{
             className: 'shadow-lg text-sm',

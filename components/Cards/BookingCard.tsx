@@ -4,7 +4,7 @@ import Tags from '@components/Shared/Tags';
 import { useDataBusStore } from '@context/dataBusContext';
 import { StarIcon, VideoCameraIcon } from '@heroicons/react/outline';
 import { blurredBgImage } from '@public/images/bg-base-64';
-import { FEED_TYPE } from '@utils/constants';
+import { BOOKING_TYPE, FEED_TYPE } from '@utils/constants';
 import { classNames, getImageUrl } from '@utils/helpers';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -15,7 +15,7 @@ import { If, Then } from 'react-if';
 
 dayjs.extend(relativeTime);
 
-const BookingCard = ({ data: { booking }, type, authData }) => {
+const BookingCard = ({ data: { booking }, type, bookingType, authData }) => {
   const [timeRemaining, setTimeRemaining] = useState(booking?.startTime - Date.now());
 
   const linkActive = timeRemaining / (1000 * 60) <= 10 && booking?.startTime - Date.now() > 0;
@@ -33,7 +33,7 @@ const BookingCard = ({ data: { booking }, type, authData }) => {
   };
 
   const giveInfo = () => {
-    toast.error(' You can join the session on or 10 minutes before the session starts', { id: 'joinInfo' });
+    toast(' You can join the session on or 10 minutes before the session starts', { id: 'joinInfo', icon: '⏰' });
   };
 
   const openSessionLink = () => {
@@ -99,7 +99,7 @@ const BookingCard = ({ data: { booking }, type, authData }) => {
         <If condition={type === FEED_TYPE.PAST}>
           <Then>
             <div className="flex mt-4 space-x-4">
-              {!authData?.creator && (
+              {bookingType !== BOOKING_TYPE.RECEIVED && (
                 <Button onClick={() => updateDownloadAppBottomSheetState(true)}>
                   <StarIcon className="w-4 h-4 mr-2 inline" aria-hidden="true" />
                   Rate Session
