@@ -1,5 +1,6 @@
 import RecordingCard from '@components/Cards/RecordingCard';
 import { useDataBusStore } from '@context/dataBusContext';
+import { blurredBgImage } from '@public/images/bg-base-64';
 import { observer } from 'mobx-react';
 import React, { useRef, useState } from 'react';
 import { BottomSheet } from 'react-spring-bottom-sheet';
@@ -56,16 +57,22 @@ const Footer: React.FC = observer(() => {
             </small>
             {playerUrl && (
               <video
-                className="rounded-2xl mt-6 mx-auto"
-                preload="metadata"
-                muted
-                loop
+                id="my-video"
+                className="video-js rounded-2xl mt-6 mx-auto"
                 controls
-                autoPlay
-                width={500}
-                height={250}
+                preload="auto"
+                width="640"
+                height="264"
+                poster={blurredBgImage}
+                data-setup="{}"
               >
                 <source src={playerUrl} type="video/mp4" />
+                <p className="vjs-no-js">
+                  To view this video please enable JavaScript, and consider upgrading to a web browser that
+                  <a href="https://videojs.com/html5-video-support/" target="_blank" rel="noreferrer">
+                    supports HTML5 video
+                  </a>
+                </p>
               </video>
             )}
             <div ref={playerRef} />
