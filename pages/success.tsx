@@ -42,7 +42,7 @@ const Slots: React.FC = () => {
       <Head>
         <title>Booking Successful | Pep</title>
       </Head>
-      <Layout.Header title="Booking Success" backflow={true} showShare={false} showBooking={false} />
+      <Layout.Header title="Booking Success" backflow={false} showShare={false} showBooking={false} />
       <Layout.Body>
         <div className="bg-white items-center justify-center">
           <LottieAnimation animationData={successLottie} loop={false} width={240} height={240} />

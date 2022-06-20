@@ -122,23 +122,11 @@ const weekShortName = (days) =>
     });
 
 const tsConvert = (time) => {
-  time = time.toString();
-  if (time.length < 4) time = ['00'].concat(time).join('');
-  // Check correct time format and split into components
-  time = time.toString().match(/^([01]\d|2[0-3])([0-5]\d)(:[0-5]\d)?$/) || [time];
-  time = time.filter((item) => !!item);
-  if (time.length > 1) {
-    // If time format correct
-    time = time.slice(1);
-    // Remove full string match value
-    time[2] = +time[0] < 12 ? ' am' : ' pm';
-    // Set AM/PM
-    time[0] = +time[0] % 12 || 12;
-    // Adjust hours
-  }
+  const hour = Math.floor(time / 100) % 12;
+  const min = time % 100;
+  const tod = hour - 12 > 0 ? 'pm' : 'am';
 
-  return `${time.slice(0, 2).join(':')}${time.slice(2, 3)}`;
-  // return adjusted time or original string
+  return `${hour}:${min} ${tod}`;
 };
 
 const parseJwt = (token) => {

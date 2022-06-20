@@ -4,14 +4,14 @@ import Tags from '@components/Shared/Tags';
 import { useDataBusStore } from '@context/dataBusContext';
 import { StarIcon, VideoCameraIcon } from '@heroicons/react/outline';
 import { blurredBgImage } from '@public/images/bg-base-64';
-import { BOOKING_TYPE, FEED_TYPE } from '@utils/constants';
+import { BOOKING_TYPE, FEED_TYPE, SESSION_TYPE } from '@utils/constants';
 import { classNames, getImageUrl } from '@utils/helpers';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-import { If, Then } from 'react-if';
+import { Case, Default, If, Switch, Then } from 'react-if';
 
 dayjs.extend(relativeTime);
 
@@ -40,7 +40,7 @@ const BookingCard = ({ data: { booking }, type, bookingType, authData }) => {
     var a = document.createElement('a');
     a.target = '_self';
     a.href = `https://meet.pep.live/preview/room-id/user-group/${booking?.userSessionId}/${
-      booking?.sessionType === 'PLAN' ? booking?.startTime : booking?.sessionNumber
+      booking?.sessionType === SESSION_TYPE.PLAN ? booking?.startTime : booking?.sessionNumber
     }`;
     a.click();
 
@@ -84,11 +84,24 @@ const BookingCard = ({ data: { booking }, type, bookingType, authData }) => {
         </div>
         <div className="flex-1">
           <h3 className="text-base capitalize inline">{booking?.label} </h3>
-          {booking.bookingStatus === 'CANCELLED' ? (
-            <small className="text-xs text-red-600">(Cancelled)</small>
-          ) : (
-            <small className="text-xs text-green-600">(Booked)</small>
-          )}
+          <If condition={type !== FEED_TYPE.TODAY && type !== FEED_TYPE.UPCOMING}>
+            <Then>
+              <Switch>
+                <Case condition={booking?.bookingStatus === 'CANCELLED'}>
+                  <small className="text-xs text-red-600">(Cancelled)</small>
+                </Case>
+                <Case condition={booking?.bookingStatus === 'CANCELLED_BY_USER'}>
+                  <small className="text-xs text-red-600">(Cancelled by User)</small>
+                </Case>
+                <Case condition={booking?.bookingStatus === 'CANCELLED_BY_EXPERT'}>
+                  <small className="text-xs text-red-600">(Cancelled by Expert)</small>
+                </Case>
+                <Default>
+                  <small className="text-xs text-green-600">(Booked)</small>
+                </Default>
+              </Switch>
+            </Then>
+          </If>
           <br />
           <small className="text-slate-600 text-xs">{booking?.priceLabel}</small>
         </div>
@@ -131,7 +144,7 @@ const BookingCard = ({ data: { booking }, type, bookingType, authData }) => {
               </If>
               <If condition={sessionActive}>
                 <Then>
-                  <Button bg="orange" onClick={openSessionLink} size="big" className="uppercase">
+                  <Button bg="red" onClick={openSessionLink} size="big" className="uppercase">
                     LIVE - JOIN NOW
                   </Button>
                 </Then>

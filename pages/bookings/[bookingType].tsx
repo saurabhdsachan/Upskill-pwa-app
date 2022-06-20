@@ -39,7 +39,7 @@ const Bookings: React.FC = observer(() => {
       feedType: type?.toUpperCase(),
       cursor,
     });
-    setBookingList([...bookingList, ...res?.data?.items]);
+    res?.data?.items && res?.data?.items?.length !== 0 && setBookingList([...bookingList, ...res?.data?.items]);
     setCursor(res?.data?.cursor);
   };
 
@@ -67,7 +67,7 @@ const Bookings: React.FC = observer(() => {
         <title>{bookingType} bookings | Pep</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Layout.Header title="My Bookings" backflow={true} showShare={false} showBooking={false} />
+      <Layout.Header title="My Bookings" backflow={false} showShare={false} showBooking={false} />
       <Layout.Body>
         <div className="bg-white relative">
           {isCreator && (

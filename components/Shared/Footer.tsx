@@ -60,6 +60,7 @@ const Footer: React.FC = observer(() => {
                 id="my-video"
                 className="video-js rounded-2xl mt-6 mx-auto"
                 controls
+                autoPlay
                 preload="auto"
                 width="640"
                 height="264"
