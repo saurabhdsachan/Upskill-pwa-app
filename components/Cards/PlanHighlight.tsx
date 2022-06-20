@@ -19,7 +19,9 @@ const PlanHighlight: React.FC<IPlanHighlight> = ({ pax, numSessions, startTime, 
             <div>
               <CheckIcon className="w-3 h-3 inline text-green-600" aria-hidden="true" />
             </div>
-            <div className="flex-1">{pax === 1 ? '1:1 session' : 'Group Session'}</div>
+            <div className="flex-1">
+              {pax === 1 ? '1:1 session' : 'Group Session'} | {pax} audience size
+            </div>
           </div>
         </li>
         <li className="mt-1 capitalize">
