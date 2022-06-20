@@ -105,7 +105,7 @@ const BookingCard = ({ data: { booking }, type, bookingType, authData }) => {
                   Rate Session
                 </Button>
               )}
-              {booking?.recording ? (
+              {booking?.recording && booking?.recording?.recordings?.length !== 0 ? (
                 <Button onClick={() => handleViewRecording(booking?.recording)}>
                   <VideoCameraIcon className="w-4 h-4 mr-2 inline" aria-hidden="true" />
                   Recordings
