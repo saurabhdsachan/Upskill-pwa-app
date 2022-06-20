@@ -13,10 +13,12 @@ import { blurredBgImage } from '@public/images/bg-base-64';
 import { SESSION_TYPE } from '@utils/constants';
 import fetcher from '@utils/fetcher';
 import { classNames, formatPrice, getImageUrl, sessionTypeMapper, tsConvert, weekShortName } from '@utils/helpers';
+import { getShareMessage } from '@utils/ShareMessage';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import { Case, Default, Else, If, Switch, Then } from 'react-if';
 
@@ -29,25 +31,8 @@ interface ISessionDetail {
   userId: string;
 }
 
-const getShareMessage = ({ session, sessionUrl, creatorUserName }) => {
-  return `Hey! ${creatorUserName} has launched a Subscription Plan on d. Below are the details:
-
-        Time: ${session?.startTime} - ${session?.endTime}
-
-        Days: ${session?.days}
-
-        Total Sessions: 10
-
-        Price: Rs. 1
-
-        Booking Link and Details: ${sessionUrl}
-
-        Joining Details: You can join the session using the same link under Bookings tab. Hurry!! Seats filling fast
-
-        Here's ${creatorUserName} for more offerings: https://pep.live/$${creatorUserName}`;
-};
-
 const SessionDetail: React.FC<ISessionDetail> = ({ data, status, sessionType, sessionId, user, userId }) => {
+  const router = useRouter();
   const { updateDownloadAppBottomSheetState, updateShareData } = useDataBusStore();
 
   const session = data?.groupSession || data?.cohortSession || data?.planSession || data;
@@ -58,9 +43,23 @@ const SessionDetail: React.FC<ISessionDetail> = ({ data, status, sessionType, se
     updateShareData({
       text: sessionTitle,
       url: data?.sessionUrl,
-      message: getShareMessage({ session, sessionUrl: data?.sessionUrl, creatorUserName: data?.user?.username }),
+      message: getShareMessage({
+        session,
+        sessionUrl: data?.sessionUrl,
+        creatorUserName: data?.user?.username || router?.query?.user,
+        sessionType,
+      }),
     });
-  }, [data.creatorUserName, data?.sessionUrl, data?.user?.username, session, sessionTitle, updateShareData]);
+  }, [
+    data.creatorUserName,
+    data?.sessionUrl,
+    data?.user?.username,
+    router?.query?.user,
+    session,
+    sessionTitle,
+    sessionType,
+    updateShareData,
+  ]);
 
   return (
     <Layout>

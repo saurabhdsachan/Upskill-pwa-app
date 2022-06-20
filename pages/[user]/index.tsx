@@ -18,6 +18,7 @@ import useAuth from '@hooks/useAuth';
 import { SESSION_TYPE } from '@utils/constants';
 import fetcher from '@utils/fetcher';
 import { HomePageSEO } from '@utils/SEO'; // can also have jsonLD config
+import { getShareMessage } from '@utils/ShareMessage';
 import { observer } from 'mobx-react';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
@@ -42,7 +43,7 @@ interface IUserPage {
 const User: React.FC<IUserPage> = observer(({ data, status }) => {
   const { setUsername } = useAuth();
   const { authData } = useAuthStore();
-  const { updateDownloadAppBottomSheetState, updateShareData } = useDataBusStore();
+  const { updateShareData } = useDataBusStore();
   const { updateUserLanguageList, updateShowLanguageBottomSheetState } = useDataBusStore();
 
   const handleViewLanguages = (data) => {
@@ -55,10 +56,15 @@ const User: React.FC<IUserPage> = observer(({ data, status }) => {
       updateShareData({
         text: data?.user?.name,
         url: window.location.href,
-        message: 'hi',
+        message: getShareMessage({
+          session: null,
+          sessionUrl: '',
+          creatorUserName: data?.user?.username,
+          sessionType: 'profile',
+        }),
       });
     }
-  }, [data?.user?.name, updateShareData]);
+  }, [data, data?.user?.name, updateShareData]);
 
   useEffect(() => {
     if (authData?.username !== data?.user?.username) {
