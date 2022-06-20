@@ -32,7 +32,7 @@ const Episodes = ({ data }) => {
           </div>
           <div>
             <p
-              className="prose prose-sm whitespace-pre-line break-normal"
+              className="prose prose-sm whitespace-pre-line break-words"
               dangerouslySetInnerHTML={{ __html: item?.description }}
             />
           </div>

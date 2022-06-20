@@ -80,7 +80,7 @@ const Footer: React.FC = observer(() => {
       </BottomSheet>
       <BottomSheet
         onDismiss={() => updateShowLanguageBottomSheetState(false)}
-        snapPoints={({ maxHeight }) => [maxHeight / 2]}
+        snapPoints={({ maxHeight }) => [maxHeight / 2.7, maxHeight / 1.5]}
         open={dataBus?.isShowLanguageBottomSheetOpen}
       >
         <div className="container mx-auto">

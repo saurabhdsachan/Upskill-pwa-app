@@ -4,7 +4,7 @@ const Bullets = ({ data, title }: { data: string[]; title?: string }) => {
   return (
     <div className="mt-4">
       {title && <h2 className="font-bold">Highlights</h2>}
-      <div className="prose prose-sm">
+      <div className="prose prose-sm break-words">
         <ul role="list">
           {data.map((item) => (
             <li key={item}>

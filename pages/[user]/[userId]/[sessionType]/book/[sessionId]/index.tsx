@@ -165,7 +165,7 @@ const SessionDetail: React.FC<ISessionDetail> = ({ data, status, sessionType, se
                 {session?.daysOfWeek && sessionType === SESSION_TYPE.PLAN && (
                   <div className="mt-4">
                     <h2 className="font-bold">Highlights</h2>
-                    <div className="prose prose-sm capitalize">
+                    <div className="prose prose-sm capitalize break-words">
                       <ul role="list">
                         <li>{session?.pax === 1 ? '1:1 session' : 'Group Session'}</li>
                         <li>{session?.totalSessions} sessions</li>
@@ -181,7 +181,7 @@ const SessionDetail: React.FC<ISessionDetail> = ({ data, status, sessionType, se
                 <div className="mt-4">
                   <h2 className="font-bold mb-2">Description</h2>
                   <p
-                    className="prose prose-sm whitespace-pre-line"
+                    className="prose prose-sm whitespace-pre-line break-words"
                     dangerouslySetInnerHTML={{ __html: session?.description }}
                   />
                 </div>
