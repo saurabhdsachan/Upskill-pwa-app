@@ -1,7 +1,6 @@
 import SelectionTick from '@components/Shared/SelectionTick';
 import { classNames } from '@utils/helpers';
 import dayjs from 'dayjs';
-import React from 'react';
 
 const CourseSlotCard = ({ data, onClick, isSelected }) => {
   return (

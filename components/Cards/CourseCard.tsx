@@ -10,7 +10,7 @@ import { useRouter } from 'next/router';
 
 const CourseCard = ({ data, type, userId }: { data: any; type: 'v-card' | 'h-card'; userId: string }) => {
   const { query } = useRouter();
-  const isSlotAvailable = data?.metaTags?.includes('PAUSED');
+  const isSlotAvailable = !data?.metaTags?.includes('PAUSED') && data?.startTime;
 
   return (
     <div

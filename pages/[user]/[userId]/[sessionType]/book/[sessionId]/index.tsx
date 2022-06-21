@@ -194,7 +194,9 @@ const SessionDetail: React.FC<ISessionDetail> = ({ data, status, sessionType, se
                   <Case
                     condition={
                       (sessionType !== SESSION_TYPE.PLAN && data?.instances && data?.instances?.instances?.length) ||
-                      (sessionType === SESSION_TYPE.PLAN && !data?.planSession?.sessionMetaTags?.includes('PAUSED')) ||
+                      (sessionType === SESSION_TYPE.PLAN &&
+                        !data?.planSession?.sessionMetaTags?.includes('PAUSED') &&
+                        data?.planSession?.startTime !== 0) ||
                       sessionType === SESSION_TYPE.CONNECT
                     }
                   >
