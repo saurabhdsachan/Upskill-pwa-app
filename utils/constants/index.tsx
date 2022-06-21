@@ -42,6 +42,11 @@ export enum PAYMENT_STATUS {
   PAID = 'PAID',
 }
 
-export const PRIVATE_PAGE_ROUTES = ['/book', `/bookings/${BOOKING_TYPE.BOOKED}`, `/bookings/${BOOKING_TYPE.RECEIVED}`];
+export const PRIVATE_PAGE_ROUTES = [
+  '/book',
+  `/bookings/${BOOKING_TYPE.BOOKED}`,
+  `/bookings/${BOOKING_TYPE.RECEIVED}`,
+  '/profile/update',
+];
 
 export const PRIVATE_API_ROUTES = [''];

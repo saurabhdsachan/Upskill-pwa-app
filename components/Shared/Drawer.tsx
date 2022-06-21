@@ -1,11 +1,11 @@
 import { useAuthStore } from '@context/authContext';
-import { UserIcon, XIcon } from '@heroicons/react/outline';
+import { PencilIcon, UserIcon, XIcon } from '@heroicons/react/outline';
 import { blurredBgImage } from '@public/images/bg-base-64';
 import { getImageUrl } from '@utils/helpers';
 import { observer } from 'mobx-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Else, If, Then } from 'react-if';
+import { Case, Default, Else, If, Switch, Then } from 'react-if';
 import Button from './Button/Button';
 import HeroName from './HeroName';
 
@@ -29,8 +29,23 @@ const Drawer = observer(({ children, isOpen, setIsOpen }) => {
       >
         <article className="relative w-full max-w-lg flex flex-col overflow-y-scroll h-full">
           <div className="flex">
-            <If condition={authData?.userId}>
-              <Then>
+            <Switch>
+              <Case condition={authData?.userId && !authData?.username}>
+                <div className="flex-1 p-4 flex items-center">
+                  <Link href="/profile/update">
+                    <a>
+                      <div className="flex space-x-4">
+                        <div className="w-10 h-10 bg-blue-100 flex justify-center items-center rounded-full">
+                          <PencilIcon className="h-4 w-4 text-blue-600" aria-hidden="true" />
+                          <span className="sr-only">User</span>
+                        </div>
+                        <div className="h-10 flex items-center">Update profile</div>
+                      </div>
+                    </a>
+                  </Link>
+                </div>
+              </Case>
+              <Case condition={authData?.userId && authData?.username}>
                 <div className="flex-1 p-4 flex items-center">
                   <div className="flex space-x-4">
                     <div className="w-10 h-10 bg-slate-500 flex justify-center items-center rounded-full">
@@ -58,8 +73,8 @@ const Drawer = observer(({ children, isOpen, setIsOpen }) => {
                     </div>
                   </div>
                 </div>
-              </Then>
-              <Else>
+              </Case>
+              <Default>
                 <div className="flex-1 p-4 flex items-center">
                   <Link href="/auth">
                     <a>
@@ -73,8 +88,8 @@ const Drawer = observer(({ children, isOpen, setIsOpen }) => {
                     </a>
                   </Link>
                 </div>
-              </Else>
-            </If>
+              </Default>
+            </Switch>
             <Button raw className="h-20 w-20" onClick={() => setIsOpen(false)}>
               <XIcon className="h-5 w-5" aria-hidden="true" />
               <span className="sr-only">Close panel</span>

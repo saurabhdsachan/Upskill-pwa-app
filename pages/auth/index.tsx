@@ -25,7 +25,7 @@ const Auth: React.FC = () => {
     if (!values.mobile) {
       // @ts-ignore
       errors.mobile = 'Required';
-    } else if (!/^([6789]{1})([\d]{3})[(\D\s)]?[\d]{3}[(\D\s)]?[\d]{3}$/i.test(values.mobile)) {
+    } else if (!/^([56789]{1})([\d]{3})[(\D\s)]?[\d]{3}[(\D\s)]?[\d]{3}$/i.test(values.mobile)) {
       // @ts-ignore
       errors.mobile = 'Invalid mobile number';
     }

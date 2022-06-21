@@ -83,27 +83,27 @@ const BookingCard = ({ data: { booking }, type, bookingType, authData }) => {
           />
         </div>
         <div className="flex-1">
-          <h3 className="text-base capitalize inline">{booking?.label} </h3>
+          <h3 className="capitalize inline">{booking?.label} </h3>
+          <br />
+          <small className="text-slate-600 text-xs">{booking?.priceLabel}</small>
           <If condition={type !== FEED_TYPE.TODAY && type !== FEED_TYPE.UPCOMING}>
             <Then>
               <Switch>
                 <Case condition={booking?.bookingStatus === 'CANCELLED'}>
-                  <small className="text-xs text-red-600">(Cancelled)</small>
+                  <small className="text-xs text-red-600"> - Cancelled</small>
                 </Case>
                 <Case condition={booking?.bookingStatus === 'CANCELLED_BY_USER'}>
-                  <small className="text-xs text-red-600">(Cancelled by User)</small>
+                  <small className="text-xs text-red-600"> - Cancelled by User</small>
                 </Case>
                 <Case condition={booking?.bookingStatus === 'CANCELLED_BY_EXPERT'}>
-                  <small className="text-xs text-red-600">(Cancelled by Expert)</small>
+                  <small className="text-xs text-red-600"> - Cancelled by Expert</small>
                 </Case>
                 <Default>
-                  <small className="text-xs text-green-600">(Booked)</small>
+                  <small className="text-xs text-green-600"> - Booked</small>
                 </Default>
               </Switch>
             </Then>
           </If>
-          <br />
-          <small className="text-slate-600 text-xs">{booking?.priceLabel}</small>
         </div>
       </div>
       <Tags data={tagNames()} />
@@ -152,7 +152,7 @@ const BookingCard = ({ data: { booking }, type, bookingType, authData }) => {
               <If condition={!sessionActive && !linkActive}>
                 <Then>
                   <Button size="big" className="uppercase" onClick={giveInfo}>
-                    Starts at {dayjs(booking?.startTime).format('hh:mm a')}
+                    Starts at {dayjs(booking?.startTime).format('DD MMM (hh:mm a)')}
                   </Button>
                 </Then>
               </If>

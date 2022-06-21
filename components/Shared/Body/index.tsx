@@ -41,6 +41,14 @@ const Body: React.FC<IBody> = ({ children }) => {
         pathname: '/auth',
         query: { returnUrl: router?.asPath },
       });
+    } else if (
+      authData?.userId &&
+      token &&
+      PRIVATE_PAGE_ROUTES.includes(path) &&
+      !authData?.username &&
+      path !== '/profile/update'
+    ) {
+      router.push('/profile/update');
     }
   }, [authData, router, setAuthData]);
 

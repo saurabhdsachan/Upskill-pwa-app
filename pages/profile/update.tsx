@@ -9,7 +9,8 @@ import { classNames } from '@utils/helpers';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { observer } from 'mobx-react';
 import Head from 'next/head';
-import React from 'react';
+import { useRouter } from 'next/router';
+import React, { useCallback, useEffect } from 'react';
 import toast from 'react-hot-toast';
 
 const FormValidation = (values) => {
@@ -34,6 +35,8 @@ const FormValidation = (values) => {
 
 const UpdateProfile: React.FC = observer(() => {
   const { authData, setAuthData } = useAuthStore();
+  const router = useRouter();
+
   const onFormSubmit = async (values, { setSubmitting }) => {
     const resp = await updateProfile({ realname: values?.name, username: values?.username });
 
@@ -47,12 +50,22 @@ const UpdateProfile: React.FC = observer(() => {
     }
   };
 
+  const getUserData = useCallback(() => {
+    if (authData?.username) {
+      router.push('/bookings/booked?type=today');
+    }
+  }, [authData, router]);
+
+  useEffect(() => {
+    getUserData();
+  }, [getUserData]);
+
   return (
     <Layout>
       <Head>
         <title>Update Profile | Pep</title>
       </Head>
-      <Layout.Header backflow={true} showShare={false} showBooking={false} />
+      <Layout.Header backflow={false} showShare={false} showBooking={false} />
       <Layout.Body>
         <div className="bg-white items-center justify-center">
           <LottieAnimation animationData={welcomeLottie} loop={false} width={160} height={160} />
@@ -103,7 +116,6 @@ const UpdateProfile: React.FC = observer(() => {
                     <div className="flex-1">
                       <input
                         {...field}
-                        autoFocus
                         type="text"
                         placeholder="Choose your username"
                         className={classNames(
