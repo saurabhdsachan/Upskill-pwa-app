@@ -163,7 +163,8 @@ const Auth: React.FC = () => {
                     </div>
 
                     <Button bg="slate" size="xl" type="submit" disabled={isSubmitting}>
-                      Send OTP <ArrowRightIcon className="h-4 w-4 ml-2" aria-hidden="true" />
+                      {isSubmitting ? 'Getting...' : 'Get OTP'}{' '}
+                      <ArrowRightIcon className="h-4 w-4 ml-2" aria-hidden="true" />
                     </Button>
                   </Form>
                 )}
@@ -204,7 +205,7 @@ const Auth: React.FC = () => {
                       )}
                     </Field>
                     <Button bg="slate" size="xl" type="submit" disabled={isSubmitting}>
-                      Submit
+                      {isSubmitting ? 'Submitting...' : 'Submit'}
                     </Button>
                   </Form>
                 )}

@@ -72,7 +72,7 @@ const UpdateProfile: React.FC = observer(() => {
       <Layout.Header backflow={false} showShare={false} showBooking={false} />
       <Layout.Body>
         <div className="bg-white items-center justify-center">
-          <LottieAnimation animationData={welcomeLottie} loop={false} width={160} height={160} />
+          <LottieAnimation animationData={welcomeLottie} loop={false} width={160} height={160} delay={200} />
         </div>
         <div className="px-6 text-center">
           <h3 className="mt-2 text-2xl">Welcome to Pep!</h3>
