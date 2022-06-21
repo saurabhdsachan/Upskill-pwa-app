@@ -116,3 +116,15 @@ export const fromShortUrlKey = async ({ key }) => {
 
   return await fetcher(endpoint);
 };
+
+export const updateProfile = async ({ realname, username }) => {
+  const endpoint = `/user/v1/user`;
+
+  return await fetcher(endpoint, {
+    method: 'PUT',
+    body: {
+      name: realname,
+      username,
+    },
+  });
+};

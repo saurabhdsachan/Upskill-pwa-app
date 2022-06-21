@@ -27,7 +27,7 @@ const fetcher = async (url: string, options?: any) => {
       'app-user-id': appUserId?.USER_CLAIM?.userId,
       ...(token && { token }),
     },
-    ...(options?.method === 'POST' && { body: JSON.stringify(options.body) }),
+    ...(options?.method !== 'GET' && { body: JSON.stringify(options?.body) }),
   });
 
   if (resp?.status <= 300) {

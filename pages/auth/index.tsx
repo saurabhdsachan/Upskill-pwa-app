@@ -5,6 +5,7 @@ import { ArrowRightIcon } from '@heroicons/react/solid';
 import useAuth from '@hooks/useAuth';
 import { blurredBgImage } from '@public/images/bg-base-64';
 import fetcher from '@utils/fetcher';
+import { classNames } from '@utils/helpers';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import Head from 'next/head';
 import Image from 'next/image';
@@ -75,7 +76,15 @@ const Auth: React.FC = () => {
       const { creator, userId, username, name, number, phoneNumber, profileImgUrl } = resp?.data?.data;
       setSubmitting && setSubmitting(false);
       setAuthData({ creator, userId, username, name, number, phoneNumber, profileImgUrl });
-      login({ token: resp?.data?.message, cb: () => router.push(router?.query?.returnUrl?.toString() || '/') });
+      if (userId && username) {
+        login({ token: resp?.data?.message, cb: () => router.push(router?.query?.returnUrl?.toString() || '/') });
+      } else {
+        login({
+          token: resp?.data?.message,
+          cb: () =>
+            router.push(`/profile/update?returnUrl=${router?.query?.returnUrl?.toString()}` || '/profile/update'),
+        });
+      }
     } else {
       toast.error('OTP not valid', { id: 'error' });
       setSubmitting && setSubmitting(false);
@@ -126,17 +135,31 @@ const Auth: React.FC = () => {
                         readOnly
                         type="text"
                         placeholder="+91"
-                        className="text-center w-1/4 py-4 block rounded-xl bg-slate-200 border-b border-transparent focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-100 focus:border-slate-100"
+                        className="text-center w-1/4 h-14 block rounded-xl bg-slate-200 border-b border-transparent focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-100 focus:border-slate-100"
                       />
-                      <Field
-                        type="tel"
-                        name="mobile"
-                        placeholder="Mobile Number"
-                        className="py-4 px-6 block w-full rounded-xl bg-slate-200 border-b border-transparent focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-100 focus:border-slate-100"
-                      />
-                    </div>
-                    <div className="h-8 text-center">
-                      <ErrorMessage name="mobile" component="small" className="text-xs text-red-600" />
+                      <Field name="mobile">
+                        {({ field, form, meta }) => (
+                          <div className="flex-1">
+                            <input
+                              {...field}
+                              autoFocus
+                              type="tel"
+                              placeholder="Mobile Number"
+                              className={classNames(
+                                meta.touched && meta.error
+                                  ? 'border border-red-400 bg-red-50'
+                                  : 'border border-transparent bg-slate-200',
+                                'px-6 h-14 block w-full rounded-xl  focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-100 focus:border-slate-100'
+                              )}
+                            />
+                            <div className="h-10 py-1 text-center">
+                              {meta.touched && meta.error && (
+                                <ErrorMessage name="mobile" component="small" className="text-xs text-red-600" />
+                              )}
+                            </div>
+                          </div>
+                        )}
+                      </Field>
                     </div>
 
                     <Button bg="slate" size="xl" type="submit" disabled={isSubmitting}>
@@ -157,16 +180,29 @@ const Auth: React.FC = () => {
                     <label htmlFor="otp" className="my-2 block">
                       OTP
                     </label>
-                    <Field
-                      type="text"
-                      name="otp"
-                      placeholder="OTP"
-                      className="text-center p-4 block w-full rounded-xl bg-slate-200 border-b border-transparent focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-100 focus:border-slate-100"
-                    />
-                    <div className="h-8 text-center">
-                      <ErrorMessage name="otp" component="small" className="text-xs text-red-600" />
-                    </div>
-
+                    <Field name="otp">
+                      {({ field, form, meta }) => (
+                        <div className="flex-1">
+                          <input
+                            {...field}
+                            autoFocus
+                            type="text"
+                            placeholder="OTP"
+                            className={classNames(
+                              meta.touched && meta.error
+                                ? 'border border-red-400 bg-red-50'
+                                : 'border border-transparent bg-slate-200',
+                              'px-6 h-14 block w-full rounded-xl  focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-100 focus:border-slate-100'
+                            )}
+                          />
+                          <div className="h-10 py-1 text-center">
+                            {meta.touched && meta.error && (
+                              <ErrorMessage name="otp" component="small" className="text-xs text-red-600" />
+                            )}
+                          </div>
+                        </div>
+                      )}
+                    </Field>
                     <Button bg="slate" size="xl" type="submit" disabled={isSubmitting}>
                       Submit
                     </Button>
