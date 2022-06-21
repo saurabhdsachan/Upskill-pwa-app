@@ -98,6 +98,9 @@ const BookingCard = ({ data: { booking }, type, bookingType, authData }) => {
                 <Case condition={booking?.bookingStatus === 'CANCELLED_BY_EXPERT'}>
                   <small className="text-xs text-red-600"> - Cancelled by Expert</small>
                 </Case>
+                <Case condition={booking?.bookingStatus === 'INITIATED'}>
+                  <small className="text-xs text-blue-600"> - Initiated</small>
+                </Case>
                 <Default>
                   <small className="text-xs text-green-600"> - Booked</small>
                 </Default>

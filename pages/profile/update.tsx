@@ -25,7 +25,7 @@ const FormValidation = (values) => {
   if (!values.username) {
     // @ts-ignore
     errors.username = 'Required';
-  } else if (!/^[a-zA-Z\-]+$/i.test(values.username)) {
+  } else if (!/^[a-zA-Z0-9]{2,30}$/i.test(values.username)) {
     // @ts-ignore
     errors.username = 'Invalid username';
   }
@@ -41,9 +41,13 @@ const UpdateProfile: React.FC = observer(() => {
     const resp = await updateProfile({ realname: values?.name, username: values?.username });
 
     if (resp.status === 200) {
-      toast.success('Profile updated successfully', { id: 'success' });
-      setAuthData({ ...authData, username: values?.username, name: values?.name });
       setSubmitting && setSubmitting(false);
+      if (resp?.data?.error?.length === 0) {
+        toast.success('Profile updated successfully', { id: 'success' });
+        setAuthData({ ...authData, username: values?.username, name: values?.name });
+      } else {
+        toast.error(resp?.data?.message, { id: 'error' });
+      }
     } else {
       toast.error('Try again', { id: 'error' });
       setSubmitting && setSubmitting(false);
@@ -52,7 +56,7 @@ const UpdateProfile: React.FC = observer(() => {
 
   const getUserData = useCallback(() => {
     if (authData?.username) {
-      router.push('/bookings/booked?type=today');
+      router.push(router?.query?.returnUrl?.toString() || '/bookings/booked?type=today');
     }
   }, [authData, router]);
 
@@ -90,7 +94,7 @@ const UpdateProfile: React.FC = observer(() => {
                     <div className="flex-1">
                       <input
                         {...field}
-                        autoFocus
+                        autoFocus={!authData?.name}
                         type="text"
                         placeholder="Enter name"
                         className={classNames(
@@ -116,6 +120,8 @@ const UpdateProfile: React.FC = observer(() => {
                     <div className="flex-1">
                       <input
                         {...field}
+                        readOnly={authData.username}
+                        autoFocus={authData?.name}
                         type="text"
                         placeholder="Choose your username"
                         className={classNames(
