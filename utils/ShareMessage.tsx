@@ -1,5 +1,6 @@
 import dayjs from 'dayjs';
 import { SESSION_TYPE } from './constants';
+import { weekShortName } from './helpers';
 export const getShareMessage = ({ session, sessionUrl, creatorUserName, sessionType }) => {
   switch (sessionType) {
     case SESSION_TYPE.WORKSHOP:
@@ -20,11 +21,11 @@ export const getShareMessage = ({ session, sessionUrl, creatorUserName, sessionT
       Hurry! Seats filling up fast!\n
       Here's ${creatorUserName} website link for more offerings: https://pep.live/${creatorUserName}`;
     case SESSION_TYPE.PLAN:
-      return `Hey! ${creatorUserName} has launched a Subscription Plan on ${session?.title}. Below are the details:\n
+      return `Hey! ${creatorUserName} has launched a Subscription Plan on ${session?.name}. Below are the details:\n
       Time: ${dayjs(session?.planStartTime).format('hh:mm a')} - ${dayjs(session?.planStartTime)
         .add(session?.durationInMinutes, 'minutes')
         .format('hh:mm a')} \n
-      Days: ${session?.daysOfWeek} \n
+      Days: ${weekShortName(session?.daysOfWeek).join(', ')} \n
       Total Sessions: ${session?.totalSessions} \n
       Price: ${session?.currencyCode}${session?.price} \n
       Language: ${session?.sessionLanguage}\n

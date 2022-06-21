@@ -10,9 +10,15 @@ import { useRouter } from 'next/router';
 
 const CourseCard = ({ data, type, userId }: { data: any; type: 'v-card' | 'h-card'; userId: string }) => {
   const { query } = useRouter();
+  const isSlotAvailable = data?.metaTags?.includes('PAUSED');
 
   return (
-    <div className={classNames(type === 'v-card' ? 'flex-none' : 'flex-none px-3 first:pl-6 last:pr-6')}>
+    <div
+      className={classNames(
+        type === 'v-card' ? 'flex-none' : 'flex-none px-3 first:pl-6 last:pr-6',
+        !isSlotAvailable && 'grayscale'
+      )}
+    >
       <Link href={`/${query?.user}/${userId}/${SESSION_TYPE.COURSE}/book/${data?.sessionId}`}>
         <a>
           <div
@@ -41,7 +47,9 @@ const CourseCard = ({ data, type, userId }: { data: any; type: 'v-card' | 'h-car
                 {data?.episodeCount} chapters
               </p>
               <p className="text-xs mb-2 text-slate-600">
-                {dayjs(data?.startTime).format('DD MMM')}-{dayjs(data?.endTime).format('DD MMM')}
+                {isSlotAvailable
+                  ? `${dayjs(data?.startTime).format('DD MMM')} - ${dayjs(data?.endTime).format('DD MMM')}`
+                  : 'No slots available'}
               </p>
               <div className="flex items-center mb-1">
                 {[0, 1, 2, 3, 4].map((rating) => (
