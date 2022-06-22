@@ -124,9 +124,9 @@ const weekShortName = (days) =>
 const tsConvert = (time) => {
   const hour = Math.floor(time / 100) % 12;
   const min = time % 100;
-  const tod = hour - 12 > 0 ? 'pm' : 'am';
+  const tod = hour - 12 > 0 ? 'am' : 'pm';
 
-  return `${hour}:${min} ${tod}`;
+  return `${hour < 9 ? `0${hour}` : hour}:${min === 0 ? `0${min}` : min} ${tod}`;
 };
 
 const parseJwt = (token) => {

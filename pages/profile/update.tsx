@@ -24,9 +24,9 @@ const FormValidation = (values) => {
   if (!values.username) {
     // @ts-ignore
     errors.username = 'Required';
-  } else if (!/^[a-zA-Z0-9]{2,30}$/i.test(values.username)) {
+  } else if (!/^[a-zA-Z][0-9a-zA-Z_\.]{2,30}$/i.test(values.username)) {
     // @ts-ignore
-    errors.username = 'Invalid username';
+    errors.username = 'Min 3 characters, Allowed characters a-z, 0-9, ., and _ ';
   }
 
   return errors;
