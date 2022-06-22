@@ -3,7 +3,7 @@ export const createDataBusStore = () => {
     dataBus: {
       shareData: {},
       userLanguageList: [],
-      sessionRecordingList: null,
+      sessionRecordingList: [],
       isDownloadAppBottomSheetOpen: false,
       isShowRecordingBottomSheetOpen: false,
       isShowLanguageBottomSheetOpen: false,

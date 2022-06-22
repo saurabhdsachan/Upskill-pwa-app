@@ -35,7 +35,7 @@ const BookingCard = ({ data: { booking }, type, bookingType, authData }) => {
     } else {
       const resp = await getCourseRecordings({ bookingId: booking?.bookingId });
       if (resp.status === 200) {
-        updateSessionRecordingList(resp?.data?.episodesRecordings);
+        updateSessionRecordingList({ list: resp?.data?.episodesRecordings });
         updateShowRecordingBottomSheetState(true);
       } else {
         toast.error('Error in fetching recordings');

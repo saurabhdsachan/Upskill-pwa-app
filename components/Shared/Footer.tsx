@@ -113,62 +113,60 @@ const Footer: React.FC = observer(() => {
                 <Tab.List>
                   <div className="overflow-auto">
                     <div className="overflow-x-auto flex no-scrollbar">
-                      {dataBus?.sessionRecordingList &&
-                        dataBus?.sessionRecordingList?.map((item, index) => (
-                          <Tab
-                            key={item?.title}
-                            className={({ selected }) =>
-                              classNames(
-                                selected ? 'border-blue-500' : 'border-slate-100 text-slate-400',
-                                'px-4 py-3 flex-1 border-b-2 text-xs bg-white whitespace-nowrap focus:outline-none'
-                              )
-                            }
-                          >
-                            {item?.title}
-                          </Tab>
-                        ))}
+                      {dataBus?.sessionRecordingList?.list?.map((item, index) => (
+                        <Tab
+                          key={item?.title}
+                          className={({ selected }) =>
+                            classNames(
+                              selected ? 'border-blue-500' : 'border-slate-100 text-slate-400',
+                              'px-4 py-3 flex-1 border-b-2 text-xs bg-white whitespace-nowrap focus:outline-none'
+                            )
+                          }
+                        >
+                          {item?.title}
+                        </Tab>
+                      ))}
                     </div>
                   </div>
                 </Tab.List>
 
                 <Tab.Panels>
-                  {dataBus?.sessionRecordingList &&
-                    dataBus?.sessionRecordingList?.map((item) => (
-                      <Tab.Panel key={`${item?.title}-panel`} className="min-h-free p-4">
-                        <div className="flex space-x-4 mb-4">
-                          <div className="w-12 h-12 rounded-xl shadow relative aspect-1 overflow-hidden">
-                            <Image
-                              className={classNames('rounded-xl object-cover')}
-                              src={
-                                item?.coverImageUrl
-                                  ? getImageUrl(item?.coverImageUrl, { height: 80, width: 80 })
-                                  : blurredBgImage
-                              }
-                              alt={item?.title}
-                              height={40}
-                              width={40}
-                              placeholder="blur"
-                              layout="responsive"
-                              blurDataURL={blurredBgImage}
-                            />
-                          </div>
-                          <div>
-                            <h3 className="text-base">{item?.title}</h3>
-                            <small className="text-slate-400 text-xs">
-                              {dayjs(item?.startTime).format("D MMM 'YY (ddd)")}
-                            </small>
-                          </div>
-                        </div>
-                        {item?.recording?.recordings?.map((record) => (
-                          <RecordingCard
-                            key={record?.name}
-                            data={record}
-                            active={record?.url === playerUrl}
-                            cb={() => setPlayerUrl(record?.url)}
+                  {dataBus?.sessionRecordingList?.list?.map((item) => (
+                    <Tab.Panel key={`${item?.title}-panel`} className="min-h-free p-4">
+                      <div className="flex space-x-4 mb-4">
+                        <div className="w-12 h-12 rounded-xl shadow relative aspect-1 overflow-hidden">
+                          <Image
+                            className={classNames('rounded-xl object-cover')}
+                            src={
+                              item?.coverImageUrl
+                                ? getImageUrl(item?.coverImageUrl, { height: 80, width: 80 })
+                                : blurredBgImage
+                            }
+                            alt={item?.title}
+                            height={40}
+                            width={40}
+                            placeholder="blur"
+                            layout="responsive"
+                            blurDataURL={blurredBgImage}
                           />
-                        ))}
-                      </Tab.Panel>
-                    ))}
+                        </div>
+                        <div>
+                          <h3 className="text-base">{item?.title}</h3>
+                          <small className="text-slate-400 text-xs">
+                            {dayjs(item?.startTime).format("D MMM 'YY (ddd)")}
+                          </small>
+                        </div>
+                      </div>
+                      {item?.recording?.recordings?.map((record) => (
+                        <RecordingCard
+                          key={record?.name}
+                          data={record}
+                          active={record?.url === playerUrl}
+                          cb={() => setPlayerUrl(record?.url)}
+                        />
+                      ))}
+                    </Tab.Panel>
+                  ))}
                 </Tab.Panels>
               </Tab.Group>
             </Else>
