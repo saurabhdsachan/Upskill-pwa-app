@@ -73,7 +73,7 @@ const Header: React.FC = observer(
               </Else>
             </If>
           </div>
-          <div className="flex-1 flex items-center truncate w-20">
+          <div className="flex-1 flex items-center capitalize truncate w-20">
             <Marquee pauseOnHover gradientWidth={2} delay={2} play={title?.length > 30}>
               <span className="mr-5">{title || ''}</span>
             </Marquee>
