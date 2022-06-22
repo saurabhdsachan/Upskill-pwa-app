@@ -48,9 +48,8 @@ const Footer: React.FC = observer(() => {
         }}
         snapPoints={({ maxHeight }) => [maxHeight / 1.2]}
         open={dataBus?.isShowRecordingBottomSheetOpen}
-      >
-        <div className="container mx-auto">
-          <div className="p-6 text-center">
+        header={
+          <>
             <h3 className="text-lg">Recording List</h3>
             <small className="text-slate-400 mb-6 text-xs">
               Total recordings : {dataBus?.sessionRecordingList?.recordings?.length}
@@ -58,7 +57,7 @@ const Footer: React.FC = observer(() => {
             {playerUrl && (
               <video
                 id="my-video"
-                className="video-js rounded-2xl mt-6 mx-auto"
+                className="video-js rounded-2xl mt-2 mx-auto"
                 controls
                 autoPlay
                 preload="auto"
@@ -77,23 +76,30 @@ const Footer: React.FC = observer(() => {
               </video>
             )}
             <div ref={playerRef} />
-
-            <div className="mt-6">
-              {dataBus?.sessionRecordingList?.recordings?.map((record) => (
-                <RecordingCard key={record?.name} data={record} cb={() => setPlayerUrl(record?.url)} />
-              ))}
-            </div>
+          </>
+        }
+      >
+        <div className="container mx-auto">
+          <div className="p-6 text-center">
+            {dataBus?.sessionRecordingList?.recordings?.map((record) => (
+              <RecordingCard
+                key={record?.name}
+                data={record}
+                active={record?.url === playerUrl}
+                cb={() => setPlayerUrl(record?.url)}
+              />
+            ))}
           </div>
         </div>
       </BottomSheet>
       <BottomSheet
         onDismiss={() => updateShowLanguageBottomSheetState(false)}
-        snapPoints={({ maxHeight }) => [maxHeight / 2.7, maxHeight / 1.5]}
+        snapPoints={({ maxHeight }) => [maxHeight / 1.5]}
         open={dataBus?.isShowLanguageBottomSheetOpen}
+        header={<h3 className="text-lg my-2">Language</h3>}
       >
         <div className="container mx-auto">
           <div className="p-6 text-center">
-            <h3 className="text-lg mb-6">Language</h3>
             <div className="prose prose-sm capitalize text-left">
               <ul role="list">
                 {dataBus?.userLanguageList?.map((item) => (

@@ -27,6 +27,9 @@ const Orange = () => (
     Dummy
   </button>
 );
+const Red = () => (
+  <button className="from-red-600 to-red-500 hover:bg-red-700 focus:ring-red-400 shadow-red-500/50">Dummy</button>
+);
 
 const Button: React.FC<IButton> = ({ onClick, raw, bg, size, className, type = 'button', disabled, children }) => {
   const handleClick = () => {
