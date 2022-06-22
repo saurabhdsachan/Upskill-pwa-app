@@ -4,7 +4,6 @@ import { blurredBgImage } from '@public/images/bg-base-64';
 import { observer } from 'mobx-react';
 import React, { useRef, useState } from 'react';
 import { BottomSheet } from 'react-spring-bottom-sheet';
-import 'react-spring-bottom-sheet/dist/style.css';
 
 const Footer: React.FC = observer(() => {
   const {

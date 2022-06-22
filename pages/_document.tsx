@@ -50,6 +50,11 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;800&display=swap"
             rel="stylesheet"
           />
+          <link
+            rel="stylesheet"
+            href="https://unpkg.com/react-spring-bottom-sheet/dist/style.css"
+            crossOrigin="anonymous"
+          />
           {prod && <script async defer dangerouslySetInnerHTML={{ __html: gtm }} />}
         </Head>
         <body className="container max-w-md mx-auto">

@@ -24,7 +24,6 @@ const Reviews: React.FC = () => {
     <Layout>
       <Head>
         <title>{router?.query?.user} Rating | Pep</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout.Header title="Reviews" backflow={true} showShare={true} showBooking={true} />
       <Layout.Body>

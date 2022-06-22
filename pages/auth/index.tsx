@@ -95,7 +95,6 @@ const Auth: React.FC = () => {
     <Layout>
       <Head>
         <title>Login / Signup | Pep</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout.Header backflow={true} showShare={false} showBooking={false} />
       <Layout.Body>

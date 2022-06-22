@@ -8,7 +8,6 @@ const Offline: React.FC = () => {
     <Layout>
       <Head>
         <title>Offline | Pep</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout.Header title="Offline" backflow={true} showShare={false} showBooking={false} />
       <Layout.Body>

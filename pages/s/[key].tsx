@@ -11,7 +11,6 @@ const ShortPage = () => {
     <Layout>
       <Head>
         <title>Open Session | Pep</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout.Header backflow={false} showShare={false} showBooking={false} />
       <Layout.Body>
