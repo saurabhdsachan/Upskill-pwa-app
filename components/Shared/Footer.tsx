@@ -1,9 +1,9 @@
 import RecordingCard from '@components/Cards/RecordingCard';
 import { useDataBusStore } from '@context/dataBusContext';
-import { blurredBgImage } from '@public/images/bg-base-64';
 import { observer } from 'mobx-react';
 import React, { useRef, useState } from 'react';
 import { BottomSheet } from 'react-spring-bottom-sheet';
+import VideoPlayer from './VideoPlayer';
 
 const Footer: React.FC = observer(() => {
   const {
@@ -15,6 +15,19 @@ const Footer: React.FC = observer(() => {
   } = useDataBusStore();
   const playerRef = useRef();
   const [playerUrl, setPlayerUrl] = useState('');
+
+  const handlePlayerReady = (player) => {
+    playerRef.current = player;
+
+    // You can handle player events here, for example:
+    // player.on('waiting', () => {
+    //   console.log('player is waiting');
+    // });
+
+    // player.on('dispose', () => {
+    //   console.log('player will dispose');
+    // });
+  };
 
   return (
     <>
@@ -55,32 +68,28 @@ const Footer: React.FC = observer(() => {
               Total recordings : {dataBus?.sessionRecordingList?.recordings?.length}
             </small>
             {playerUrl && (
-              <video
-                id="my-video"
-                className="video-js rounded-2xl mt-2 mx-auto"
-                controls
-                autoPlay
-                preload="auto"
-                width="640"
-                height="264"
-                poster={blurredBgImage}
-                data-setup="{}"
-              >
-                <source src={playerUrl} type="video/mp4" />
-                <p className="vjs-no-js">
-                  To view this video please enable JavaScript, and consider upgrading to a web browser that
-                  <a href="https://videojs.com/html5-video-support/" target="_blank" rel="noreferrer">
-                    supports HTML5 video
-                  </a>
-                </p>
-              </video>
+              <VideoPlayer
+                options={{
+                  autoplay: true,
+                  controls: true,
+                  responsive: true,
+                  fluid: true,
+                  sources: [
+                    {
+                      src: playerUrl,
+                      type: 'video/mp4',
+                    },
+                  ],
+                }}
+                onReady={handlePlayerReady}
+              />
             )}
             <div ref={playerRef} />
           </>
         }
       >
         <div className="container mx-auto">
-          <div className="p-6 text-center">
+          <div className="p-4 text-center">
             {dataBus?.sessionRecordingList?.recordings?.map((record) => (
               <RecordingCard
                 key={record?.name}
