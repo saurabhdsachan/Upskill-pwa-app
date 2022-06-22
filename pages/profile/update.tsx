@@ -37,13 +37,14 @@ const UpdateProfile: React.FC = observer(() => {
   const router = useRouter();
 
   const onFormSubmit = async (values, { setSubmitting }) => {
-    const resp = await updateProfile({ realname: values?.name, username: values?.username });
+    const username = values?.username?.toLowerCase();
+    const resp = await updateProfile({ realname: values?.name, username });
 
     if (resp.status === 200) {
       setSubmitting && setSubmitting(false);
       if (resp?.data?.error?.length === 0) {
         toast.success('Profile updated successfully', { id: 'success' });
-        setAuthData({ ...authData, username: values?.username, name: values?.name });
+        setAuthData({ ...authData, username, name: values?.name });
       } else {
         toast.error(resp?.data?.message, { id: 'error' });
       }
@@ -119,15 +120,15 @@ const UpdateProfile: React.FC = observer(() => {
                     <div className="flex-1">
                       <input
                         {...field}
-                        readOnly={authData?.username}
+                        autoCapitalize="off"
                         autoFocus={authData?.name}
                         type="text"
-                        placeholder="Choose your username"
+                        placeholder="enter username"
                         className={classNames(
                           meta.touched && meta.error
                             ? 'border border-red-400 bg-red-50'
                             : 'border border-transparent bg-slate-200',
-                          'px-6 h-14 block w-full rounded-xl  focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-100 focus:border-slate-100'
+                          'px-6 h-14 block w-full rounded-xl lowercase focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-100 focus:border-slate-100'
                         )}
                       />
                       <div className="h-8 py-1 text-center">

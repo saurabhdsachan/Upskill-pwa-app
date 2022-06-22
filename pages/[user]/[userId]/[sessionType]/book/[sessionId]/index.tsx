@@ -167,10 +167,13 @@ const SessionDetail: React.FC<ISessionDetail> = ({ data, status, sessionType, se
                     <h2 className="font-bold">Highlights</h2>
                     <div className="prose prose-sm capitalize break-words">
                       <ul role="list">
-                        <li>{session?.pax === 1 ? '1:1 session' : 'Group Session'}</li>
+                        <li>{session?.pax === 1 ? '1:1 session' : `Group Session | ${session?.pax} audience size`}</li>
                         <li>{session?.totalSessions} sessions</li>
                         <li>
-                          Time: {tsConvert(session?.startTime)} ({session?.durationInMinutes} min)
+                          Time:{' '}
+                          <span className="lowercase">
+                            {tsConvert(session?.startTime)} ({session?.durationInMinutes} min)
+                          </span>
                         </li>
                         <li>{weekShortName(session?.daysOfWeek).join(', ')}</li>
                       </ul>
