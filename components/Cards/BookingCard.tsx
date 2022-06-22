@@ -4,8 +4,9 @@ import Tags from '@components/Shared/Tags';
 import { useDataBusStore } from '@context/dataBusContext';
 import { StarIcon, VideoCameraIcon } from '@heroicons/react/outline';
 import { blurredBgImage } from '@public/images/bg-base-64';
+import { getCourseRecordings } from '@utils/apiData';
 import { BOOKING_TYPE, FEED_TYPE, SESSION_TYPE } from '@utils/constants';
-import { classNames, getImageUrl } from '@utils/helpers';
+import { classNames, getImageUrl, sessionTypeMapperReverse } from '@utils/helpers';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import Image from 'next/image';
@@ -27,9 +28,19 @@ const BookingCard = ({ data: { booking }, type, bookingType, authData }) => {
   const { updateDownloadAppBottomSheetState, updateSessionRecordingList, updateShowRecordingBottomSheetState } =
     useDataBusStore();
 
-  const handleViewRecording = (data) => {
-    updateSessionRecordingList(data);
-    updateShowRecordingBottomSheetState(true);
+  const handleViewRecording = async (data) => {
+    if (sessionTypeMapperReverse(booking?.sessionType) !== SESSION_TYPE.COURSE) {
+      updateSessionRecordingList(data);
+      updateShowRecordingBottomSheetState(true);
+    } else {
+      const resp = await getCourseRecordings({ bookingId: booking?.bookingId });
+      if (resp.status === 200) {
+        updateSessionRecordingList(resp?.data?.episodesRecordings);
+        updateShowRecordingBottomSheetState(true);
+      } else {
+        toast.error('Error in fetching recordings');
+      }
+    }
   };
 
   const giveInfo = () => {
@@ -74,7 +85,7 @@ const BookingCard = ({ data: { booking }, type, bookingType, authData }) => {
           <Image
             className={classNames('rounded-xl object-cover')}
             src={booking?.coverImgUrl ? getImageUrl(booking?.coverImgUrl, { height: 180, width: 180 }) : blurredBgImage}
-            alt={'xy'}
+            alt={booking?.label}
             height={40}
             width={40}
             placeholder="blur"

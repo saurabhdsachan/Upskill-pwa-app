@@ -128,3 +128,9 @@ export const updateProfile = async ({ realname, username }) => {
     },
   });
 };
+
+export const getCourseRecordings = async ({ bookingId }) => {
+  const endpoint = `/store/v1/bookings/${bookingId}/recordings`;
+
+  return await fetcher(endpoint);
+};
