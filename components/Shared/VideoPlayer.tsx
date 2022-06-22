@@ -43,7 +43,6 @@ export const VideoPlayer = ({ options, onReady }) => {
         width="640"
         height="264"
         poster={blurredBgImage}
-        data-setup="{}"
       >
         <p className="vjs-no-js">
           To view this video please enable JavaScript, and consider upgrading to a web browser that

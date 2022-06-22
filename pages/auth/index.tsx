@@ -82,7 +82,11 @@ const Auth: React.FC = () => {
         login({
           token: resp?.data?.message,
           cb: () =>
-            router.push(`/profile/update?returnUrl=${router?.query?.returnUrl?.toString()}` || '/profile/update'),
+            router.push(
+              router?.query?.returnUrl
+                ? `/profile/update?returnUrl=${router?.query?.returnUrl?.toString()}`
+                : '/profile/update?returnUrl=/'
+            ),
         });
       }
     } else {

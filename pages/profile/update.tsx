@@ -2,7 +2,6 @@ import Button from '@components/Shared/Button/Button';
 import Layout from '@components/Shared/Layout';
 import LottieAnimation from '@components/Shared/LottieAnimation';
 import { useAuthStore } from '@context/authContext';
-import { ArrowRightIcon } from '@heroicons/react/solid';
 import welcomeLottie from '@public/lotties/welcome.json';
 import { updateProfile } from '@utils/apiData';
 import { classNames } from '@utils/helpers';
@@ -120,7 +119,7 @@ const UpdateProfile: React.FC = observer(() => {
                     <div className="flex-1">
                       <input
                         {...field}
-                        readOnly={authData.username}
+                        readOnly={authData?.username}
                         autoFocus={authData?.name}
                         type="text"
                         placeholder="Choose your username"
@@ -141,7 +140,7 @@ const UpdateProfile: React.FC = observer(() => {
                 </Field>
 
                 <Button bg="blue" size="xl" type="submit" disabled={isSubmitting} className="mt-6">
-                  Update my details <ArrowRightIcon className="h-4 w-4 ml-2" aria-hidden="true" />
+                  Done
                 </Button>
               </Form>
             )}
