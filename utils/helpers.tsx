@@ -124,7 +124,7 @@ const weekShortName = (days) =>
 const tsConvert = (time) => {
   time = time.toString();
   if (time.length === 2) {
-    return `00:${time} am`;
+    return `12:${time} am`;
   }
   if (time.length < 4) time = ['0'].concat(time).join('');
   let hours = time.slice(0, 2);
