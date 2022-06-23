@@ -97,7 +97,7 @@ const BookingCard = ({ data: { booking }, type, bookingType, authData }) => {
           <h3 className="capitalize inline">{booking?.label} </h3>
           <br />
           <small className="text-slate-600 text-xs">{booking?.priceLabel}</small>
-          <If condition={type !== FEED_TYPE.TODAY && type !== FEED_TYPE.UPCOMING}>
+          <If condition={type !== FEED_TYPE.TODAY && type !== FEED_TYPE.UPCOMING && type !== FEED_TYPE.PAST}>
             <Then>
               <Switch>
                 <Case condition={booking?.bookingStatus === 'CANCELLED'}>

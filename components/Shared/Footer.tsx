@@ -73,7 +73,12 @@ const Footer: React.FC = observer(() => {
             <small className="text-slate-400 mb-6 text-xs">
               Total recordings : {dataBus?.sessionRecordingList?.recordings?.length}
             </small>
-            {playerUrl && (
+          </>
+        }
+      >
+        <div className="container mx-auto">
+          {playerUrl && (
+            <div className="px-4 pt-2">
               <VideoPlayer
                 options={{
                   autoplay: true,
@@ -89,12 +94,9 @@ const Footer: React.FC = observer(() => {
                 }}
                 onReady={handlePlayerReady}
               />
-            )}
-            <div ref={playerRef} />
-          </>
-        }
-      >
-        <div className="container mx-auto">
+            </div>
+          )}
+          <div ref={playerRef} />
           <If condition={dataBus?.sessionRecordingList?.hasOwnProperty('recordings')}>
             <Then>
               <div className="p-4 text-center">

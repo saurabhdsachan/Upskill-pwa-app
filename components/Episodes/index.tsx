@@ -8,7 +8,7 @@ const Episodes = ({ data }) => {
       <h2 className="font-bold mb-4">{data?.length} Chapters</h2>
       {data?.map((item, index) => (
         <div className="mb-6 bg-slate-100 p-4 rounded-2xl" key={item?.episodeId}>
-          <div className="flex space-x-4 items-center mb-6">
+          <div className="flex space-x-4 items-center mb-2">
             <div className="flex-1">
               <div>
                 <small className="text-xs text-slate-600">Chapter {index + 1}</small>
