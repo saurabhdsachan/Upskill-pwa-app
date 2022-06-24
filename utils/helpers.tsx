@@ -170,6 +170,13 @@ const socialShare = async ({ title, text, url }) => {
   } catch (err) {}
 };
 
+const tagNames = (data) => {
+  const tmp = [];
+  data?.chips?.map((chip) => tmp.push(chip?.chipName));
+
+  return tmp;
+};
+
 export {
   debounce,
   arraysEqual,
@@ -185,4 +192,5 @@ export {
   tsConvert,
   parseJwt,
   socialShare,
+  tagNames,
 };

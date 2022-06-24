@@ -6,7 +6,7 @@ import { StarIcon, VideoCameraIcon } from '@heroicons/react/outline';
 import { blurredBgImage } from '@public/images/bg-base-64';
 import { getCourseRecordings } from '@utils/apiData';
 import { BOOKING_TYPE, FEED_TYPE, SESSION_TYPE } from '@utils/constants';
-import { classNames, getImageUrl, sessionTypeMapperReverse } from '@utils/helpers';
+import { classNames, getImageUrl, sessionTypeMapperReverse, tagNames } from '@utils/helpers';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import Image from 'next/image';
@@ -56,13 +56,6 @@ const BookingCard = ({ data: { booking }, type, bookingType, authData }) => {
     a.click();
 
     return null;
-  };
-
-  const tagNames = () => {
-    const tmp = [];
-    booking?.chips?.map((chip) => tmp.push(chip?.chipName));
-
-    return tmp;
   };
 
   useEffect(() => {
@@ -120,7 +113,7 @@ const BookingCard = ({ data: { booking }, type, bookingType, authData }) => {
           </If>
         </div>
       </div>
-      <Tags data={tagNames()} />
+      <Tags data={tagNames(booking)} />
       <div className="px-4 pb-4">
         <Bullets data={booking?.bullets} />
         <If condition={type === FEED_TYPE.PAST}>
