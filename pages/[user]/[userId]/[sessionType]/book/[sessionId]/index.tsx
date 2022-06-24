@@ -176,7 +176,7 @@ const SessionDetail: React.FC<ISessionDetail> = ({ data, status, sessionType, se
                           </span>
                         </li>
                         <li>{weekShortName(session?.daysOfWeek).join(', ')}</li>
-                        {session?.sessionLanguage && <li>{session?.sessionLanguage?.toLowerCase()}</li>}
+                        {session?.sessionLanguage && <li>Language: {session?.sessionLanguage?.toLowerCase()}</li>}
                       </ul>
                     </div>
                   </div>
