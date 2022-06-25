@@ -47,7 +47,7 @@ const dataToPush = (data, type) => {
 };
 
 const logPageView = (data) => {
-  prod && ReactGA.send({ hitType: EVENT_NAME.PAGEVIEW, page: data });
+  ReactGA.send({ hitType: EVENT_NAME.PAGEVIEW, page: data });
 };
 
 const logEvent = ({ category = '', action = '', label = '', value = 0 }: ILogEvent) => {
