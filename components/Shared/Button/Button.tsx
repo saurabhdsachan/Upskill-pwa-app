@@ -1,3 +1,4 @@
+import { PushEvent } from '@utils/analytics';
 import { classNames } from '@utils/helpers';
 import React from 'react';
 
@@ -33,6 +34,7 @@ const Red = () => (
 
 const Button: React.FC<IButton> = ({ onClick, raw, bg, size, className, type = 'button', disabled, children }) => {
   const handleClick = () => {
+    PushEvent({ category: 'category', action: 'action', label: 'label', value: 1000 });
     onClick && onClick();
   };
 

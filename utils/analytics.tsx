@@ -15,7 +15,7 @@ ReactGA.event({
 
 import ReactGA from 'react-ga4';
 
-const prod = process.env.NODE_ENV === 'production';
+const gaEnabled = process.env.NEXT_PUBLIC_GA_ENABLE;
 
 interface ILogEvent {
   category: string;
@@ -34,7 +34,7 @@ enum EVENT_NAME {
 
 const initAnalytics = () => {
   // @ts-ignore
-  if (!window?.GA_INITIALIZED) {
+  if (gaEnabled && !window?.GA_INITIALIZED) {
     ReactGA.initialize(process.env.NEXT_PUBLIC_GOOGLE_GA4_PROP_ID);
     // @ts-ignore
     window.GA_INITIALIZED = true;
@@ -51,7 +51,7 @@ const logPageView = (data) => {
 };
 
 const logEvent = ({ category = '', action = '', label = '', value = 0 }: ILogEvent) => {
-  if (prod && category && action) {
+  if (gaEnabled && category && action) {
     ReactGA.event({
       category,
       action,
@@ -65,7 +65,7 @@ const logEvent = ({ category = '', action = '', label = '', value = 0 }: ILogEve
 
 const PushEvent = async (data) => {
   const { category, action, label, value } = data;
-  const categoryName = `pwa-${window.location.pathname} >> ${category}`;
+  const categoryName = `pwa>>${category}=>${window.location.pathname} >> `;
   const labelName = `${label} | user Name - ${'Saurabh' || 'Guest'}`;
   dataToPush({ category: categoryName, action, label: labelName, value }, EVENT_NAME.CLICK);
   logEvent({ category: categoryName, action, label: labelName, value });
