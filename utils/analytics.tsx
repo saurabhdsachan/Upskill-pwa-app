@@ -15,7 +15,7 @@ ReactGA.event({
 
 import ReactGA from 'react-ga4';
 
-const gaEnabled = process.env.NEXT_PUBLIC_GA_ENABLE;
+const prod = process.env.NODE_ENV === 'production';
 
 interface ILogEvent {
   category: string;
@@ -35,7 +35,7 @@ enum EVENT_NAME {
 const initAnalytics = () => {
   // @ts-ignore
   if (gaEnabled && !window?.GA_INITIALIZED) {
-    ReactGA.initialize(process.env.NEXT_PUBLIC_GOOGLE_GA4_PROP_ID);
+    ReactGA.initialize(process.env.NEXT_PUBLIC_GOOGLE_GA4_PROP_ID, { testMode: !prod });
     // @ts-ignore
     window.GA_INITIALIZED = true;
   }
@@ -51,7 +51,7 @@ const logPageView = (data) => {
 };
 
 const logEvent = ({ category = '', action = '', label = '', value = 0 }: ILogEvent) => {
-  if (gaEnabled && category && action) {
+  if (prod && category && action) {
     ReactGA.event({
       category,
       action,

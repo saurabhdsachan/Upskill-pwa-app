@@ -106,7 +106,7 @@ const Bookings: React.FC = observer(() => {
               </Link>
             </div>
           )}
-          <If condition={tabList.length !== 0}>
+          <If condition={tabList?.length !== 0}>
             <Then>
               <Tab.Group
                 defaultIndex={tabs?.indexOf(type as string)}
