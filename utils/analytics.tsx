@@ -34,7 +34,7 @@ enum EVENT_NAME {
 
 const initAnalytics = () => {
   // @ts-ignore
-  if (gaEnabled && !window?.GA_INITIALIZED) {
+  if (prod && typeof window !== 'undefined' && !window?.GA_INITIALIZED) {
     ReactGA.initialize(process.env.NEXT_PUBLIC_GOOGLE_GA4_PROP_ID, { testMode: !prod });
     // @ts-ignore
     window.GA_INITIALIZED = true;
@@ -43,7 +43,7 @@ const initAnalytics = () => {
 
 const dataToPush = (data, type) => {
   // @ts-ignore
-  window.dataLayer.push({ data, ...{ event: type } });
+  window?.dataLayer?.push({ data, ...{ event: type } });
 };
 
 const logPageView = (data) => {
