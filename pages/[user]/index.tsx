@@ -1,6 +1,8 @@
 import CourseScroll from '@components/CourseScroll';
 import ExpertiseScroll from '@components/ExpertiseScroll';
 import { Hero1 } from '@components/Hero';
+import HeroAction from '@components/HeroAction';
+import HeroGem from '@components/HeroGem';
 import PlanScroll from '@components/PlanScroll';
 import Avatar from '@components/Shared/Avatar';
 import EmptyState from '@components/Shared/EmptyState';
@@ -88,12 +90,12 @@ const User: React.FC<IUserPage> = observer(({ data, status }) => {
                 <Hero1 />
                 <Avatar source={data?.user?.profileImgUrl} />
                 <HeroIntro name={data?.user?.name} username={data?.user?.username} />
-                {/* <HeroGem
+                <HeroGem
                   followersCount={data?.user?.followersCount}
                   followingCount={data?.user?.followingCount}
                   sessionsTaken={data?.user?.sessionsTaken}
                 />
-                <HeroAction /> */}
+                <HeroAction />
                 <SocialLinks
                   twitter={data?.user?.twitterUrl}
                   facebook={data?.user?.fbUrl}
