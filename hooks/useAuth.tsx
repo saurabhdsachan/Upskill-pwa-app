@@ -6,7 +6,7 @@ const exp = 365;
 
 const CookieOptions = {
   expires: exp,
-  domain: process.env.NODE_ENV === 'production' ? 'demo-vid.vercel.app' : 'localhost',
+  domain: process.env.NODE_ENV === 'production' ? 'pep-pwa.vercel.app' : 'localhost',
   path: '/',
 };
 
